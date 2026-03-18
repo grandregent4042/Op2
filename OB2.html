@@ -3,895 +3,993 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perception in Organisational Behaviour - Mindmap</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>OB: Perception - Complete Mindmap</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --warm-cream: #FFF8F0;
-            --peach-light: #FFE5D9;
-            --coral: #FF9B85;
-            --coral-deep: #FF6B6B;
-            --terracotta: #D68C6E;
-            --sand: #F4E4C1;
-            --sage: #A8C090;
-            --mint: #8BD3C4;
-            --lavender: #C49ECE;
-            --warm-yellow: #FFD166;
-            --text-dark: #3D3D3D;
-            --text-muted: #6B6B6B;
-        }
-
-        @media print {
-            body {
-                margin: 0;
-                padding: 0;
-            }
-            .page {
-                page-break-after: always;
-                width: 297mm;
-                height: 210mm;
-                margin: 0;
-                padding: 0;
-            }
-        }
-
-        body {
-            background: linear-gradient(135deg, var(--warm-cream) 0%, var(--peach-light) 100%);
-            font-family: 'Quicksand', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            padding: 0;
-            margin: 0;
-        }
-
-        .page {
-            width: 297mm;
-            height: 210mm;
-            padding: 35px 35px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            border-bottom: 3px dashed var(--coral);
-            overflow: hidden;
-            margin: 0;
-        }
-
-        .page::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, var(--coral) 0%, transparent 70%);
-            opacity: 0.1;
-            border-radius: 50%;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.15; }
-            50% { transform: scale(1.1); opacity: 0.25; }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .page-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 56px;
-            font-weight: 900;
-            color: var(--coral-deep);
-            margin-bottom: 20px;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(255, 107, 107, 0.1);
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .page-subtitle {
-            font-size: 18px;
-            color: var(--text-muted);
-            text-align: center;
-            margin-bottom: 60px;
-            font-style: italic;
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
-        }
-
-        .mindmap-container {
-            flex: 1;
-            display: flex;
-            flex-direction: row;
-            gap: 12px;
-            animation: fadeInUp 0.8s ease-out 0.4s backwards;
-            overflow: hidden;
-        }
-
-        .main-container {
-            flex: 1;
-            display: flex;
-            flex-direction: row;
-            gap: 12px;
-            overflow: hidden;
-        }
-
-        .content-area {
-            flex: 0 0 66%;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            overflow-y: auto;
-        }
-
-        .notes-area {
-            flex: 0 0 34%;
-            background: white;
-            border-radius: 14px;
-            padding: 16px;
-            box-shadow: 0 6px 18px rgba(255, 107, 107, 0.12);
-            border: 3px dashed var(--coral);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .notes-area::before {
-            content: '📝 NOTES';
-            position: absolute;
-            top: -13px;
-            left: 16px;
-            background: var(--coral-deep);
-            color: white;
-            padding: 4px 16px;
-            border-radius: 16px;
-            font-weight: 700;
-            font-size: 11px;
-            letter-spacing: 0.8px;
-            z-index: 10;
-        }
-
-        .notes-area::after {
-            content: '';
-            position: absolute;
-            bottom: 12px;
-            right: 12px;
-            width: 40px;
-            height: 40px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23FFE5D9" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>') center/contain no-repeat;
-            opacity: 0.2;
-        }
-
-        .content-area {
-            flex: 2;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .notes-area {
-            flex: 1;
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 40px rgba(255, 107, 107, 0.1);
-            border: 3px dashed var(--coral);
-            position: relative;
-            min-height: 400px;
-        }
-
-        .notes-area::before {
-            content: '📝 NOTES';
-            position: absolute;
-            top: -15px;
-            left: 30px;
-            background: var(--coral-deep);
-            color: white;
-            padding: 5px 20px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 1px;
-        }
-
-        .notes-area::after {
-            content: '';
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23FFE5D9" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>') center/contain no-repeat;
-            opacity: 0.3;
-        }
-
-        .central-node {
-            background: linear-gradient(135deg, var(--coral-deep), var(--coral));
-            color: white;
-            padding: 30px 50px;
-            border-radius: 30px;
-            font-size: 28px;
-            font-weight: 700;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
-            margin: 20px auto;
-            max-width: fit-content;
-            transform: scale(1);
-            transition: transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .central-node::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .central-node:hover {
-            transform: scale(1.05);
-        }
-
-        .branch-container {
-            display: flex;
-            gap: 40px;
-            align-items: flex-start;
-            flex-wrap: wrap;
-        }
-
-        .branch {
-            position: relative;
-            animation: fadeInUp 0.6s ease-out backwards;
-        }
-
-        .branch:nth-child(1) { animation-delay: 0.1s; }
-        .branch:nth-child(2) { animation-delay: 0.2s; }
-        .branch:nth-child(3) { animation-delay: 0.3s; }
-        .branch:nth-child(4) { animation-delay: 0.4s; }
-
-        .branch-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--coral-deep);
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .node {
-            background: white;
-            padding: 18px 25px;
-            border-radius: 15px;
-            margin-bottom: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid var(--coral);
-            font-size: 15px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .node:hover {
-            transform: translateX(5px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.2);
-        }
-
-        .node.color-sage { border-left-color: var(--sage); }
-        .node.color-mint { border-left-color: var(--mint); }
-        .node.color-lavender { border-left-color: var(--lavender); }
-        .node.color-terracotta { border-left-color: var(--terracotta); }
-        .node.color-yellow { border-left-color: var(--warm-yellow); }
-
-        .node strong {
-            color: var(--coral-deep);
-            font-weight: 700;
-        }
-
-        .grid-layout {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 20px 0;
-        }
-
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            border-top: 6px solid var(--coral);
-            transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.15);
-        }
-
-        .card.sage { border-top-color: var(--sage); }
-        .card.mint { border-top-color: var(--mint); }
-        .card.lavender { border-top-color: var(--lavender); }
-        .card.terracotta { border-top-color: var(--terracotta); }
-        .card.yellow { border-top-color: var(--warm-yellow); }
-
-        .card-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--coral-deep);
-            margin-bottom: 15px;
-        }
-
-        .card-content {
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .section-header {
-            background: linear-gradient(90deg, var(--coral-deep), transparent);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 15px;
-            font-size: 22px;
-            font-weight: 700;
-            margin: 30px 0 20px 0;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
-        }
-
-        .cluster {
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 25px;
-            padding: 30px;
-            margin: 20px 0;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
-            border: 2px solid var(--peach-light);
-        }
-
-        .cluster-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--coral-deep);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .tag {
-            display: inline-block;
-            background: var(--coral);
-            color: white;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            margin: 5px;
-            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.2);
-        }
-
-        .tag.sage { background: var(--sage); }
-        .tag.mint { background: var(--mint); }
-        .tag.lavender { background: var(--lavender); }
-        .tag.terracotta { background: var(--terracotta); }
-
-        .title-page {
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(135deg, var(--peach-light) 0%, var(--sand) 50%, var(--warm-cream) 100%);
-        }
-
-        .title-page .page-title {
-            font-size: 72px;
-            margin-bottom: 30px;
-            background: linear-gradient(45deg, var(--coral-deep), var(--coral), var(--terracotta));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .decorative-circle {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.15;
-        }
-
-        .circle-1 {
-            width: 300px;
-            height: 300px;
-            background: var(--coral);
-            top: 10%;
-            left: 5%;
-        }
-
-        .circle-2 {
-            width: 200px;
-            height: 200px;
-            background: var(--sage);
-            bottom: 15%;
-            right: 8%;
-        }
-
-        .circle-3 {
-            width: 150px;
-            height: 150px;
-            background: var(--lavender);
-            top: 50%;
-            right: 20%;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; margin: 0; padding: 0; background: white; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .page { width: 100%; min-height: 100vh; display: grid; grid-template-columns: 1.8fr 1fr; page-break-after: always; break-after: page; margin: 0; padding: 0; }
+        .mindmap-section { display: flex; flex-direction: column; padding: 10px; background: white; border-right: 2px solid #ddd; overflow: visible; }
+        .notes-section { background: #f9f9f9; padding: 10px; display: flex; flex-direction: column; }
+        .notes-title { font-weight: bold; color: #667eea; margin-bottom: 10px; font-size: 0.9em; }
+        .notes-lines { display: flex; flex-direction: column; gap: 0; }
+        .note-line { border-bottom: 1px dotted #bbb; height: 18px; flex-shrink: 0; }
+        .page-title { text-align: center; color: #667eea; font-size: 1.15em; font-weight: bold; margin-bottom: 6px; border-bottom: 2px solid #667eea; padding-bottom: 4px; }
+        .page-subtitle { text-align: center; color: #999; font-size: 0.68em; margin-bottom: 8px; }
+        .mindmap-content { display: flex; flex-direction: column; gap: 8px; overflow: visible; }
+        .mindmap-row { display: flex; gap: 8px; align-items: flex-start; }
+        .central-node { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 11px; border-radius: 6px; font-weight: bold; text-align: center; white-space: normal; flex-shrink: 0; box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3); width: 82px; display: flex; align-items: center; justify-content: center; font-size: 0.77em; line-height: 1.15; min-height: 72px; }
+        .branches-container { display: flex; gap: 7px; flex: 1; overflow: visible; }
+        .branch { background: white; border: 1.5px solid #667eea; border-radius: 5px; padding: 7px; min-width: 115px; flex: 1; display: flex; flex-direction: column; }
+        .branch-title { background: #667eea; color: white; padding: 5px; border-radius: 3px; font-weight: bold; font-size: 0.68em; margin-bottom: 5px; text-align: center; flex-shrink: 0; }
+        .topics { display: flex; flex-direction: column; gap: 3px; overflow: visible; }
+        .topic { padding: 4px; background: #f0f4ff; border-left: 2px solid #667eea; border-radius: 2px; font-size: 0.68em; line-height: 1.2; flex-shrink: 0; }
+        .topic strong { color: #667eea; display: block; margin-bottom: 1px; font-size: 0.9em; }
+        .topic small { color: #666; font-size: 0.85em; }
+        .priority-high { background: #ffe5e5; border-left: 2px solid #ff6b6b; }
+        .priority-high strong { color: #ff6b6b; }
+        .priority-mid { background: #fff5e5; border-left: 2px solid #ffc107; }
+        .priority-mid strong { color: #ff9800; }
+        .explanation-section { display: flex; flex-direction: column; gap: 6px; font-size: 0.66em; line-height: 1.25; margin-top: 6px; overflow: visible; }
+        .explanation { background: #f9f9f9; border-left: 2px solid #667eea; padding: 6px; border-radius: 3px; flex-shrink: 0; }
+        .explanation-title { font-weight: bold; color: #667eea; margin-bottom: 2px; font-size: 0.82em; }
+        .explanation-content { color: #333; margin-left: 5px; }
+        .explanation-item { margin: 1.5px 0; font-size: 0.9em; }
+        .explanation-item strong { color: #667eea; }
+        .page-number { text-align: right; color: #999; font-size: 0.65em; margin-top: 6px; flex-shrink: 0; }
+        @media print { body { margin: 0; padding: 0; background: white; } .page { margin: 0; padding: 0; min-height: 100vh; page-break-after: always; break-after: page; } .mindmap-section { padding: 10mm; border-right: 2px solid #ddd; } .notes-section { padding: 10mm; } }
+        @media screen { .page { margin: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); } }
     </style>
 </head>
 <body>
 
-    <!-- TITLE PAGE -->
-    <div class="page title-page">
-        <div class="decorative-circle circle-1"></div>
-        <div class="decorative-circle circle-2"></div>
-        <div class="decorative-circle circle-3"></div>
-        <h1 class="page-title">PERCEPTION IN ORGANISATIONAL BEHAVIOUR</h1>
-        <p class="page-subtitle">Understanding How People Interpret Reality & Its Organisational Impact</p>
-    </div>
-
-    <!-- PAGE 1: Core Concepts -->
-    <div class="page">
-        <h2 class="page-title">Core Concepts</h2>
-        <div class="mindmap-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div class="cluster-title">👁️ DEFINITION & NATURE</div>
-                    
-                    <div class="central-node">PERCEPTION</div>
-
-                    <div class="section-header">What is Perception?</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Organising Sensory Impressions</div>
-                            <div class="card-content">The process of selecting, organizing, and interpreting sensory data from the environment into meaningful patterns</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Interpreting Environment</div>
-                            <div class="card-content">Active process of making sense of surroundings through cognitive frameworks, experiences, and expectations</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Perception vs Reality</div>
-                            <div class="card-content">Perceived reality may differ significantly from objective reality. Our interpretation becomes our "truth" in organizational contexts</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sensation vs Perception -->
-                <div class="cluster">
-                    <div class="cluster-title">🔍 SENSATION VS PERCEPTION</div>
-                    
-                    <div class="section-header">Key Distinction</div>
-                    <div class="grid-layout">
-                        <div class="card lavender">
-                            <div class="card-title">Sensation</div>
-                            <div class="card-content">
-                                <strong>Raw physiological data</strong><br>
-                                Direct stimulation of sensory receptors (eyes, ears, touch, taste, smell). Passive reception of environmental stimuli
+<!-- PAGE 1: PERCEPTION MEANING & DEFINITIONS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">👁️ PERCEPTION: MEANING & DEFINITIONS</div>
+        <div class="page-subtitle">Core Concepts & Sensation vs Perception (PYQ 2024)</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">PERCEPTION</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CORE DEFINITIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Robbins (Most Cited)</strong>
+                                <small>"Process by which individuals organise and interpret sensory impressions to give meaning to their environment" - Use in all answers</small>
                             </div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Perception</div>
-                            <div class="card-content">
-                                <strong>Cognitive meaning-making</strong><br>
-                                Active psychological process of interpreting and organizing sensory information into meaningful patterns and experiences
+                            <div class="topic priority-high">
+                                <strong>Berelson & Steiner</strong>
+                                <small>"Complex process by which people select, organise and interpret sensory stimulation into meaningful coherent picture of world" - Use for 20M depth</small>
                             </div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">Objective vs Subjective</div>
-                            <div class="card-content">
-                                <strong>Sensation:</strong> Objective, same for all<br>
-                                <strong>Perception:</strong> Subjective, varies by individual based on background, needs, values, and experiences
+                            <div class="topic priority-high">
+                                <strong>Krech & Crutchfield</strong>
+                                <small>"Cognitive process by which we go beyond stimuli presented and interpret them" - Emphasises active interpretive leap</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Reitz</strong>
+                                <small>"Includes all processes by which individual receives information about environment" - Comprehensive, physiological + psychological</small>
                             </div>
                         </div>
                     </div>
-
-                    <div class="section-header">Organisational Implication</div>
-                    <div class="node color-coral" style="font-size: 16px; padding: 25px;">
-                        <strong>Same event can be perceived differently by different people:</strong> A manager's decision, feedback, or policy may be perceived as supportive by one employee and oppressive by another based on their subjective interpretation frameworks
-                    </div>
-                </div>
-            </div>
-
-            <div class="notes-area"></div>
-        </div>
-    </div>
-
-    <!-- PAGE 2: The Perceptual Process -->
-    <div class="page">
-        <h2 class="page-title">The Perceptual Process</h2>
-        <div class="mindmap-container">
-            <div class="content-area">
-                <!-- Selection & Attention -->
-                <div class="cluster">
-                    <div class="cluster-title">🎯 SELECTION & ATTENTION</div>
-                    
-                    <div class="central-node">SELECTIVE ATTENTION</div>
-
-                    <div class="section-header">External Factors (Environmental)</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Intensity</div>
-                            <div class="card-content">Bright colors, loud noises, strong smells capture attention more than subtle stimuli. High-intensity stimuli stand out</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Contrast</div>
-                            <div class="card-content">Differences from surroundings draw attention. A single woman in a room of men, red object among blues, becomes focal</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Novelty</div>
-                            <div class="card-content">New, unexpected, unfamiliar stimuli capture attention. Changes in routine immediately noticed</div>
+                    <div class="branch">
+                        <div class="branch-title">CORE OB INSIGHT</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Perception ≠ Reality</strong>
+                                <small>Two people in identical situations perceive differently based on experience, needs, values, personality</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Subjectivity Challenge</strong>
+                                <small>Managers base ALL decisions on perception of reality, not reality itself - CENTRAL management challenge</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Core Skill</strong>
+                                <small>Improving perceptual accuracy is the MOST FUNDAMENTAL OB skill managers must develop</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>OB Implications</strong>
+                                <small>Performance appraisal, conflict resolution, hiring, leadership - all perception-dependent activities</small>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="section-header">Internal Factors (Personal)</div>
-                    <div class="grid-layout">
-                        <div class="card lavender">
-                            <div class="card-title">Needs & Motives</div>
-                            <div class="card-content">Hungry person notices food advertisements more. Job-seeking person notices career opportunities in conversations</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Experience</div>
-                            <div class="card-content">Prior exposure creates mental readiness. Expert vs novice see different things in same situation</div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">Values & Interests</div>
-                            <div class="card-content">What matters to us influences what we attend to. Values shape selective perception in organizations</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Organisation & Gestalt -->
-                <div class="cluster">
-                    <div class="cluster-title">🧩 ORGANISATION: GESTALT LAWS</div>
-                    
-                    <div class="section-header">How We Organize Perceptual Data</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Figure-Ground Principle</div>
-                            <div class="card-content">We perceive stimuli as either figure (focus) or ground (background). Important elements become figures; less important fade to ground</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Proximity & Similarity</div>
-                            <div class="card-content">Objects close together or similar in appearance grouped together. Creates meaningful clusters from individual elements</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Closure & Continuity</div>
-                            <div class="card-content">We complete incomplete patterns and follow smooth, continuous patterns. Brain fills gaps to create coherent wholes</div>
+                    <div class="branch">
+                        <div class="branch-title">SENSATION vs PERCEPTION (PYQ 2024)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Sensation: Process</strong>
+                                <small>Physiological/neurological - sensory organs receive raw data</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Sensation: Nature</strong>
+                                <small>PASSIVE - automatic response of sense organs; objective - same stimulus produces same sensation in all</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Perception: Process</strong>
+                                <small>Psychological/cognitive - interpretive manufacturing process transforming raw signals into meaning</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Perception: Nature</strong>
+                                <small>ACTIVE - selective, constructive interpretation; subjective - same stimulus produces different perceptions in different people</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>KEY EXAM SENTENCE</strong>
+                                <small>"While sensation is raw material of perception -- unprocessed signals from sense organs -- perception is interpretive manufacturing transforming signals into meaning. IT IS PERCEPTION, not sensation, that drives behaviour in organisations."</small>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Interpretation -->
-                <div class="cluster">
-                    <div class="cluster-title">💭 INTERPRETATION</div>
-                    
-                    <div class="section-header">Assigning Meaning</div>
-                    <div class="branch-container">
-                        <div class="node color-lavender">
-                            <strong>Attribution Theory:</strong> We explain behavior by attributing causes (internal dispositions or external circumstances)
-                        </div>
-                        <div class="node color-terracotta">
-                            <strong>Kelley's Covariation Model:</strong> We consider consensus, distinctiveness, consistency to determine causality
-                        </div>
-                        <div class="node color-yellow">
-                            <strong>Meaning Assignment:</strong> Interpretation depends on schemas, stereotypes, and past experiences in similar situations
+                    <div class="branch">
+                        <div class="branch-title">WHY PERCEPTION MATTERS IN OB</div>
+                        <div class="topics">
+                            <div class="topic priority-mid">
+                                <strong>Managerial Decisions</strong>
+                                <small>Based on perception of reality, not reality - perception is lens for all judgements</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Performance Appraisal</strong>
+                                <small>Perception exercise - halo effect, stereotyping, leniency bias all perceptual errors</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Conflict Origin</strong>
+                                <small>Perceptual differences, not factual disagreements - Factory Accident example (PYQ 2017)</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Leadership Effectiveness</strong>
+                                <small>Depends on how followers PERCEIVE leader, not leader's actual traits</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="notes-area"></div>
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">EXAM STRATEGY - DEFINITIONS</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>PYQ 2024 (10M):</strong> Use sensation vs perception comparison table; include key exam sentence exactly</strong></div>
+                        <div class="explanation-item"><strong>All answers:</strong> Always quote Robbins definition to show foundational knowledge</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 1 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
         </div>
     </div>
+</div>
 
-    <!-- PAGE 3: Perceptual Distortions -->
-    <div class="page">
-        <h2 class="page-title">Perceptual Distortions & Errors</h2>
-        <div class="mindmap-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div class="cluster-title">⚠️ COMMON PERCEPTUAL BIASES</div>
-                    
-                    <div class="central-node">PERCEPTUAL ERRORS</div>
-
-                    <div class="section-header">Systematic Distortions</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Halo & Horn Effect</div>
-                            <div class="card-content"><strong>Halo:</strong> One positive trait leads to overall positive perception<br><strong>Horn:</strong> One negative trait leads to overall negative perception</div>
+<!-- PAGE 2: THREE-STAGE PERCEPTUAL PROCESS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">⚙️ THE THREE-STAGE PERCEPTUAL PROCESS</div>
+        <div class="page-subtitle">Selection → Organisation → Interpretation (PYQ 2020, 2019)</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">3-STAGE PROCESS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">STAGE 1: SELECTION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>External Factors</strong>
+                                <small>Intensity/Size (larger, brighter, louder get attention); Contrast (stand out from background); Motion/Change (moving objects)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>More External</strong>
+                                <small>Novelty/Familiarity (both novel AND familiar capture attention); Repetition (repeated stimuli attract more attention)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Internal: Needs & Motives</strong>
+                                <small>Attend to stimuli relevant to current needs - hungry person notices food advertisements</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Internal: Experience & Expectations</strong>
+                                <small>Past experience creates perceptual sets/templates; Expectations (Mental Set) - perceive what we expect to see</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Internal: Values & Attitudes</strong>
+                                <small>Attend to information consistent with pre-existing views - confirmation bias operates here</small>
+                            </div>
                         </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Stereotyping</div>
-                            <div class="card-content">Assigning characteristics to individuals based on group membership. "All marketing people are creative," "Engineers are logical" ignoring individual variations</div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">STAGE 2: ORGANISATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Figure-Ground</strong>
+                                <small>Distinguish focal object (figure) from background (ground) - can shift which is which (ambiguous figures)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Proximity</strong>
+                                <small>Objects close together perceived as belonging together - spatial grouping</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Similarity</strong>
+                                <small>Similar objects perceived as belonging to same group - stereotyping has basis in this principle</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Closure</strong>
+                                <small>Fill in incomplete information to perceive complete figure - brain completes patterns</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Continuity & Common Fate</strong>
+                                <small>Perceive continuous smooth patterns; objects moving same direction perceived as belonging together</small>
+                            </div>
                         </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Fundamental Attribution Error</div>
-                            <div class="card-content">Overestimating dispositional (internal) causes of others' behavior while ignoring situational (external) factors. "She's lazy" vs "She's dealing with personal crisis"</div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">STAGE 3: INTERPRETATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Attribution Definition</strong>
+                                <small>Process of assigning causes to observed behaviour - our own OR others'</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Internal Attribution</strong>
+                                <small>Dispositional - behaviour caused by person's own traits, ability, motivation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>External Attribution</strong>
+                                <small>Situational - behaviour caused by circumstances, luck, task difficulty, others' actions</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Kelley's 3 Criteria</strong>
+                                <small>Consistency (every time?), Distinctiveness (across situations?), Consensus (do others do same?)</small>
+                            </div>
                         </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">Self-Serving Bias</div>
-                            <div class="card-content">Taking credit for successes (internal cause) while blaming external factors for failures. Reverse for others' failures</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Selective Perception</div>
-                            <div class="card-content">Perceiving only information that confirms pre-existing beliefs while ignoring contradictory evidence</div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">Contrast & Recency Effects</div>
-                            <div class="card-content"><strong>Contrast:</strong> Judgment affected by recent observations<br><strong>Recency:</strong> Recent events given more weight than earlier ones in appraisals</div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">ATTRIBUTION ERRORS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Fundamental Attribution Error (FAE)</strong>
+                                <small>Over-emphasise dispositional, under-emphasise situational when judging OTHERS. Employee late >> 'lazy' not 'emergency'</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Self-Serving Bias</strong>
+                                <small>Own successes >> internal (skill); Own failures >> external (bad luck). Manager succeeds >> 'my leadership'; fails >> 'market conditions'</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>OB Implications</strong>
+                                <small>FAE in performance appraisal >> unfair ratings; Self-serving in 360-degree feedback >> defensiveness</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="notes-area"></div>
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">PYQ 2020 (20M) ANSWER STRUCTURE</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Highest-frequency sub-topic:</strong> Describe all 3 stages with examples; explain Selection (6 factors), Organisation (5 Gestalt principles), Interpretation (Attribution Theory)</strong></div>
+                        <div class="explanation-item"><strong>Don't forget:</strong> Feedback loop - responses create new stimuli re-entering process (cyclical, not linear)</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 2 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
         </div>
     </div>
+</div>
 
-    <!-- PAGE 4: Influencing Elements -->
-    <div class="page">
-        <h2 class="page-title">Elements Influencing Perception</h2>
-        <div class="mindmap-container">
-            <div class="content-area">
-                <!-- The Perceiver -->
-                <div class="cluster">
-                    <div class="cluster-title">👤 THE PERCEIVER</div>
-                    
-                    <div class="section-header">Personal Factors</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Attitudes</div>
-                            <div class="card-content">Pre-existing evaluations and beliefs about targets influence how they're perceived. Positive attitudes = favorable perception</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Motives & Needs</div>
-                            <div class="card-content">Current goals and unmet needs shape perception. Job seeker sees opportunities; satisfied employee sees stability</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Mood & Emotional State</div>
-                            <div class="card-content">Emotional condition colors perception. Happy person sees situations optimistically; depressed person sees negatively</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- The Target -->
-                <div class="cluster">
-                    <div class="cluster-title">🎯 THE TARGET (WHAT IS PERCEIVED)</div>
-                    
-                    <div class="section-header">Characteristics of the Target</div>
-                    <div class="grid-layout">
-                        <div class="card lavender">
-                            <div class="card-title">Size & Physical Appearance</div>
-                            <div class="card-content">Large objects perceived as more important. Attractive people judged more favorably (what-is-beautiful-is-good bias)</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Motion & Dynamism</div>
-                            <div class="card-content">Moving objects attract attention more than static ones. Dynamic people perceived differently than passive ones</div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">Background & Context</div>
-                            <div class="card-content">Environment affects how target is perceived. Same person seen differently in casual vs formal setting</div>
+<!-- PAGE 3: THREE ELEMENTS OF PERCEPTION & FACTORY ACCIDENT -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🏭 THREE ELEMENTS OF PERCEPTION & FACTORY ACCIDENT EXAMPLE</div>
+        <div class="page-subtitle">Perceiver-Target-Context & PYQ 2017 Classic Case (20M)</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">ELEMENTS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">THE PERCEIVER (PYQ 2018)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>What They Bring</strong>
+                                <small>Attitudes, Motives, Interests, Past Experience, Expectations, Personality, Mood - all colour perception</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Perceptual Filters</strong>
+                                <small>Each person has unique filtering system based on life history - determines what gets attention</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Management Implication</strong>
+                                <small>Same feedback received differently based on perceiver's personality and expectations - need to understand receiver</small>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- The Situation -->
-                <div class="cluster">
-                    <div class="cluster-title">🌍 THE SITUATION (CONTEXT)</div>
-                    
-                    <div class="section-header">Environmental & Contextual Factors</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Social Context</div>
-                            <div class="card-content">Perception influenced by social setting. Same behavior interpreted differently in team meeting vs casual chat</div>
+                    <div class="branch">
+                        <div class="branch-title">THE TARGET (OBJECT OF PERCEPTION)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Physical Properties</strong>
+                                <small>Novelty, Motion, Sounds, Size, Background, Proximity, Similarity - target characteristics shape perception</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Social Targets (People)</strong>
+                                <small>Complex - must infer intentions, emotions, character from limited cues. Highly subject to error (halo, stereotyping)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Person Perception Challenge</strong>
+                                <small>Cannot directly observe internal states - must make attributions from behaviour and context</small>
+                            </div>
                         </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Cultural Context</div>
-                            <div class="card-content">Cultural norms and values shape perception. Eye contact means respect in one culture, disrespect in another</div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">THE CONTEXT (SITUATION)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Environmental Factors</strong>
+                                <small>Physical, social, organisational, cultural setting all shape perception</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Timing Matters</strong>
+                                <small>Same event perceived differently at different times - recency effect dominates</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Cultural Context Critical</strong>
+                                <small>What is 'good leadership' perceived differently across cultures (individualist vs collectivist)</small>
+                            </div>
                         </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Physical Environment</div>
-                            <div class="card-content">Lighting, noise, temperature, space affect perception. Comfortable environment = more positive perception</div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">FACTORY ACCIDENT (PYQ 2017 - 20M)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Event: Worker Injured</strong>
+                                <small>Same accident event, completely different perceptions based on position and interests</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Supervisor Perception</strong>
+                                <small>Attributes to worker CARELESSNESS (internal) - ignores management negligence (external)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Worker Perception</strong>
+                                <small>Attributes to MANAGEMENT NEGLIGENCE (external) - ignores own role in accident (external)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Lesson: Both Commit FAE</strong>
+                                <small>Neither perception is 'wrong' - both internally consistent with person's interests. Effective management transcends perceptual divergence</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Solutions</strong>
+                                <small>Joint safety committees; neutral investigation; shared factual baseline; devil's advocate process</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="notes-area"></div>
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">KEY EXAM INSIGHT - FACTORY ACCIDENT SIGNIFICANCE</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Shows:</strong> Same reality perceived differently; FAE operates on both sides; neither perception is "false" - both rational from their perspective</strong></div>
+                        <div class="explanation-item"><strong>Management lesson:</strong> Cannot change perception by forcing facts. Need to address underlying attribution patterns and structural mechanisms for shared understanding</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 3 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
         </div>
     </div>
+</div>
 
-    <!-- PAGE 5: Managerial Applications -->
-    <div class="page">
-        <h2 class="page-title">Managerial Applications & Awareness</h2>
-        <div class="mindmap-container">
-            <div class="content-area">
-                <!-- Managerial Applications -->
-                <div class="cluster">
-                    <div class="cluster-title">💼 ORGANISATIONAL APPLICATIONS</div>
-                    
-                    <div class="central-node">PERCEPTION IN PRACTICE</div>
-
-                    <div class="section-header">Key Application Areas</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Performance Appraisal</div>
-                            <div class="card-content">Managers' perceptions of employee performance influenced by halo effects, recency bias, and stereotypes. Objective criteria essential</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Conflict Management</div>
-                            <div class="card-content">Conflicts often stem from different perceptions of same situation. Understanding diverse perspectives crucial for resolution</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Impression Management</div>
-                            <div class="card-content">People manage impressions by controlling appearance, behavior, settings to influence how others perceive them</div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">Johari Window</div>
-                            <div class="card-content">Self-awareness tool showing open area (known to self and others), blind spots (unknown to self), hidden area, unknown potential</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Glass Ceiling Analysis</div>
-                            <div class="card-content">Perceptual biases and stereotypes about women and minorities limit advancement despite capability. Unconscious bias affects promotion perception</div>
+<!-- PAGE 4: PERCEPTUAL DISTORTIONS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🔴 PERCEPTUAL DISTORTIONS & ERRORS</div>
+        <div class="page-subtitle">10 Major Distortions in Organisational Settings (PYQ 2019)</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">DISTORTIONS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">HALO & HORN EFFECTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Halo Effect (Thorndike, 1920)</strong>
+                                <small>One positive trait leads to overall positive evaluation - 'halo' spreads to all judgements. Attractive candidate >> also assumed competent</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Horn Effect (Reverse Halo)</strong>
+                                <small>One negative trait leads to overall negative evaluation - 'horn' contaminates all judgements. One mistake >> assumed incompetent</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>OB Application: Interviews</strong>
+                                <small>First impression creates halo/horn >> subsequent information filtered through this lens. Candidate's likeability affects competency assessment</small>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Contemporary Challenges -->
-                <div class="cluster">
-                    <div class="cluster-title">🔮 CONTEMPORARY CHALLENGES</div>
-                    
-                    <div class="section-header">Modern Perception Issues</div>
-                    <div class="grid-layout">
-                        <div class="card yellow">
-                            <div class="card-title">AI & Algorithmic Bias</div>
-                            <div class="card-content">AI systems encode human perceptual biases into algorithms. Hiring algorithms show gender and racial discrimination</div>
-                        </div>
-
-                        <div class="card coral">
-                            <div class="card-title">Digital Communication Gaps</div>
-                            <div class="card-content">Absence of non-verbal cues in email, chat, video creates perception gaps. Text interpreted through personal lens without tone clues</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Cross-Cultural Perception</div>
-                            <div class="card-content">Virtual, diverse teams mean different cultural frames for same events. Misinterpretation risk increases without cultural awareness</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Implicit & Unconscious Bias</div>
-                            <div class="card-content">Automatic associations and stereotypes operate outside awareness. Affects decisions on hiring, promotion, performance evaluation</div>
+                    <div class="branch">
+                        <div class="branch-title">FIRST & LAST IMPRESSION EFFECTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Primacy Effect</strong>
+                                <small>First impression disproportionately influences subsequent perception - "you don't get a second chance to make first impression"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Recency Effect</strong>
+                                <small>Recent events disproportionately influence overall evaluation - last performance dominates annual appraisal</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Contrast Effect</strong>
+                                <small>Evaluating someone relative to recently encountered person, not objective standard - interview timing affects scores</small>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Way Forward -->
-                <div class="cluster">
-                    <div class="cluster-title">🚀 WAY FORWARD: BUILDING PERCEPTION LITERACY</div>
-                    
-                    <div class="section-header">Strategies & Solutions</div>
-                    <div class="grid-layout">
-                        <div class="card lavender">
-                            <div class="card-title">Perception Literacy</div>
-                            <div class="card-content">Understanding how perception works, recognizing biases, training managers in perception awareness and de-biasing techniques</div>
+                    <div class="branch">
+                        <div class="branch-title">STEREOTYPING & PROJECTION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Stereotyping</strong>
+                                <small>Judging based on group membership rather than individual characteristics - "all leaders are tall", gender stereotypes</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Projection</strong>
+                                <small>Attributing our own feelings/characteristics to others - "I value achievement so everyone does"; basis for mismanagement</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>India Context</strong>
+                                <small>Caste-based stereotyping in hiring (IIM studies); gender stereotyping in leadership roles; regional stereotypes</small>
+                            </div>
                         </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Structured Decision Processes</div>
-                            <div class="card-content">Use objective criteria, rating scales, multiple raters in appraisals. Reduce reliance on subjective judgment alone</div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">Psychological Safety</div>
-                            <div class="card-content">Create environment where people can speak about perception differences without fear. Diverse perspectives valued and discussed openly</div>
-                        </div>
-
-                        <div class="card coral">
-                            <div class="card-title">Algorithmic Justice</div>
-                            <div class="card-content">Audit AI systems for bias, ensure transparency in algorithms, human oversight in high-stakes decisions. Fairness by design in systems</div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">SELECTIVE & DEFENSIVE PERCEPTION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Selective Perception</strong>
+                                <small>Attend only to information confirming existing beliefs - confirmation bias; ignore disconfirming evidence</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Perceptual Defence</strong>
+                                <small>Distort or ignore threatening information - bad news filtered out by subordinates; uncomfortable feedback rejected</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Management Implication</strong>
+                                <small>Difficult to change perceptions through facts alone - threatening data gets distorted or ignored by defensive listeners</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="notes-area"></div>
-        </div>
-    </div>
-
-    <!-- FINAL PAGE: Summary -->
-    <div class="page" style="border-bottom: none;">
-        <h2 class="page-title">Complete Overview</h2>
-        <div class="mindmap-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div style="text-align: center; margin: 40px 0;">
-                        <div class="central-node" style="font-size: 32px; padding: 40px 60px;">
-                            PERCEPTION IN<br>ORGANISATIONAL<br>BEHAVIOUR
-                        </div>
-                    </div>
-
-                    <div class="grid-layout" style="grid-template-columns: repeat(3, 1fr);">
-                        <div class="card coral">
-                            <div class="card-title">👁️ Core Concepts</div>
-                            <div class="card-content">Organizing sensory data and interpreting environment</div>
-                        </div>
-                        <div class="card sage">
-                            <div class="card-title">🔍 Process</div>
-                            <div class="card-content">Selection, organization, interpretation of stimuli</div>
-                        </div>
-                        <div class="card mint">
-                            <div class="card-title">⚠️ Distortions</div>
-                            <div class="card-content">Halo effect, stereotyping, attribution errors</div>
-                        </div>
-                        <div class="card lavender">
-                            <div class="card-title">⚖️ Influencing Elements</div>
-                            <div class="card-content">Perceiver, target, and situational factors</div>
-                        </div>
-                        <div class="card terracotta">
-                            <div class="card-title">💼 Applications</div>
-                            <div class="card-content">Performance appraisal, conflict, glass ceiling</div>
-                        </div>
-                        <div class="card yellow">
-                            <div class="card-title">🚀 Way Forward</div>
-                            <div class="card-content">Perception literacy and algorithmic justice</div>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 60px; text-align: center; color: var(--text-muted); font-style: italic;">
-                        <p style="font-size: 18px;">From sensory input to organisational reality</p>
-                        <p style="font-size: 16px; margin-top: 20px;">Understanding perception as the lens through which we experience and shape organisational behaviour</p>
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">PYQ 2019 (20M) ANSWER STRUCTURE</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Causes of distortion:</strong> Halo/Horn, Primacy/Recency, Stereotyping, Projection, Selective, Defensive, FAE, Contrast</strong></div>
+                        <div class="explanation-item"><strong>Improvement strategies:</strong> See next page for 12+ individual and organisational level interventions</strong></div>
                     </div>
                 </div>
             </div>
-
-            <div class="notes-area"></div>
+        </div>
+        <div class="page-number">Page 4 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
         </div>
     </div>
+</div>
+
+<!-- PAGE 5: JOHARI WINDOW & IMPROVING PERCEPTION -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🪟 JOHARI WINDOW & IMPROVING PERCEPTUAL CAPABILITIES</div>
+        <div class="page-subtitle">Self-Awareness Tool & Enhancement Strategies (PYQ 2019)</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">JOHARI WINDOW</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">FOUR QUADRANTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>OPEN AREA (Arena)</strong>
+                                <small>Known to self AND known to others - transparency zone; foundation of trust. GOAL: ENLARGE this area through self-disclosure + feedback</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>BLIND AREA ⚠️</strong>
+                                <small>Unknown to self BUT known to others - our perceptual blind spots. MOST DANGEROUS for managers. Halo, projection, selective perception all hide here</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>HIDDEN AREA (Facade)</strong>
+                                <small>Known to self BUT hidden from others - what we conceal. Reduces authentic relationships; inhibits open communication. SHRINK through increased disclosure</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>UNKNOWN AREA</strong>
+                                <small>Unknown to self AND to others - unconscious behaviours; discovered through deep reflection or crisis. Smallest quadrant normally</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">MANAGEMENT LESSON</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Strategy 1: Get Feedback</strong>
+                                <small>Shrinks BLIND AREA - learn what others see that you don't. "You come across as arrogant" - feedback reveals blind spot</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Strategy 2: Self-Disclose</strong>
+                                <small>Shrinks HIDDEN AREA - reveal your thoughts, concerns, uncertainties. Builds trust and authenticity</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Effective Managers</strong>
+                                <small>Have large OPEN AREA; continuously shrink BLIND and HIDDEN through feedback and disclosure</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Link to Distortions</strong>
+                                <small>Perceptual distortions (halo, projection, selective perception) all operate in the BLIND AREA where we cannot see them</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">INDIVIDUAL LEVEL IMPROVEMENTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Self-Awareness Training</strong>
+                                <small>Understand own perceptual filters, biases, blind spots - Johari Window as structured tool</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Empathy Development</strong>
+                                <small>Deliberate perspective-taking - 'seeing situation through employee's eyes' reduces FAE</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Mindfulness & Active Listening</strong>
+                                <small>Slow down automatic processing; suspend judgement; seek to understand rather than confirm pre-existing views</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Feedback Seeking</strong>
+                                <small>Regularly seek structured feedback about managerial perceptions and decisions - formal 360-degree reviews</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">ORGANISATIONAL LEVEL IMPROVEMENTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Structured Decision Processes</strong>
+                                <small>Replace informal judgements with rubrics, scoring grids, standardised criteria - removes perceptual flexibility</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Multiple Perspectives</strong>
+                                <small>Panel reviews, 360-degree feedback - important decisions need multiple assessors to cross-validate</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Devil's Advocate & Blind Processes</strong>
+                                <small>Formally challenge dominant perception; remove identifying info from CVs - reduces demographic stereotyping</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Bias Training & Data-Driven Management</strong>
+                                <small>Research-based training on halo, FAE, stereotyping; use objective KPIs alongside managerial perception to cross-validate</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">CRITICAL: BLIND AREA IS THE DANGER ZONE</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Why it matters:</strong> Manager with large blind area makes poor decisions unconsciously - thinks they're being objective when highly biased</strong></div>
+                        <div class="explanation-item"><strong>Intervention:</strong> Both feedback (shrink blind area) and disclosure (build trust) needed for effective perception improvement</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 5 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 6: MANAGEMENT EFFECTS ON PERCEPTION -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📢 HOW MANAGEMENT SHAPES PERCEPTION & IMPRESSION MANAGEMENT</div>
+        <div class="page-subtitle">Managerial Actions Affecting Perception (PYQ 2019)</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">MANAGEMENT IMPACT</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">6 MANAGEMENT MECHANISMS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Framing / Language</strong>
+                                <small>'Restructuring' vs 'downsizing'; 'investment' vs 'cost'; 'challenge' vs 'problem' - language shapes interpretation of reality</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Communication Style</strong>
+                                <small>Transparent communication >> perception of fairness + trust. Information hoarding >> perception of hidden agendas and mistrust</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Reward Systems</strong>
+                                <small>What gets rewarded signals what management truly values - employees perceive priorities through REWARD PATTERNS, not stated values</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Manager Behaviour</strong>
+                                <small>Employees observe every action for cues - preaching work-life balance but sending weekend emails = perceived hypocrite. Behaviour > words</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Physical Environment</strong>
+                                <small>Open plan vs closed offices; dress codes; facilities - create perceptions about culture, equality, and management philosophy</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Crisis Response</strong>
+                                <small>How management responds to crises profoundly shapes perception of leadership credibility and institutional integrity</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">IMPRESSION MANAGEMENT (PYQ 2018)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition (Goffman, 1959)</strong>
+                                <small>Conscious or unconscious process by which individuals influence how they are perceived by others</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Dramaturgical Approach</strong>
+                                <small>Social life like theatrical performance; people are actors managing 'front stage' impression while concealing 'back stage' realities</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Motivation Factors</strong>
+                                <small>Driven by: importance of situation, value of goals, discrepancy between desired and actual impression</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Construction Tactics</strong>
+                                <small>Ingratiation (flattery) | Self-Promotion (highlight competencies) | Intimidation (show power) | Exemplification (sacrifice) | Supplication (admit weakness)</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">CURRENT AFFAIRS 2024-25</div>
+                        <div class="topics">
+                            <div class="topic priority-mid">
+                                <strong>AI & Algorithmic Bias</strong>
+                                <small>AI hiring tools encode human perceptual biases in training data - systematic misperception at scale (DPDP Act concern)</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Digital Communication Challenges</strong>
+                                <small>Loss of non-verbal cues in remote work increases perceptual misinterpretation - WFH perception management issue</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Caste-Based Stereotyping</strong>
+                                <small>Documented in IIM studies - implicit bias in resume screening affects hiring perception decisions</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Gender Stereotyping & Glass Ceiling</strong>
+                                <small>Persists despite 33% women's reservation (106th Amendment) - workplace perception still patriarchal</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>OCTAPAC Culture (2nd ARC)</strong>
+                                <small>Openness, Confrontation, Trust, Autonomy, Pro-activity, Authenticity, Collaboration - government perception culture recommendation</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">KEY INSIGHT: PERCEPTION IS MALLEABLE BY MANAGEMENT</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Managers don't just work in reality:</strong> They actively shape how reality is PERCEIVED through framing, rewards, behaviour, and communication</strong></div>
+                        <div class="explanation-item"><strong>Ethical dimension:</strong> Impression management can be deceptive or authentic - managers have responsibility to be truthful in their perception creation</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 6 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 7: PYQ ANALYSIS & EXAM CHECKLIST -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📋 PYQ ANALYSIS & EXAM CHECKLIST</div>
+        <div class="page-subtitle">Past Questions Pattern & Preparation Strategy</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">EXAM PREP</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">PYQ COVERAGE (2017-2024)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>2024 (10M)</strong>
+                                <small>Sensation vs Perception - 7-dimension comparison table; key exam sentence about raw material vs interpretive manufacturing</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2020 (20M)</strong>
+                                <small>Perceptual Process - describe 3 stages: Selection (internal + external factors), Organisation (Gestalt principles), Interpretation (Attribution)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2019 (20M) x2</strong>
+                                <small>Q1: Distortions + improvements; Q2: Nature of perception + How management affects perception + Impression Management</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2018 (10M) x2</strong>
+                                <small>Q1: Perceiver-Target-Context with Factory Accident example; Q2: Impression Management - Goffman, motivation vs construction, 5 tactics</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2017 (20M)</strong>
+                                <small>Factory Accident - supervisor vs worker perception - significance - Attribution, FAE, industrial dispute root cause. CLASSIC CASE</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">KEY CONCEPTS - MUST KNOW</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>✓ Definitions</strong>
+                                <small>Robbins definition (quote directly); sensation vs perception; Gestalt principles (all 6); Attribution Theory (internal vs external)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Three-Stage Process</strong>
+                                <small>Selection (6 factors: 3 external, 3 internal); Organisation (Gestalt); Interpretation (Attribution + Kelley's criteria + FAE + Self-serving bias)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Distortions</strong>
+                                <small>Halo/Horn; Primacy/Recency; Stereotyping; Projection; Selective; Defensive; FAE; Contrast - know all 8+ types</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Johari Window</strong>
+                                <small>4 quadrants; Open Area (goal: enlarge); Blind Area (most dangerous); Hidden Area; Unknown Area</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">COMMON MISTAKES TO AVOID</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>❌ Sensation = Perception</strong>
+                                <small>WRONG - Sensation is raw passive input; Perception is active interpretive process. Know the distinction precisely for PYQ 2024 style questions</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>❌ Attribution is objective</strong>
+                                <small>WRONG - Attribution is interpretation, subject to FAE and self-serving bias. Factory Accident shows both parties' attributions are equally biased</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>❌ Facts change perception</strong>
+                                <small>WRONG - Selective perception and defensive distortion filter facts. Need structural changes, not just better data, to change perceptions</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>❌ Johari only about self-disclosure</strong>
+                                <small>WRONG - Feedback shrinks Blind Area just as much. Need BOTH feedback AND disclosure to improve perception accuracy</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">ANSWER STRUCTURE TEMPLATES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>20M Structure</strong>
+                                <small>Intro (define perception) >> Explain concept with framework >> Discuss challenges/distortions >> Managerial implications >> India context >> Conclusion</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>10M Structure</strong>
+                                <small>Definition >> 3-4 key points >> 1-2 examples >> Brief management implication >> Conclusion</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Use Factory Accident Example</strong>
+                                <small>Best example for showing: perceiver differences, FAE operation, attribution bias, perceptual subjectivity, management challenge</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Link to Other Topics</strong>
+                                <small>Personality influences perception; Leadership depends on perception; Conflict from perceptual divergence; Performance appraisal based on perception</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">LAST-MINUTE CHECKLIST</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item">✓ Robbins definition memorised for quoting</strong></div>
+                        <div class="explanation-item">✓ Sensation vs Perception comparison exact - PYQ 2024 expects this</strong></div>
+                        <div class="explanation-item">✓ 3-stage process with all factors/principles</strong></div>
+                        <div class="explanation-item">✓ Factory Accident analysis (supervisor vs worker perception)</strong></div>
+                        <div class="explanation-item">✓ 8+ distortions with examples</strong></div>
+                        <div class="explanation-item">✓ Johari Window 4 quadrants with management implications</strong></div>
+                        <div class="explanation-item">✓ FAE and Self-serving bias distinction</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 7 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 8: FINAL INSIGHTS & MANAGEMENT IMPLICATIONS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">💡 FINAL INSIGHTS & MANAGEMENT IMPLICATIONS</div>
+        <div class="page-subtitle">Synthesis & Organisational Application</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">SYNTHESIS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CORE MANAGEMENT CHALLENGE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>The Fundamental Problem</strong>
+                                <small>Managers base decisions on perception of reality, NOT reality itself. This subjectivity is the CENTRAL OB challenge</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Why It Matters</strong>
+                                <small>Performance appraisals, hiring, conflict resolution, strategy implementation - all perception-based. Perceptual accuracy is competitive advantage</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>The Factory Accident Lesson</strong>
+                                <small>Neither supervisor nor worker is 'wrong' - both make rational attributions from their position. Effective management transcends perceptual divergence</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">INDIVIDUAL MANAGER STRATEGIES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Know Your Blind Area</strong>
+                                <small>Seek feedback relentlessly. Your biggest perceptual errors are things you can't see. 360-degree reviews, peer feedback, mentoring</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Practice Empathy</strong>
+                                <small>Deliberately take other person's perspective. "Why might they perceive it that way?" reduces FAE, increases understanding</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Slow Down Judgements</strong>
+                                <small>Automatic perception (halo, primacy) operates unconsciously. Mindfulness, active listening, structured reflection help correct biases</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Manage Your Impression Authentically</strong>
+                                <small>Goffman's front/back distinction is real, but hypocrisy is visible. Walk the talk. What you do sends stronger signals than what you say</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">ORGANISATIONAL STRUCTURES FOR PERCEPTION ACCURACY</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Blind Selection Processes</strong>
+                                <small>Remove names, demographics from CVs. Reduces stereotyping and demographic bias in hiring immediately</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Panel Reviews & Multiple Perspectives</strong>
+                                <small>No individual perception is perfect. Cross-validate with multiple assessors to catch individual biases</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Structured Decision Frameworks</strong>
+                                <small>Replace informal judgements with scoring rubrics, interview guides, standardised criteria. Reduces subjectivity</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Devil's Advocate & Perspective Diversity</strong>
+                                <small>Formally assign someone to challenge consensus. Include diverse perspectives (different roles, backgrounds) in key decisions</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">INDIA CONTEXT APPLICATIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Caste & Stereotype Challenges</strong>
+                                <small>IIM studies show resume screening unconsciously filters by caste markers. Blind process essential for reducing prejudice</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Gender Perception Barriers</strong>
+                                <small>Women leaders face halo reversal (competence questioned due to gender stereotype). Structured assessment reduces bias</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Hierarchical Perception Culture</strong>
+                                <small>High power distance >> subordinates perceive limited voice; perception of fairness depends heavily on visible actions from top</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>OCTAPAC Culture Initiative</strong>
+                                <small>2nd ARC's recommendation for Openness, Confrontation, Trust, Authenticity in government. Addresses perception culture shift needed</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">FINAL EXAM INSIGHT</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Remember:</strong> Perception is the lens through which all organisational reality is filtered. Managers who understand AND correct their perceptual biases are more effective.</strong></div>
+                        <div class="explanation-item"><strong>Write with confidence:</strong> This is established science. Use frameworks, cite distortion types, reference Johari Window, discuss Factory Accident - all show deep understanding.</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 8 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
