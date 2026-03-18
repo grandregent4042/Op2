@@ -3,271 +3,1430 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organisational Culture & Change</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Managing Organisational Culture - Complete Mindmap</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --primary-coral: #FF6B6B;
-            --secondary-teal: #14B8A6;
-            --secondary-teal-light: #CCEFF5;
-            --accent-lavender: #C49ECE;
-            --text-dark: #2D2D2D;
-            --bg-cream: #FFF8F0;
-            --border-color: #FFD9D9;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        @page { size: A4 landscape; margin: 0; }
-        html { scroll-behavior: smooth; }
-        body { background: linear-gradient(135deg, var(--bg-cream) 0%, #FFF0E6 100%); font-family: 'Poppins', sans-serif; color: var(--text-dark); overflow-x: hidden; }
-        .pages-container { display: flex; flex-direction: column; }
-        .page-spread { display: flex; width: 100%; min-height: 100vh; page-break-after: always; }
-        .content-column { flex: 2; padding: 28px 24px 28px 28px; background: white; overflow-y: auto; border-right: 3px dashed var(--border-color); display: flex; flex-direction: column; }
-        .notes-column { flex: 1; padding: 28px 24px; background: linear-gradient(135deg, rgba(255,107,107,0.03) 0%, rgba(255,155,133,0.03) 100%); border: 3px dashed var(--primary-coral); display: flex; flex-direction: column; }
-        .page-header { margin-bottom: 16px; padding-bottom: 10px; border-bottom: 3px solid var(--primary-coral); }
-        .topic-number { font-size: 11px; font-weight: 700; color: var(--primary-coral); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
-        .page-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--text-dark); line-height: 1.2; }
-        .content-body { flex: 1; margin-bottom: 15px; overflow-y: auto; padding-right: 10px; }
-        .notes-label { font-size: 11px; font-weight: 700; color: var(--primary-coral); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid var(--primary-coral); }
-        .notes-space { flex: 1; background: white; border: 2px dashed var(--primary-coral); border-radius: 8px; padding: 15px; opacity: 0.6; }
-        .topic-tag { display: inline-block; background: var(--primary-coral); color: white; padding: 4px 10px; border-radius: 20px; font-size: 9px; font-weight: 600; margin-bottom: 10px; }
-        .section-title { font-size: 12px; font-weight: 700; color: var(--primary-coral); margin-top: 12px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
-        .content-box { background: linear-gradient(135deg, rgba(255,107,107,0.07) 0%, rgba(255,155,133,0.07) 100%); border-left: 4px solid var(--primary-coral); padding: 9px 10px; margin-bottom: 8px; border-radius: 6px; font-size: 11px; line-height: 1.4; }
-        .content-box strong { color: var(--primary-coral); }
-        .key-point { display: flex; gap: 8px; margin-bottom: 7px; font-size: 11px; line-height: 1.3; }
-        .key-point::before { content: "→"; color: var(--primary-coral); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 8px; }
-        .grid-card { background: white; border: 2px solid var(--border-color); border-radius: 7px; padding: 8px; font-size: 10px; line-height: 1.3; }
-        .grid-card-title { font-weight: 700; color: var(--primary-coral); margin-bottom: 4px; font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .model-box { background: linear-gradient(135deg, var(--secondary-teal-light) 0%, rgba(20,184,166,0.05) 100%); border: 2px solid var(--secondary-teal); border-radius: 7px; padding: 9px; margin-bottom: 8px; font-size: 11px; line-height: 1.3; }
-        .model-box-title { font-weight: 700; color: var(--secondary-teal); margin-bottom: 5px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .definition-box { background: linear-gradient(135deg, var(--accent-lavender), rgba(196,158,206,0.1)); border: 2px solid var(--accent-lavender); border-radius: 7px; padding: 9px; margin-bottom: 8px; font-size: 11px; line-height: 1.3; }
-        .definition-box strong { color: var(--accent-lavender); }
-        .highlight-indian { background: linear-gradient(135deg, rgba(255,153,0,0.1) 0%, rgba(255,102,0,0.05) 100%); border-left: 4px solid #FF9900; padding: 7px 9px; margin-bottom: 8px; border-radius: 5px; font-size: 11px; line-height: 1.3; }
-        .highlight-indian strong { color: #FF6600; }
-        .scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--primary-coral); z-index: 1000; transition: width 0.1s ease; }
-        .scroll-hint { position: fixed; bottom: 20px; right: 20px; font-size: 12px; color: var(--primary-coral); opacity: 0.4; font-weight: 600; }
-        @media print { .scroll-progress, .scroll-hint { display: none; } }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-cream); }
-        ::-webkit-scrollbar-thumb { background: var(--primary-coral); border-radius: 4px; }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: white;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.8fr 1fr;
+            page-break-after: always;
+            break-after: page;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Left side - Mindmap */
+        .mindmap-section {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            background: white;
+            border-right: 2px solid #ddd;
+            overflow: visible;
+        }
+
+        /* Right side - Notes */
+        .notes-section {
+            background: #f9f9f9;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .notes-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .notes-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .note-line {
+            border-bottom: 1px dotted #bbb;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            color: #667eea;
+            font-size: 1.15em;
+            font-weight: bold;
+            margin-bottom: 6px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 4px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #999;
+            font-size: 0.68em;
+            margin-bottom: 8px;
+        }
+
+        /* Mindmap - Vertical Layout */
+        .mindmap-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow: visible;
+        }
+
+        .mindmap-row {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .central-node {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 11px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+            white-space: normal;
+            flex-shrink: 0;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+            width: 82px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.77em;
+            line-height: 1.15;
+            min-height: 72px;
+        }
+
+        .branches-container {
+            display: flex;
+            gap: 7px;
+            flex: 1;
+            overflow: visible;
+        }
+
+        .branch {
+            background: white;
+            border: 1.5px solid #667eea;
+            border-radius: 5px;
+            padding: 7px;
+            min-width: 115px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .branch-title {
+            background: #667eea;
+            color: white;
+            padding: 5px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 0.68em;
+            margin-bottom: 5px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .topics {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            overflow: visible;
+        }
+
+        .topic {
+            padding: 4px;
+            background: #f0f4ff;
+            border-left: 2px solid #667eea;
+            border-radius: 2px;
+            font-size: 0.68em;
+            line-height: 1.2;
+            flex-shrink: 0;
+        }
+
+        .topic strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 1px;
+            font-size: 0.9em;
+        }
+
+        .topic small {
+            color: #666;
+            font-size: 0.85em;
+        }
+
+        .priority-high {
+            background: #ffe5e5;
+            border-left: 2px solid #ff6b6b;
+        }
+
+        .priority-high strong {
+            color: #ff6b6b;
+        }
+
+        .priority-mid {
+            background: #fff5e5;
+            border-left: 2px solid #ffc107;
+        }
+
+        .priority-mid strong {
+            color: #ff9800;
+        }
+
+        /* Explanation boxes */
+        .explanation-section {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.66em;
+            line-height: 1.25;
+            margin-top: 6px;
+            overflow: visible;
+        }
+
+        .explanation {
+            background: #f9f9f9;
+            border-left: 2px solid #667eea;
+            padding: 6px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .explanation-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 2px;
+            font-size: 0.82em;
+        }
+
+        .explanation-content {
+            color: #333;
+            margin-left: 5px;
+        }
+
+        .explanation-item {
+            margin: 1.5px 0;
+            font-size: 0.9em;
+        }
+
+        .explanation-item strong {
+            color: #667eea;
+        }
+
+        /* Page number */
+        .page-number {
+            text-align: right;
+            color: #999;
+            font-size: 0.65em;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background: white;
+            }
+
+            .page {
+                margin: 0;
+                padding: 0;
+                min-height: 100vh;
+                page-break-after: always;
+                break-after: page;
+            }
+
+            .mindmap-section {
+                padding: 10mm;
+                border-right: 2px solid #ddd;
+            }
+
+            .notes-section {
+                padding: 10mm;
+            }
+        }
+
+        @media screen {
+            .page {
+                margin: 10px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div class="scroll-progress" id="scrollProgress"></div>
-    <div class="scroll-hint">↓ SCROLL DOWN ↓</div>
+<!-- PAGE 1: MEANING & CONCEPT OF CULTURE -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🎨 MEANING & CONCEPT OF CULTURE</div>
+        <div class="page-subtitle">Core Definitions & Strategic Functions</div>
 
-    <div class="pages-container">
-
-        <!-- PAGE 1: Culture Concepts -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 01 / Page 1</div>
-                    <div class="page-title">Culture Concepts</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">🎭 Core Definitions</span>
-                    
-                    <div class="section-title">Key Definitions</div>
-                    <div class="definition-box">
-                        <strong>Schein:</strong> "Pattern of basic assumptions created, invented or discovered by a group as it learns to cope with problems of external adaptation and internal integration."
-                    </div>
-                    <div class="definition-box">
-                        <strong>Robbins:</strong> "Shared system of meaning and understanding that determines largely how employees act. System of shared values that define what is important."
-                    </div>
-                    <div class="definition-box">
-                        <strong>Deal & Kennedy:</strong> "The way we do things around here." Culture is how people behave when nobody is watching.
-                    </div>
-
-                    <div class="section-title">Schein's 3-Level Model</div>
-                    <div class="model-box">
-                        <div class="model-box-title">Level 1: Artifacts (Visible)</div>
-                        Office design, dress code, language, symbols, logos, ceremonies, stories, legends, heroes. Visible but hard to interpret correctly.
-                    </div>
-                    <div class="model-box">
-                        <div class="model-box-title">Level 2: Espoused Values (Conscious)</div>
-                        What organization says it values: integrity, innovation, teamwork. Often aspirational. May not match behavior.
-                    </div>
-                    <div class="model-box">
-                        <div class="model-box-title">Level 3: Basic Assumptions (Unconscious)</div>
-                        What organization truly believes (often unconscious). Deepest level. Shapes actual behavior. "People can't be trusted", "Hierarchy is natural", "Only profit matters."
-                    </div>
-
-                    <div class="section-title">Culture vs Climate</div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Culture</div>
-                            Deep, enduring, causal. Years to change. Defines what's important.
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Climate</div>
-                            Surface, perceptions, effect. Changes with leadership. How it feels to work here.
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">ORG CULTURE</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CORE DEFINITIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition 1</strong>
+                                <small>"Set of assumptions, beliefs, values and norms shared by organization's members"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Definition 2</strong>
+                                <small>"Established customs and norms that specify how people behave within an organization"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Definition 3</strong>
+                                <small>"System of shared meaning that guides behavior and provides organizational identity"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Point</strong>
+                                <small>QUOTE DIRECTLY in answers - definitions are frequently asked in exams</small>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="branch">
+                        <div class="branch-title">6 STRATEGIC FUNCTIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>1. Identity</strong>
+                                <small>Provides sense of organizational identity and distinctiveness</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2. Commitment</strong>
+                                <small>Facilitates commitment to organization beyond economic interests</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>3. Social System Stability</strong>
+                                <small>Provides stability, continuity, and coherence to social system</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>4. Sense-Making</strong>
+                                <small>Helps members interpret events and understand organizational reality</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>5. Behavior Guidance</strong>
+                                <small>Guides and shapes behavior through informal norms and expectations</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>6. Performance</strong>
+                                <small>Strong culture correlates with organizational performance and effectiveness</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">WHY CULTURE MATTERS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Long-term Survival</strong>
+                                <small>Culture is long-term phenomenon that decides success/failure and org survival</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Competitive Advantage</strong>
+                                <small>Culture creates competitive advantage difficult for competitors to replicate</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Change Management</strong>
+                                <small>Understanding culture critical for managing organizational change successfully</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Performance Link</strong>
+                                <small>Research shows strong culture correlates with higher performance, lower turnover</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">EXAM TIP: QUOTE DEFINITIONS DIRECTLY</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Remember:</strong> Definitions of organizational culture are frequently quoted directly in exam answers - memorize at least 2-3 definitions for direct use</strong></div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- PAGE 2: Culture Formation & Maintenance -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 01 / Page 2</div>
-                    <div class="page-title">Culture Formation</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">🔧 Creation & Sustenance</span>
-
-                    <div class="section-title">Creation Process</div>
-                    <div class="key-point">Founders Role: Seeding initial values. Founders' personalities and philosophies shape early culture</div>
-                    <div class="key-point">Hiring: Cultural fit. Selection process reinforces desired culture</div>
-                    <div class="key-point">Critical Incidents: How organization responds to crises reveals true values</div>
-
-                    <div class="section-title">Sustaining Mechanisms</div>
-                    <div class="key-point">Selection Practices: Hire for cultural fit, not just skills</div>
-                    <div class="key-point">Top Management Behaviour: Leaders model culture more than policies</div>
-                    <div class="key-point">Socialisation (3 phases): Pre-arrival (expectations), Encounter (reality), Metamorphosis (integration)</div>
-                    <div class="key-point">Stories/Rituals/Symbols: Narratives embed and transmit cultural values</div>
-
-                    <div class="section-title">Culture as Competitive Advantage</div>
-                    <div class="model-box">
-                        <div class="model-box-title">VRIN Framework</div>
-                        Valuable: Culture creates value. Rare: Not easily copied. Inimitable: Hard to replicate. Non-substitutable: No easy alternatives. When all met, competitive advantage.
-                    </div>
-
-                    <div class="section-title">Positive Impacts</div>
-                    <div class="key-point">Social Control & Coordination: Norms guide behavior without constant supervision</div>
-                    <div class="key-point">Identity & Commitment: Strong culture builds belonging and loyalty</div>
-                    <div class="key-point">Competitive Advantage: Unique culture hard to copy, source of sustained advantage</div>
-                </div>
-            </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
-            </div>
-        </div>
-
-        <!-- PAGE 3: Culture Management -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 02 / Page 1</div>
-                    <div class="page-title">Managing Culture</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">⚠️ Negative Impacts</span>
-
-                    <div class="section-title">Strategic Challenges</div>
-                    <div class="definition-box">
-                        <strong>Barrier to Change:</strong> Strong cultures resist new strategies. "This is how we do things" prevents adaptation to new market realities.
-                    </div>
-                    <div class="definition-box">
-                        <strong>Diversity & Inclusion Issues:</strong> Homogeneous cultures exclude minorities. Same-person hiring perpetuates bias. Glass ceilings institutionalized.
-                    </div>
-                    <div class="definition-box">
-                        <strong>Groupthink & Innovation Suppression:</strong> Conformity pressure stifles dissent. Risk-aversion kills innovation. "Fitting in" valued over "challenging norms."
-                    </div>
-                    <div class="definition-box">
-                        <strong>Ethical Pathologies:</strong> Enron culture valued profits over ethics. Company cultures can normalize unethical behavior. Compliance without conscience.
-                    </div>
-                    <div class="definition-box">
-                        <strong>M&A Value Destruction:</strong> Cultural clashes in mergers destroy value. "We're being acquired by a company with a different culture" = exodus of talent.
-                    </div>
-
-                    <div class="highlight-indian">
-                        <strong>🇮🇳 Indian Context Challenges:</strong> High hierarchical deference (Hofstede's PDI), colonial bureaucratic legacy in PSUs, risk aversion, glass ceilings for gender/caste minorities, command-and-control cultures.
-                    </div>
-
-                    <div class="section-title">Way Forward</div>
-                    <div class="key-point">Mission Karmayogi: India's civil service reform for modern culture</div>
-                    <div class="key-point">Psychological Safety: Google's Project Aristotle finding: Safe to speak up = high performance</div>
-                    <div class="key-point">ESG & Diversity Mandates: Regulatory push for inclusive cultures</div>
-                </div>
-            </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
-            </div>
-        </div>
-
-        <!-- PAGE 4: Culture Change -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 02 / Page 2</div>
-                    <div class="page-title">Managing Change</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">🔄 Culture Change Process</span>
-
-                    <div class="section-title">Change Triggers</div>
-                    <div class="key-point">Strategic Discontinuity: New strategy requires new culture</div>
-                    <div class="key-point">Performance or Ethical Crises: Crisis forces cultural reset</div>
-                    <div class="key-point">Leadership Change: New leader brings new values</div>
-
-                    <div class="section-title">Levers for Culture Change</div>
-                    <div class="model-box">
-                        <div class="model-box-title">Leadership Modelling</div>
-                        New leader visibly demonstrates new values. Actions speak louder than words. Changes what gets rewarded.
-                    </div>
-                    <div class="model-box">
-                        <div class="model-box-title">Reward System Redesign</div>
-                        Change what's measured and rewarded. If teamwork not rewarded, culture won't change to collaborative.
-                    </div>
-                    <div class="model-box">
-                        <div class="model-box-title">Structural Changes</div>
-                        Reorganize to force new interactions and relationships. Break up old silos.
-                    </div>
-                    <div class="model-box">
-                        <div class="model-box-title">New Narratives & Heroes</div>
-                        Tell new stories. Highlight role models embodying new culture. Retire old heroes.
-                    </div>
-
-                    <div class="section-title">Failure Reasons</div>
-                    <div class="definition-box">
-                        <strong>Unconscious Resistance:</strong> People don't consciously resist, but old assumptions persist. "We tried that before, it didn't work."
-                    </div>
-                    <div class="definition-box">
-                        <strong>Time Horizon Mismatch:</strong> Culture change takes years. Leaders expect results in quarters. Patience runs out before change takes hold.
-                    </div>
-                    <div class="definition-box">
-                        <strong>Espoused vs Enacted Gap:</strong> Organization espouses new values but rewards old behavior. "We value teamwork" but promote individual stars. Hypocrisy kills change.
-                    </div>
-
-                    <div class="section-title">Success Formula</div>
-                    <div class="content-box">
-                        <strong>Key Success Factor:</strong> Align symbols, systems, and rewards with desired culture. Make it safe to behave differently. Be patient. Culture change is a multi-year journey requiring sustained commitment.
-                    </div>
-                </div>
-            </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
-            </div>
-        </div>
-
+        <div class="page-number">Page 1 of 8</div>
     </div>
 
-    <script>
-        document.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrolled = (scrollTop / docHeight) * 100;
-            document.getElementById('scrollProgress').style.width = scrolled + '%';
-        });
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowDown') window.scrollBy(0, window.innerHeight * 0.8);
-            else if (e.key === 'ArrowUp') window.scrollBy(0, -window.innerHeight * 0.8);
-            else if (e.key === ' ') { e.preventDefault(); window.scrollBy(0, window.innerHeight * 0.8); }
-        });
-    </script>
+<!-- PAGE 2: SCHEIN'S THREE-LEVEL MODEL -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📊 SCHEIN'S THREE-LEVEL MODEL - THE ESSENTIAL FRAMEWORK</div>
+        <div class="page-subtitle">Artifacts, Espoused Values, Basic Assumptions</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">SCHEIN 3-LEVEL</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">LEVEL 1: ARTIFACTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Visible, observable physical environment, behavior, language, rituals, dress code, stories, symbols</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Examples</strong>
+                                <small>Office layout, uniforms, company jargon, ceremonies, awards, organizational symbols, myths & legends</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Characteristic</strong>
+                                <small>Easy to observe; Difficult to decipher meaning; Multiple interpretations possible; Most visible level</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Note</strong>
+                                <small>"Artifacts" is plural - always refer to cultural artifacts as multiple observable elements</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">LEVEL 2: ESPOUSED VALUES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Stated goals, philosophies, ideologies - what organization claims to stand for (official culture)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Examples</strong>
+                                <small>Mission statements, code of ethics, corporate values, official policy statements, published philosophy</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Gap from Reality</strong>
+                                <small>Often differs from actual practice - what org says it believes vs what it actually does (espoused vs enacted)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Problem</strong>
+                                <small>Can be aspirational or gap-filling - members may not truly believe in espoused values</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">LEVEL 3: BASIC ASSUMPTIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Unconscious, taken-for-granted beliefs about reality; deepest level of culture</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Characteristics</strong>
+                                <small>UNCONSCIOUS - members don't realize they hold them; SELF-SEALING - seem immutable and indisputable</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Example</strong>
+                                <small>"People are inherently lazy and need to be monitored" - deeply held but invisible assumption</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Impact</strong>
+                                <small>Most powerful driver of behavior; Hardest to change because unconscious; Influence both levels above</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">INTERCONNECTIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Hierarchy</strong>
+                                <small>Basic assumptions → Espoused values → Artifacts (underlying → public → observable)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Visibility Inverse</strong>
+                                <small>Artifacts most visible, assumptions least visible; Difficulty increases as you go deeper</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Congruence</strong>
+                                <small>Strong cultures have alignment across all 3 levels; Weak cultures have gaps between levels</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">WHY THIS FRAMEWORK IS ESSENTIAL</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Explains Culture Depth:</strong> Shows culture is not just what's observable - has deep unconscious elements</strong></div>
+                        <div class="explanation-item"><strong>Explains Difficulty of Change:</strong> Hard to change because basic assumptions are unconscious and self-sealing</strong></div>
+                        <div class="explanation-item"><strong>Explains Gap:</strong> Why organizations' stated values often differ from actual practice</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 2 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 3: CULTURE FORMATION -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🔨 HOW ORGANISATIONAL CULTURE FORMS</div>
+        <div class="page-subtitle">7-Stage Process (PYQ 2021 - 20M)</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">CULTURE FORMS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">7-STAGE FORMATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Stage 1: Founder's Vision</strong>
+                                <small>Founder establishes core values, assumptions, and cultural direction based on personal beliefs and experiences</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Stage 2: Initial Culture Embedding</strong>
+                                <small>Founder hires people who share values; Establishes initial norms, practices, and rewards</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Stage 3: Crisis & Testing</strong>
+                                <small>Crises test whether cultural values are really held; How org responds shapes culture</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Stage 4: Reinforcement</strong>
+                                <small>Successful responses reinforced; Stories, legends, heroes emerge; Culture crystallizes</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Stage 5: Stabilization</strong>
+                                <small>Culture becomes stable; New members socialized into existing culture; Assumptions deepen</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Stage 6: Tradition</strong>
+                                <small>Culture becomes traditional; "We do it this way because that's how we've always done it"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Stage 7: Self-Perpetuation</strong>
+                                <small>Culture self-perpetuating; Unconscious basic assumptions guide all behavior</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CRITICAL INCIDENTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Specific events that dramatically shape organizational culture based on organizational response</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Types of Incidents</strong>
+                                <small>Crisis (financial, scandal), Leadership change, Major decision under pressure, Success/failure with significant impact</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Culture Impact</strong>
+                                <small>How org responds to critical incidents shapes what members believe org really values vs espoused values</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Example</strong>
+                                <small>If org says "quality first" but cuts quality to save costs during downturn - reveals true values through crisis response</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">KEY MECHANISMS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Founder Influence</strong>
+                                <small>Initial culture shaped entirely by founder's vision, values, personality; founder sets foundation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Hiring Decisions</strong>
+                                <small>Each hiring reinforces culture by selecting people who fit; Shapes cultural continuity</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Stories & Heroes</strong>
+                                <small>Stories of critical incidents become organizational legends; Heroes embody cultural values</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Responses to Crisis</strong>
+                                <small>How organization responds to challenges reveals and shapes true culture; Tests commitment to values</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">PYQ 2021 (20M) INSIGHT</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Question Focus:</strong> How culture forms through 7-stage process and role of critical incidents in shaping culture</strong></div>
+                        <div class="explanation-item"><strong>Answer Strategy:</strong> Explain stages, emphasize founder role, discuss critical incidents as culture-shaping events, give examples</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 3 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 4: SUSTAINING CULTURE - ROBBINS FRAMEWORK -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🔐 SUSTAINING ORGANISATIONAL CULTURE - ROBBINS' FRAMEWORK</div>
+        <div class="page-subtitle">Selection, Top Management, Socialisation</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">SUSTAIN CULTURE</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">1. SELECTION MECHANISM</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Process</strong>
+                                <small>Hiring process filters for cultural fit - even when formal criteria seem objective, interviewers make cultural judgments</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>How It Works</strong>
+                                <small>Recruiters unconsciously ask questions, observe behaviors, look for "fit" with organizational culture</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Sustaining Effect</strong>
+                                <small>Continuously hires people similar to existing culture; Perpetuates existing culture forward</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Problem</strong>
+                                <small>Excessive selection for fit creates HOMOGENEITY and reduces COGNITIVE DIVERSITY - systematically excludes diverse candidates</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">2. TOP MANAGEMENT BEHAVIOR</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Most Powerful Mechanism</strong>
+                                <small>Leaders are culture's MOST POWERFUL EMBODIMENT of what org values</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>What Communicates</strong>
+                                <small>What leaders pay attention to, measure, react to, and model communicates cultural priorities FAR MORE POWERFULLY than formal statements</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Walk the Talk</strong>
+                                <small>"Walk the talk" is NOT OPTIONAL - it is the PRIMARY culture-sustaining mechanism</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Role Modeling</strong>
+                                <small>Leaders' visible behavior sets tone; Employees watch what leaders do, not just what they say</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">3. SOCIALISATION MECHANISM</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Pre-Arrival Phase</strong>
+                                <small>Prospective members join with prior assumptions and expectations; Before joining organization</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Encounter Phase</strong>
+                                <small>Reality shock - confronting the actual organizational culture (often different from expectations)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Metamorphosis Phase</strong>
+                                <small>CRITICAL PHASE - adaptation and achievement of cultural belonging; Member internalizes culture</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Outcome</strong>
+                                <small>Orgs that socialize well have LOWER EARLY TURNOVER; Members who successfully metamorphose stay longer</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">ADDITIONAL MECHANISMS</div>
+                        <div class="topics">
+                            <div class="topic priority-mid">
+                                <strong>Stories & Legends</strong>
+                                <small>Organizational stories about heroes, founders, critical incidents communicate culture</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Rituals & Ceremonies</strong>
+                                <small>Regular practices reinforce cultural values (awards, celebrations, traditions)</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Reward Systems</strong>
+                                <small>What org rewards shapes behavior; Rewards aligned with culture sustain it forward</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Physical Environment</strong>
+                                <small>Office design, dress codes, symbols communicate and sustain culture</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">CRITICAL INSIGHT: METAMORPHOSIS PHASE</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Why It Matters:</strong> This is the critical phase where new member actually BECOMES part of culture - not before</strong></div>
+                        <div class="explanation-item"><strong>Org Responsibility:</strong> Orgs with good socialization processes have much lower early turnover - means metamorphosis was successful</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 4 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 5: POSITIVE & NEGATIVE IMPACTS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">⚖️ POSITIVE & NEGATIVE IMPACTS OF CULTURE</div>
+        <div class="page-subtitle">The Good & The Dark Side (PYQ 2022 - 20M)</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">CULTURE IMPACTS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">POSITIVE IMPACTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Coordination & Control</strong>
+                                <small>Norms provide informal control; Coordinates behavior without explicit rules</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Commitment & Motivation</strong>
+                                <small>Strong culture builds employee commitment beyond economic interests; Intrinsic motivation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Identity & Belonging</strong>
+                                <small>Provides identity, sense of belonging, psychological connection to organization</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Performance</strong>
+                                <small>Strong culture correlates with higher productivity, lower turnover, better performance</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Attraction</strong>
+                                <small>Strong culture attracts aligned employees; Self-selection mechanism</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Competitive Advantage</strong>
+                                <small>Culture difficult to imitate; Creates sustainable competitive advantage</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">NEGATIVE IMPACTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Resistance to Change</strong>
+                                <small>Strong culture resists necessary change; "We do it this way" becomes barrier to innovation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Homogeneity</strong>
+                                <small>Excessive selection for fit reduces diversity; Excludes different perspectives systematically</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Conformity Pressure</strong>
+                                <small>Intense pressure to conform; Suppresses dissent, creativity, unconventional thinking</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Insularity</strong>
+                                <small>Strong culture can become insular; Ignores external feedback, market signals</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Exclusion</strong>
+                                <small>May exclude people who don't fit mold; Discriminatory effect against minorities</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Obsolescence</strong>
+                                <small>Culture embedded in past success may become obsolete as environment changes</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">TRADE-OFFS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Stability vs Adaptability</strong>
+                                <small>Strong culture provides stability but reduces adaptability to change</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Control vs Autonomy</strong>
+                                <small>Culture provides informal control but may limit individual autonomy & creativity</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Fit vs Diversity</strong>
+                                <small>Selection for cultural fit builds coherence but reduces cognitive diversity</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Commitment vs Freedom</strong>
+                                <small>Strong culture builds commitment but may suppress personal freedom and dissent</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">PYQ 2022 (20M) ANSWER STRUCTURE</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Balanced Approach:</strong> Discuss both positive AND negative impacts - strong culture is not universally "good"</strong></div>
+                        <div class="explanation-item"><strong>Context Matters:</strong> Positive impacts in stable environments; Negative impacts in dynamic/changing environments</strong></div>
+                        <div class="explanation-item"><strong>Trade-offs:</strong> Acknowledge inherent tensions in culture - cannot maximize all benefits simultaneously</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 5 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 6: CULTURE VS CLIMATE & TYPOLOGIES -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🌡️ CULTURE vs CLIMATE & CULTURAL TYPOLOGIES</div>
+        <div class="page-subtitle">Distinction, Handy, Cameron & Quinn (PYQ 2021)</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">CULTURE vs CLIMATE</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CULTURE vs CLIMATE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Culture: Definition</strong>
+                                <small>Deep, stable system of shared meaning; Shared assumptions, beliefs, values, norms</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Culture: Timeframe</strong>
+                                <small>Long-term, deeply embedded; Takes years to develop and change</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Climate: Definition</strong>
+                                <small>Surface-level perceptions of organizational environment; Reflects culture but not same as culture</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Climate: Timeframe</strong>
+                                <small>Temporary, changeable; Can shift with leadership change or organizational events</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Difference</strong>
+                                <small>Culture is values-based (what we believe); Climate is perception-based (how we feel about it)</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">HANDY'S 4 ARCHETYPES (1993)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Power Culture</strong>
+                                <small>Centralized authority; Power at core; Fast decisions; Depends on key leader; Entrepreneurial firms</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Role Culture</strong>
+                                <small>Bureaucratic, rule-based; Position more important than person; Hierarchical; Traditional orgs</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Task Culture</strong>
+                                <small>Project/team oriented; Focus on results; Flexible; Problem-solving focused; Matrix structures</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Person Culture</strong>
+                                <small>Individual centered; Unusual in formal orgs; Found in partnerships, professional firms; Individual autonomy</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CAMERON & QUINN FRAMEWORK</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Clan Culture</strong>
+                                <small>Family-like, collaborative, people-oriented, loyalty emphasized, mentoring valued</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Adhocracy Culture</strong>
+                                <small>Entrepreneurial, innovative, risk-taking, dynamic, individual initiative encouraged</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Market Culture</strong>
+                                <small>Results-driven, competitive, customer-focused, performance measured, profit-oriented</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Hierarchy Culture</strong>
+                                <small>Process-driven, rule-based, structured, stability emphasized, efficiency valued</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">PYQ 2021 - CULTURE vs CLIMATE DISTINCTION</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Remember:</strong> Culture is DEEP VALUES (what organization fundamentally believes); Climate is SURFACE PERCEPTIONS (how people experience it)</strong></div>
+                        <div class="explanation-item"><strong>Practical:</strong> Climate can change quickly with leadership change; Culture takes years to shift because it's values-based</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 6 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 7: CHANGING CULTURE -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🔄 CHANGING CULTURE & CULTURAL PROBLEMS</div>
+        <div class="page-subtitle">When, How, & Why It's Hard</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">CHANGE CULTURE</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CONDITIONS REQUIRING CHANGE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Dramatic Crisis</strong>
+                                <small>Financial failure, major scandal, regulatory action, existential threat to organization</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Leadership Succession</strong>
+                                <small>New leadership with different vision often triggers culture change opportunity</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Lifecycle Stage Change</strong>
+                                <small>Startup → Scale → Large org requires different culture; Existing culture becomes barrier</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Merger & Integration</strong>
+                                <small>Merging organizations requires integrating different cultures; Cultural clash common cause of M&A failure</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CHANGE STRATEGIES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>1. Vision & Need</strong>
+                                <small>Articulate compelling new vision; Create urgency and need for change</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2. Leadership Change</strong>
+                                <small>Replace/transform key leaders who embody old culture; Symbolic signal of change</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>3. Restructure Systems</strong>
+                                <small>Change formal systems, rewards, and reporting to reinforce new values</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>4. Role Modeling</strong>
+                                <small>Model new behavior from top - visible walk-the-talk is essential</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>5. Socialization</strong>
+                                <small>Socialize new members into new culture; Phase out old culture members gradually</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>6. Symbols & Stories</strong>
+                                <small>Create new stories, rituals, and symbols embodying new culture</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">WHY CULTURE CHANGE IS HARD</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Level 3 Unconscious</strong>
+                                <small>Basic assumptions are UNCONSCIOUS - members don't realize they hold them</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Self-Sealing</strong>
+                                <small>Basic assumptions are SELF-SEALING - seem immutable, indisputable, unchangeable</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Cannot Change What You Cannot See</strong>
+                                <small>Cannot change unconscious assumptions - first must make them visible & articulate them</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Identity Threat</strong>
+                                <small>Culture change threatens organizational identity; Members resist losing familiar culture</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Minimum Timeframe</strong>
+                                <small>Culture change minimum: 3-7 YEARS for meaningful shift; Typically takes longer</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">CRITICAL INSIGHT: WHY CULTURE CHANGE IS DIFFICULT</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Core Issue:</strong> Level 3 basic assumptions are UNCONSCIOUS and SELF-SEALING - members don't see them, can't articulate them, can't change what's invisible</strong></div>
+                        <div class="explanation-item"><strong>Timeframe Reality:</strong> Expect 3-7 YEARS minimum for meaningful culture shift - quick culture change is myth</strong></div>
+                        <div class="explanation-item"><strong>Strategy Implication:</strong> First step is SURFACING assumptions - making unconscious conscious through dialogue, crisis, leadership modeling</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 7 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 8: CULTURAL PROBLEMS & KEY EXAM CONCEPTS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">⚠️ CULTURAL PROBLEMS & KEY EXAM CONCEPTS</div>
+        <div class="page-subtitle">Modern Challenges & Exam Preparation (PYQ 2015)</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">PROBLEMS & EXAM</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CULTURAL PROBLEMS (PYQ 2015)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Resistance to Change</strong>
+                                <small>Strong culture resists adaptation needed for modern competitive environment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Homogeneity Risk</strong>
+                                <small>Selection for fit eliminates diversity of thought needed for innovation in modern business</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Merger Integration</strong>
+                                <small>Many M&A failures due to cultural clash; Difficulty integrating different cultures</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Ethical Problems</strong>
+                                <small>Strong culture can normalize unethical behavior (Enron, Wells Fargo); Culture as ethical risk</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Exclusion & Discrimination</strong>
+                                <small>Selection for fit may systematically exclude minorities; Unconscious bias in cultural fit assessment</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">KEY PYQ TOPICS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>PYQ 2021 (20M)</strong>
+                                <small>How organizational culture forms - 7-stage process and critical incidents; Culture formation process</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>PYQ 2022 (20M)</strong>
+                                <small>Positive and negative impacts of culture - balanced discussion of both sides and trade-offs</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>PYQ 2021</strong>
+                                <small>Culture vs Climate distinction - deep values vs surface perceptions; Timeframe differences</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>PYQ 2015</strong>
+                                <small>Cultural problems of modern business - resistance to change, diversity, ethics, integration challenges</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CRITICAL CONCEPTS FOR EXAM</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Schein's 3-Level Model</strong>
+                                <small>ESSENTIAL FRAMEWORK - Artifacts, Espoused Values, Basic Assumptions; Must know all 3 levels</strong></div>
+                            <div class="topic priority-high">
+                                <strong>Robbins' 3 Sustaining Mechanisms</strong>
+                                <small>Selection (cultural fit), Top management behavior (walk-the-talk), Socialization (3 phases)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Founder's Role</strong>
+                                <small>Founder establishes initial culture; Founder influence is foundational to culture development</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Critical Incidents</strong>
+                                <small>Specific events shape culture based on organizational response; Reveal true values during crisis</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Change Difficulty</strong>
+                                <small>3-7 years minimum for meaningful change; Basic assumptions are unconscious and self-sealing</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">EXAM ANSWER STRATEGY</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Quote Definitions</strong>
+                                <small>Always quote core culture definitions directly - shows knowledge of key concepts</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Use Schein's Model</strong>
+                                <small>Reference 3-level model in most culture questions - demonstrates theoretical understanding</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Balanced Discussion</strong>
+                                <small>Culture is not purely "good" - discuss both positive AND negative impacts in PYQ 2022 type questions</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Provide Examples</strong>
+                                <small>Support concepts with organizational examples - Enron, Google, Tata, Indian companies</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Acknowledge Complexity</strong>
+                                <small>Culture change is difficult, time-consuming; No quick fixes; Requires sustained effort</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">LAST-MINUTE CHECKLIST</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item">✓ Know 3 culture definitions (quote-ready)</strong></div>
+                        <div class="explanation-item">✓ Know Schein's 3-level model inside-out (Artifacts, Values, Assumptions)</strong></div>
+                        <div class="explanation-item">✓ Know Robbins' 3 sustaining mechanisms (Selection, Leadership, Socialization)</strong></div>
+                        <div class="explanation-item">✓ Know 7-stage formation process (Founder → Crisis → Stories → Tradition)</strong></div>
+                        <div class="explanation-item">✓ Know positive AND negative impacts (balanced view)</strong></div>
+                        <div class="explanation-item">✓ Know Culture vs Climate difference (values vs perceptions)</strong></div>
+                        <div class="explanation-item">✓ Know why culture change is hard (unconscious, self-sealing, 3-7 years)</strong></div>
+                        <div class="explanation-item">✓ Know 6 culture change strategies</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 8 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
