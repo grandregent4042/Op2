@@ -3,307 +3,1563 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organisation Theory - Advanced</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Organisational Structures - Complete Mindmap</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --primary-coral: #FF6B6B;
-            --secondary-teal: #14B8A6;
-            --secondary-teal-light: #CCEFF5;
-            --accent-lavender: #C49ECE;
-            --text-dark: #2D2D2D;
-            --bg-cream: #FFF8F0;
-            --border-color: #FFD9D9;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        @page { size: A4 landscape; margin: 0; }
-        html { scroll-behavior: smooth; }
-        body { background: linear-gradient(135deg, var(--bg-cream) 0%, #FFF0E6 100%); font-family: 'Poppins', sans-serif; color: var(--text-dark); overflow-x: hidden; }
-        .pages-container { display: flex; flex-direction: column; }
-        .page-spread { display: flex; width: 100%; min-height: 100vh; page-break-after: always; }
-        .content-column { flex: 2; padding: 28px 24px 28px 28px; background: white; overflow-y: auto; border-right: 3px dashed var(--border-color); display: flex; flex-direction: column; }
-        .notes-column { flex: 1; padding: 28px 24px; background: linear-gradient(135deg, rgba(255,107,107,0.03) 0%, rgba(255,155,133,0.03) 100%); border: 3px dashed var(--primary-coral); display: flex; flex-direction: column; }
-        .page-header { margin-bottom: 16px; padding-bottom: 10px; border-bottom: 3px solid var(--primary-coral); }
-        .topic-number { font-size: 11px; font-weight: 700; color: var(--primary-coral); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
-        .page-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--text-dark); line-height: 1.2; }
-        .content-body { flex: 1; margin-bottom: 15px; overflow-y: auto; padding-right: 10px; }
-        .notes-label { font-size: 11px; font-weight: 700; color: var(--primary-coral); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid var(--primary-coral); }
-        .notes-space { flex: 1; background: white; border: 2px dashed var(--primary-coral); border-radius: 8px; padding: 15px; opacity: 0.6; }
-        .topic-tag { display: inline-block; background: var(--primary-coral); color: white; padding: 4px 10px; border-radius: 20px; font-size: 9px; font-weight: 600; margin-bottom: 10px; }
-        .section-title { font-size: 12px; font-weight: 700; color: var(--primary-coral); margin-top: 12px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
-        .content-box { background: linear-gradient(135deg, rgba(255,107,107,0.07) 0%, rgba(255,155,133,0.07) 100%); border-left: 4px solid var(--primary-coral); padding: 9px 10px; margin-bottom: 8px; border-radius: 6px; font-size: 11px; line-height: 1.4; }
-        .content-box strong { color: var(--primary-coral); }
-        .key-point { display: flex; gap: 8px; margin-bottom: 7px; font-size: 11px; line-height: 1.3; }
-        .key-point::before { content: "→"; color: var(--primary-coral); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 8px; }
-        .grid-card { background: white; border: 2px solid var(--border-color); border-radius: 7px; padding: 8px; font-size: 10px; line-height: 1.3; }
-        .grid-card-title { font-weight: 700; color: var(--primary-coral); margin-bottom: 4px; font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .model-box { background: linear-gradient(135deg, var(--secondary-teal-light) 0%, rgba(20,184,166,0.05) 100%); border: 2px solid var(--secondary-teal); border-radius: 7px; padding: 9px; margin-bottom: 8px; font-size: 11px; line-height: 1.3; }
-        .model-box-title { font-weight: 700; color: var(--secondary-teal); margin-bottom: 5px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .definition-box { background: linear-gradient(135deg, var(--accent-lavender), rgba(196,158,206,0.1)); border: 2px solid var(--accent-lavender); border-radius: 7px; padding: 9px; margin-bottom: 8px; font-size: 11px; line-height: 1.3; }
-        .definition-box strong { color: var(--accent-lavender); }
-        .scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--primary-coral); z-index: 1000; transition: width 0.1s ease; }
-        .scroll-hint { position: fixed; bottom: 20px; right: 20px; font-size: 12px; color: var(--primary-coral); opacity: 0.4; font-weight: 600; }
-        @media print { .scroll-progress, .scroll-hint { display: none; } }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-cream); }
-        ::-webkit-scrollbar-thumb { background: var(--primary-coral); border-radius: 4px; }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: white;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.8fr 1fr;
+            page-break-after: always;
+            break-after: page;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Left side - Mindmap */
+        .mindmap-section {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            background: white;
+            border-right: 2px solid #ddd;
+            overflow: visible;
+        }
+
+        /* Right side - Notes */
+        .notes-section {
+            background: #f9f9f9;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .notes-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .notes-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .note-line {
+            border-bottom: 1px dotted #bbb;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            color: #667eea;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 3px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #999;
+            font-size: 0.63em;
+            margin-bottom: 8px;
+        }
+
+        /* Mindmap - Vertical Layout */
+        .mindmap-content {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            overflow: visible;
+        }
+
+        .mindmap-row {
+            display: flex;
+            gap: 7px;
+            align-items: flex-start;
+        }
+
+        .central-node {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+            white-space: normal;
+            flex-shrink: 0;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+            width: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.74em;
+            line-height: 1.1;
+            min-height: 68px;
+        }
+
+        .branches-container {
+            display: flex;
+            gap: 6px;
+            flex: 1;
+            overflow: visible;
+        }
+
+        .branch {
+            background: white;
+            border: 1.5px solid #667eea;
+            border-radius: 5px;
+            padding: 6px;
+            min-width: 110px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .branch-title {
+            background: #667eea;
+            color: white;
+            padding: 4px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 0.63em;
+            margin-bottom: 4px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .topics {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            overflow: visible;
+        }
+
+        .topic {
+            padding: 3px;
+            background: #f0f4ff;
+            border-left: 2px solid #667eea;
+            border-radius: 2px;
+            font-size: 0.63em;
+            line-height: 1.15;
+            flex-shrink: 0;
+        }
+
+        .topic strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 0.5px;
+            font-size: 0.88em;
+        }
+
+        .topic small {
+            color: #666;
+            font-size: 0.82em;
+        }
+
+        .priority-high {
+            background: #ffe5e5;
+            border-left: 2px solid #ff6b6b;
+        }
+
+        .priority-high strong {
+            color: #ff6b6b;
+        }
+
+        .priority-mid {
+            background: #fff5e5;
+            border-left: 2px solid #ffc107;
+        }
+
+        .priority-mid strong {
+            color: #ff9800;
+        }
+
+        /* Explanation boxes */
+        .explanation-section {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 0.63em;
+            line-height: 1.2;
+            margin-top: 5px;
+            overflow: visible;
+        }
+
+        .explanation {
+            background: #f9f9f9;
+            border-left: 2px solid #667eea;
+            padding: 5px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .explanation-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 2px;
+            font-size: 0.78em;
+        }
+
+        .explanation-content {
+            color: #333;
+            margin-left: 4px;
+        }
+
+        .explanation-item {
+            margin: 1px 0;
+            font-size: 0.88em;
+        }
+
+        .explanation-item strong {
+            color: #667eea;
+        }
+
+        /* Page number */
+        .page-number {
+            text-align: right;
+            color: #999;
+            font-size: 0.65em;
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background: white;
+            }
+
+            .page {
+                margin: 0;
+                padding: 0;
+                min-height: 100vh;
+                page-break-after: always;
+                break-after: page;
+            }
+
+            .mindmap-section {
+                padding: 10mm;
+                border-right: 2px solid #ddd;
+            }
+
+            .notes-section {
+                padding: 10mm;
+            }
+        }
+
+        @media screen {
+            .page {
+                margin: 10px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div class="scroll-progress" id="scrollProgress"></div>
-    <div class="scroll-hint">↓ SCROLL DOWN ↓</div>
+<!-- PAGE 1: AUTHORITY, POWER & CONTROL -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">⚡ AUTHORITY, POWER & CONTROL</div>
+        <div class="page-subtitle">Weber's Typology & French & Raven's Bases</div>
 
-    <div class="pages-container">
-
-        <!-- PAGE 1: Authority & Control -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 01 / Page 1</div>
-                    <div class="page-title">Authority & Control</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">👥 Bases of Authority (Weber)</span>
-                    
-                    <div class="section-title">Three Authority Types</div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Traditional</div>
-                            Authority based on custom, inheritance, long-standing practice. "This is how it's always done."
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Charismatic</div>
-                            Authority from personal magnetism, inspirational qualities. Followers attracted to leader's personality and vision.
-                        </div>
-                    </div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Rational-Legal</div>
-                            Authority from formal position and rules. "I have authority because the rules say so." Modern bureaucracies.
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">AUTHORITY & POWER</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">WEBER'S TYPOLOGY</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Charismatic Authority</strong>
+                                <small>Based on personal magnetism, inspiration, exceptional qualities; Followers believe in leader's exceptional powers</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Traditional Authority</strong>
+                                <small>Based on established customs, history, precedent; "We do it this way because we always have"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Rational-Legal Authority</strong>
+                                <small>Based on formal position, written rules, rational procedures; Most common in modern organizations</small>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="section-title">Span of Management</div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Wide Span</div>
-                            Many subordinates per manager. Flat structure, faster decisions, but manager overload risk.
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Narrow Span</div>
-                            Few subordinates per manager. Tall structure, close supervision, but slower decisions and costly.
+                    <div class="branch">
+                        <div class="branch-title">KEY DISTINCTIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Authority</strong>
+                                <small>Legitimate right to make decisions; Granted by organization; Can be taken away; Based on position</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Power</strong>
+                                <small>Ability to influence regardless of authority; Can be formal or informal; Hard to remove; Based on multiple sources</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Accountability</strong>
+                                <small>Being answerable for actions; Legal/moral liability; Cannot be delegated</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Responsibility</strong>
+                                <small>Obligation to perform assigned duties; Can be delegated; Voluntary commitment</small>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="section-title">Graicunas Formula</div>
-                    <div class="definition-box">
-                        <strong>Theory:</strong> Manager's workload grows exponentially with subordinates (not linearly). With 5 subordinates = 125 possible relationships. Optimal span: 4-6 people.
+                    <div class="branch">
+                        <div class="branch-title">FRENCH & RAVEN (5 BASES)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>1. Legitimate Power</strong>
+                                <small>Based on position/title; Formal authority granted by organization</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2. Reward Power</strong>
+                                <small>Ability to provide rewards (salary, promotion, recognition, bonuses)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>3. Coercive Power</strong>
+                                <small>Ability to punish (termination, demotion, reprimand, withholding benefits)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>4. Expert Power</strong>
+                                <small>Based on knowledge, skills, expertise, technical competence</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>5. Referent Power</strong>
+                                <small>Based on personal appeal, charisma, likeability, admiration by followers</small>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="section-title">Control Levels</div>
-                    <div class="key-point">Strategic: Board and CEO. Long-term direction and policy</div>
-                    <div class="key-point">Tactical: Middle management. Implement strategy, manage departments</div>
-                    <div class="key-point">Operational: Supervisors and teams. Day-to-day tasks and delivery</div>
+                    <div class="branch">
+                        <div class="branch-title">SPAN OF CONTROL</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Graicunas (1933)</strong>
+                                <small>As subordinates increase arithmetically, potential relationships increase geometrically</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Example</strong>
+                                <small>5 subordinates = 100 relationships; 10 = 5,000+ (supervisor cognitive overload)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Wide Span</strong>
+                                <small>Many subordinates per manager; Flat structure; Lower coordination; Risk of overload</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Narrow Span</strong>
+                                <small>Few subordinates per manager; Tall structure; Higher coordination; More management layers</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">POWER EFFECTIVENESS RANKING</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Most Effective:</strong> Expert & Referent power - self-motivating, builds commitment</strong></div>
+                        <div class="explanation-item"><strong>Moderately Effective:</strong> Legitimate power - formal right, but depends on culture</strong></div>
+                        <div class="explanation-item"><strong>Least Effective:</strong> Coercive power - creates resentment, resistance, hidden compliance</strong></div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- PAGE 2: Line & Staff Functions -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 01 / Page 2</div>
-                    <div class="page-title">Line & Staff Functions</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">⚙️ Authority Types</span>
-
-                    <div class="section-title">Line Functions (Primary)</div>
-                    <div class="key-point">Command Authority: Direct authority over subordinates</div>
-                    <div class="key-point">Direct Goal Achievement: Directly contribute to organization's primary mission</div>
-                    <div class="key-point">Accountability: Held responsible for results. Operations, Sales, Production</div>
-
-                    <div class="section-title">Staff Functions (Support)</div>
-                    <div class="key-point">Advisory Authority: Recommend, not command. HR advises but doesn't hire everyone</div>
-                    <div class="key-point">Specialist Expertise: Provide specialized knowledge. Finance, Legal, IT</div>
-                    <div class="key-point">Service Role: Support line functions to be more effective</div>
-
-                    <div class="section-title">Conflict Causes</div>
-                    <div class="definition-box">
-                        <strong>Different Orientations:</strong> Line focuses on short-term results; Staff focuses on long-term best practices. Line is action-oriented; Staff is analytical.
-                    </div>
-                    <div class="definition-box">
-                        <strong>Authority Creep:</strong> Staff tries to increase authority; Line resents "interference" in operations. Status anxiety on both sides.
-                    </div>
-                    <div class="definition-box">
-                        <strong>Information Asymmetry:</strong> Staff often has better information; Line feels uninformed. Blame dynamics when things go wrong.
-                    </div>
-
-                    <div class="section-title">Modern Evolution</div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Business Partner Model</div>
-                            HR embeds in business units, collaborates with line, still maintains standards. Reduces line-staff conflict.
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Shared Service Centers</div>
-                            Staff functions centralized, serve all business units as internal service providers. Efficiency and standardization.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
-            </div>
-        </div>
-
-        <!-- PAGE 3: Structural Types & Power -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 02 / Page 1</div>
-                    <div class="page-title">Structure Types</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">🏗️ Organisational Structures</span>
-
-                    <div class="section-title">Functional Structure</div>
-                    <div class="model-box">
-                        <div class="model-box-title">Features</div>
-                        Grouped by function (HR, Finance, Ops, Marketing). Deep expertise, economies of scale. Problem: Silo mentality, slow cross-functional work.
-                    </div>
-
-                    <div class="section-title">Matrix Structure</div>
-                    <div class="model-box">
-                        <div class="model-box-title">Features</div>
-                        Dual authority (functional + project). Complex but flexible. Problem: Violates unity of command, confusion over who's in charge, political friction.
-                    </div>
-
-                    <div class="section-title">Project-Based Structure</div>
-                    <div class="model-box">
-                        <div class="model-box-title">Features</div>
-                        Organized around projects/deliverables. High goal clarity, temporary teams. Problem: Resource duplication, team instability, less focus on individual development.
-                    </div>
-
-                    <div class="section-title">Power & Politics</div>
-                    <div class="grid-3">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Reward Power</div>
-                            Ability to give bonuses, promotions, benefits. "I can reward you."
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Coercive Power</div>
-                            Ability to punish, fire, demote. "I can hurt you."
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Legitimate</div>
-                            Authority from position. "I have formal authority."
-                        </div>
-                    </div>
-                    <div class="grid-3">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Expert Power</div>
-                            From knowledge/skills. "I know." Creates dependency.
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Referent Power</div>
-                            From likability/respect. "People like me." Charisma.
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Information Control</div>
-                            From gatekeeping data. "I have information."
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
-            </div>
-        </div>
-
-        <!-- PAGE 4: Politics & IT Impact -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 02 / Page 2</div>
-                    <div class="page-title">Politics & IT Impact</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">🎭 Political Dynamics</span>
-
-                    <div class="section-title">Sources of Organisational Politics</div>
-                    <div class="key-point">Resource Scarcity: Competition for budgets, staff, equipment drives political behavior</div>
-                    <div class="key-point">Ambiguity of Goals: When goals unclear, people pursue own interpretations</div>
-                    <div class="key-point">Differential Information: Some have more/better information than others</div>
-
-                    <div class="section-title">Political Tactics</div>
-                    <div class="key-point">Coalition Building: Ally with others to accumulate power</div>
-                    <div class="key-point">Control of Information: Gate-keep critical data</div>
-                    <div class="key-point">Visibility Seeking: Ensure own contributions are noticed</div>
-                    <div class="key-point">Strategic Positioning: Move to roles with more power</div>
-
-                    <div class="section-title">Ethics in Power & Politics</div>
-                    <div class="definition-box">
-                        <strong>Power Corruption:</strong> "Power tends to corrupt; absolute power corrupts absolutely." Need checks and accountability mechanisms.
-                    </div>
-                    <div class="definition-box">
-                        <strong>Transparency Needs:</strong> Open communication, clear criteria, fair processes reduce political gaming and increase trust.
-                    </div>
-
-                    <div class="section-title">IT Impact on Structure & Control</div>
-                    <div class="key-point">Flatter Hierarchies: Direct communication bypasses middle management</div>
-                    <div class="key-point">Decentralisation: Remote work enables distributed decision-making</div>
-                    <div class="key-point">Algorithmic Management: AI and data drive decisions, reducing political influence</div>
-
-                    <div class="section-title">Modern Organisational Forms</div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Virtual Organisations</div>
-                            Teams work remotely, coordinated through technology. Flexibility but isolation.
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Fishnet Metaphor</div>
-                            Interconnected nodes with no center. Network organizations. Emergent properties.
-                        </div>
-                    </div>
-
-                    <div class="section-title">Digital Paradox</div>
-                    <div class="content-box">
-                        <strong>Contradiction:</strong> IT enables both surveillance (digital panopticon, total control) and autonomy (remote work, flexibility). Organizations choose based on philosophy and trust level.
-                    </div>
-                </div>
-            </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
-            </div>
-        </div>
-
+        <div class="page-number">Page 1 of 8</div>
     </div>
 
-    <script>
-        document.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrolled = (scrollTop / docHeight) * 100;
-            document.getElementById('scrollProgress').style.width = scrolled + '%';
-        });
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowDown') window.scrollBy(0, window.innerHeight * 0.8);
-            else if (e.key === 'ArrowUp') window.scrollBy(0, -window.innerHeight * 0.8);
-            else if (e.key === ' ') { e.preventDefault(); window.scrollBy(0, window.innerHeight * 0.8); }
-        });
-    </script>
+<!-- PAGE 2: LINE & STAFF FUNCTIONS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📊 LINE & STAFF FUNCTIONS</div>
+        <div class="page-subtitle">Comparison & Causes of Conflict (PYQ 2022)</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">LINE & STAFF</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">LINE FUNCTIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Direct responsibility for achieving organizational objectives</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Examples</strong>
+                                <small>Production, Sales, Operations, Customer Service, Distribution</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Characteristics</strong>
+                                <small>Authority to make decisions, Direct impact on outcomes, Accountable for results, Action-oriented</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Orientation</strong>
+                                <small>Speed, results, implementation, bottom-line impact</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">STAFF FUNCTIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Advisory/support role without direct authority over line operations</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Examples</strong>
+                                <small>HR, Finance, Legal, Planning, Quality, R&D, Training, IT</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Characteristics</strong>
+                                <small>Limited decision authority, Indirect impact through advice, Accountable for quality of recommendations, Analysis-oriented</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Orientation</strong>
+                                <small>Thoroughness, caution, analysis, best practices, compliance, risk mitigation</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CAUSES OF CONFLICT (PYQ 2022)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Orientation Clash</strong>
+                                <small>Line = action-oriented (speed, results); Staff = analysis-oriented (thoroughness, caution) - fundamental attitudinal clash</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Authority Ambiguity</strong>
+                                <small>When staff authority creeps from advisory into directive without formal sanction - line feels bypassed & undermined</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Age/Experience Mismatch</strong>
+                                <small>Young MBA staff specialists advising seasoned line managers - generational tension ("what does this consultant know about our shop floor?")</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Information Asymmetry</strong>
+                                <small>Staff's privileged access to top mgmt & strategic data creates perceived favoritism that line resents</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Credit-Blame Asymmetry</strong>
+                                <small>Staff gets credit when advice succeeds; line bears blame if it fails - perceived as structurally unfair</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Structural Ambiguity</strong>
+                                <small>In functional authority, staff has limited command authority - violates Fayol's unity of command, creates dual loyalty</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">MINIMISE CONFLICT</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Clarify Authority</strong>
+                                <small>Define whether staff is purely advisory, functional authority (limited command), or concurring (must approve)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Joint Accountability</strong>
+                                <small>Hold staff jointly accountable for OUTCOMES of recommendations, not just advice quality</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Job Rotation</strong>
+                                <small>Rotate managers between line & staff roles to build mutual understanding & empathy</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Business Partner Model</strong>
+                                <small>Modern evolution: Embed staff specialists within line operations (HR Business Partner, Finance BP) - shared accountability</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Leadership Clarity</strong>
+                                <small>Top mgmt must explicitly back staff recommendations OR clearly restrict staff to advisory role</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">CRITICAL PYQ 2022 INSIGHT</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Core Issue:</strong> Fundamental attitudinal clash between orientations - no structural fix can fully eliminate this tension</strong></div>
+                        <div class="explanation-item"><strong>Root Cause:</strong> Different operational philosophies - speed vs. caution, action vs. analysis, results vs. thoroughness</strong></div>
+                        <div class="explanation-item"><strong>Answer Strategy:</strong> Acknowledge structural causes + psychological factors + practical solutions for minimizing (not eliminating) conflict</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 2 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 3: FUNCTIONAL STRUCTURE -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🏢 FUNCTIONAL STRUCTURE - THE TWO-EDGED SWORD</div>
+        <div class="page-subtitle">Design, Advantages & Limitations (PYQ 2016)</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">FUNCTIONAL STRUCT</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">DEFINITION & DESIGN</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Structure</strong>
+                                <small>Organization grouped by functions/specializations - Marketing, Finance, Production, HR, Operations</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Reporting</strong>
+                                <small>All people in function report to functional head; Functional head reports to CEO</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Focus</strong>
+                                <small>Depth of expertise in each function; Clear specialization; Functional excellence</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">ADVANTAGES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Expertise & Efficiency</strong>
+                                <small>Deep specialization; Best practices within function; Economies of scale in shared resources</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Cost Reduction</strong>
+                                <small>No duplication of specialists; Centralized services; High utilization of experts</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Career Development</strong>
+                                <small>Clear career path within function; Expert advancement possible; Professional identity</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Control & Coordination</strong>
+                                <small>Clear authority lines; Functional head controls resources; Standardization within function</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Simplicity</strong>
+                                <small>Easy to understand; Clear responsibilities; Straightforward reporting structure</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">LIMITATIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Silo Mentality</strong>
+                                <small>Each function focused on own goals; Limited cross-functional coordination; Suboptimization</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Slow Response</strong>
+                                <small>Cross-functional decisions require coordination through hierarchy; Sluggish adaptation to market changes</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Poor Customer Focus</strong>
+                                <small>Customer needs filtered through functions; No single point responsibility for customer satisfaction; Fragmented customer view</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Product/Project Weakness</strong>
+                                <small>Cannot effectively manage multiple products/projects; Responsibility diffused across functions</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Coordination Overhead</strong>
+                                <small>Many meetings needed; Committees for cross-functional issues; Management time consumed by coordination</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">TWO-EDGED SWORD (PYQ 2016)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Relative Advantages</strong>
+                                <small>What is advantage in one context becomes disadvantage in another - hence "two-edged sword"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Efficiency Paradox</strong>
+                                <small>Efficient within functions BUT inefficient overall due to coordination costs & silos</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Suitable When</strong>
+                                <small>Single product/service, stable environment, functional excellence critical, cost control essential</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Problematic When</strong>
+                                <small>Multiple products, fast-changing environment, customer responsiveness critical, innovation needed</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">PYQ 2016 CRITICAL CONCEPT</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>"Two-edged sword" implies:</strong> No single "best" structure - benefits come with costs</strong></div>
+                        <div class="explanation-item"><strong>In exam answer:</strong> Discuss relative advantages (advantages relative to other structures) + identify context where advantages/disadvantages emerge</strong></div>
+                        <div class="explanation-item"><strong>Example:</strong> Efficiency advantage → disadvantage if customer responsiveness needed more than cost control</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 3 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 4: DIVISIONAL & MATRIX STRUCTURES -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📈 DIVISIONAL & MATRIX STRUCTURES</div>
+        <div class="page-subtitle">M-Form Design & Chandler's Thesis</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">DIVISIONAL & MATRIX</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">DIVISIONAL (M-FORM)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Self-contained divisions organized by product, geography, or customer type - each with own functional resources (Production, Marketing, Finance, HR)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Chandler's Thesis (1962)</strong>
+                                <small>"Structure follows strategy" - diversification strategy naturally leads to M-Form as functional structure cannot manage multiple distinct businesses</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Advantages</strong>
+                                <small>Strong P&L accountability; Customer/product focus; General management development; Competition between divisions; Flexibility to add/remove businesses</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Disadvantages</strong>
+                                <small>Duplication of functions (each division has HR, Finance) = loss of economies of scale; Divisional autonomy can fragment corporate identity; Internal competition can become zero-sum</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>India Examples</strong>
+                                <small>Tata Group (Tata Motors, Tata Steel, TCS, Tata Consultancy); Mahindra Group (organized by business verticals)</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">MATRIX STRUCTURE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Dual reporting: Employees report to BOTH functional manager AND project/product manager simultaneously</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Frequency in UPSC</strong>
+                                <small>Most frequent topic - 5 of last 11 years; High exam probability</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>When Adopted</strong>
+                                <small>Dual focus (functional expertise + project coordination); Efficient specialist use; Complex interdependent projects; Two equal strategic priorities</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">MATRIX PROBLEMS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Unity of Command Violation</strong>
+                                <small>Two bosses create role ambiguity, psychological stress, accountability confusion ("Which boss evaluates me?")</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Power Struggles</strong>
+                                <small>Functional & project managers compete for same people/resources - degenerates into political battles consuming management attention</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Admin Cost</strong>
+                                <small>More managers needed, more meetings required, more coordination overhead - expensive vs simpler structures</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Decision Paralysis</strong>
+                                <small>Consensus requirement between two authorities slows decisions - damaging in fast-moving environments</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Employee Stress</strong>
+                                <small>Constant negotiation between conflicting demands, ambiguous priorities, dual loyalty creates stress & burnout over time</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Cultural Incompatibility</strong>
+                                <small>Requires high tolerance for ambiguity & strong interpersonal skills - Indian orgs with high power-distance culture (Hofstede) struggle with dual authority ambiguity</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">CHANDLER'S "STRUCTURE FOLLOWS STRATEGY"</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Core Insight:</strong> Organizational structure must be designed to support strategy - mismatch causes problems</strong></div>
+                        <div class="explanation-item"><strong>Implication:</strong> Single-product firms use functional; Diversified firms use divisional (M-Form) - structure must match strategic scope</strong></div>
+                        <div class="explanation-item"><strong>Application:</strong> When Tata diversified, functional structure became inadequate - led to M-Form divisional structure</strong></div>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">MATRIX - UPSC FAVORITE (5 in 11 years)</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>High exam probability:</strong> Be very prepared on matrix structure - reasons, problems, solutions</strong></div>
+                        <div class="explanation-item"><strong>Indian Context:</strong> Many Indian IT companies, pharma use matrix - relevant examples</strong></div>
+                        <div class="explanation-item"><strong>Hofstede Relevance:</strong> India high power-distance makes matrix adoption challenging - discuss this cultural angle</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 4 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 5: NETWORK/VIRTUAL ORGANISATION -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🌐 NETWORK / VIRTUAL ORGANISATION - POST-INDUSTRIAL FORM</div>
+        <div class="page-subtitle">Design, Advantages & Limitations</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">NETWORK ORG</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">DEFINITION & DESIGN</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Core Concept</strong>
+                                <small>Core firm outsources most functions to network of specialist partners - connected by contracts, IT systems, and shared purpose</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Boundaries</strong>
+                                <small>Deliberately fuzzy organizational boundaries; What is "inside" vs "outside" the firm unclear</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Coordination</strong>
+                                <small>Through digital platforms, contracts, performance metrics, shared vision rather than hierarchy</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Focus</strong>
+                                <small>Core competencies retained; Non-core functions outsourced to specialists who do it better</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">ADVANTAGES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Maximum Flexibility</strong>
+                                <small>Can quickly add/remove partners; Scale up/down based on demand; No legacy constraints</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Low Fixed Costs</strong>
+                                <small>Pay for services used; No large fixed asset/overhead base; Variable cost structure</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Global Talent</strong>
+                                <small>Access to best global specialists; Not limited to local hiring; Diverse expertise</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Rapid Scaling</strong>
+                                <small>Can scale operations quickly by adding partners; No infrastructure build-up needed</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>No Legacy Burden</strong>
+                                <small>Not carrying old infrastructure, systems, or processes; Clean start each project</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">LIMITATIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Loss of Control</strong>
+                                <small>Cannot directly control quality & culture of partner firms; Dependent on third parties</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Coordination Complexity</strong>
+                                <small>Managing network of partners across geographies, time zones, cultures; Integration challenges</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>IP Risk</strong>
+                                <small>Intellectual property shared with partners; Risk of leakage, misuse, or competitors gaining access</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Culture Coherence</strong>
+                                <small>Difficult to build unified culture across network; Partners have own cultures & priorities</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Accountability Diffusion</strong>
+                                <small>Unclear who is responsible when problems occur; Contractual disputes common; Legal complexity</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">INDIA EXAMPLES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Flipkart</strong>
+                                <small>Logistics through Ekart + third-party delivery partners; Marketplace model with sellers</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Ola/Uber</strong>
+                                <small>Driver-partners as network nodes; Platform connects drivers to customers; Minimal own assets</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Pharma Companies</strong>
+                                <small>Outsource manufacturing to contract manufacturers (CMOs); Focus on R&D & marketing</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Fashion Brands</strong>
+                                <small>Design in-house; Manufacturing outsourced; No own factories or infrastructure</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">NETWORK AS POST-INDUSTRIAL FORM</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Shift:</strong> From manufacturing-centric (hierarchical control) to service/knowledge-centric (network coordination)</strong></div>
+                        <div class="explanation-item"><strong>Enabled By:</strong> IT platforms, digital communication, global supply chains, gig economy, outsourcing maturity</strong></div>
+                        <div class="explanation-item"><strong>Future Trend:</strong> More organizations adopting network model as traditional hierarchy limitations become apparent</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 5 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 6: POWER & POLITICS IN ORGANISATIONS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🎭 POWER & POLITICS IN ORGANISATIONS</div>
+        <div class="page-subtitle">Sources, Political Behaviour & Management</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">POWER & POLITICS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">SOURCES OF POWER</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Formal Authority</strong>
+                                <small>Official position; Right to make decisions; Legitimate power</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Control of Resources</strong>
+                                <small>Budget allocation, materials, personnel - whoever controls resources has power</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Information Control</strong>
+                                <small>Access to critical information; Knowledge asymmetries create power imbalances</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Expertise</strong>
+                                <small>Technical knowledge, skills, competencies valued by organization</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Social Networks</strong>
+                                <small>Relationships, connections, alliances, coalitions provide influence</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Charisma/Personality</strong>
+                                <small>Personal appeal, influence over others, referent power</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">POLITICAL BEHAVIOUR</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Emerges From</strong>
+                                <small>Ambiguous goals, Scarce resources, Significant decisions, Org change, Matrix structures (power ambiguity)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Positive Politics</strong>
+                                <small>Building coalitions for beneficial change; Advocating for underrepresented interests; Facilitating stakeholder alignment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Negative Politics</strong>
+                                <small>Withholding information for advantage; Scapegoating; Sabotaging rivals; Creating information silos; Empire-building</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Management Response</strong>
+                                <small>Transparency about resource allocation; Clear decision-rights frameworks; Performance-based culture rewarding outcomes over political skill</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">RELATIONSHIP TO STRUCTURE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Functional Structure</strong>
+                                <small>Clear authority limits politics somewhat; But functional silos create competition for resources & influence</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Matrix Structure</strong>
+                                <small>High politics due to power ambiguity; Dual authority creates competing power centers; Political skills become survival requirement</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Divisional Structure</strong>
+                                <small>Inter-divisional politics over corporate resources; Competition can become destructive zero-sum game</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Network Structure</strong>
+                                <small>Less internal politics; But politics exists in partner relationships and partner selection</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">POLITICAL BEHAVIOUR MANAGEMENT STRATEGY</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Not Eliminate:</strong> Politics is inevitable in organizations - cannot be eliminated, only managed</strong></div>
+                        <div class="explanation-item"><strong>Structural Design:</strong> Reduce politics triggers through clear authority, transparent resource allocation, unambiguous goals</strong></div>
+                        <div class="explanation-item"><strong>Cultural Approach:</strong> Foster results-oriented culture where political skill matters less than actual performance</strong></div>
+                        <div class="explanation-item"><strong>Leadership:</strong> Model transparency, fairness, and merit-based decisions to discourage destructive political behavior</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 6 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 7: IMPACT OF IT ON ORG STRUCTURE -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">💻 IMPACT OF IT ON ORGANISATIONAL STRUCTURE</div>
+        <div class="page-subtitle">Technology-Driven Transformation</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">IT IMPACT</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">FLATTENING HIERARCHIES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Effect</strong>
+                                <small>IT enables direct communication without going through hierarchy; Middle management layers become redundant</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Result</strong>
+                                <small>Flatter organizational structures possible; Fewer hierarchical levels; Wider spans of control</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Implication</strong>
+                                <small>Reduced management overhead; Faster decision-making; Direct accountability</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">ENABLING GEOGRAPHIC DISTRIBUTION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Remote Work</strong>
+                                <small>IT enables people to work from anywhere; Offices no longer required for coordination</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Global Teams</strong>
+                                <small>Can assemble teams across continents; Virtual coordination through IT systems</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Distributed Org</strong>
+                                <small>Organization no longer bound by geography; 24/7 operations possible across time zones</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">ENABLING MATRIX STRUCTURES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Complex Coordination</strong>
+                                <small>IT systems track dual reporting relationships, resource allocation, project status across matrix</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Information Transparency</strong>
+                                <small>Both functional & project managers can see same real-time data; Reduces conflicts over information</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Feasibility</strong>
+                                <small>Matrix structures become practical at scale because IT handles coordination complexity</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">ENABLING NETWORK STRUCTURES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Digital Platforms</strong>
+                                <small>IT creates platforms connecting core firm with partner network; E-commerce, cloud services, APIs</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Real-time Integration</strong>
+                                <small>IT integrates partner systems seamlessly; Supply chain, order processing, quality monitoring</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Partnership Governance</strong>
+                                <small>IT enables monitoring & control of partner performance; Contract enforcement automation</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CHANGING POWER DYNAMICS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Information Power</strong>
+                                <small>IT democratizes information access; Previously, information = power; Now transparent information available to all</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Expertise Shift</strong>
+                                <small>IT expertise becomes critical power source; Technical experts gain influence in organizations</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Process Automation</strong>
+                                <small>IT encodes organizational processes; Reduces discretion of individual managers; Power shift from people to systems</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CHALLENGES OF IT-ENABLED STRUCTURES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Implementation Complexity</strong>
+                                <small>Requires change management; Training; System integration; Can be slow, expensive</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Cultural Resistance</strong>
+                                <small>People resist transparency, surveillance, automation of their roles; Loss of discretion</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>System Dependency</strong>
+                                <small>Organization becomes dependent on IT systems; System failures disrupt entire operations</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Over-Standardization</strong>
+                                <small>IT systems enforce standardized processes; Can reduce flexibility, innovation, local adaptation</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">TECHNOLOGY-STRUCTURE RELATIONSHIP</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Enabler, Not Determiner:</strong> IT enables structural changes but does not determine them - choice remains with management</strong></div>
+                        <div class="explanation-item"><strong>Woodward Revisited:</strong> Technology impacts structure - IT is fastest-changing technology variable in modern organizations</strong></div>
+                        <div class="explanation-item"><strong>Future Implication:</strong> As IT becomes ubiquitous, network structures & distributed teams will become norm</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 7 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 8: STRUCTURES SUMMARY & EXAM CONCEPTS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📊 STRUCTURES SUMMARY & KEY EXAM CONCEPTS</div>
+        <div class="page-subtitle">Comparison & Critical Points for Success</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">STRUCTURES COMPARISON</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">FUNCTIONAL STRUCTURE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Best For</strong>
+                                <small>Single product, stable env, cost control critical, functional excellence</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Advantage</strong>
+                                <small>Efficiency, cost reduction, expertise depth, career paths</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Problem</strong>
+                                <small>Silos, slow response, poor customer focus, coordination overhead</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">DIVISIONAL (M-FORM)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Best For</strong>
+                                <small>Diversified firms, multiple products/markets, decentralized strategy</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Advantage</strong>
+                                <small>P&L accountability, customer focus, flexibility, general mgmt development</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Problem</strong>
+                                <small>Duplication, lost economies of scale, fragmented identity, internal competition</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">MATRIX STRUCTURE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Best For</strong>
+                                <small>Dual focus need, complex projects, specialists needed in multiple projects</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Advantage</strong>
+                                <small>Combines functional expertise with project coordination, efficient specialist use</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Problem</strong>
+                                <strong><small>Unity violation, power struggles, high admin cost, decision paralysis, employee stress</small></strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">NETWORK/VIRTUAL</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Best For</strong>
+                                <small>Outsourceable functions, high flexibility needed, global operations, gig economy</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Advantage</strong>
+                                <strong><small>Flexibility, low costs, global access, rapid scaling, no legacy burden</small></strong>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Problem</strong>
+                                <small>Loss of control, coordination complexity, IP risk, culture issues, accountability diffusion</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CRITICAL PYQ TOPICS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>PYQ 2022</strong>
+                                <small>Line-Staff conflict causes - orientation clash is fundamental (cannot fully eliminate)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>PYQ 2016</strong>
+                                <small>Functional structure "two-edged sword" - advantages become disadvantages in different contexts</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>MATRIX FREQUENT</strong>
+                                <small>5 of last 11 years - know reasons for adoption + all problems + cultural implications (Hofstede)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>CHANDLER'S THESIS</strong>
+                                <small>"Structure follows strategy" - diversification → M-Form; essential concept</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">EXAM STRATEGY</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Know All Structures</strong>
+                                <small>Can compare on multiple dimensions - advantages/disadvantages in context</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Use India Examples</strong>
+                                <small>Tata (divisional), TCS/Infosys (matrix), Ola/Flipkart (network) - makes answers stronger</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Link to Theory</strong>
+                                <small>Chandler's thesis, Contingency principle, IT impact - theoretical frameworks strengthen answers</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Cultural Dimension</strong>
+                                <small>Hofstede's power-distance relevant to explaining why certain structures work better in India</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Trade-offs Discussion</strong>
+                                <small>No "best" structure - explain trade-offs between efficiency/flexibility, cost/quality, control/autonomy</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">LAST-MINUTE CHECKLIST FOR EXAM</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item">✓ Know Weber's 3 authority types (Charismatic, Traditional, Rational-Legal)</strong></div>
+                        <div class="explanation-item">✓ Know French & Raven's 5 power bases (Legitimate, Reward, Coercive, Expert, Referent)</strong></div>
+                        <div class="explanation-item">✓ Know Graicunas formula (relationships increase geometrically with subordinates)</strong></div>
+                        <div class="explanation-item">✓ Know 6 causes of line-staff conflict + solutions</strong></div>
+                        <div class="explanation-item">✓ Know Chandler's "Structure follows strategy" principle</strong></div>
+                        <div class="explanation-item">✓ Know Reasons for matrix adoption + all 6 problems</strong></div>
+                        <div class="explanation-item">✓ Know 4 structures on efficiency/flexibility/cost dimensions</strong></div>
+                        <div class="explanation-item">✓ Can provide India examples for each structure</strong></div>
+                        <div class="explanation-item">✓ Understand how IT enables different structures</strong></div>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">HIGHEST PROBABILITY QUESTIONS</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item">🔴 Matrix structure (5 of 11 years) - MUST BE PREPARED</strong></div>
+                        <div class="explanation-item">🔴 Line-staff conflict - FREQUENTLY ASKED</strong></div>
+                        <div class="explanation-item">🔴 Structure-strategy relationship - Chandler's thesis</strong></div>
+                        <div class="explanation-item">🟡 Divisional vs Functional comparison</strong></div>
+                        <div class="explanation-item">🟡 Organizational power sources</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 8 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
