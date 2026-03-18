@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personality in Organisational Behaviour - Mindmap</title>
+    <title>Personality in Organisational Behaviour</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -29,12 +29,15 @@
 
         @media print {
             body {
-                size: landscape;
+                margin: 0;
+                padding: 0;
             }
             .page {
                 page-break-after: always;
                 width: 297mm;
                 height: 210mm;
+                margin: 0;
+                padding: 0;
             }
         }
 
@@ -44,130 +47,115 @@
             color: var(--text-dark);
             line-height: 1.6;
             padding: 0;
-            min-width: 1400px;
+            margin: 0;
         }
 
         .page {
-            min-height: 100vh;
-            padding: 80px 60px 80px 60px;
+            width: 297mm;
+            height: 210mm;
+            padding: 35px 35px;
             display: flex;
             flex-direction: column;
             position: relative;
             border-bottom: 3px dashed var(--coral);
+            overflow: hidden;
+            margin: 0;
         }
 
         .page::before {
             content: '';
             position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 150px;
-            height: 150px;
+            top: 15px;
+            right: 15px;
+            width: 100px;
+            height: 100px;
             background: radial-gradient(circle, var(--coral) 0%, transparent 70%);
-            opacity: 0.15;
+            opacity: 0.1;
             border-radius: 50%;
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.15; }
-            50% { transform: scale(1.1); opacity: 0.25; }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .page-title {
             font-family: 'Playfair Display', serif;
-            font-size: 56px;
+            font-size: 32px;
             font-weight: 900;
             color: var(--coral-deep);
-            margin-bottom: 20px;
+            margin-bottom: 8px;
             text-align: center;
             text-shadow: 2px 2px 4px rgba(255, 107, 107, 0.1);
-            animation: fadeInUp 0.8s ease-out;
         }
 
         .page-subtitle {
-            font-size: 18px;
+            font-size: 14px;
             color: var(--text-muted);
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 15px;
             font-style: italic;
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
         }
 
-        .mindmap-container {
+        .main-container {
             flex: 1;
             display: flex;
-            gap: 40px;
-            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            flex-direction: row;
+            gap: 12px;
+            overflow: hidden;
         }
 
         .content-area {
-            flex: 2;
+            flex: 0 0 66%;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 8px;
+            overflow-y: auto;
         }
 
         .notes-area {
-            flex: 1;
+            flex: 0 0 34%;
             background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 40px rgba(255, 107, 107, 0.1);
+            border-radius: 14px;
+            padding: 16px;
+            box-shadow: 0 6px 18px rgba(255, 107, 107, 0.12);
             border: 3px dashed var(--coral);
             position: relative;
-            min-height: 400px;
+            overflow: hidden;
         }
 
         .notes-area::before {
             content: '📝 NOTES';
             position: absolute;
-            top: -15px;
-            left: 30px;
+            top: -13px;
+            left: 16px;
             background: var(--coral-deep);
             color: white;
-            padding: 5px 20px;
-            border-radius: 20px;
+            padding: 4px 16px;
+            border-radius: 16px;
             font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 1px;
+            font-size: 11px;
+            letter-spacing: 0.8px;
+            z-index: 10;
         }
 
         .notes-area::after {
             content: '';
             position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
+            bottom: 12px;
+            right: 12px;
+            width: 40px;
+            height: 40px;
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23FFE5D9" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>') center/contain no-repeat;
-            opacity: 0.3;
+            opacity: 0.2;
         }
 
         .central-node {
             background: linear-gradient(135deg, var(--coral-deep), var(--coral));
             color: white;
-            padding: 30px 50px;
-            border-radius: 30px;
-            font-size: 28px;
+            padding: 14px 30px;
+            border-radius: 22px;
+            font-size: 16px;
             font-weight: 700;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
-            margin: 20px auto;
+            box-shadow: 0 6px 18px rgba(255, 107, 107, 0.2);
+            margin: 6px auto;
             max-width: fit-content;
-            transform: scale(1);
-            transition: transform 0.3s ease;
             position: relative;
             overflow: hidden;
         }
@@ -179,7 +167,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
             animation: rotate 10s linear infinite;
         }
 
@@ -188,52 +176,22 @@
             to { transform: rotate(360deg); }
         }
 
-        .central-node:hover {
-            transform: scale(1.05);
-        }
-
         .branch-container {
             display: flex;
-            gap: 40px;
+            gap: 10px;
             align-items: flex-start;
             flex-wrap: wrap;
         }
 
-        .branch {
-            position: relative;
-            animation: fadeInUp 0.6s ease-out backwards;
-        }
-
-        .branch:nth-child(1) { animation-delay: 0.1s; }
-        .branch:nth-child(2) { animation-delay: 0.2s; }
-        .branch:nth-child(3) { animation-delay: 0.3s; }
-        .branch:nth-child(4) { animation-delay: 0.4s; }
-
-        .branch-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--coral-deep);
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
         .node {
             background: white;
-            padding: 18px 25px;
-            border-radius: 15px;
-            margin-bottom: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid var(--coral);
-            font-size: 15px;
+            padding: 10px 14px;
+            border-radius: 11px;
+            margin-bottom: 6px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--coral);
+            font-size: 11px;
             font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .node:hover {
-            transform: translateX(5px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.2);
         }
 
         .node.color-sage { border-left-color: var(--sage); }
@@ -249,23 +207,17 @@
 
         .grid-layout {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 10px;
+            margin: 6px 0;
         }
 
         .card {
             background: white;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            border-top: 6px solid var(--coral);
-            transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.15);
+            padding: 12px 14px;
+            border-radius: 14px;
+            box-shadow: 0 5px 16px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid var(--coral);
         }
 
         .card.sage { border-top-color: var(--sage); }
@@ -275,42 +227,44 @@
         .card.yellow { border-top-color: var(--warm-yellow); }
 
         .card-title {
-            font-size: 20px;
+            font-size: 13px;
             font-weight: 700;
             color: var(--coral-deep);
-            margin-bottom: 15px;
+            margin-bottom: 6px;
         }
 
         .card-content {
-            font-size: 14px;
-            line-height: 1.8;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--text-dark);
+            font-weight: 500;
         }
 
         .section-header {
             background: linear-gradient(90deg, var(--coral-deep), transparent);
             color: white;
-            padding: 15px 30px;
-            border-radius: 15px;
-            font-size: 22px;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 13px;
             font-weight: 700;
-            margin: 30px 0 20px 0;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+            margin: 8px 0 6px 0;
+            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.15);
         }
 
         .cluster {
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 25px;
-            padding: 30px;
-            margin: 20px 0;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            background: rgba(255, 255, 255, 0.75);
+            border-radius: 16px;
+            padding: 12px 16px;
+            margin: 6px 0;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
             border: 2px solid var(--peach-light);
         }
 
         .cluster-title {
-            font-size: 24px;
+            font-size: 15px;
             font-weight: 700;
             color: var(--coral-deep);
-            margin-bottom: 20px;
+            margin-bottom: 8px;
             text-align: center;
         }
 
@@ -318,12 +272,12 @@
             display: inline-block;
             background: var(--coral);
             color: white;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 10px;
             font-weight: 600;
-            margin: 5px;
-            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.2);
+            margin: 2px;
+            box-shadow: 0 2px 6px rgba(255, 107, 107, 0.2);
         }
 
         .tag.sage { background: var(--sage); }
@@ -336,11 +290,14 @@
             align-items: center;
             text-align: center;
             background: linear-gradient(135deg, var(--peach-light) 0%, var(--sand) 50%, var(--warm-cream) 100%);
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
 
         .title-page .page-title {
-            font-size: 72px;
-            margin-bottom: 30px;
+            font-size: 48px;
+            margin-bottom: 20px;
             background: linear-gradient(45deg, var(--coral-deep), var(--coral), var(--terracotta));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -354,27 +311,27 @@
         }
 
         .circle-1 {
-            width: 300px;
-            height: 300px;
+            width: 250px;
+            height: 250px;
             background: var(--coral);
-            top: 10%;
+            top: 8%;
             left: 5%;
         }
 
         .circle-2 {
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             background: var(--sage);
-            bottom: 15%;
+            bottom: 10%;
             right: 8%;
         }
 
         .circle-3 {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             background: var(--lavender);
-            top: 50%;
-            right: 20%;
+            top: 45%;
+            right: 12%;
         }
     </style>
 </head>
@@ -389,82 +346,101 @@
         <p class="page-subtitle">Understanding Meaning, Determinants, Theories & Organisational Applications</p>
     </div>
 
-    <!-- PAGE 1: Meaning & Characteristics -->
+    <!-- MEANING: PAGE 1/2 - Definitions -->
     <div class="page">
-        <h2 class="page-title">Meaning & Characteristics</h2>
-        <div class="mindmap-container">
+        <h2 class="page-title">Meaning & Definitions - Part 1</h2>
+        <div class="main-container">
             <div class="content-area">
                 <div class="cluster">
                     <div class="cluster-title">📖 DEFINITIONS & PERSPECTIVES</div>
                     
-                    <div class="central-node">PERSONALITY</div>
+                    <div class="central-node">PERSONALITY DEFINED</div>
 
                     <div class="section-header">Classical Definitions</div>
                     <div class="grid-layout">
                         <div class="card coral">
                             <div class="card-title">Gordon Allport</div>
-                            <div class="card-content">
-                                <strong>"Dynamic psychophysical organisation"</strong>
-                                <div style="margin-top: 10px; font-size: 13px;">Emphasizes the active, integrated nature of personality and its physiological basis</div>
-                            </div>
+                            <div class="card-content">"Dynamic psychophysical organisation" - Emphasizes the active, integrated nature of personality and its physiological basis</div>
                         </div>
 
                         <div class="card sage">
                             <div class="card-title">Stephen Robbins</div>
-                            <div class="card-content">
-                                <strong>"Sum of reactions and interactions"</strong>
-                                <div style="margin-top: 10px; font-size: 13px;">Focuses on observable behaviors and patterns in various situations</div>
-                            </div>
+                            <div class="card-content">"Sum of reactions and interactions" - Focuses on observable behaviors and patterns in various situations</div>
                         </div>
 
                         <div class="card mint">
                             <div class="card-title">Raymond Cattell</div>
-                            <div class="card-content">
-                                <strong>"Predictor of situational action"</strong>
-                                <div style="margin-top: 10px; font-size: 13px;">Views personality as a tool to forecast behavior across contexts</div>
-                            </div>
+                            <div class="card-content">"Predictor of situational action" - Views personality as a tool to forecast behavior across contexts</div>
                         </div>
                     </div>
 
-                    <div class="section-header">Core Features of Personality</div>
-                    <div class="grid-layout">
-                        <div class="card lavender">
-                            <div class="card-title">✓ Stable & Enduring</div>
-                            <div class="card-content">Consistent patterns over time, though can evolve gradually with experience and development</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">✓ Unique & Distinctive</div>
-                            <div class="card-content">Each individual has a unique combination of traits that distinguish them from others</div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">✓ Measurable</div>
-                            <div class="card-content">Can be assessed through various scientifically validated instruments and methods</div>
-                        </div>
-
-                        <div class="card coral">
-                            <div class="card-title">✓ Nature & Nurture</div>
-                            <div class="card-content">Result of both genetic inheritance and environmental influences throughout life</div>
-                        </div>
+                    <div class="section-header">What is Personality?</div>
+                    <div class="branch-container">
+                        <div class="node color-coral"><strong>Concept:</strong> Stable set of psychological characteristics and behavioral patterns</div>
+                        <div class="node color-sage"><strong>Expression:</strong> Manifested in how we think, feel, and behave consistently</div>
+                        <div class="node color-mint"><strong>Uniqueness:</strong> Each person has a distinctive personality profile</div>
                     </div>
                 </div>
             </div>
-
             <div class="notes-area"></div>
         </div>
     </div>
 
-    <!-- PAGE 2: Determinants of Personality -->
+    <!-- MEANING: PAGE 2/2 - Characteristics -->
     <div class="page">
-        <h2 class="page-title">Determinants of Personality</h2>
-        <div class="mindmap-container">
+        <h2 class="page-title">Meaning & Characteristics - Part 2</h2>
+        <div class="main-container">
             <div class="content-area">
-                <!-- Biological Heredity -->
                 <div class="cluster">
-                    <div class="cluster-title">🧬 BIOLOGICAL & HEREDITY FACTORS</div>
+                    <div class="cluster-title">✓ CORE CHARACTERISTICS OF PERSONALITY</div>
+
+                    <div class="section-header">Key Features</div>
+                    <div class="grid-layout">
+                        <div class="card lavender">
+                            <div class="card-title">Stable & Enduring</div>
+                            <div class="card-content">Consistent patterns over time, though can evolve gradually with experience and development</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Unique & Distinctive</div>
+                            <div class="card-content">Each individual has a unique combination of traits that distinguish them from others</div>
+                        </div>
+
+                        <div class="card yellow">
+                            <div class="card-title">Measurable</div>
+                            <div class="card-content">Can be assessed through various scientifically validated instruments and methods</div>
+                        </div>
+
+                        <div class="card coral">
+                            <div class="card-title">Nature & Nurture</div>
+                            <div class="card-content">Result of both genetic inheritance and environmental influences throughout life</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Dynamic & Adaptive</div>
+                            <div class="card-content">While relatively stable, personality can adapt to new situations and life experiences</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Integrated System</div>
+                            <div class="card-content">All aspects work together as a unified whole affecting thoughts, feelings, and behaviors</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+    <!-- DETERMINANTS: PAGE 1/2 - Biological & Environmental -->
+    <div class="page">
+        <h2 class="page-title">Determinants of Personality - Part 1</h2>
+        <div class="main-container">
+            <div class="content-area">
+                <div class="cluster">
+                    <div class="cluster-title">🧬 BIOLOGICAL FACTORS (NATURE)</div>
                     
-                    <div class="central-node">NATURE</div>
+                    <div class="central-node">GENETIC INFLUENCES</div>
 
                     <div class="section-header">Genetic Components</div>
                     <div class="grid-layout">
@@ -490,12 +466,9 @@
                     </div>
                 </div>
 
-                <!-- Environmental & Social -->
                 <div class="cluster">
-                    <div class="cluster-title">🌍 ENVIRONMENTAL & SOCIAL FACTORS</div>
+                    <div class="cluster-title">🌍 ENVIRONMENTAL FACTORS (NURTURE)</div>
                     
-                    <div class="central-node">NURTURE</div>
-
                     <div class="section-header">Environmental Influences</div>
                     <div class="grid-layout">
                         <div class="card terracotta">
@@ -507,187 +480,225 @@
                             <div class="card-title">Family & Parenting</div>
                             <div class="card-content">Parenting styles, family dynamics, and childhood relationships fundamentally shape personality development</div>
                         </div>
-
-                        <div class="card coral">
-                            <div class="card-title">Social Learning</div>
-                            <div class="card-content">Bandura's theory emphasizes learning through observation, modeling, and reinforcement from others</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Early Childhood Experiences</div>
-                            <div class="card-content">Critical periods in development where experiences significantly influence personality formation</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Situational -->
-                <div class="cluster">
-                    <div class="cluster-title">⚖️ SITUATIONAL FACTORS & INTERACTIONISM</div>
-                    
-                    <div class="section-header">Person-Situation Interaction</div>
-                    <div class="branch-container">
-                        <div class="node color-mint">
-                            <strong>Strong Situations:</strong> Constrain personality expression (formal meetings, military training, court)
-                        </div>
-                        <div class="node color-lavender">
-                            <strong>Weak Situations:</strong> Allow free personality expression (casual gatherings, creative tasks)
-                        </div>
-                        <div class="node color-terracotta">
-                            <strong>Interactionism (Mischel):</strong> Behavior results from interaction between personality and environmental context
-                        </div>
                     </div>
                 </div>
             </div>
-
             <div class="notes-area"></div>
         </div>
     </div>
 
-    <!-- PAGE 3: Major Theories -->
+    <!-- DETERMINANTS: PAGE 2/2 - Social & Situational -->
     <div class="page">
-        <h2 class="page-title">Major Personality Theories</h2>
-        <div class="mindmap-container">
+        <h2 class="page-title">Determinants of Personality - Part 2</h2>
+        <div class="main-container">
             <div class="content-area">
-                <!-- Trait Theories -->
+                <div class="cluster">
+                    <div class="cluster-title">👥 SOCIAL LEARNING & SITUATIONAL FACTORS</div>
+                    
+                    <div class="section-header">Social Learning Processes</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Social Learning</div>
+                            <div class="card-content">Bandura's theory emphasizes learning through observation, modeling, and reinforcement from others in social contexts</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Early Childhood Experiences</div>
+                            <div class="card-content">Critical periods in development where experiences significantly influence personality formation and behavior patterns</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Peer Influence</div>
+                            <div class="card-content">Interactions with peers, friends, and social groups shape personality development throughout life stages</div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">Situational Interaction</div>
+                    <div class="branch-container">
+                        <div class="node color-mint"><strong>Strong Situations:</strong> Constrain personality expression (formal meetings, military training, court)</div>
+                        <div class="node color-lavender"><strong>Weak Situations:</strong> Allow free personality expression (casual gatherings, creative tasks)</div>
+                        <div class="node color-terracotta"><strong>Interactionism:</strong> Behavior results from interaction between personality and environmental context (Mischel)</div>
+                    </div>
+                </div>
+            </div>
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+    <!-- THEORIES: PAGE 1/3 - Trait Theories -->
+    <div class="page">
+        <h2 class="page-title">Theories - Trait Models - Part 1</h2>
+        <div class="main-container">
+            <div class="content-area">
                 <div class="cluster">
                     <div class="cluster-title">📊 TRAIT THEORIES</div>
                     
                     <div class="central-node">TRAIT APPROACH</div>
 
+                    <div class="section-header">Big Five Model (OCEAN)</div>
                     <div class="grid-layout">
                         <div class="card coral">
-                            <div class="card-title">Big Five Model (OCEAN)</div>
-                            <div class="card-content">
-                                <strong>Contemporary Gold Standard</strong>
-                                <div style="margin-top: 10px;">
-                                    <span class="tag coral">Openness</span>
-                                    <span class="tag coral">Conscientiousness</span>
-                                    <span class="tag coral">Extraversion</span>
-                                    <span class="tag coral">Agreeableness</span>
-                                    <span class="tag coral">Neuroticism</span>
-                                </div>
-                            </div>
+                            <div class="card-title">Openness to Experience</div>
+                            <div class="card-content">Curiosity, creativity, appreciation for art, imagination. High scorers seek variety and novelty</div>
                         </div>
 
                         <div class="card sage">
-                            <div class="card-title">Cattell's 16 Traits (16PF)</div>
-                            <div class="card-content">
-                                <strong>Comprehensive Factor Analysis</strong>
-                                <div style="margin-top: 10px; font-size: 13px;">16 distinct personality factors derived through lexical analysis and statistical methods</div>
-                            </div>
+                            <div class="card-title">Conscientiousness</div>
+                            <div class="card-content">Organization, responsibility, dependability. Strongest predictor of job performance</div>
                         </div>
 
                         <div class="card mint">
-                            <div class="card-title">Eysenck's PEN Model</div>
-                            <div class="card-content">
-                                <strong>Three Major Dimensions</strong>
-                                <div style="margin-top: 10px;">
-                                    <span class="tag mint">Psychoticism</span>
-                                    <span class="tag mint">Extraversion</span>
-                                    <span class="tag mint">Neuroticism</span>
-                                </div>
-                            </div>
+                            <div class="card-title">Extraversion</div>
+                            <div class="card-content">Sociability, assertiveness, outgoingness. Predicts leadership emergence and networking ability</div>
+                        </div>
+
+                        <div class="card lavender">
+                            <div class="card-title">Agreeableness</div>
+                            <div class="card-content">Cooperation, compassion, empathy. Predicts teamwork quality and collaboration effectiveness</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Neuroticism</div>
+                            <div class="card-content">Emotional stability, anxiety, stress sensitivity. Affects workplace emotional interactions</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+    <!-- THEORIES: PAGE 2/3 - Other Trait & Psychodynamic -->
+    <div class="page">
+        <h2 class="page-title">Theories - Other Models - Part 2</h2>
+        <div class="main-container">
+            <div class="content-area">
+                <div class="cluster">
+                    <div class="cluster-title">📊 OTHER TRAIT MODELS</div>
+
+                    <div class="section-header">Cattell's 16 Personality Factors (16PF)</div>
+                    <div class="branch-container">
+                        <div class="node color-coral"><strong>Comprehensive:</strong> 16 distinct personality factors derived through factor analysis</div>
+                        <div class="node color-sage"><strong>Detailed:</strong> More granular than Big Five for specific organizational assessments</div>
+                    </div>
+
+                    <div class="section-header">Eysenck's PEN Model</div>
+                    <div class="grid-layout">
+                        <div class="card mint">
+                            <div class="card-title">Three Dimensions</div>
+                            <div class="card-content"><strong>Psychoticism:</strong> Aggression, impulsivity</div>
+                        </div>
+                        <div class="card lavender">
+                            <div class="card-title">Extraversion</div>
+                            <div class="card-content">Sociability, dominance, assertiveness</div>
+                        </div>
+                        <div class="card yellow">
+                            <div class="card-title">Neuroticism</div>
+                            <div class="card-content">Emotional stability, anxiety levels</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Psychodynamic -->
                 <div class="cluster">
                     <div class="cluster-title">🧠 PSYCHODYNAMIC THEORY (FREUD)</div>
                     
                     <div class="section-header">Structure of Personality</div>
                     <div class="grid-layout">
-                        <div class="card lavender">
+                        <div class="card terracotta">
                             <div class="card-title">Id</div>
                             <div class="card-content">Unconscious, instinctual desires and primitive urges. Seeks immediate gratification without restraint</div>
                         </div>
 
-                        <div class="card terracotta">
+                        <div class="card yellow">
                             <div class="card-title">Ego</div>
                             <div class="card-content">Reality-based mediator between id and superego. Makes rational decisions balancing demands</div>
                         </div>
 
-                        <div class="card yellow">
+                        <div class="card coral">
                             <div class="card-title">Superego</div>
                             <div class="card-content">Moral conscience incorporating values, ethics, and societal rules learned from parents and society</div>
                         </div>
                     </div>
-
-                    <div class="section-header">Key Mechanisms</div>
-                    <div class="branch-container">
-                        <div class="node color-coral">
-                            <strong>Psychosexual Stages:</strong> Oral, Anal, Phallic, Latency, Genital - personality shaped through developmental conflicts
-                        </div>
-                        <div class="node color-sage">
-                            <strong>Defence Mechanisms:</strong> Repression, projection, sublimation, rationalization to manage unconscious conflicts
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Social Learning -->
-                <div class="cluster">
-                    <div class="cluster-title">👥 SOCIAL LEARNING THEORY (BANDURA)</div>
-                    
-                    <div class="section-header">Key Concepts</div>
-                    <div class="grid-layout">
-                        <div class="card mint">
-                            <div class="card-title">Self-Efficacy</div>
-                            <div class="card-content">Belief in one's ability to succeed in specific situations. Determines effort and persistence</div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">Reciprocal Determinism</div>
-                            <div class="card-content">Three-way interaction: Person (traits) → Behavior → Environment influence each other continuously</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Observational Learning</div>
-                            <div class="card-content">People learn personality traits and behaviors by watching others (modeling) and consequences</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Humanistic -->
-                <div class="cluster">
-                    <div class="cluster-title">🌟 HUMANISTIC THEORIES</div>
-                    
-                    <div class="section-header">Growth & Actualization</div>
-                    <div class="branch-container">
-                        <div class="node color-yellow">
-                            <strong>Maslow:</strong> Self-actualisation as highest motivation - personality grows toward full potential
-                        </div>
-                        <div class="node color-coral">
-                            <strong>Rogers:</strong> Self-concept and congruence - personality healthy when real self matches ideal self
-                        </div>
-                    </div>
                 </div>
             </div>
-
             <div class="notes-area"></div>
         </div>
     </div>
 
-    <!-- PAGE 4: OB Attributes & Outcomes -->
+    <!-- THEORIES: PAGE 3/3 - Social Learning & Humanistic -->
     <div class="page">
-        <h2 class="page-title">OB Attributes & Work Outcomes</h2>
-        <div class="mindmap-container">
+        <h2 class="page-title">Theories - Social Learning & Humanistic - Part 3</h2>
+        <div class="main-container">
             <div class="content-area">
-                <!-- Specific Traits -->
+                <div class="cluster">
+                    <div class="cluster-title">👥 SOCIAL LEARNING THEORY (BANDURA)</div>
+
+                    <div class="section-header">Key Concepts</div>
+                    <div class="grid-layout">
+                        <div class="card mint">
+                            <div class="card-title">Self-Efficacy</div>
+                            <div class="card-content">Belief in one's ability to succeed in specific situations. Determines effort and persistence in tasks</div>
+                        </div>
+
+                        <div class="card lavender">
+                            <div class="card-title">Reciprocal Determinism</div>
+                            <div class="card-content">Three-way interaction: Person (traits) ↔ Behavior ↔ Environment influence each other continuously</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Observational Learning</div>
+                            <div class="card-content">People learn personality traits and behaviors by watching others (modeling) and observing consequences</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cluster">
+                    <div class="cluster-title">🌟 HUMANISTIC THEORIES</div>
+                    
+                    <div class="section-header">Growth-Oriented Approach</div>
+                    <div class="branch-container">
+                        <div class="node color-yellow"><strong>Maslow:</strong> Self-actualisation as highest motivation - personality grows toward full potential</div>
+                        <div class="node color-coral"><strong>Rogers:</strong> Self-concept and congruence - personality healthy when real self matches ideal self</div>
+                    </div>
+
+                    <div class="section-header">Humanistic Perspective</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Growth Potential</div>
+                            <div class="card-content">Individuals have innate capacity for growth, self-improvement, and self-determination</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Authenticity & Congruence</div>
+                            <div class="card-content">Healthy personality emerges when actual self aligns with ideal self, reducing internal conflict</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+    <!-- ATTRIBUTES: PAGE 1/2 - Specific Traits -->
+    <div class="page">
+        <h2 class="page-title">OB Attributes - Specific Traits - Part 1</h2>
+        <div class="main-container">
+            <div class="content-area">
                 <div class="cluster">
                     <div class="cluster-title">🎯 SPECIFIC PERSONALITY ATTRIBUTES</div>
                     
                     <div class="central-node">OB-RELEVANT TRAITS</div>
 
-                    <div class="section-header">Key Organisational Traits</div>
+                    <div class="section-header">Control & Behavior Attributes</div>
                     <div class="grid-layout">
                         <div class="card coral">
                             <div class="card-title">Locus of Control</div>
-                            <div class="card-content"><strong>Internal:</strong> Believes in personal control → higher performance<br><strong>External:</strong> Believes in fate/others → different motivation patterns</div>
+                            <div class="card-content"><strong>Internal:</strong> Believes in personal control → higher performance, motivation<br><strong>External:</strong> Believes in fate/others → different motivation patterns</div>
                         </div>
 
                         <div class="card sage">
                             <div class="card-title">Machiavellianism</div>
-                            <div class="card-content">Manipulative, cunning tendency. High = political behavior; Low = straightforward, ethical orientation</div>
+                            <div class="card-content">Manipulative, pragmatic approach to politics and power. High = cunning, deceptive; Low = straightforward, ethical</div>
                         </div>
 
                         <div class="card mint">
@@ -706,12 +717,22 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="notes-area"></div>
+        </div>
+    </div>
 
-                <!-- Impact on Work -->
+    <!-- OUTCOMES: PAGE 1/2 - Impact on Work -->
+    <div class="page">
+        <h2 class="page-title">OB Outcomes - Work Impact - Part 1</h2>
+        <div class="main-container">
+            <div class="content-area">
                 <div class="cluster">
-                    <div class="cluster-title">💼 IMPACT ON WORK BEHAVIOR</div>
+                    <div class="cluster-title">💼 PERSONALITY IMPACT ON WORK BEHAVIOR</div>
                     
-                    <div class="section-header">Organisational Outcomes</div>
+                    <div class="central-node">ORGANISATIONAL OUTCOMES</div>
+
+                    <div class="section-header">Performance & Leadership</div>
                     <div class="grid-layout">
                         <div class="card yellow">
                             <div class="card-title">Job Performance</div>
@@ -735,17 +756,15 @@
                     </div>
                 </div>
             </div>
-
             <div class="notes-area"></div>
         </div>
     </div>
 
-    <!-- PAGE 5: Measurement & Ethics -->
+    <!-- MEASUREMENT: PAGE 1/2 - Methods -->
     <div class="page">
-        <h2 class="page-title">Measurement Methods & Ethical Considerations</h2>
-        <div class="mindmap-container">
+        <h2 class="page-title">Measurement & Ethics - Methods - Part 1</h2>
+        <div class="main-container">
             <div class="content-area">
-                <!-- Measurement Methods -->
                 <div class="cluster">
                     <div class="cluster-title">🔍 MEASUREMENT METHODS</div>
                     
@@ -774,8 +793,16 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="notes-area"></div>
+        </div>
+    </div>
 
-                <!-- Challenges & Ethics -->
+    <!-- MEASUREMENT & ETHICS: PAGE 2/2 - Challenges -->
+    <div class="page">
+        <h2 class="page-title">Measurement & Ethics - Challenges - Part 2</h2>
+        <div class="main-container">
+            <div class="content-area">
                 <div class="cluster">
                     <div class="cluster-title">⚖️ CHALLENGES & ETHICAL CONSIDERATIONS</div>
                     
@@ -804,34 +831,25 @@
 
                     <div class="section-header">Organisational Best Practices</div>
                     <div class="branch-container">
-                        <div class="node color-mint">
-                            <strong>Validation:</strong> Use only empirically validated instruments for specific purposes
-                        </div>
-                        <div class="node color-lavender">
-                            <strong>Transparency:</strong> Clear communication about assessment use and data handling to participants
-                        </div>
-                        <div class="node color-terracotta">
-                            <strong>Fairness:</strong> Ensure assessments don't discriminate against protected groups; avoid stereotyping
-                        </div>
-                        <div class="node color-yellow">
-                            <strong>Professional Administration:</strong> Trained professionals interpret results; avoid self-diagnosis or online misuse
-                        </div>
+                        <div class="node color-mint"><strong>Validation:</strong> Use only empirically validated instruments for specific purposes</div>
+                        <div class="node color-lavender"><strong>Transparency:</strong> Clear communication about assessment use and data handling to participants</div>
+                        <div class="node color-terracotta"><strong>Fairness:</strong> Ensure assessments don't discriminate against protected groups; avoid stereotyping</div>
+                        <div class="node color-yellow"><strong>Professional Administration:</strong> Trained professionals interpret results; avoid self-diagnosis or online misuse</div>
                     </div>
                 </div>
             </div>
-
             <div class="notes-area"></div>
         </div>
     </div>
 
-    <!-- FINAL PAGE: Summary -->
-    <div class="page" style="border-bottom: none;">
-        <h2 class="page-title">Complete Overview</h2>
-        <div class="mindmap-container">
+    <!-- SUMMARY PAGE -->
+    <div class="page">
+        <h2 class="page-title">Complete Overview & Summary</h2>
+        <div class="main-container">
             <div class="content-area">
                 <div class="cluster">
-                    <div style="text-align: center; margin: 40px 0;">
-                        <div class="central-node" style="font-size: 32px; padding: 40px 60px;">
+                    <div style="text-align: center; margin: 8px 0;">
+                        <div class="central-node" style="font-size: 20px; padding: 18px 30px;">
                             PERSONALITY IN<br>ORGANISATIONAL<br>BEHAVIOUR
                         </div>
                     </div>
@@ -839,15 +857,15 @@
                     <div class="grid-layout" style="grid-template-columns: repeat(3, 1fr);">
                         <div class="card coral">
                             <div class="card-title">📖 Meaning</div>
-                            <div class="card-content">Definitions, characteristics, stability and uniqueness</div>
+                            <div class="card-content">Definitions, characteristics, stability and uniqueness of personality</div>
                         </div>
                         <div class="card sage">
                             <div class="card-title">🧬 Determinants</div>
-                            <div class="card-content">Biological, environmental, and situational factors</div>
+                            <div class="card-content">Biological, environmental, social, and situational factors</div>
                         </div>
                         <div class="card mint">
                             <div class="card-title">📊 Theories</div>
-                            <div class="card-content">Trait, psychodynamic, social learning, humanistic</div>
+                            <div class="card-content">Trait, psychodynamic, social learning, humanistic approaches</div>
                         </div>
                         <div class="card lavender">
                             <div class="card-title">🎯 Attributes</div>
@@ -863,13 +881,12 @@
                         </div>
                     </div>
 
-                    <div style="margin-top: 60px; text-align: center; color: var(--text-muted); font-style: italic;">
-                        <p style="font-size: 18px;">From individual traits to organisational performance</p>
-                        <p style="font-size: 16px; margin-top: 20px;">Understanding personality as the foundation of behavior and effectiveness in organisations</p>
+                    <div style="margin-top: 20px; text-align: center; color: var(--text-muted); font-style: italic;">
+                        <p style="font-size: 12px;"><strong>From individual traits to organisational performance</strong></p>
+                        <p style="font-size: 11px; margin-top: 8px;">Understanding personality as the foundation of behavior and effectiveness in organisations</p>
                     </div>
                 </div>
             </div>
-
             <div class="notes-area"></div>
         </div>
     </div>
