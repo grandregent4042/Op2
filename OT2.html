@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organisation Theory - Fundamentals</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Organization Theory - Complete Mindmap</title>
     <style>
         * {
             margin: 0;
@@ -12,591 +11,1325 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-coral: #FF6B6B;
-            --primary-coral-light: #FFE5E5;
-            --secondary-teal: #14B8A6;
-            --secondary-teal-light: #CCEFF5;
-            --accent-lavender: #C49ECE;
-            --accent-sage: #A8C090;
-            --accent-mint: #8BD3C4;
-            --accent-sand: #F4E4C1;
-            --text-dark: #2D2D2D;
-            --text-light: #6B6B6B;
-            --bg-cream: #FFF8F0;
-            --border-color: #FFD9D9;
-        }
-
-        @page {
-            size: A4 landscape;
+        html, body {
+            width: 100%;
+            height: 100%;
             margin: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            padding: 0;
+            background: white;
         }
 
         body {
-            background: linear-gradient(135deg, var(--bg-cream) 0%, #FFF0E6 100%);
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-dark);
-            overflow-x: hidden;
-            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .pages-container {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .page-spread {
-            display: flex;
+        .page {
             width: 100%;
             min-height: 100vh;
-            gap: 0;
+            display: grid;
+            grid-template-columns: 1.8fr 1fr;
             page-break-after: always;
-            position: relative;
+            break-after: page;
+            margin: 0;
+            padding: 0;
         }
 
-        .content-column {
-            flex: 2;
-            padding: 28px 24px 28px 28px;
+        /* Left side - Mindmap */
+        .mindmap-section {
+            display: flex;
+            flex-direction: column;
+            padding: 12px;
             background: white;
-            overflow-y: auto;
-            border-right: 3px dashed var(--border-color);
+            border-right: 2px solid #ddd;
+            overflow: visible;
+        }
+
+        /* Right side - Notes */
+        .notes-section {
+            background: #f9f9f9;
+            padding: 12px;
             display: flex;
             flex-direction: column;
         }
 
-        .notes-column {
-            flex: 1;
-            padding: 28px 24px;
-            background: linear-gradient(135deg, rgba(255,107,107,0.03) 0%, rgba(255,155,133,0.03) 100%);
-            border: 3px dashed var(--primary-coral);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .page-header {
-            margin-bottom: 16px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid var(--primary-coral);
-        }
-
-        .topic-number {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--primary-coral);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-
-        .page-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 26px;
-            font-weight: 900;
-            color: var(--text-dark);
-            line-height: 1.2;
-        }
-
-        .content-body {
-            flex: 1;
-            margin-bottom: 15px;
-            overflow-y: auto;
-            padding-right: 10px;
-        }
-
-        .notes-label {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--primary-coral);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 15px;
-            display: block;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--primary-coral);
-        }
-
-        .notes-space {
-            flex: 1;
-            background: white;
-            border: 2px dashed var(--primary-coral);
-            border-radius: 8px;
-            padding: 15px;
-            opacity: 0.6;
-        }
-
-        .topic-tag {
-            display: inline-block;
-            background: var(--primary-coral);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 9px;
-            font-weight: 600;
+        .notes-title {
+            font-weight: bold;
+            color: #667eea;
             margin-bottom: 10px;
-            letter-spacing: 0.5px;
+            font-size: 0.9em;
         }
 
-        .section-title {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--primary-coral);
-            margin-top: 12px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .notes-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
         }
 
-        .content-box {
-            background: linear-gradient(135deg, rgba(255,107,107,0.07) 0%, rgba(255,155,133,0.07) 100%);
-            border-left: 4px solid var(--primary-coral);
-            padding: 9px 10px;
+        .note-line {
+            border-bottom: 1px dotted #bbb;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            color: #667eea;
+            font-size: 1.2em;
+            font-weight: bold;
             margin-bottom: 8px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 6px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #999;
+            font-size: 0.7em;
+            margin-bottom: 10px;
+        }
+
+        /* Mindmap - Vertical Layout */
+        .mindmap-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow: visible;
+        }
+
+        .mindmap-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .central-node {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px;
             border-radius: 6px;
-            font-size: 11px;
-            line-height: 1.4;
-            color: var(--text-dark);
+            font-weight: bold;
+            text-align: center;
+            white-space: normal;
+            flex-shrink: 0;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+            width: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            line-height: 1.2;
+            min-height: 75px;
         }
 
-        .content-box strong {
-            color: var(--primary-coral);
-        }
-
-        .key-point {
+        .branches-container {
             display: flex;
             gap: 8px;
-            margin-bottom: 7px;
-            font-size: 11px;
-            line-height: 1.3;
-            color: var(--text-dark);
+            flex: 1;
+            overflow: visible;
         }
 
-        .key-point::before {
-            content: "→";
-            color: var(--primary-coral);
-            font-weight: 700;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .grid-card {
+        .branch {
             background: white;
-            border: 2px solid var(--border-color);
-            border-radius: 7px;
+            border: 1.5px solid #667eea;
+            border-radius: 5px;
             padding: 8px;
-            font-size: 10px;
-            line-height: 1.3;
-            color: var(--text-dark);
+            min-width: 120px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        .grid-card-title {
-            font-weight: 700;
-            color: var(--primary-coral);
-            margin-bottom: 4px;
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .model-box {
-            background: linear-gradient(135deg, var(--secondary-teal-light) 0%, rgba(20,184,166,0.05) 100%);
-            border: 2px solid var(--secondary-teal);
-            border-radius: 7px;
-            padding: 9px;
-            margin-bottom: 8px;
-            font-size: 11px;
-            line-height: 1.3;
-            color: var(--text-dark);
-        }
-
-        .model-box-title {
-            font-weight: 700;
-            color: var(--secondary-teal);
-            margin-bottom: 5px;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .definition-box {
-            background: linear-gradient(135deg, var(--accent-lavender), rgba(196,158,206,0.1));
-            border: 2px solid var(--accent-lavender);
-            border-radius: 7px;
-            padding: 9px;
-            margin-bottom: 8px;
-            font-size: 11px;
-            line-height: 1.3;
-            color: var(--text-dark);
-        }
-
-        .definition-box strong {
-            color: var(--accent-lavender);
-        }
-
-        .comparison-table {
-            width: 100%;
-            font-size: 9px;
-            line-height: 1.2;
-            margin-bottom: 8px;
-            border-collapse: collapse;
-        }
-
-        .comparison-table td, .comparison-table th {
-            border: 1px solid var(--border-color);
-            padding: 5px;
-            color: var(--text-dark);
-        }
-
-        .comparison-table th {
-            background: var(--primary-coral);
+        .branch-title {
+            background: #667eea;
             color: white;
-            font-weight: 700;
-            text-align: left;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            padding: 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 0.7em;
+            margin-bottom: 6px;
+            text-align: center;
+            flex-shrink: 0;
         }
 
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 4px;
-            background: var(--primary-coral);
-            z-index: 1000;
-            transition: width 0.1s ease;
+        .topics {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            overflow: visible;
         }
 
-        .scroll-hint {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            font-size: 12px;
-            color: var(--primary-coral);
-            opacity: 0.4;
-            pointer-events: none;
-            font-weight: 600;
+        .topic {
+            padding: 5px;
+            background: #f0f4ff;
+            border-left: 2px solid #667eea;
+            border-radius: 2px;
+            font-size: 0.7em;
+            line-height: 1.25;
+            flex-shrink: 0;
+        }
+
+        .topic strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 1px;
+            font-size: 0.9em;
+        }
+
+        .topic small {
+            color: #666;
+            font-size: 0.85em;
+        }
+
+        .priority-high {
+            background: #ffe5e5;
+            border-left: 2px solid #ff6b6b;
+        }
+
+        .priority-high strong {
+            color: #ff6b6b;
+        }
+
+        .priority-mid {
+            background: #fff5e5;
+            border-left: 2px solid #ffc107;
+        }
+
+        .priority-mid strong {
+            color: #ff9800;
+        }
+
+        /* Explanation boxes */
+        .explanation-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.7em;
+            line-height: 1.3;
+            margin-top: 8px;
+            overflow: visible;
+        }
+
+        .explanation {
+            background: #f9f9f9;
+            border-left: 2px solid #667eea;
+            padding: 8px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .explanation-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 3px;
+            font-size: 0.85em;
+        }
+
+        .explanation-content {
+            color: #333;
+            margin-left: 6px;
+        }
+
+        .explanation-item {
+            margin: 2px 0;
+            font-size: 0.9em;
+        }
+
+        .explanation-item strong {
+            color: #667eea;
+        }
+
+        /* Page number */
+        .page-number {
+            text-align: right;
+            color: #999;
+            font-size: 0.65em;
+            margin-top: 8px;
+            flex-shrink: 0;
         }
 
         @media print {
-            .scroll-progress, .scroll-hint { display: none; }
-            .page-spread { page-break-after: always; }
+            body {
+                margin: 0;
+                padding: 0;
+                background: white;
+            }
+
+            .page {
+                margin: 0;
+                padding: 0;
+                min-height: 100vh;
+                page-break-after: always;
+                break-after: page;
+            }
+
+            .mindmap-section {
+                padding: 10mm;
+                border-right: 2px solid #ddd;
+            }
+
+            .notes-section {
+                padding: 10mm;
+            }
         }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-cream); }
-        ::-webkit-scrollbar-thumb { background: var(--primary-coral); border-radius: 4px; }
+        @media screen {
+            .page {
+                margin: 10px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div class="scroll-progress" id="scrollProgress"></div>
-    <div class="scroll-hint" id="scrollHint">↓ SCROLL DOWN ↓</div>
+<!-- PAGE 1: NATURE & CONCEPT OF ORGANISATION -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📋 NATURE & CONCEPT OF ORGANISATION</div>
+        <div class="page-subtitle">Core Definitions & Perspectives</div>
 
-    <div class="pages-container">
-
-        <!-- PAGE 1: Nature and Concept -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 01 / Page 1</div>
-                    <div class="page-title">Nature & Concept</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">📚 Defining Features</span>
-                    
-                    <div class="section-title">Core Characteristics</div>
-                    <div class="key-point">Social Entity: Composed of people</div>
-                    <div class="key-point">Goal-Directed: Organized to achieve objectives</div>
-                    <div class="key-point">Deliberately Structured: Formal design and coordination</div>
-
-                    <div class="section-title">Key Perspectives</div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Western</div>
-                            Rational-Legal Authority, bureaucratic, merit-based, impersonal
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Indian</div>
-                            Family-Owned & Collectivist, personal loyalty, hierarchical, relationship-based
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">NATURE & CONCEPT</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CORE DEFINITIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Quote Directly</strong>
+                                <small>"Collectivities of people established for pursuit of relatively specific objectives on continuous basis"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Implication</strong>
+                                <small>Deliberate creation, rational coordination, closely relevant activities, attainment of goals</small>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="section-title">Blau & Scott: Beneficiary Classification</div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Mutual Benefit Org.</div>
-                            Members are primary beneficiaries (clubs, unions, cooperatives)
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Business Org.</div>
-                            Owners/stockholders are beneficiaries (corporations, firms)
+                    <div class="branch">
+                        <div class="branch-title">WESTERN PERSPECTIVE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Focus</strong>
+                                <small>Formal structure, authority hierarchy, rational design</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Emphasis</strong>
+                                <small>Efficiency, specialization, clear roles and boundaries</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Origin</strong>
+                                <small>Classical & Neo-classical schools (Taylor, Fayol, Weber)</small>
+                            </div>
                         </div>
                     </div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Service Org.</div>
-                            Clients are beneficiaries (hospitals, schools, law firms)
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Commonweal Org.</div>
-                            General public is beneficiary (government, military, police)
+
+                    <div class="branch">
+                        <div class="branch-title">INDIAN PERSPECTIVE (PYQ 2022)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Focus</strong>
+                                <small>Holistic approach, social responsibility, harmony with environment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Emphasis</strong>
+                                <small>Community welfare, stakeholder interests, cultural values, ethical conduct</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Difference</strong>
+                                <small>Less hierarchical, more participative, considers human and social dimensions</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">DISTINGUISHING FEATURES OF ORGANIZATION</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>1. Deliberate Creation:</strong> Consciously created, not accidental</div>
+                        <div class="explanation-item"><strong>2. Specific Goals:</strong> Established for attainment of certain goals</strong></div>
+                        <div class="explanation-item"><strong>3. Rational Coordination:</strong> Coordinated activities of closely relevant nature</strong></div>
+                        <div class="explanation-item"><strong>4. Human Group:</strong> Composed of people working towards common objective</strong></div>
+                        <div class="explanation-item"><strong>5. Continuous Basis:</strong> Operates on more or less continuous basis</strong></div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- PAGE 2: External Environment -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 01 / Page 2</div>
-                    <div class="page-title">External Environment</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">🌍 PESTLE Analysis</span>
-
-                    <div class="section-title">PESTLE Dimensions</div>
-                    <div class="content-box"><strong>Political:</strong> Policy changes, political stability, government intervention, regulations</div>
-                    <div class="content-box"><strong>Economic:</strong> GDP growth, inflation, interest rates, exchange rates, recession</div>
-                    <div class="content-box"><strong>Social:</strong> Demographics, cultural values, education levels, lifestyle trends</div>
-                    <div class="content-box"><strong>Technological:</strong> Innovation, AI adoption, digital transformation, automation</div>
-                    <div class="content-box"><strong>Legal:</strong> Labor laws, compliance requirements, intellectual property, regulations</div>
-                    <div class="content-box"><strong>Ecological:</strong> ESG mandates, climate change, sustainability requirements, carbon footprint</div>
-
-                    <div class="section-title">Environmental Complexity Models</div>
-                    <div class="model-box">
-                        <div class="model-box-title">Emery & Trist: Turbulent Fields</div>
-                        Environment moves from placid-randomized → disturbed-reactive → turbulent. Organizations must become more adaptive.
-                    </div>
-                    <div class="model-box">
-                        <div class="model-box-title">Duncan: Simple vs Complex Matrix</div>
-                        4 quadrants: Simple-Stable, Simple-Dynamic, Complex-Stable, Complex-Dynamic. Each requires different structure.
-                    </div>
-                    <div class="model-box">
-                        <div class="model-box-title">VUCA: World Context</div>
-                        Volatility, Uncertainty, Complexity, Ambiguity. Modern organizations operate in turbulent VUCA environments.
-                    </div>
-                </div>
-            </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
-            </div>
-        </div>
-
-        <!-- PAGE 3: Organisational Goals -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 02 / Page 1</div>
-                    <div class="page-title">Organisational Goals</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">🎯 Goal Classifications</span>
-
-                    <div class="section-title">Goal Types</div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Primary vs Secondary</div>
-                            Primary: Core purpose (profit/service). Secondary: Support goals to achieve primary goals.
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Official vs Operative</div>
-                            Official: Stated in mission. Operative: Actually pursued. Often gap between two.
-                        </div>
-                    </div>
-
-                    <div class="section-title">Goal Pathologies</div>
-                    <div class="definition-box">
-                        <strong>Goal Displacement (Merton):</strong> Means become ends. Following procedures becomes goal instead of achieving purpose.
-                    </div>
-                    <div class="definition-box">
-                        <strong>Goal Succession (Selznick):</strong> Original goal achieved, organization pursues new goals to justify continued existence. Mission drift.
-                    </div>
-                    <div class="definition-box">
-                        <strong>Red Tapism & Ritualism:</strong> Rigid adherence to rules. Form over substance. "We follow the rules" becomes goal.
-                    </div>
-
-                    <div class="section-title">Stakeholder Capitalism</div>
-                    <div class="key-point">Shareholder Primacy Shift: From shareholder-only focus to stakeholder balance</div>
-                    <div class="key-point">Triple Bottom Line: Profit + People + Planet considered together</div>
-                </div>
-            </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
-            </div>
-        </div>
-
-        <!-- PAGE 4: MBO -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 02 / Page 2</div>
-                    <div class="page-title">MBO & Modern Variants</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">📊 Process & Critiques</span>
-
-                    <div class="section-title">MBO 5-Step Process (Drucker)</div>
-                    <div class="key-point">Step 1: Goal Setting at organizational level</div>
-                    <div class="key-point">Step 2: Cascading Objectives down hierarchy</div>
-                    <div class="key-point">Step 3: Joint Participation between manager and employee</div>
-                    <div class="key-point">Step 4: Periodic Review with feedback and adjustment</div>
-                    <div class="key-point">Step 5: Final Appraisal against agreed objectives</div>
-
-                    <div class="section-title">Critical Evaluation</div>
-                    <div class="definition-box">
-                        <strong>Goodhart's Law:</strong> "When a measure becomes a target, it ceases to be a good measure." People game metrics instead of pursuing real goals.
-                    </div>
-                    <div class="definition-box">
-                        <strong>Gaming & Short-termism:</strong> MBO focuses on quantifiable metrics, incentivizing short-term wins over long-term value.
-                    </div>
-
-                    <div class="section-title">Modern Variants</div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">OKRs</div>
-                            Objectives & Key Results. Qualitative + measurable. Quarterly, stretch goals, transparent, agile.
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Balanced Scorecard</div>
-                            Integrates 4 perspectives: Financial, Customer, Internal Process, Learning & Growth. Balanced view.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
-            </div>
-        </div>
-
-        <!-- PAGE 5: Evolution Classical -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 03 / Page 1</div>
-                    <div class="page-title">Evolution of Theory</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">📈 Classical School (1900-1930)</span>
-
-                    <div class="section-title">Key Contributors</div>
-                    <div class="definition-box">
-                        <strong>Taylor (Scientific Management):</strong> Standardize tasks, time-motion studies, differential piece-rate wages. Maximize efficiency through analysis.
-                    </div>
-                    <div class="definition-box">
-                        <strong>Fayol (Administrative Principles):</strong> 14 universal principles. Management functions: planning, organizing, commanding, coordinating, controlling.
-                    </div>
-                    <div class="definition-box">
-                        <strong>Weber (Ideal Bureaucracy):</strong> Hierarchical authority, written rules, role-based positions, merit-based promotion. Rational-legal legitimacy.
-                    </div>
-
-                    <div class="section-title">Classical Assumptions</div>
-                    <div class="key-point">One best way to organize work exists</div>
-                    <div class="key-point">People are rational economic actors motivated by money</div>
-                    <div class="key-point">Managers plan; workers execute mechanically</div>
-                    <div class="key-point">Formal structure = actual behavior patterns</div>
-                    <div class="key-point">Specialization and standardization maximize efficiency</div>
-                </div>
-            </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
-            </div>
-        </div>
-
-        <!-- PAGE 6: Evolution Neo-Classical & Systems -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 03 / Page 2</div>
-                    <div class="page-title">Neo-Classical & Systems</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">👥 Neo-Classical School (1930-1950)</span>
-
-                    <div class="section-title">Key Contributions</div>
-                    <div class="definition-box">
-                        <strong>Hawthorne Studies (Mayo):</strong> Discovered informal groups and social needs matter more than incentives. Productivity increased due to attention and group dynamics.
-                    </div>
-                    <div class="key-point">Social Man Concept: Humans motivated by social needs, not just money</div>
-                    <div class="key-point">Informal Organisation exists alongside formal structure</div>
-                    <div class="key-point">Group norms override individual incentives</div>
-
-                    <div class="definition-box">
-                        <strong>McGregor (Theory X & Y):</strong> Theory X assumes people dislike work, need control. Theory Y assumes people seek responsibility, self-motivated. Management style differs.
-                    </div>
-
-                    <div class="section-title">Systems Approach (1970+)</div>
-                    <div class="model-box">
-                        <div class="model-box-title">Open vs Closed Systems</div>
-                        Closed: Self-contained, minimal environment interaction. Open: Exchanges with environment, adapts, survives through adaptation.
-                    </div>
-
-                    <div class="section-title">Systems Concepts</div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Entropy & Negentropy</div>
-                            Entropy: System deteriorates without input. Negentropy: Input reverses deterioration.
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Equifinality & Homeostasis</div>
-                            Equifinality: Multiple paths to same goal. Homeostasis: System maintains stability.
-                        </div>
-                    </div>
-
-                    <div class="key-point">Cybernetics & Feedback: Information loops control and regulate system</div>
-                </div>
-            </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
-            </div>
-        </div>
-
+        <div class="page-number">Page 1 of 8</div>
     </div>
 
-    <script>
-        document.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrolled = (scrollTop / docHeight) * 100;
-            document.getElementById('scrollProgress').style.width = scrolled + '%';
-            if (scrollTop > 100) document.getElementById('scrollHint').style.opacity = '0.1';
-        });
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowDown') window.scrollBy(0, window.innerHeight * 0.8);
-            else if (e.key === 'ArrowUp') window.scrollBy(0, -window.innerHeight * 0.8);
-            else if (e.key === ' ') { e.preventDefault(); window.scrollBy(0, window.innerHeight * 0.8); }
-        });
-    </script>
+<!-- PAGE 2: EXTERNAL ENVIRONMENT -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🌍 EXTERNAL ENVIRONMENT OF ORGANISATION</div>
+        <div class="page-subtitle">Environmental Classification & Analysis</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">EXTERNAL ENV</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CLASSIFICATION FRAMEWORKS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Stable vs Turbulent</strong>
+                                <small>Stable: Predictable, routine, low change rate</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Turbulent</strong>
+                                <small>Dynamic, unpredictable, rapid change, high uncertainty</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Complexity</strong>
+                                <small>Simple vs Complex; Few vs Many environmental factors</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">PESTLE FRAMEWORK</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Political</strong>
+                                <small>Government policies, political stability, regulations, taxation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Economic</strong>
+                                <small>GDP growth, inflation, interest rates, forex, competition</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Social</strong>
+                                <small>Demographics, cultural values, social trends, labor availability</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Technological</strong>
+                                <small>Innovation rate, R&D spending, digital transformation, automation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Legal</strong>
+                                <small>Compliance, labor laws, environmental regulations, consumer protection</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Environmental</strong>
+                                <small>Climate, sustainability, natural resources, pollution norms</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">INDIA-SPECIFIC ANALYSIS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Political</strong>
+                                <small>Coalition govts, policy uncertainty, federalism, bureaucracy</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Economic</strong>
+                                <small>FDI policies, MSME growth, informal economy, inflation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Social</strong>
+                                <small>Demographic dividend, skill gaps, rural-urban divide, diversity</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Tech</strong>
+                                <small>IT sector growth, digital divide, cyber threats, innovation hubs</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">KEY PRINCIPLES</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Environment is major contingency:</strong> Organizations must plan for and adapt to environmental demands</div>
+                        <div class="explanation-item"><strong>Dual Role:</strong> Environment acts as promoting force (opportunities) and restraining force (constraints)</div>
+                        <div class="explanation-item"><strong>Dynamic Relationship:</strong> Organization-environment fit is critical for survival and success</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 2 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 3: ORGANIZATIONAL GOALS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🎯 ORGANISATIONAL GOALS - TYPES & PATHOLOGIES</div>
+        <div class="page-subtitle">Concepts & Critical Pathologies</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">ORG GOALS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">GOAL TYPOLOGY</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Primary Goals</strong>
+                                <small>Main purpose of organization (profit, service delivery)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Secondary Goals</strong>
+                                <small>Supporting objectives (employee welfare, social responsibility)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Official Goals</strong>
+                                <small>Formally stated, public objectives</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Operative Goals</strong>
+                                <small>Actual goals pursued in practice (may differ from official)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Single & Multiple</strong>
+                                <small>Single goal vs multiple goals pursued simultaneously</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">GOAL PATHOLOGIES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Goal Displacement</strong>
+                                <small>Means become ends; E.g., bank officers lending to unviable borrowers for targets (NPA crisis)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Goal Succession</strong>
+                                <small>New goal sought when original achieved/irrelevant; March of Dimes shifted from polio to birth defects</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Ritualism</strong>
+                                <small>Rule-following as end itself; endemic red-tapism in Indian public admin</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Sub-goal Fixation</strong>
+                                <small>Silo mentality; departmental goals primary at expense of overall goals</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Goal Conflict</strong>
+                                <small>Official vs operative (hospital: profit vs care); Stakeholder conflicts (shareholders vs employees)</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">IMPORTANCE STATEMENT</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>An org without goals</strong>
+                                <small>"Like a rudderless ship" - lost direction, no purpose</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Goal clarity</strong>
+                                <small>Essential for organizational success and member commitment</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">CRITICAL PATHOLOGIES EXPLAINED</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Goal Displacement (Merton):</strong> Process becomes more important than outcome; emphasis on achieving targets regardless of quality</strong></div>
+                        <div class="explanation-item"><strong>Ritualism vs Goal Succession:</strong> Ritualism is rule-obsession with no goal; Goal Succession is shift to new goal after old one achieved</strong></div>
+                        <div class="explanation-item"><strong>Coordination Failure:</strong> Sub-goal fixation prevents integration of departmental efforts towards unified organizational purpose</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 3 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 4: MANAGEMENT BY OBJECTIVES -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📊 MANAGEMENT BY OBJECTIVES (MBO) - DRUCKER 1954</div>
+        <div class="page-subtitle">5-Step Process & Comprehensive Analysis</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">MBO PROCESS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">STEP 1: GOAL SETTING</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Top Management</strong>
+                                <small>Sets overall SMART (Specific, Measurable, Achievable, Relevant, Time-bound) strategic objectives</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Scope</strong>
+                                <small>Defines organizational vision, mission, and strategic direction</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">STEP 2: CASCADE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Hierarchy</strong>
+                                <small>Org goals → Departmental → Section → Individual goals</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Participation</strong>
+                                <small>Each level participates in setting goals for level below</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">STEP 3: PARTICIPATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Critical Feature</strong>
+                                <small>Subordinates jointly agree on goals with managers (NOT top-down imposition)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Theory Y Link</strong>
+                                <small>Builds ownership, commitment, and intrinsic motivation (McGregor)</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">STEP 4: PERIODIC REVIEW</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Timing</strong>
+                                <small>Progress reviews at agreed intervals (monthly/quarterly)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Adjustment</strong>
+                                <small>Mid-course corrections possible; Emphasis on results, not activities</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">STEP 5: FINAL APPRAISAL</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Evaluation</strong>
+                                <small>Annual performance evaluation based on achieved goals</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Basis</strong>
+                                <small>Foundation for rewards, promotions, and development plans</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">MERITS OF MBO</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Clarity:</strong> Clear expectations, Focus on results</strong></div>
+                        <div class="explanation-item"><strong>Motivation:</strong> Participation builds ownership & commitment</strong></div>
+                        <div class="explanation-item"><strong>Alignment:</strong> Individual goals integrated with organizational objectives</strong></div>
+                        <div class="explanation-item"><strong>Accountability:</strong> Clear basis for performance evaluation</strong></div>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">LIMITATIONS & PROBLEMS</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Measurement Difficulty:</strong> Not all goals are easily measurable; Neglects qualitative aspects</strong></div>
+                        <div class="explanation-item"><strong>Rigidity:</strong> Can create inflexible structures; Reduces organizational adaptability</strong></div>
+                        <div class="explanation-item"><strong>Goal Displacement:</strong> Risk of means becoming ends; Overemphasis on quantifiable goals</strong></div>
+                        <div class="explanation-item"><strong>Coaching Role:</strong> Challenging for managers to coach and develop subordinates effectively</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 4 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 5: CLASSICAL SCHOOL THEORY -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📚 EVOLUTION OF ORG THEORY - CLASSICAL SCHOOL</div>
+        <div class="page-subtitle">Taylor, Fayol & Weber</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">CLASSICAL SCHOOL</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">TAYLOR (1911)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Scientific Management</strong>
+                                <small>Time-motion studies, standardization of work methods</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Focus</strong>
+                                <small>Shop-floor efficiency; Worker productivity through science</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Assumption</strong>
+                                <small>Economic Man - workers motivated solely by wages</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Methods</strong>
+                                <small>Scientific selection & training of workers</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">FAYOL (1916)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>14 Principles</strong>
+                                <small>Division of Labour, Authority-Responsibility, Discipline, Unity of Command, Unity of Direction, Subordination to General Interest, Scalar Chain, Esprit de Corps</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>5 Functions (POCCC)</strong>
+                                <small>Planning, Organizing, Commanding, Coordinating, Controlling</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Contribution</strong>
+                                <small>First to identify management as universal function (unlike Taylor's manufacturing focus)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Unity of Command</strong>
+                                <small>One superior for each subordinate - CONTRADICTS Taylor's functional foremanship</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">WEBER (1922)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Ideal Bureaucracy</strong>
+                                <small>Rational-legal authority system</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Characteristics</strong>
+                                <small>Hierarchical structure, Standardized rules, Task specialization, Meritocratic selection</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Benefits</strong>
+                                <small>Efficiency, fairness, predictability, impersonality</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">CLASSICAL SCHOOL DEBATE</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Unity of Command Issue:</strong> Fayol's one-superior principle (unity of command) directly contradicts Taylor's functional foremanship (8 specialists reporting to worker)</strong></div>
+                        <div class="explanation-item"><strong>Fundamental Difference:</strong> Fayol advocates unified authority; Taylor advocates specialized expertise - major classical school debate</strong></div>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">CLASSICAL SCHOOL LIMITATIONS</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item">• Ignores informal organization</div>
+                        <div class="explanation-item">• Neglects human needs and social dimensions</div>
+                        <div class="explanation-item">• Assumes economic motivation only</div>
+                        <div class="explanation-item">• Does not account for environmental contingencies</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 5 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 6: NEO-CLASSICAL THEORY -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">👥 NEO-CLASSICAL / HUMAN RELATIONS THEORY</div>
+        <div class="page-subtitle">Hawthorne Studies & Core Propositions</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">NEO-CLASSICAL</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">HAWTHORNE STUDIES (1924-1932)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Researchers</strong>
+                                <small>Elton Mayo & Roethlisberger</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Discovery</strong>
+                                <small>Informal groups set norms that OVERRIDE formal rules</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Finding</strong>
+                                <small>Productivity increased due to attention paid, not work conditions</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Insight</strong>
+                                <small>Non-economic factors powerful in motivation</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CORE PROPOSITIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Social Man</strong>
+                                <small>Workers motivated by belonging, recognition, peer relationships (NOT just wages)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Informal Org</strong>
+                                <small>Exists alongside formal structure; sets own norms that OVERRIDE formal rules</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Participation</strong>
+                                <small>In decisions satisfies social needs, builds commitment, improves outcomes (counters classical top-down)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Non-Economic Rewards</strong>
+                                <small>Recognition, status, belonging, group acceptance powerful motivators without pay increases</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Small Groups</strong>
+                                <small>Primary unit of social organization; managers must understand & work with informal groups</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CRITICISMS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Cynical Puppeteering (UPSC 2016)</strong>
+                                <small>Management manipulation - making workers feel good to maximize productivity</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Trifling Empirics</strong>
+                                <small>Hawthorne findings methodologically flawed (small samples, observer effects, researcher bias)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Ignores Formal</strong>
+                                <small>Swings to extreme opposite of classical - ignores formal structure entirely</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Pro-Management Bias</strong>
+                                <small>Assumes management & worker interests reconcilable - ignores structural power asymmetry (Marxist critique)</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">CRITICISMS EXPLAINED</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>"Cynical Puppeteering":</strong> Critics argue Mayo's model = management tool for control, not genuine empowerment</strong></div>
+                        <div class="explanation-item"><strong>"Trifling Body of Empirical Info":</strong> Cannot generalize from small Hawthorne sample; methodologically unsound</strong></div>
+                        <div class="explanation-item"><strong>Theoretical Balance:</strong> Neither classical (ignores informal) nor neo-classical (ignores formal) alone is complete</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 6 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 7: SYSTEMS APPROACH -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🔄 SYSTEMS APPROACH & CONTINGENCY THEORY</div>
+        <div class="page-subtitle">Katz & Kahn (1966) & Contingency Core Principle</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">SYSTEMS & CONTINGENCY</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">SYSTEMS APPROACH</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Katz & Kahn (1966)</strong>
+                                <small>Organization as OPEN SYSTEM interacting with environment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Model</strong>
+                                <small>Input → Process → Output → Feedback</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Features</strong>
+                                <small>Interdependence of organizational parts; Maintains equilibrium; Adapts to environment</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CONTINGENCY CORE PRINCIPLE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Central Tenet</strong>
+                                <small>"Optimal structure, process & management style is CONTINGENT on situational variables"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>No Universal Best Way</strong>
+                                <small>No single approach works for all organizations in all situations</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Variables</strong>
+                                <small>Environment (stable vs turbulent), Technology, Size, Strategy</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">KEY CONTINGENCY RESEARCHERS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Burns & Stalker (1961)</strong>
+                                <small>Stable → Mechanistic (formal, hierarchical, centralized)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Organic Structures</strong>
+                                <small>Turbulent → Organic (flexible, decentralized, lateral communication)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Lawrence & Lorsch (1967)</strong>
+                                <small>Differentiation & integration must match environmental demands</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Woodward (1965)</strong>
+                                <small>Technology determines structure: Unit → flat; Mass prod → hierarchical; Process → flat</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">BURNS & STALKER FRAMEWORK</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Mechanistic Structures:</strong> Formal rules, hierarchical authority, centralized decision-making, narrow specialization - suit STABLE environments</strong></div>
+                        <div class="explanation-item"><strong>Organic Structures:</strong> Flexible roles, decentralized decisions, lateral communication, broad skills - suit TURBULENT environments</strong></div>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">WOODWARD'S TECHNOLOGY-STRUCTURE LINK</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Unit Production:</strong> Small batches, custom design → Flat, organic structure, high worker discretion</strong></div>
+                        <div class="explanation-item"><strong>Mass Production:</strong> High volume, standardized → Hierarchical, mechanistic, rigid procedures</strong></div>
+                        <div class="explanation-item"><strong>Process Production:</strong> Continuous flow → Flat structure, focus on maintenance, automated systems</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 7 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 8: COMPARISON & SUMMARY -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🎓 ORGANIZATION THEORY EVOLUTION - SUMMARY</div>
+        <div class="page-subtitle">Comparative Analysis & Key Takeaways</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">THEORY EVOLUTION</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CLASSICAL SCHOOL</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Pioneers</strong>
+                                <small>Taylor, Fayol, Weber</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Focus</strong>
+                                <small>Structure, efficiency, formal authority, rules</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Assumption</strong>
+                                <small>Economic man; Rational decision-making</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Major Gap</strong>
+                                <small>Ignores informal organization and human needs</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">NEO-CLASSICAL</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Pioneer</strong>
+                                <small>Elton Mayo & Hawthorne Studies</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Focus</strong>
+                                <small>Informal org, human relations, social needs</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Assumption</strong>
+                                <small>Social man; Non-economic motivators matter</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Major Gap</strong>
+                                <small>Swings too far opposite - ignores formal structure & power asymmetry</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">SYSTEMS & CONTINGENCY</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Pioneers</strong>
+                                <small>Katz & Kahn, Burns & Stalker, Woodward, Lawrence & Lorsch</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Focus</strong>
+                                <strong><small>Organization as open system; Contingent design approach</small></strong>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Core Principle</strong>
+                                <small>No "one best way" - structure contingent on environment & technology</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Contribution</strong>
+                                <small>Integrates both formal & informal; Accounts for environmental dynamics</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">EVOLUTION LOGIC</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Classical:</strong> Focuses on structure & efficiency; Assumes rationality</strong></div>
+                        <div class="explanation-item"><strong>Neo-Classical:</strong> Corrects classical neglect of human side; BUT overcorrects by ignoring formal structure</strong></div>
+                        <div class="explanation-item"><strong>Systems/Contingency:</strong> Integrates both perspectives; Adds environmental dimension for realistic organizational understanding</strong></div>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">KEY EXAM POINTERS</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Compare perspectives:</strong> Always highlight differences in assumptions, focus areas, and contributions</strong></div>
+                        <div class="explanation-item"><strong>Unity of Command debate:</strong> Fayol vs Taylor - key classical school controversy</strong></div>
+                        <div class="explanation-item"><strong>Hawthorne criticisms:</strong> Know both "cynical puppeteering" & "trifling empirics" criticisms</strong></div>
+                        <div class="explanation-item"><strong>Contingency principle:</strong> No "one best way" - master this concept for exam success</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 8 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
