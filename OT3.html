@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organisational Design & Contingency</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-coral: #FF6B6B;
+            --primary-coral-light: #FFE5E5;
+            --secondary-teal: #14B8A6;
+            --secondary-teal-light: #CCEFF5;
+            --accent-lavender: #C49ECE;
+            --accent-sage: #A8C090;
+            --accent-mint: #8BD3C4;
+            --text-dark: #2D2D2D;
+            --bg-cream: #FFF8F0;
+            --border-color: #FFD9D9;
+        }
+
+        @page { size: A4 landscape; margin: 0; }
+        html { scroll-behavior: smooth; }
+        body { background: linear-gradient(135deg, var(--bg-cream) 0%, #FFF0E6 100%); font-family: 'Poppins', sans-serif; color: var(--text-dark); overflow-x: hidden; }
+        .pages-container { display: flex; flex-direction: column; }
+        .page-spread { display: flex; width: 100%; min-height: 100vh; page-break-after: always; }
+        .content-column { flex: 2; padding: 45px 40px 45px 45px; background: white; overflow-y: auto; border-right: 3px dashed var(--border-color); display: flex; flex-direction: column; }
+        .notes-column { flex: 1; padding: 45px 40px; background: linear-gradient(135deg, rgba(255,107,107,0.03) 0%, rgba(255,155,133,0.03) 100%); border: 3px dashed var(--primary-coral); display: flex; flex-direction: column; }
+        .page-header { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 3px solid var(--primary-coral); }
+        .topic-number { font-size: 11px; font-weight: 700; color: var(--primary-coral); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+        .page-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: var(--text-dark); line-height: 1.2; }
+        .content-body { flex: 1; margin-bottom: 15px; overflow-y: auto; padding-right: 10px; }
+        .notes-label { font-size: 11px; font-weight: 700; color: var(--primary-coral); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid var(--primary-coral); }
+        .notes-space { flex: 1; background: white; border: 2px dashed var(--primary-coral); border-radius: 8px; padding: 15px; opacity: 0.6; }
+        .topic-tag { display: inline-block; background: var(--primary-coral); color: white; padding: 5px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-bottom: 15px; }
+        .section-title { font-size: 14px; font-weight: 700; color: var(--primary-coral); margin-top: 18px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .content-box { background: linear-gradient(135deg, rgba(255,107,107,0.07) 0%, rgba(255,155,133,0.07) 100%); border-left: 4px solid var(--primary-coral); padding: 12px 14px; margin-bottom: 11px; border-radius: 6px; font-size: 12px; line-height: 1.5; }
+        .content-box strong { color: var(--primary-coral); }
+        .key-point { display: flex; gap: 10px; margin-bottom: 10px; font-size: 12px; line-height: 1.4; }
+        .key-point::before { content: "→"; color: var(--primary-coral); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-bottom: 11px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 11px; margin-bottom: 11px; }
+        .grid-card { background: white; border: 2px solid var(--border-color); border-radius: 7px; padding: 11px; font-size: 11px; line-height: 1.4; }
+        .grid-card-title { font-weight: 700; color: var(--primary-coral); margin-bottom: 6px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .model-box { background: linear-gradient(135deg, var(--secondary-teal-light) 0%, rgba(20,184,166,0.05) 100%); border: 2px solid var(--secondary-teal); border-radius: 7px; padding: 12px; margin-bottom: 11px; font-size: 12px; line-height: 1.5; }
+        .model-box-title { font-weight: 700; color: var(--secondary-teal); margin-bottom: 8px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .definition-box { background: linear-gradient(135deg, var(--accent-lavender), rgba(196,158,206,0.1)); border: 2px solid var(--accent-lavender); border-radius: 7px; padding: 12px; margin-bottom: 11px; font-size: 12px; line-height: 1.5; }
+        .definition-box strong { color: var(--accent-lavender); }
+        .scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--primary-coral); z-index: 1000; transition: width 0.1s ease; }
+        .scroll-hint { position: fixed; bottom: 20px; right: 20px; font-size: 12px; color: var(--primary-coral); opacity: 0.4; font-weight: 600; }
+        @media print { .scroll-progress, .scroll-hint { display: none; } }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-cream); }
+        ::-webkit-scrollbar-thumb { background: var(--primary-coral); border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="scroll-hint">↓ SCROLL DOWN ↓</div>
+
+    <div class="pages-container">
+
+        <!-- PAGE 1: Design Challenges -->
+        <div class="page-spread">
+            <div class="content-column">
+                <div class="page-header">
+                    <div class="topic-number">Topic 01 / Page 1</div>
+                    <div class="page-title">Design Challenges</div>
+                </div>
+                <div class="content-body">
+                    <span class="topic-tag">⚙️ Core Tensions</span>
+                    
+                    <div class="section-title">Differentiation Dimensions</div>
+                    <div class="grid-2">
+                        <div class="grid-card">
+                            <div class="grid-card-title">Horizontal</div>
+                            Specialization by function or product. HR, Finance, Ops, Marketing.
+                        </div>
+                        <div class="grid-card">
+                            <div class="grid-card-title">Vertical</div>
+                            Hierarchy levels. CEO → Managers → Supervisors → Workers.
+                        </div>
+                    </div>
+                    <div class="grid-2">
+                        <div class="grid-card">
+                            <div class="grid-card-title">Spatial</div>
+                            Geographic distribution. Head office, regional, plant, field locations.
+                        </div>
+                    </div>
+
+                    <div class="section-title">Integration Mechanisms</div>
+                    <div class="key-point">Hierarchy of Authority: Escalate decisions upward</div>
+                    <div class="key-point">Liaison Roles: People connecting different functions</div>
+                    <div class="key-point">Task Forces: Temporary cross-functional teams</div>
+                    <div class="key-point">Integrating Departments: Staff units coordinating silos</div>
+
+                    <div class="section-title">Centralisation vs Decentralisation</div>
+                    <div class="content-box">
+                        <strong>Core Issue:</strong> Location of decision-making authority. Centralized = top controls; Decentralized = distributed authority. Trade-offs between consistency and responsiveness.
+                    </div>
+                    <div class="key-point">Delegation Principles guide authority distribution</div>
+                    <div class="key-point">Digital Paradox: IT enables real-time control even with decentralization</div>
+
+                    <div class="section-title">Standardisation vs Mutual Adjustment</div>
+                    <div class="key-point">Formal Rules vs Informal Norms: Procedures vs flexibility</div>
+                    <div class="key-point">Standardisation of Outputs/Skills: Consistency vs specialization</div>
+                    <div class="key-point">Direct Communication: Person-to-person coordination without hierarchy</div>
+                </div>
+            </div>
+            <div class="notes-column">
+                <span class="notes-label">📝 Notes & Reflections</span>
+                <div class="notes-space"></div>
+            </div>
+        </div>
+
+        <!-- PAGE 2: Structural Typologies -->
+        <div class="page-spread">
+            <div class="content-column">
+                <div class="page-header">
+                    <div class="topic-number">Topic 01 / Page 2</div>
+                    <div class="page-title">Structural Typologies</div>
+                </div>
+                <div class="content-body">
+                    <span class="topic-tag">🏗️ Mechanistic vs Organic</span>
+
+                    <div class="section-title">Mechanistic Structure</div>
+                    <div class="model-box">
+                        <div class="model-box-title">Stable Environment Fit</div>
+                        Tall hierarchy, rigid rules, narrow span, centralized authority. Efficient for standardized work. Slow to adapt.
+                    </div>
+
+                    <div class="section-title">Organic Structure</div>
+                    <div class="model-box">
+                        <div class="model-box-title">Dynamic Environment Fit</div>
+                        Flat hierarchy, flexible roles, wide span, decentralized authority. Adaptive, innovative. Coordination challenges.
+                    </div>
+
+                    <div class="section-title">Mintzberg's 5 Configurations</div>
+                    <div class="grid-2">
+                        <div class="grid-card">
+                            <div class="grid-card-title">Simple Structure</div>
+                            Centralized, minimal staff. Small companies, startups. Owner-run.
+                        </div>
+                        <div class="grid-card">
+                            <div class="grid-card-title">Machine Bureaucracy</div>
+                            Standardized processes, many rules. Manufacturing, PSUs. Efficient but inflexible.
+                        </div>
+                    </div>
+                    <div class="grid-2">
+                        <div class="grid-card">
+                            <div class="grid-card-title">Professional Bureaucracy</div>
+                            Expertise-driven, professional standards. Hospitals, universities, law firms.
+                        </div>
+                        <div class="grid-card">
+                            <div class="grid-card-title">Divisionalised Form</div>
+                            Multiple divisions, profit centers. Large corporations, conglomerates. M-form.
+                        </div>
+                    </div>
+                    <div class="grid-2">
+                        <div class="grid-card">
+                            <div class="grid-card-title">Adhocracy</div>
+                            Project-based, flexible. Consultancies, tech startups, R&D units. Innovative.
+                        </div>
+                    </div>
+
+                    <div class="section-title">Formal vs Informal Organisation</div>
+                    <div class="grid-2">
+                        <div class="grid-card">
+                            <div class="grid-card-title">Formal System</div>
+                            Positional authority, official channels, planned structure, documented rules
+                        </div>
+                        <div class="grid-card">
+                            <div class="grid-card-title">Informal System</div>
+                            Spontaneous emergence, grapevine communication, social cohesion, unwritten norms
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="notes-column">
+                <span class="notes-label">📝 Notes & Reflections</span>
+                <div class="notes-space"></div>
+            </div>
+        </div>
+
+        <!-- PAGE 3: Contingency Factors -->
+        <div class="page-spread">
+            <div class="content-column">
+                <div class="page-header">
+                    <div class="topic-number">Topic 02 / Page 1</div>
+                    <div class="page-title">Contingency Factors</div>
+                </div>
+                <div class="content-body">
+                    <span class="topic-tag">📊 Situational Variables</span>
+
+                    <div class="section-title">Environmental Uncertainty</div>
+                    <div class="content-box">
+                        <strong>Core Principle:</strong> Stable environments suit mechanistic structures. Dynamic environments need organic structures. Uncertainty requires flexibility.
+                    </div>
+
+                    <div class="section-title">Technology Factor</div>
+                    <div class="model-box">
+                        <div class="model-box-title">Routine vs Non-Routine</div>
+                        Routine technology (assembly lines) → mechanistic. Non-routine (R&D, creative) → organic. Technology determines coordination needs.
+                    </div>
+
+                    <div class="section-title">Organisational Size</div>
+                    <div class="key-point">Small orgs: Simple structure, direct coordination</div>
+                    <div class="key-point">Medium orgs: Functional or matrix structures</div>
+                    <div class="key-point">Large orgs: Divisional or complex matrix</div>
+                    <div class="key-point">Size affects specialization, standardization, hierarchy levels</div>
+
+                    <div class="section-title">Strategy Factor</div>
+                    <div class="definition-box">
+                        <strong>Structure Follows Strategy:</strong> Chandler's insight. Organization design should align with competitive strategy. Cost-leadership → functional. Diversification → divisional.
+                    </div>
+
+                    <div class="key-point">Differentiation strategy → organic, flexible structure</div>
+                    <div class="key-point">Cost-leadership strategy → mechanistic, standardized structure</div>
+                    <div class="key-point">Focus strategy → specialized, mission-driven structure</div>
+                </div>
+            </div>
+            <div class="notes-column">
+                <span class="notes-label">📝 Notes & Reflections</span>
+                <div class="notes-space"></div>
+            </div>
+        </div>
+
+        <!-- PAGE 4: Modern Perspectives -->
+        <div class="page-spread">
+            <div class="content-column">
+                <div class="page-header">
+                    <div class="topic-number">Topic 02 / Page 2</div>
+                    <div class="page-title">Modern Perspectives</div>
+                </div>
+                <div class="content-body">
+                    <span class="topic-tag">🌐 Contemporary Design</span>
+
+                    <div class="section-title">Ambidextrous Organisations</div>
+                    <div class="content-box">
+                        <strong>Concept:</strong> Balance exploration (innovation, new products) and exploitation (efficiency, current products). Separate units with different structures, coordinated at top.
+                    </div>
+                    <div class="key-point">Example: 3M has 70% efficiency teams and 30% innovation labs</div>
+
+                    <div class="section-title">IT-Enabled Design</div>
+                    <div class="model-box">
+                        <div class="model-box-title">Digital Command & Control</div>
+                        Real-time data dashboards enable managers to monitor and control operations from distance. Flatter structures possible with IT support.
+                    </div>
+
+                    <div class="section-title">Network & Platform Models</div>
+                    <div class="definition-box">
+                        <strong>Network Organisations:</strong> Decentralized, connected through IT and relationships. Minimal hierarchy. Examples: Uber, Airbnb, Upwork.
+                    </div>
+                    <div class="definition-box">
+                        <strong>Platform Organisations:</strong> Core platform with ecosystem of partners. Algorithmic coordination replaces management. Scalable, low cost.
+                    </div>
+
+                    <div class="section-title">Key Insight</div>
+                    <div class="content-box">
+                        <strong>Modern Paradox:</strong> Technology allows both more control (surveillance) and more autonomy (remote work). Organizations must choose design carefully based on strategy and culture.
+                    </div>
+                </div>
+            </div>
+            <div class="notes-column">
+                <span class="notes-label">📝 Notes & Reflections</span>
+                <div class="notes-space"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (scrollTop / docHeight) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown') window.scrollBy(0, window.innerHeight * 0.8);
+            else if (e.key === 'ArrowUp') window.scrollBy(0, -window.innerHeight * 0.8);
+            else if (e.key === ' ') { e.preventDefault(); window.scrollBy(0, window.innerHeight * 0.8); }
+        });
+    </script>
+
+</body>
+</html>
