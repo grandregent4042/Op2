@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perception in Organisational Behaviour - Mindmap</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --warm-cream: #FFF8F0;
+            --peach-light: #FFE5D9;
+            --coral: #FF9B85;
+            --coral-deep: #FF6B6B;
+            --terracotta: #D68C6E;
+            --sand: #F4E4C1;
+            --sage: #A8C090;
+            --mint: #8BD3C4;
+            --lavender: #C49ECE;
+            --warm-yellow: #FFD166;
+            --text-dark: #3D3D3D;
+            --text-muted: #6B6B6B;
+        }
+
+        @media print {
+            body {
+                size: landscape;
+            }
+            .page {
+                page-break-after: always;
+                width: 297mm;
+                height: 210mm;
+            }
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--warm-cream) 0%, var(--peach-light) 100%);
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 0;
+            min-width: 1200px;
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 40px 30px 40px 30px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border-bottom: 3px dashed var(--coral);
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--coral) 0%, transparent 70%);
+            opacity: 0.15;
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.1); opacity: 0.25; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--coral-deep);
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(255, 107, 107, 0.1);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .page-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 30px;
+            font-style: italic;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .mindmap-container {
+            flex: 1;
+            display: flex;
+            gap: 25px;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .content-area {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .notes-area {
+            flex: 1;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(255, 107, 107, 0.1);
+            border: 3px dashed var(--coral);
+            position: relative;
+            min-height: 400px;
+        }
+
+        .notes-area::before {
+            content: '📝 NOTES';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: var(--coral-deep);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .notes-area::after {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23FFE5D9" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>') center/contain no-repeat;
+            opacity: 0.3;
+        }
+
+        .central-node {
+            background: linear-gradient(135deg, var(--coral-deep), var(--coral));
+            color: white;
+            padding: 20px 35px;
+            border-radius: 30px;
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            margin: 20px auto;
+            max-width: fit-content;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .central-node::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .central-node:hover {
+            transform: scale(1.05);
+        }
+
+        .branch-container {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .branch {
+            position: relative;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .branch:nth-child(1) { animation-delay: 0.1s; }
+        .branch:nth-child(2) { animation-delay: 0.2s; }
+        .branch:nth-child(3) { animation-delay: 0.3s; }
+        .branch:nth-child(4) { animation-delay: 0.4s; }
+
+        .branch-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--coral-deep);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .node {
+            background: white;
+            padding: 12px 18px;
+            border-radius: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--coral);
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .node:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.2);
+        }
+
+        .node.color-sage { border-left-color: var(--sage); }
+        .node.color-mint { border-left-color: var(--mint); }
+        .node.color-lavender { border-left-color: var(--lavender); }
+        .node.color-terracotta { border-left-color: var(--terracotta); }
+        .node.color-yellow { border-left-color: var(--warm-yellow); }
+
+        .node strong {
+            color: var(--coral-deep);
+            font-weight: 700;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-top: 6px solid var(--coral);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.15);
+        }
+
+        .card.sage { border-top-color: var(--sage); }
+        .card.mint { border-top-color: var(--mint); }
+        .card.lavender { border-top-color: var(--lavender); }
+        .card.terracotta { border-top-color: var(--terracotta); }
+        .card.yellow { border-top-color: var(--warm-yellow); }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--coral-deep);
+            margin-bottom: 15px;
+        }
+
+        .card-content {
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .section-header {
+            background: linear-gradient(90deg, var(--coral-deep), transparent);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 30px 0 20px 0;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+        }
+
+        .cluster {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 25px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            border: 2px solid var(--peach-light);
+        }
+
+        .cluster-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--coral-deep);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--coral);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 5px;
+            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.2);
+        }
+
+        .tag.sage { background: var(--sage); }
+        .tag.mint { background: var(--mint); }
+        .tag.lavender { background: var(--lavender); }
+        .tag.terracotta { background: var(--terracotta); }
+
+        .title-page {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--peach-light) 0%, var(--sand) 50%, var(--warm-cream) 100%);
+        }
+
+        .title-page .page-title {
+            font-size: 72px;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, var(--coral-deep), var(--coral), var(--terracotta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .decorative-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--coral);
+            top: 10%;
+            left: 5%;
+        }
+
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--sage);
+            bottom: 15%;
+            right: 8%;
+        }
+
+        .circle-3 {
+            width: 150px;
+            height: 150px;
+            background: var(--lavender);
+            top: 50%;
+            right: 20%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TITLE PAGE -->
+    <div class="page title-page">
+        <div class="decorative-circle circle-1"></div>
+        <div class="decorative-circle circle-2"></div>
+        <div class="decorative-circle circle-3"></div>
+        <h1 class="page-title">PERCEPTION IN ORGANISATIONAL BEHAVIOUR</h1>
+        <p class="page-subtitle">Understanding How People Interpret Reality & Its Organisational Impact</p>
+    </div>
+
+    <!-- PAGE 1: Core Concepts -->
+    <div class="page">
+        <h2 class="page-title">Core Concepts</h2>
+        <div class="mindmap-container">
+            <div class="content-area">
+                <div class="cluster">
+                    <div class="cluster-title">👁️ DEFINITION & NATURE</div>
+                    
+                    <div class="central-node">PERCEPTION</div>
+
+                    <div class="section-header">What is Perception?</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Organising Sensory Impressions</div>
+                            <div class="card-content">The process of selecting, organizing, and interpreting sensory data from the environment into meaningful patterns</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Interpreting Environment</div>
+                            <div class="card-content">Active process of making sense of surroundings through cognitive frameworks, experiences, and expectations</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Perception vs Reality</div>
+                            <div class="card-content">Perceived reality may differ significantly from objective reality. Our interpretation becomes our "truth" in organizational contexts</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sensation vs Perception -->
+                <div class="cluster">
+                    <div class="cluster-title">🔍 SENSATION VS PERCEPTION</div>
+                    
+                    <div class="section-header">Key Distinction</div>
+                    <div class="grid-layout">
+                        <div class="card lavender">
+                            <div class="card-title">Sensation</div>
+                            <div class="card-content">
+                                <strong>Raw physiological data</strong><br>
+                                Direct stimulation of sensory receptors (eyes, ears, touch, taste, smell). Passive reception of environmental stimuli
+                            </div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Perception</div>
+                            <div class="card-content">
+                                <strong>Cognitive meaning-making</strong><br>
+                                Active psychological process of interpreting and organizing sensory information into meaningful patterns and experiences
+                            </div>
+                        </div>
+
+                        <div class="card yellow">
+                            <div class="card-title">Objective vs Subjective</div>
+                            <div class="card-content">
+                                <strong>Sensation:</strong> Objective, same for all<br>
+                                <strong>Perception:</strong> Subjective, varies by individual based on background, needs, values, and experiences
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">Organisational Implication</div>
+                    <div class="node color-coral" style="font-size: 16px; padding: 25px;">
+                        <strong>Same event can be perceived differently by different people:</strong> A manager's decision, feedback, or policy may be perceived as supportive by one employee and oppressive by another based on their subjective interpretation frameworks
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: The Perceptual Process -->
+    <div class="page">
+        <h2 class="page-title">The Perceptual Process</h2>
+        <div class="mindmap-container">
+            <div class="content-area">
+                <!-- Selection & Attention -->
+                <div class="cluster">
+                    <div class="cluster-title">🎯 SELECTION & ATTENTION</div>
+                    
+                    <div class="central-node">SELECTIVE ATTENTION</div>
+
+                    <div class="section-header">External Factors (Environmental)</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Intensity</div>
+                            <div class="card-content">Bright colors, loud noises, strong smells capture attention more than subtle stimuli. High-intensity stimuli stand out</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Contrast</div>
+                            <div class="card-content">Differences from surroundings draw attention. A single woman in a room of men, red object among blues, becomes focal</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Novelty</div>
+                            <div class="card-content">New, unexpected, unfamiliar stimuli capture attention. Changes in routine immediately noticed</div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">Internal Factors (Personal)</div>
+                    <div class="grid-layout">
+                        <div class="card lavender">
+                            <div class="card-title">Needs & Motives</div>
+                            <div class="card-content">Hungry person notices food advertisements more. Job-seeking person notices career opportunities in conversations</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Experience</div>
+                            <div class="card-content">Prior exposure creates mental readiness. Expert vs novice see different things in same situation</div>
+                        </div>
+
+                        <div class="card yellow">
+                            <div class="card-title">Values & Interests</div>
+                            <div class="card-content">What matters to us influences what we attend to. Values shape selective perception in organizations</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Organisation & Gestalt -->
+                <div class="cluster">
+                    <div class="cluster-title">🧩 ORGANISATION: GESTALT LAWS</div>
+                    
+                    <div class="section-header">How We Organize Perceptual Data</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Figure-Ground Principle</div>
+                            <div class="card-content">We perceive stimuli as either figure (focus) or ground (background). Important elements become figures; less important fade to ground</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Proximity & Similarity</div>
+                            <div class="card-content">Objects close together or similar in appearance grouped together. Creates meaningful clusters from individual elements</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Closure & Continuity</div>
+                            <div class="card-content">We complete incomplete patterns and follow smooth, continuous patterns. Brain fills gaps to create coherent wholes</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interpretation -->
+                <div class="cluster">
+                    <div class="cluster-title">💭 INTERPRETATION</div>
+                    
+                    <div class="section-header">Assigning Meaning</div>
+                    <div class="branch-container">
+                        <div class="node color-lavender">
+                            <strong>Attribution Theory:</strong> We explain behavior by attributing causes (internal dispositions or external circumstances)
+                        </div>
+                        <div class="node color-terracotta">
+                            <strong>Kelley's Covariation Model:</strong> We consider consensus, distinctiveness, consistency to determine causality
+                        </div>
+                        <div class="node color-yellow">
+                            <strong>Meaning Assignment:</strong> Interpretation depends on schemas, stereotypes, and past experiences in similar situations
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: Perceptual Distortions -->
+    <div class="page">
+        <h2 class="page-title">Perceptual Distortions & Errors</h2>
+        <div class="mindmap-container">
+            <div class="content-area">
+                <div class="cluster">
+                    <div class="cluster-title">⚠️ COMMON PERCEPTUAL BIASES</div>
+                    
+                    <div class="central-node">PERCEPTUAL ERRORS</div>
+
+                    <div class="section-header">Systematic Distortions</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Halo & Horn Effect</div>
+                            <div class="card-content"><strong>Halo:</strong> One positive trait leads to overall positive perception<br><strong>Horn:</strong> One negative trait leads to overall negative perception</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Stereotyping</div>
+                            <div class="card-content">Assigning characteristics to individuals based on group membership. "All marketing people are creative," "Engineers are logical" ignoring individual variations</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Fundamental Attribution Error</div>
+                            <div class="card-content">Overestimating dispositional (internal) causes of others' behavior while ignoring situational (external) factors. "She's lazy" vs "She's dealing with personal crisis"</div>
+                        </div>
+
+                        <div class="card lavender">
+                            <div class="card-title">Self-Serving Bias</div>
+                            <div class="card-content">Taking credit for successes (internal cause) while blaming external factors for failures. Reverse for others' failures</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Selective Perception</div>
+                            <div class="card-content">Perceiving only information that confirms pre-existing beliefs while ignoring contradictory evidence</div>
+                        </div>
+
+                        <div class="card yellow">
+                            <div class="card-title">Contrast & Recency Effects</div>
+                            <div class="card-content"><strong>Contrast:</strong> Judgment affected by recent observations<br><strong>Recency:</strong> Recent events given more weight than earlier ones in appraisals</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: Influencing Elements -->
+    <div class="page">
+        <h2 class="page-title">Elements Influencing Perception</h2>
+        <div class="mindmap-container">
+            <div class="content-area">
+                <!-- The Perceiver -->
+                <div class="cluster">
+                    <div class="cluster-title">👤 THE PERCEIVER</div>
+                    
+                    <div class="section-header">Personal Factors</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Attitudes</div>
+                            <div class="card-content">Pre-existing evaluations and beliefs about targets influence how they're perceived. Positive attitudes = favorable perception</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Motives & Needs</div>
+                            <div class="card-content">Current goals and unmet needs shape perception. Job seeker sees opportunities; satisfied employee sees stability</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Mood & Emotional State</div>
+                            <div class="card-content">Emotional condition colors perception. Happy person sees situations optimistically; depressed person sees negatively</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Target -->
+                <div class="cluster">
+                    <div class="cluster-title">🎯 THE TARGET (WHAT IS PERCEIVED)</div>
+                    
+                    <div class="section-header">Characteristics of the Target</div>
+                    <div class="grid-layout">
+                        <div class="card lavender">
+                            <div class="card-title">Size & Physical Appearance</div>
+                            <div class="card-content">Large objects perceived as more important. Attractive people judged more favorably (what-is-beautiful-is-good bias)</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Motion & Dynamism</div>
+                            <div class="card-content">Moving objects attract attention more than static ones. Dynamic people perceived differently than passive ones</div>
+                        </div>
+
+                        <div class="card yellow">
+                            <div class="card-title">Background & Context</div>
+                            <div class="card-content">Environment affects how target is perceived. Same person seen differently in casual vs formal setting</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Situation -->
+                <div class="cluster">
+                    <div class="cluster-title">🌍 THE SITUATION (CONTEXT)</div>
+                    
+                    <div class="section-header">Environmental & Contextual Factors</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Social Context</div>
+                            <div class="card-content">Perception influenced by social setting. Same behavior interpreted differently in team meeting vs casual chat</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Cultural Context</div>
+                            <div class="card-content">Cultural norms and values shape perception. Eye contact means respect in one culture, disrespect in another</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Physical Environment</div>
+                            <div class="card-content">Lighting, noise, temperature, space affect perception. Comfortable environment = more positive perception</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 5: Managerial Applications -->
+    <div class="page">
+        <h2 class="page-title">Managerial Applications & Awareness</h2>
+        <div class="mindmap-container">
+            <div class="content-area">
+                <!-- Managerial Applications -->
+                <div class="cluster">
+                    <div class="cluster-title">💼 ORGANISATIONAL APPLICATIONS</div>
+                    
+                    <div class="central-node">PERCEPTION IN PRACTICE</div>
+
+                    <div class="section-header">Key Application Areas</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Performance Appraisal</div>
+                            <div class="card-content">Managers' perceptions of employee performance influenced by halo effects, recency bias, and stereotypes. Objective criteria essential</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Conflict Management</div>
+                            <div class="card-content">Conflicts often stem from different perceptions of same situation. Understanding diverse perspectives crucial for resolution</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Impression Management</div>
+                            <div class="card-content">People manage impressions by controlling appearance, behavior, settings to influence how others perceive them</div>
+                        </div>
+
+                        <div class="card lavender">
+                            <div class="card-title">Johari Window</div>
+                            <div class="card-content">Self-awareness tool showing open area (known to self and others), blind spots (unknown to self), hidden area, unknown potential</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Glass Ceiling Analysis</div>
+                            <div class="card-content">Perceptual biases and stereotypes about women and minorities limit advancement despite capability. Unconscious bias affects promotion perception</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contemporary Challenges -->
+                <div class="cluster">
+                    <div class="cluster-title">🔮 CONTEMPORARY CHALLENGES</div>
+                    
+                    <div class="section-header">Modern Perception Issues</div>
+                    <div class="grid-layout">
+                        <div class="card yellow">
+                            <div class="card-title">AI & Algorithmic Bias</div>
+                            <div class="card-content">AI systems encode human perceptual biases into algorithms. Hiring algorithms show gender and racial discrimination</div>
+                        </div>
+
+                        <div class="card coral">
+                            <div class="card-title">Digital Communication Gaps</div>
+                            <div class="card-content">Absence of non-verbal cues in email, chat, video creates perception gaps. Text interpreted through personal lens without tone clues</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Cross-Cultural Perception</div>
+                            <div class="card-content">Virtual, diverse teams mean different cultural frames for same events. Misinterpretation risk increases without cultural awareness</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Implicit & Unconscious Bias</div>
+                            <div class="card-content">Automatic associations and stereotypes operate outside awareness. Affects decisions on hiring, promotion, performance evaluation</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Way Forward -->
+                <div class="cluster">
+                    <div class="cluster-title">🚀 WAY FORWARD: BUILDING PERCEPTION LITERACY</div>
+                    
+                    <div class="section-header">Strategies & Solutions</div>
+                    <div class="grid-layout">
+                        <div class="card lavender">
+                            <div class="card-title">Perception Literacy</div>
+                            <div class="card-content">Understanding how perception works, recognizing biases, training managers in perception awareness and de-biasing techniques</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Structured Decision Processes</div>
+                            <div class="card-content">Use objective criteria, rating scales, multiple raters in appraisals. Reduce reliance on subjective judgment alone</div>
+                        </div>
+
+                        <div class="card yellow">
+                            <div class="card-title">Psychological Safety</div>
+                            <div class="card-content">Create environment where people can speak about perception differences without fear. Diverse perspectives valued and discussed openly</div>
+                        </div>
+
+                        <div class="card coral">
+                            <div class="card-title">Algorithmic Justice</div>
+                            <div class="card-content">Audit AI systems for bias, ensure transparency in algorithms, human oversight in high-stakes decisions. Fairness by design in systems</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+    <!-- FINAL PAGE: Summary -->
+    <div class="page" style="border-bottom: none;">
+        <h2 class="page-title">Complete Overview</h2>
+        <div class="mindmap-container">
+            <div class="content-area">
+                <div class="cluster">
+                    <div style="text-align: center; margin: 40px 0;">
+                        <div class="central-node" style="font-size: 32px; padding: 40px 60px;">
+                            PERCEPTION IN<br>ORGANISATIONAL<br>BEHAVIOUR
+                        </div>
+                    </div>
+
+                    <div class="grid-layout" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="card coral">
+                            <div class="card-title">👁️ Core Concepts</div>
+                            <div class="card-content">Organizing sensory data and interpreting environment</div>
+                        </div>
+                        <div class="card sage">
+                            <div class="card-title">🔍 Process</div>
+                            <div class="card-content">Selection, organization, interpretation of stimuli</div>
+                        </div>
+                        <div class="card mint">
+                            <div class="card-title">⚠️ Distortions</div>
+                            <div class="card-content">Halo effect, stereotyping, attribution errors</div>
+                        </div>
+                        <div class="card lavender">
+                            <div class="card-title">⚖️ Influencing Elements</div>
+                            <div class="card-content">Perceiver, target, and situational factors</div>
+                        </div>
+                        <div class="card terracotta">
+                            <div class="card-title">💼 Applications</div>
+                            <div class="card-content">Performance appraisal, conflict, glass ceiling</div>
+                        </div>
+                        <div class="card yellow">
+                            <div class="card-title">🚀 Way Forward</div>
+                            <div class="card-content">Perception literacy and algorithmic justice</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 60px; text-align: center; color: var(--text-muted); font-style: italic;">
+                        <p style="font-size: 14px;">From sensory input to organisational reality</p>
+                        <p style="font-size: 16px; margin-top: 20px;">Understanding perception as the lens through which we experience and shape organisational behaviour</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+</body>
+</html>
