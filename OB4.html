@@ -3,1033 +3,975 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leadership in Organisational Behaviour - Mindmap</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>OB: Leadership - Complete Mindmap</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --warm-cream: #FFF8F0;
-            --peach-light: #FFE5D9;
-            --coral: #FF9B85;
-            --coral-deep: #FF6B6B;
-            --terracotta: #D68C6E;
-            --sand: #F4E4C1;
-            --sage: #A8C090;
-            --mint: #8BD3C4;
-            --lavender: #C49ECE;
-            --warm-yellow: #FFD166;
-            --text-dark: #3D3D3D;
-            --text-muted: #6B6B6B;
-        }
-
-        @media print {
-            body {
-                size: landscape;
-            }
-            .page {
-                page-break-after: always;
-                width: 297mm;
-                height: 210mm;
-            }
-        }
-
-        body {
-            background: linear-gradient(135deg, var(--warm-cream) 0%, var(--peach-light) 100%);
-            font-family: 'Quicksand', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            padding: 0;
-            min-width: 1400px;
-        }
-
-        .page {
-            min-height: 100vh;
-            padding: 80px 60px 80px 60px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            border-bottom: 3px dashed var(--coral);
-        }
-
-        .page::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, var(--coral) 0%, transparent 70%);
-            opacity: 0.15;
-            border-radius: 50%;
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.15; }
-            50% { transform: scale(1.1); opacity: 0.25; }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .page-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 56px;
-            font-weight: 900;
-            color: var(--coral-deep);
-            margin-bottom: 20px;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(255, 107, 107, 0.1);
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .page-subtitle {
-            font-size: 18px;
-            color: var(--text-muted);
-            text-align: center;
-            margin-bottom: 60px;
-            font-style: italic;
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
-        }
-
-        .mindmap-container {
-            flex: 1;
-            display: flex;
-            gap: 40px;
-            animation: fadeInUp 0.8s ease-out 0.4s backwards;
-        }
-
-        .content-area {
-            flex: 2;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .notes-area {
-            flex: 1;
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 40px rgba(255, 107, 107, 0.1);
-            border: 3px dashed var(--coral);
-            position: relative;
-            min-height: 400px;
-        }
-
-        .notes-area::before {
-            content: '📝 NOTES';
-            position: absolute;
-            top: -15px;
-            left: 30px;
-            background: var(--coral-deep);
-            color: white;
-            padding: 5px 20px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 1px;
-        }
-
-        .notes-area::after {
-            content: '';
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23FFE5D9" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>') center/contain no-repeat;
-            opacity: 0.3;
-        }
-
-        .central-node {
-            background: linear-gradient(135deg, var(--coral-deep), var(--coral));
-            color: white;
-            padding: 30px 50px;
-            border-radius: 30px;
-            font-size: 28px;
-            font-weight: 700;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
-            margin: 20px auto;
-            max-width: fit-content;
-            transform: scale(1);
-            transition: transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .central-node::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .central-node:hover {
-            transform: scale(1.05);
-        }
-
-        .branch-container {
-            display: flex;
-            gap: 40px;
-            align-items: flex-start;
-            flex-wrap: wrap;
-        }
-
-        .branch {
-            position: relative;
-            animation: fadeInUp 0.6s ease-out backwards;
-        }
-
-        .branch:nth-child(1) { animation-delay: 0.1s; }
-        .branch:nth-child(2) { animation-delay: 0.2s; }
-        .branch:nth-child(3) { animation-delay: 0.3s; }
-        .branch:nth-child(4) { animation-delay: 0.4s; }
-
-        .branch-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--coral-deep);
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .node {
-            background: white;
-            padding: 18px 25px;
-            border-radius: 15px;
-            margin-bottom: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid var(--coral);
-            font-size: 15px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .node:hover {
-            transform: translateX(5px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.2);
-        }
-
-        .node.color-sage { border-left-color: var(--sage); }
-        .node.color-mint { border-left-color: var(--mint); }
-        .node.color-lavender { border-left-color: var(--lavender); }
-        .node.color-terracotta { border-left-color: var(--terracotta); }
-        .node.color-yellow { border-left-color: var(--warm-yellow); }
-
-        .node strong {
-            color: var(--coral-deep);
-            font-weight: 700;
-        }
-
-        .grid-layout {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 20px 0;
-        }
-
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            border-top: 6px solid var(--coral);
-            transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.15);
-        }
-
-        .card.sage { border-top-color: var(--sage); }
-        .card.mint { border-top-color: var(--mint); }
-        .card.lavender { border-top-color: var(--lavender); }
-        .card.terracotta { border-top-color: var(--terracotta); }
-        .card.yellow { border-top-color: var(--warm-yellow); }
-
-        .card-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--coral-deep);
-            margin-bottom: 15px;
-        }
-
-        .card-content {
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .section-header {
-            background: linear-gradient(90deg, var(--coral-deep), transparent);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 15px;
-            font-size: 22px;
-            font-weight: 700;
-            margin: 30px 0 20px 0;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
-        }
-
-        .cluster {
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 25px;
-            padding: 30px;
-            margin: 20px 0;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
-            border: 2px solid var(--peach-light);
-        }
-
-        .cluster-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--coral-deep);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .tag {
-            display: inline-block;
-            background: var(--coral);
-            color: white;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            margin: 5px;
-            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.2);
-        }
-
-        .tag.sage { background: var(--sage); }
-        .tag.mint { background: var(--mint); }
-        .tag.lavender { background: var(--lavender); }
-        .tag.terracotta { background: var(--terracotta); }
-
-        .title-page {
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(135deg, var(--peach-light) 0%, var(--sand) 50%, var(--warm-cream) 100%);
-        }
-
-        .title-page .page-title {
-            font-size: 72px;
-            margin-bottom: 30px;
-            background: linear-gradient(45deg, var(--coral-deep), var(--coral), var(--terracotta));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .decorative-circle {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.15;
-        }
-
-        .circle-1 {
-            width: 300px;
-            height: 300px;
-            background: var(--coral);
-            top: 10%;
-            left: 5%;
-        }
-
-        .circle-2 {
-            width: 200px;
-            height: 200px;
-            background: var(--sage);
-            bottom: 15%;
-            right: 8%;
-        }
-
-        .circle-3 {
-            width: 150px;
-            height: 150px;
-            background: var(--lavender);
-            top: 50%;
-            right: 20%;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; margin: 0; padding: 0; background: white; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .page { width: 100%; min-height: 100vh; display: grid; grid-template-columns: 1.8fr 1fr; page-break-after: always; break-after: page; margin: 0; padding: 0; }
+        .mindmap-section { display: flex; flex-direction: column; padding: 10px; background: white; border-right: 2px solid #ddd; overflow: visible; }
+        .notes-section { background: #f9f9f9; padding: 10px; display: flex; flex-direction: column; }
+        .notes-title { font-weight: bold; color: #667eea; margin-bottom: 10px; font-size: 0.9em; }
+        .notes-lines { display: flex; flex-direction: column; gap: 0; }
+        .note-line { border-bottom: 1px dotted #bbb; height: 18px; flex-shrink: 0; }
+        .page-title { text-align: center; color: #667eea; font-size: 1.15em; font-weight: bold; margin-bottom: 6px; border-bottom: 2px solid #667eea; padding-bottom: 4px; }
+        .page-subtitle { text-align: center; color: #999; font-size: 0.68em; margin-bottom: 8px; }
+        .mindmap-content { display: flex; flex-direction: column; gap: 8px; overflow: visible; }
+        .mindmap-row { display: flex; gap: 8px; align-items: flex-start; }
+        .central-node { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 11px; border-radius: 6px; font-weight: bold; text-align: center; white-space: normal; flex-shrink: 0; box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3); width: 82px; display: flex; align-items: center; justify-content: center; font-size: 0.77em; line-height: 1.15; min-height: 72px; }
+        .branches-container { display: flex; gap: 7px; flex: 1; overflow: visible; }
+        .branch { background: white; border: 1.5px solid #667eea; border-radius: 5px; padding: 7px; min-width: 115px; flex: 1; display: flex; flex-direction: column; }
+        .branch-title { background: #667eea; color: white; padding: 5px; border-radius: 3px; font-weight: bold; font-size: 0.68em; margin-bottom: 5px; text-align: center; flex-shrink: 0; }
+        .topics { display: flex; flex-direction: column; gap: 3px; overflow: visible; }
+        .topic { padding: 4px; background: #f0f4ff; border-left: 2px solid #667eea; border-radius: 2px; font-size: 0.68em; line-height: 1.2; flex-shrink: 0; }
+        .topic strong { color: #667eea; display: block; margin-bottom: 1px; font-size: 0.9em; }
+        .topic small { color: #666; font-size: 0.85em; }
+        .priority-high { background: #ffe5e5; border-left: 2px solid #ff6b6b; }
+        .priority-high strong { color: #ff6b6b; }
+        .priority-mid { background: #fff5e5; border-left: 2px solid #ffc107; }
+        .priority-mid strong { color: #ff9800; }
+        .explanation-section { display: flex; flex-direction: column; gap: 6px; font-size: 0.66em; line-height: 1.25; margin-top: 6px; overflow: visible; }
+        .explanation { background: #f9f9f9; border-left: 2px solid #667eea; padding: 6px; border-radius: 3px; flex-shrink: 0; }
+        .explanation-title { font-weight: bold; color: #667eea; margin-bottom: 2px; font-size: 0.82em; }
+        .explanation-content { color: #333; margin-left: 5px; }
+        .explanation-item { margin: 1.5px 0; font-size: 0.9em; }
+        .explanation-item strong { color: #667eea; }
+        .page-number { text-align: right; color: #999; font-size: 0.65em; margin-top: 6px; flex-shrink: 0; }
+        @media print { body { margin: 0; padding: 0; background: white; } .page { margin: 0; padding: 0; min-height: 100vh; page-break-after: always; break-after: page; } .mindmap-section { padding: 10mm; border-right: 2px solid #ddd; } .notes-section { padding: 10mm; } }
+        @media screen { .page { margin: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); } }
     </style>
 </head>
 <body>
 
-    <!-- TITLE PAGE -->
-    <div class="page title-page">
-        <div class="decorative-circle circle-1"></div>
-        <div class="decorative-circle circle-2"></div>
-        <div class="decorative-circle circle-3"></div>
-        <h1 class="page-title">LEADERSHIP IN ORGANISATIONAL BEHAVIOUR</h1>
-        <p class="page-subtitle">From Traits to Transformation: Evolution of Leadership Theories & Practice</p>
-    </div>
-
-    <!-- PAGE 1: Concept & Overview -->
-    <div class="page">
-        <h2 class="page-title">Concept & Overview</h2>
-        <div class="mindmap-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div class="cluster-title">👑 DEFINITION & NATURE OF LEADERSHIP</div>
-                    
-                    <div class="central-node">LEADERSHIP</div>
-
-                    <div class="section-header">Core Definitions</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Influence Toward Goal Achievement</div>
-                            <div class="card-content">The process of influencing individuals and groups toward accomplishment of organizational or personal goals. Focus on direction and destination</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Directing, Motivating & Enabling</div>
-                            <div class="card-content">Leadership involves three key actions: providing direction (clarity), motivating followers (inspiration), and enabling them (resources, support)</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Relationship & Influence</div>
-                            <div class="card-content">Two-way influence relationship between leader and followers. Not command-and-control, but mutual influence and commitment</div>
-                        </div>
-                    </div>
-
-                    <div class="section-header">Leadership vs Management</div>
-                    <div class="grid-layout">
-                        <div class="card lavender">
-                            <div class="card-title">Management: Coping with Complexity</div>
-                            <div class="card-content">
-                                <strong>Focus:</strong> Efficiency, order, stability<br>
-                                <strong>Activities:</strong> Planning, organizing, controlling, budgeting<br>
-                                <strong>Goal:</strong> Do things right (reliability, predictability)<br>
-                                <strong>Mindset:</strong> Accept status quo, optimize systems
+<!-- PAGE 1: LEADERSHIP OVERVIEW & TRAIT THEORY -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">👨‍💼 LEADERSHIP: CONCEPT & EVOLUTION OF THEORIES</div>
+        <div class="page-subtitle">Leadership vs Management & Trait Theory (PYQ 2017)</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">LEADERSHIP</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">LEADERSHIP vs MANAGEMENT</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Management Focus</strong>
+                                <small>Plans, organises, controls - maintains order; short-term; handles complexity; based on formal authority; outcome: predictability</small>
                             </div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Leadership: Coping with Change</div>
-                            <div class="card-content">
-                                <strong>Focus:</strong> Vision, direction, transformation<br>
-                                <strong>Activities:</strong> Inspiring, enabling, motivating change<br>
-                                <strong>Goal:</strong> Do the right things (effectiveness, impact)<br>
-                                <strong>Mindset:</strong> Challenge status quo, imagine future
+                            <div class="topic priority-high">
+                                <strong>Leadership Focus</strong>
+                                <small>Inspires, motivates, influences - creates change; long-term vision; based on influence; outcome: transformation and commitment</small>
                             </div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">Both Are Essential</div>
-                            <div class="card-content">Modern organizations need both. Managers without leadership maintain mediocrity. Leaders without management create chaos. Ideal: Leader-managers who balance both</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="notes-area"></div>
-        </div>
-    </div>
-
-    <!-- PAGE 2: Trait Theory -->
-    <div class="page">
-        <h2 class="page-title">Trait Theory of Leadership</h2>
-        <div class="mindmap-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div class="cluster-title">✨ THE GREAT MAN THEORY</div>
-                    
-                    <div class="central-node">TRAIT APPROACH</div>
-
-                    <div class="section-header">Core Assumption</div>
-                    <div class="node color-coral" style="font-size: 16px; padding: 25px; text-align: center;">
-                        <strong>Leaders are BORN, not made.</strong> Leadership is determined by innate characteristics. Certain people possess inherent traits that make them natural leaders
-                    </div>
-
-                    <div class="section-header">Key Leadership Traits (Big Five + More)</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Intelligence</div>
-                            <div class="card-content">Cognitive ability to understand complex situations, make sound decisions, learn quickly. High intelligence correlates with leadership effectiveness</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Dominance & Self-Confidence</div>
-                            <div class="card-content">Assertiveness, willingness to take charge, belief in own capabilities. Enables decisive action and conviction in uncertain situations</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Conscientiousness</div>
-                            <div class="card-content">Discipline, responsibility, reliability. Leaders follow through on commitments, maintain high standards, earn trust through consistency</div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">Extraversion</div>
-                            <div class="card-content">Sociability, talkativeness, assertiveness. Enables building relationships, influencing others, comfort in public speaking and visibility</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Emotional Stability</div>
-                            <div class="card-content">Calm under pressure, resilience, composure. Leaders manage their emotions, make rational decisions despite stress, inspire confidence</div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">Openness to Experience</div>
-                            <div class="card-content">Creativity, curiosity, receptivity to new ideas. Enables innovation, adaptability to change, learning from diverse perspectives</div>
-                        </div>
-
-                        <div class="card coral">
-                            <div class="card-title">Integrity</div>
-                            <div class="card-content">Honesty, ethical behavior, alignment of words and actions. Foundation of trust. Most critical trait for sustained leadership effectiveness</div>
-                        </div>
-                    </div>
-
-                    <div class="section-header">Limitations of Trait Theory</div>
-                    <div class="branch-container">
-                        <div class="node color-sage" style="flex: 1; min-width: 200px;">
-                            <strong>Ignores Context:</strong> Same traits may work differently in different situations. No accounting for environmental fit
-                        </div>
-                        <div class="node color-mint" style="flex: 1; min-width: 200px;">
-                            <strong>Deterministic:</strong> If leaders are born, what about development? Assumes limited potential for growth through experience and training
-                        </div>
-                        <div class="node color-lavender" style="flex: 1; min-width: 200px;">
-                            <strong>Weak Predictability:</strong> Traits alone don't predict leadership success. Behavior and situation matter equally
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="notes-area"></div>
-        </div>
-    </div>
-
-    <!-- PAGE 3: Behavioral Theories -->
-    <div class="page">
-        <h2 class="page-title">Behavioral Theories of Leadership</h2>
-        <div class="mindmap-container">
-            <div class="content-area">
-                <!-- Ohio State -->
-                <div class="cluster">
-                    <div class="cluster-title">🎯 OHIO STATE STUDIES</div>
-                    
-                    <div class="section-header">Two Dimensions of Leadership Behavior</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Initiating Structure (Task)</div>
-                            <div class="card-content">Defining roles, setting goals, establishing procedures, organizing work. Task-focused behaviors. High structure = clear expectations, efficiency</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Consideration (People)</div>
-                            <div class="card-content">Showing concern for followers, building relationships, listening to concerns. People-focused behaviors. High consideration = trust, support, morale</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">High-High Ideal</div>
-                            <div class="card-content">Leaders high on both dimensions perform best. Balance task clarity with people support. Create efficient AND satisfied teams</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Michigan -->
-                <div class="cluster">
-                    <div class="cluster-title">🏢 UNIVERSITY OF MICHIGAN STUDIES</div>
-                    
-                    <div class="section-header">Two Contrasting Styles</div>
-                    <div class="grid-layout">
-                        <div class="card lavender">
-                            <div class="card-title">Production-Centered Leadership</div>
-                            <div class="card-content">Focus on tasks, output, efficiency. Emphasis on work accomplishment. Can increase short-term productivity but damages morale and retention</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Employee-Centered Leadership</div>
-                            <div class="card-content">Focus on people, relationships, satisfaction. Emphasis on well-being and development. Builds loyalty, reduces turnover, sustainable performance</div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">Research Conclusion</div>
-                            <div class="card-content">Employee-centered leadership resulted in higher productivity and morale. Challenges the assumption that task focus drives results</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Blake & Mouton -->
-                <div class="cluster">
-                    <div class="cluster-title">📊 MANAGERIAL GRID (BLAKE & MOUTON)</div>
-                    
-                    <div class="section-header">5x5 Grid: Concern for Production vs Concern for People</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">1,1 - Impoverished</div>
-                            <div class="card-content">Low task, low people. Minimal effort. Avoids responsibility. Worst style. Leader is "just passing through"</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">9,1 - Authority-Compliance</div>
-                            <div class="card-content">High task, low people. Authoritarian, dictatorial. Efficient but breeds resentment. "I'm right, you obey"</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">1,9 - Country Club</div>
-                            <div class="card-content">Low task, high people. Too nice, lacks direction. Creates nice but unproductive environment. "Keep everyone happy"</div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">5,5 - Middle of the Road</div>
-                            <div class="card-content">Moderate task, moderate people. Compromise approach. Acceptable performance but not optimal. "Balance between both"</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">9,9 - Team Management</div>
-                            <div class="card-content">
-                                <strong>IDEAL STYLE</strong><br>
-                                High task, high people. Collaborative, empowering. Achieves results through people. "Work together for excellence"
+                            <div class="topic priority-high">
+                                <strong>Kotter (1990)</strong>
+                                <small>Management = Coping with complexity; Leadership = Creating change and vision. Both needed but different</small>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Likert -->
-                <div class="cluster">
-                    <div class="cluster-title">📈 LIKERT'S FOUR SYSTEMS OF MANAGEMENT</div>
-                    
-                    <div class="section-header">Evolution from Autocratic to Democratic</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">System 1: Exploitative Authoritative</div>
-                            <div class="card-content">Autocratic, command-and-control. Decisions made at top. Minimal employee input. Motivation through fear. Low trust</div>
+                    <div class="branch">
+                        <div class="branch-title">EVOLUTION OF THEORIES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>1900s-1940s: Trait Theory</strong>
+                                <small>Leaders are BORN not made - innate qualities (intelligence, dominance, energy) determine leadership. Great Man Theory. Stogdill (1948)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>1940s-1960s: Behavioural</strong>
+                                <small>Leaders are MADE through learnable behaviours - Ohio State, Michigan Studies, Managerial Grid, Likert's Systems. Focus on what leaders DO</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>1960s-1980s: Contingency</strong>
+                                <small>No one best style - effectiveness depends on situation, task, follower maturity. Fiedler, Hersey-Blanchard, Path-Goal. Situational fit matters</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>1980s-Present: Transformational</strong>
+                                <small>Leadership as inspiring, transforming followers beyond transactions. Burns, Bass, Charismatic leadership. Vision, inspiration, development</small>
+                            </div>
                         </div>
-
-                        <div class="card sage">
-                            <div class="card-title">System 2: Benevolent Authoritative</div>
-                            <div class="card-content">Still autocratic but kinder. Some delegation. Manager acts like "benevolent dictator." Moderate employee input. Trust moderate</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">System 3: Consultative</div>
-                            <div class="card-content">Manager seeks input before deciding. Two-way communication. Employees feel heard. Decisions still at management but informed by input</div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">System 4: Participative Group (IDEAL)</div>
-                            <div class="card-content">
-                                <strong>Democratic, collective decision-making</strong><br>
-                                Employees participate in goal-setting and decisions. High trust. Shared responsibility. Maximum motivation and commitment
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">TRAIT THEORY (PYQ 2017)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Key Traits - Stogdill (1948)</strong>
+                                <small>Intelligence (info processing), Dominance (assert influence), Conscientiousness (STRONGEST predictor), Extraversion (emergence not effectiveness), Emotional Stability (crisis management), Openness (innovation), Integrity (most admired)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Big Five Connection</strong>
+                                <small>Conscientiousness + Extraversion + Emotional Stability predict leadership performance reliably</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Criticisms</strong>
+                                <small>100+ traits identified (no consensus), situational factors ignored, cultural bias (Western individualism), cannot explain leadership failures</small>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="notes-area"></div>
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">EXAM STRATEGY</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Leadership vs Management:</strong> Know both dimensions; emphasise they're complementary not exclusive</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 1 of 9</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
         </div>
     </div>
+</div>
 
-    <!-- PAGE 4: Contingency & Situational Theories -->
-    <div class="page">
-        <h2 class="page-title">Contingency & Situational Theories</h2>
-        <div class="mindmap-container">
-            <div class="content-area">
-                <!-- Fiedler -->
-                <div class="cluster">
-                    <div class="cluster-title">🎲 FIEDLER'S CONTINGENCY THEORY</div>
-                    
-                    <div class="central-node">STYLE DEPENDS ON SITUATION</div>
-
-                    <div class="section-header">Core Principle: Fit Between Style & Situation</div>
-                    <div class="node color-terracotta" style="font-size: 15px; padding: 20px;">
-                        <strong>Leadership effectiveness depends on fit between leader style and situational favorableness.</strong> No one best style; effectiveness determined by matching style to situation
-                    </div>
-
-                    <div class="section-header">Key Components</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Leadership Style (LPC)</div>
-                            <div class="card-content">Least Preferred Coworker scale measures whether leader is task-oriented or relationship-oriented. Fixed trait; difficult to change</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Situational Favorableness</div>
-                            <div class="card-content">Combination of three factors determines if situation favors leader's influence</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Leader-Member Relations</div>
-                            <div class="card-content">Quality of relationship between leader and followers. Good relations = higher favorability</div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">Task Structure</div>
-                            <div class="card-content">Clarity of goals and procedures. Clear task = higher favorability. Ambiguous task = lower favorability</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Position Power</div>
-                            <div class="card-content">Formal authority to reward, punish, hire. Strong power = higher favorability</div>
+<!-- PAGE 2: BEHAVIOURAL THEORIES & MANAGERIAL GRID -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🔲 BEHAVIOURAL THEORIES: OHIO STATE, MICHIGAN, MANAGERIAL GRID</div>
+        <div class="page-subtitle">What Leaders DO: Task vs Relationship (PYQ 2014, 2015, 2019, 2021)</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">BEHAVIOURS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">OHIO STATE & MICHIGAN STUDIES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Two Core Dimensions</strong>
+                                <small>Initiating Structure/Production-Centred (TASK) | Consideration/Employee-Centred (RELATIONSHIP)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Task Orientation</strong>
+                                <small>Defines roles, assigns tasks, sets goals, maintains supervision - getting job done</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Relationship Orientation</strong>
+                                <small>Shows trust, respect, warmth, concern - building people and commitment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Michigan Finding</strong>
+                                <small>Employee-centred (relationship) associated with higher productivity AND satisfaction; production-centred (task) lower satisfaction</small>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Hersey & Blanchard -->
-                <div class="cluster">
-                    <div class="cluster-title">🔄 HERSEY & BLANCHARD: SITUATIONAL LEADERSHIP</div>
-                    
-                    <div class="section-header">Flexible Style Adapted to Follower Readiness</div>
-                    <div class="node color-yellow" style="font-size: 15px; padding: 20px;">
-                        <strong>Key Difference from Fiedler:</strong> Leader CAN change style (not fixed). Readiness of followers determines appropriate style
-                    </div>
-
-                    <div class="section-header">Follower Readiness Levels (R1-R4)</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">R1: Unable & Unwilling</div>
-                            <div class="card-content">No skills or motivation. Needs clear direction, structure, close supervision. Use TELLING style</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">R2: Unable But Willing</div>
-                            <div class="card-content">Motivated but lacks skills. Needs guidance and support. Use SELLING style (explain, persuade, support)</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">R3: Able But Unwilling</div>
-                            <div class="card-content">Has skills but lacks confidence or motivation. Needs participation, encouragement. Use PARTICIPATING style</div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">R4: Able & Willing</div>
-                            <div class="card-content">Highly skilled and motivated. Needs autonomy and trust. Use DELEGATING style (minimal direction)</div>
+                    <div class="branch">
+                        <div class="branch-title">MANAGERIAL GRID 9×9 (Blake & Mouton, 1964) ⭐</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>(1,1) Impoverished</strong>
+                                <small>Minimum effort both dimensions - avoidance; organisation fails</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>(9,1) Authority-Compliance</strong>
+                                <small>Max production, min people - dictatorial, Theory X; short-term results, burnout, high attrition</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>(1,9) Country Club</strong>
+                                <small>Max people, min production - comfortable but low productivity; unsustainable</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>(5,5) Middle-of-Road</strong>
+                                <small>Adequate both through compromise - MEDIOCRITY TRAP; neither fully committed to either dimension</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>(9,9) Team Management ✓✓✓ IDEAL</strong>
+                                <small>Max concern BOTH people AND production - mutual trust, high commitment, shared goals, highest performance</small>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="section-header">The Four Leadership Styles</div>
-                    <div class="branch-container">
-                        <div class="node color-terracotta" style="flex: 1; min-width: 150px;">
-                            <strong>S1 - TELLING:</strong> High directive, low supportive. Clear instructions, close supervision
-                        </div>
-                        <div class="node color-yellow" style="flex: 1; min-width: 150px;">
-                            <strong>S2 - SELLING:</strong> High directive, high supportive. Explain decisions, build motivation
-                        </div>
-                        <div class="node color-coral" style="flex: 1; min-width: 150px;">
-                            <strong>S3 - PARTICIPATING:</strong> Low directive, high supportive. Listen, facilitate, share decisions
-                        </div>
-                        <div class="node color-sage" style="flex: 1; min-width: 150px;">
-                            <strong>S4 - DELEGATING:</strong> Low directive, low supportive. Full autonomy, minimal involvement
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Path-Goal -->
-                <div class="cluster">
-                    <div class="cluster-title">🛤️ PATH-GOAL THEORY (ROBERT HOUSE)</div>
-                    
-                    <div class="section-header">Leader Clarifies Path to Goals</div>
-                    <div class="node color-mint" style="font-size: 15px; padding: 20px;">
-                        <strong>Leadership role:</strong> Help followers see and achieve goals. Remove obstacles. Make path clear and rewarding
-                    </div>
-
-                    <div class="section-header">Four Leadership Styles</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Directive Style</div>
-                            <div class="card-content">Tell followers what to do, how to do it. Clear expectations. Best for ambiguous tasks or inexperienced workers</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Supportive Style</div>
-                            <div class="card-content">Show concern for well-being, be friendly, provide support. Best when work is stressful or followers are frustrated</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Participative Style</div>
-                            <div class="card-content">Consult with followers, seek input, consider suggestions. Best for followers who desire involvement and have valuable input</div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">Achievement-Oriented Style</div>
-                            <div class="card-content">Set challenging goals, express confidence in followers' ability to meet them. Best for motivated performers who want to excel</div>
+                    <div class="branch">
+                        <div class="branch-title">LIKERT'S 4 SYSTEMS (PYQ 2021)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>System 1: Exploitative-Authoritative</strong>
+                                <small>Fear, threats, top-down decisions, little upward communication - closest to autocratic</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>System 2: Benevolent-Authoritative</strong>
+                                <small>Rewards over punishment, paternalistic 'master-servant' relationship, some communication</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>System 3: Consultative</strong>
+                                <small>Consults subordinates before deciding, substantial (not complete) trust, two-way communication</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>System 4: Participative Group (IDEAL)</strong>
+                                <small>Full participation, complete trust, consensus decisions, group goal-setting - HIGHEST productivity & satisfaction</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="notes-area"></div>
-        </div>
-    </div>
-
-    <!-- PAGE 5: Transactional vs Transformational -->
-    <div class="page">
-        <h2 class="page-title">Transactional vs Transformational Leadership</h2>
-        <div class="mindmap-container">
-            <div class="content-area">
-                <!-- Transactional -->
-                <div class="cluster">
-                    <div class="cluster-title">🔄 TRANSACTIONAL LEADERSHIP</div>
-                    
-                    <div class="central-node">EXCHANGE BASED</div>
-
-                    <div class="section-header">Focus: Maintenance & Compliance</div>
-                    <div class="node color-coral" style="font-size: 15px; padding: 20px;">
-                        <strong>Model:</strong> "If you do X, you get Y." Exchange of rewards for performance. Maintains status quo. Focuses on existing goals
-                    </div>
-
-                    <div class="section-header">Three Transactional Approaches</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Contingent Reward</div>
-                            <div class="card-content">Leader clarifies what followers need to do and promises rewards if they comply. "Do good work, get bonuses." Motivates through extrinsic rewards</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Management by Exception (MBE)</div>
-                            <div class="card-content">Leader intervenes only when problems occur. Reactive. "I notice only when things go wrong." Can create fear-based culture</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Laissez-Faire Leadership</div>
-                            <div class="card-content">Hands-off, minimal involvement. Followers left to themselves. Abdication of responsibility. Generally produces poor results</div>
-                        </div>
-                    </div>
-
-                    <div class="section-header">Strength & Limitations</div>
-                    <div class="branch-container">
-                        <div class="node color-lavender">
-                            <strong>Strength:</strong> Clear expectations, stable performance, predictability. Effective for routine tasks
-                        </div>
-                        <div class="node color-terracotta">
-                            <strong>Limitation:</strong> Doesn't inspire excellence, innovation, or intrinsic motivation. Employees do minimum required
-                        </div>
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">KEY INSIGHT</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Behavioural approach shows:</strong> Leadership is about balance - both task AND relationship matter. No pure task or pure relationship leader is ideal</strong></div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="page-number">Page 2 of 9</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+        </div>
+    </div>
+</div>
 
-                <!-- Transformational -->
-                <div class="cluster">
-                    <div class="cluster-title">✨ TRANSFORMATIONAL LEADERSHIP</div>
-                    
-                    <div class="central-node">VISION BASED</div>
-
-                    <div class="section-header">Focus: Change & Inspiration</div>
-                    <div class="node color-yellow" style="font-size: 15px; padding: 20px;">
-                        <strong>Model:</strong> Inspire followers to transcend self-interest. Appeal to higher purpose. Create new vision. Transform individuals and organization
+<!-- PAGE 3: CONTINGENCY THEORIES - FIEDLER & HERSEY-BLANCHARD -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🎯 CONTINGENCY THEORIES: FIEDLER vs HERSEY-BLANCHARD (PYQ 2018, 2022)</div>
+        <div class="page-subtitle">FIXED Style vs FLEXIBLE Style Debate</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">CONTINGENCY</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">FIEDLER'S CONTINGENCY (1967)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>CORE: FIXED STYLE</strong>
+                                <small>Style is innate, CANNOT change. Match leader to situation or CHANGE SITUATION to match leader</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>LPC Scale</strong>
+                                <small>Low LPC (Task-Motivated): negative description of co-worker, task-focused, effective in extreme situations. High LPC (Relationship-Motivated): positive description, people-focused, effective in moderate situations</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>3 Situational Dimensions (Most → Least Important)</strong>
+                                <small>(1) Leader-Member Relations (MOST) | (2) Task Structure | (3) Position Power</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Favourableness</strong>
+                                <small>High on all 3 = highly favourable (easy); Low on all 3 = unfavourable (difficult); Middle = moderate</small>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="section-header">Four Components of Transformational Leadership</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Idealised Influence (Charisma)</div>
-                            <div class="card-content">Leader models desired behaviors, earns trust and respect. Followers want to emulate leader. Inspirational through personal example</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Inspirational Motivation</div>
-                            <div class="card-content">Leader communicates compelling vision of future. Creates optimism and enthusiasm. Followers inspired by purpose beyond themselves</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Intellectual Stimulation</div>
-                            <div class="card-content">Leader challenges assumptions, encourages creative thinking, promotes innovation. Values diverse perspectives. Followers think differently</div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">Individualised Consideration</div>
-                            <div class="card-content">Leader shows genuine concern for individual development, listens to personal concerns, coaches, mentors. Treats followers as unique individuals</div>
+                    <div class="branch">
+                        <div class="branch-title">HERSEY-BLANCHARD (1977) - SITUATIONAL LEADERSHIP</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>CORE: FLEXIBLE STYLE</strong>
+                                <small>Style is FLEXIBLE and must change as follower develops. "Develop followers to the point they no longer need you"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Follower Readiness (Maturity)</strong>
+                                <small>R1: Unable & Unwilling | R2: Unable & Willing | R3: Able & Unwilling | R4: Able & Willing</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>4 Leadership Styles</strong>
+                                <small>S1-Telling (High task, Low relation); S2-Coaching (High task, High relation); S3-Supporting (Low task, High relation); S4-Delegating (Low task, Low relation)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Match Principle</strong>
+                                <small>R1→S1 (Tell them), R2→S2 (Sell/Coach), R3→S3 (Participate), R4→S4 (Delegate)</small>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="section-header">Strength & Impact</div>
-                    <div class="branch-container">
-                        <div class="node color-terracotta">
-                            <strong>Strength:</strong> Inspires discretionary effort, innovation, commitment. Followers go beyond minimum. Creates sustainable high performance
-                        </div>
-                        <div class="node color-yellow">
-                            <strong>Impact:</strong> Transforms individuals and organizations. Creates culture of excellence and shared purpose
+                    <div class="branch">
+                        <div class="branch-title">FIEDLER vs HERSEY-BLANCHARD</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Style Flexibility</strong>
+                                <small>Fiedler: FIXED (leader is inherently task or relationship focused). H-B: FLEXIBLE (adapt style to follower development)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Situational Focus</strong>
+                                <small>Fiedler: Overall favourableness (3 dimensions). H-B: Follower maturity/readiness (ability × willingness)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Prescription</strong>
+                                <small>Fiedler: Change SITUATION to match leader's fixed style (Leader Match programme). H-B: Leader adapts STYLE to follower development</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Applicability</strong>
+                                <small>Fiedler: Leader selection & placement. H-B: Leader development & coaching. India: H-B more practical in government (officer-clerk pairs)</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="notes-area"></div>
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">PYQ 2022 (20M) QUESTION TYPE</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Expected:</strong> Critically evaluate Fiedler; compare with H-B; discuss strengths/weaknesses</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 3 of 9</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
         </div>
     </div>
+</div>
 
-    <!-- PAGE 6: Contemporary & Contextual -->
-    <div class="page">
-        <h2 class="page-title">Contemporary & Contextual Leadership</h2>
-        <div class="mindmap-container">
-            <div class="content-area">
-                <!-- Charismatic -->
-                <div class="cluster">
-                    <div class="cluster-title">⭐ CHARISMATIC LEADERSHIP</div>
-                    
-                    <div class="section-header">Visionary & Self-Confident</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Characteristics</div>
-                            <div class="card-content">Strong vision, exceptional confidence, risk-taking, determination, conviction in moral rightness of cause. Personal magnetism and inspirational appeal</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Positive Impact</div>
-                            <div class="card-content">Creates strong emotional bonds with followers. Inspires extraordinary commitment. Effective in crisis situations requiring decisive action</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Post-Crisis Risk & Dependency</div>
-                            <div class="card-content">Risk of cult-like dependency on leader. Crisis ends but followers remain overly reliant. Charisma without substance can lead to exploitation</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Integrative -->
-                <div class="cluster">
-                    <div class="cluster-title">🔗 INTEGRATIVE MODEL</div>
-                    
-                    <div class="section-header">Synthesis of Multiple Perspectives</div>
-                    <div class="grid-layout">
-                        <div class="card lavender">
-                            <div class="card-title">Traits</div>
-                            <div class="card-content">Intelligence, integrity, extraversion, emotional stability matter. Foundation for effectiveness</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Behaviours</div>
-                            <div class="card-content">How leaders act (task vs people focus) influences outcomes. Flexibility to adapt behavior essential</div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">Context</div>
-                            <div class="card-content">Situation determines what style is most effective. Same leader, different contexts = different results</div>
+<!-- PAGE 4: PATH-GOAL THEORY -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🛤️ PATH-GOAL THEORY (Robert House, 1971) - PYQ 2020, 2024</div>
+        <div class="page-subtitle">Four Leadership Styles & Expectancy Link</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">PATH-GOAL</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CORE PRINCIPLE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Leadership Effectiveness</strong>
+                                <small>Matching style to situation so followers perceive goal attainment as possible, desirable, personally rewarding</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>MOTIVATION LINK</strong>
+                                <small>Leader increases Expectancy (E), Instrumentality (I), Valence (V) from Vroom's theory - DIRECTLY links to motivation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Manager Role</strong>
+                                <small>Clarify path to goal (remove obstacles), make goal attractive (increase valence), increase expectancy of goal achievement</small>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="section-header">Modern Framework</div>
-                    <div class="node color-coral" style="font-size: 15px; padding: 20px;">
-                        <strong>Effective leadership = Right traits + Appropriate behaviors + Fit with context</strong><br>
-                        Leaders leverage strengths, develop skills, and adapt to context for maximum impact
-                    </div>
-                </div>
-
-                <!-- Indian Context -->
-                <div class="cluster">
-                    <div class="cluster-title">🇮🇳 LEADERSHIP IN INDIAN CONTEXT</div>
-                    
-                    <div class="section-header">Culturally Influenced Styles</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Paternalistic Leadership</div>
-                            <div class="card-content">Directive + Authoritative. Leader acts as "protector-father." High power distance accepted. Personal loyalty valued. Common in traditional Indian organizations</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Participative-Transformational</div>
-                            <div class="card-content">Emerging style in modern organizations. Leaders balance authority with consultation. Inspire through shared values and purpose, not just hierarchy</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Startup Leadership</div>
-                            <div class="card-content">Visionary + Risk-taking. Young entrepreneurs create high-growth environments. Charismatic, less hierarchical. Emphasis on mission and innovation over tradition</div>
+                    <div class="branch">
+                        <div class="branch-title">FOUR LEADERSHIP STYLES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Directive Leadership</strong>
+                                <small>Clear instructions, schedules, rules, performance standards - provides clarity of path</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Supportive Leadership</strong>
+                                <small>Shows concern for well-being, friendly, approachable, considerate - addresses follower needs</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Participative Leadership</strong>
+                                <small>Consults followers, involves in decision-making - builds ownership and commitment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Achievement-Oriented</strong>
+                                <small>Sets challenging goals, expects high performance, shows confidence in capability - increases motivation</small>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Leadership Vacuum -->
-                <div class="cluster">
-                    <div class="cluster-title">⚡ LEADERSHIP VACUUM: DOUBLE-EDGED SWORD</div>
-                    
-                    <div class="section-header">When Leadership is Absent or Unclear</div>
-                    <div class="grid-layout">
-                        <div class="card lavender">
-                            <div class="card-title">Stimulates Initiative</div>
-                            <div class="card-content">In absence of clear direction, capable individuals step up. Self-organization emerges. Can lead to bottom-up innovation and ownership</div>
+                    <div class="branch">
+                        <div class="branch-title">CONTINGENCY VARIABLES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Follower Characteristics</strong>
+                                <small>Ability (skilled → need less direction), Preferences (autonomy-seeking → participative), Locus of control (internal → participative, external → directive)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Environmental Factors</strong>
+                                <small>Task structure (ambiguous → directive), Formal authority, Work group cohesiveness</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Fit Principle</strong>
+                                <small>Ambiguous task + unskilled follower >> Directive. Routine task + skilled >> Achievement-oriented or Participative</small>
+                            </div>
                         </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Causes Drift & Chaos</div>
-                            <div class="card-content">Without clear vision and direction, uncertainty dominates. Conflicting priorities, wasted effort, low morale. Inefficiency and frustration spread</div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">Context Determines Outcome</div>
-                            <div class="card-content">Experienced, self-motivated team → can thrive with less leadership. Inexperienced, uncertain team → needs clear direction. Crisis situations need strong leadership</div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">CRITICAL EVALUATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>✓ Strengths</strong>
+                                <small>Integrates leadership & motivation theory; flexible multi-style framework; accounts for contingencies</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>❌ Weaknesses</strong>
+                                <small>Too complex for easy operationalisation; limited empirical support for all 4 styles; ignores power distance, group dynamics</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>India Context</strong>
+                                <small>Participative & achievement styles face resistance in high power-distance organisations (Hofstede). Directive still preferred in government/military</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="notes-area"></div>
+        </div>
+        <div class="page-number">Page 4 of 9</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
         </div>
     </div>
+</div>
 
-    <!-- FINAL PAGE: Summary -->
-    <div class="page" style="border-bottom: none;">
-        <h2 class="page-title">Complete Overview</h2>
-        <div class="mindmap-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div style="text-align: center; margin: 40px 0;">
-                        <div class="central-node" style="font-size: 32px; padding: 40px 60px;">
-                            LEADERSHIP IN<br>ORGANISATIONAL<br>BEHAVIOUR
+<!-- PAGE 5: TRANSACTIONAL vs TRANSFORMATIONAL -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">✨ TRANSACTIONAL vs TRANSFORMATIONAL LEADERSHIP</div>
+        <div class="page-subtitle">The 4 I's of Transformational Leadership (PYQ 2023, 2024)</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">TRANS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">TRANSACTIONAL (Burns/Bass)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Mechanism</strong>
+                                <small>"If you achieve target, you get reward" - EXCHANGE relationship</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Outcome</strong>
+                                <small>Compliance and EXPECTED performance - maintains status quo, works within existing system</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Components</strong>
+                                <small>Contingent Reward (reward for performance) | MBE-Active (monitors for deviations) | MBE-Passive (corrects problems) | Laissez-Faire (least effective)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>India Examples</strong>
+                                <small>Performance-linked pay in IT, APAR system in civil service, target-based bonus in corporate sector</small>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="grid-layout" style="grid-template-columns: repeat(3, 1fr);">
-                        <div class="card coral">
-                            <div class="card-title">👑 Concept</div>
-                            <div class="card-content">Influence, motivation, and direction toward goals</div>
-                        </div>
-                        <div class="card sage">
-                            <div class="card-title">✨ Trait Theory</div>
-                            <div class="card-content">Intelligence, integrity, emotional stability traits</div>
-                        </div>
-                        <div class="card mint">
-                            <div class="card-title">🎯 Behavioral</div>
-                            <div class="card-content">Ohio State, Michigan, Grid, Likert systems</div>
-                        </div>
-                        <div class="card lavender">
-                            <div class="card-title">🔄 Contingency</div>
-                            <div class="card-content">Fiedler, Hersey-Blanchard, Path-Goal</div>
-                        </div>
-                        <div class="card terracotta">
-                            <div class="card-title">✨ Transformation</div>
-                            <div class="card-content">Vision, inspiration, change, development</div>
-                        </div>
-                        <div class="card yellow">
-                            <div class="card-title">🌍 Context</div>
-                            <div class="card-content">Indian culture, startups, vacuum impact</div>
+                    <div class="branch">
+                        <div class="branch-title">TRANSFORMATIONAL (Bass, 1985) - THE 4 I's ⭐⭐</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>I1 - Idealised Influence (Charisma)</strong>
+                                <small>Role model; followers admire, respect, trust; leader sacrifices personal gain for collective benefit; HIGH moral standards essential</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>I2 - Inspirational Motivation</strong>
+                                <small>Articulates compelling vision; communicates high expectations; uses symbols and stories; emotional resonance beyond rational persuasion</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>I3 - Intellectual Stimulation</strong>
+                                <small>Challenges assumptions; promotes creative thinking on old problems; encourages innovation WITHOUT public criticism of mistakes</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>I4 - Individual Consideration</strong>
+                                <small>Mentor/coach role; attends to individual needs; assigns tasks based on strengths; personalised feedback and support</small>
+                            </div>
                         </div>
                     </div>
-
-                    <div style="margin-top: 60px; text-align: center; color: var(--text-muted); font-style: italic;">
-                        <p style="font-size: 18px;">From traits to behaviors to transformation to context</p>
-                        <p style="font-size: 16px; margin-top: 20px;">Leadership as art, science, and craft developed through understanding, practice, and situational awareness</p>
+                    <div class="branch">
+                        <div class="branch-title">KEY INSIGHT: AUGMENTATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Bass's Finding</strong>
+                                <small>BOTH are needed. Transformational BUILDS ON transactional. Effective leaders use BOTH (Augmentation Effect)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Hierarchy</strong>
+                                <small>Transactional provides foundation (clear expectations, rewards); Transformational adds inspiration (vision, meaning, growth)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Performance</strong>
+                                <small>Transactional → expected performance; Transformational → exceptional performance and commitment</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="notes-area"></div>
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">PYQ 2024 QUESTION</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Expected:</strong> Major differences (5-dimension table); 4 I's with India examples; Augmentation Effect</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 5 of 9</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
         </div>
     </div>
+</div>
+
+<!-- PAGE 6: CHARISMATIC LEADERSHIP & DARK SIDE -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">⚡ CHARISMATIC LEADERSHIP (Robert House, 1977)</div>
+        <div class="page-subtitle">Components, Styles & Dark Side (PYQ 2018)</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">CHARISMA</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">KEY COMPONENTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Self-Confidence</strong>
+                                <small>Belief in own abilities and judgements; projects certainty and resolve</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Strong Values/Moral Conviction</strong>
+                                <small>Articulates & embodies strong ethical or ideological beliefs; followers see cause as righteous</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Vision & Articulation</strong>
+                                <small>Communicates idealized future significantly better than present; uses rhetoric, stories, symbols</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Unconventional Behaviour</strong>
+                                <small>Acts in novel, counter-normative ways; demonstrates courage, risk-taking, defies norms</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">CHARISMATIC STYLES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Visionary Charisma</strong>
+                                <small>Power from compelling future vision. India: APJ Abdul Kalam - "India 2020 Vision"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Crisis-Based Charisma</strong>
+                                <small>Extraordinary influence emerges in crisis. India: Modi post-Uri surgical strikes (2016); Churchill WWII</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Reformist Charisma</strong>
+                                <small>Directed toward systemic reform, social justice. India: B.R. Ambedkar, Jayaprakash Narayan</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Ethical/Servant Charisma</strong>
+                                <small>Influence through moral example & service. India: Mahatma Gandhi - non-violence, personal sacrifice</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">⚠️ DARK SIDE OF CHARISMA (CRITICAL FOR MAINS)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Leader Hubris</strong>
+                                <small>Over-confidence ignores contrary evidence >> catastrophic decisions (Enron's Skilling, Theranos's Elizabeth Holmes)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Follower Dependency</strong>
+                                <small>Followers CANNOT function without leader >> institutional fragility >> Leadership Vacuum problem. Succession crisis</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Suppression of Dissent</strong>
+                                <small>Charisma silences legitimate criticism; followers fear contradicting leader; echo chambers form</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Ethical Hazard</strong>
+                                <small>Personal agendas pursued under collective vision; followers uncritically follow leader's moral compass (Rajneesh cult)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>India Context</strong>
+                                <small>Both democracy AND corporate governance face risk of charismatic leaders weakening institutional mechanisms. 2nd ARC & Companies Act 2013 governance codes address this</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 6 of 9</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 7: INTEGRATIVE MODEL & CONTEXT -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🔗 INTEGRATIVE MODEL & LEADERSHIP VACUUM</div>
+        <div class="page-subtitle">Synthesis of Leadership Components (PYQ 2018, 2021)</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">INTEGRATION</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">INTEGRATIVE MODEL</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Leader Traits & Attributes</strong>
+                                <small>Cognitive ability, Big Five personality, values, integrity - the 'raw material' of leadership</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Leader Behaviours</strong>
+                                <small>Task vs Relationship orientation; observable actions that constitute leadership (Managerial Grid, Likert)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Situational Context</strong>
+                                <small>Task structure, follower maturity, culture, crisis, uncertainty - determines what behaviours are effective</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Follower Characteristics</strong>
+                                <small>Needs, ability, motivation, expectations - leadership is CO-PRODUCTION between leader and led</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Outcomes</strong>
+                                <small>Individual + group performance, satisfaction, commitment, innovation, culture change - measure leadership effectiveness</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">LEADERSHIP VACUUM - DOUBLE-EDGED SWORD</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Positive Edge</strong>
+                                <small>Vacuum can stimulate distributed leadership; subordinates develop initiative, self-management, resilience. Teams innovate freely without leader constraints</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Negative Edge (More Common)</strong>
+                                <small>Without direction, teams drift into conflict, duplication, goal displacement. Ambiguity breeds anxiety >> reduced performance (Low Expectancy). Opportunistic individuals exploit</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>India PSU Context</strong>
+                                <small>Leadership transitions (delayed CMD appointments) trigger policy paralysis - NEGATIVE edge dominates in high power-distance cultures where followers await top direction</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Critical Factor</strong>
+                                <small>Depends on follower maturity (Hersey-Blanchard). High maturity (R4) >> distributed works. Low maturity (R1) >> vacuum causes chaos</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">LEADERSHIP ACROSS SECTORS</div>
+                        <div class="topics">
+                            <div class="topic priority-mid">
+                                <strong>Government / PSUs</strong>
+                                <small>System 1-2 (Likert), Directive. Hierarchical, rule-bound. 2nd ARC recommends shift toward participative. High power distance dominant</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>IT / Tech Companies</strong>
+                                <small>Achievement-oriented + Participative (Path-Goal). Flat hierarchies, agile. Transformational from founders (Narayana Murthy, N.R. Narayana)</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Armed Forces / Police</strong>
+                                <small>Directive (operational) + Transformational (motivational). Unit pride, mission clarity, esprit de corps. Life-and-death stakes</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Family Businesses</strong>
+                                <small>Paternalistic (System 2). Charismatic founder; succession crisis when departing. Tata shows positive succession planning model</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Startups</strong>
+                                <small>Strongly transformational + visionary. Risk-taking, innovation culture. Challenge: scaling leadership beyond founder stage</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 7 of 9</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 8: CURRENT AFFAIRS & INDIA CONTEXT -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🇮🇳 CURRENT AFFAIRS 2024-25 & INDIA LEADERSHIP CONTEXT</div>
+        <div class="page-subtitle">Modern Applications & Cultural Considerations</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">CURRENT</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CURRENT AFFAIRS 2024-25</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>PM Modi's Leadership Style</strong>
+                                <small>Analysed as transformational + charismatic - vision (Make in India, Atmanirbhar Bharat) + crisis response (COVID, surgical strikes)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>AI Leadership Challenge</strong>
+                                <small>Leaders must motivate in hybrid/remote settings - Intellectual Stimulation (4th I) MORE important than ever in virtual world</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>G20 Sherpa Amitabh Kant</strong>
+                                <small>Achievement-oriented leadership in India's multilateral diplomacy - clear goals, high expectations</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>ISRO Leadership (S. Somanath)</strong>
+                                <small>Collective transformational leadership - Chandrayaan-3, Aditya-L1 success 2023 shows shared vision, team empowerment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Lateral Entry in Civil Services</strong>
+                                <small>Challenges traditional directive culture - Hersey-Blanchard S3-S4 approaches needed for expert lateral entrants (high ability)</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">INDIA'S CULTURAL DIMENSIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>High Power Distance (Hofstede)</strong>
+                                <small>Subordinates expect directive leadership; hierarchy is natural. Participative approaches face cultural resistance in traditional orgs</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Collectivist Culture</strong>
+                                <small>Group harmony, team loyalty, respect for elder/senior >> transformational vision around collective goals resonates more than individual achievement</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Historical Colonial Legacy</strong>
+                                <small>Top-down command structure embedded in institutions (government, military, PSUs). Shift toward participative is gradual, generational</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Caste & Social Hierarchies</strong>
+                                <small>Intersect with power distance - traditional hierarchies reinforce autocratic styles. Progressive organisations intentionally dismantle this</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">CHALLENGES & IMPLICATIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Government / PSU Challenge</strong>
+                                <small>Directive (System 1-2) still dominant despite 2nd ARC recommendations for participative (System 4). Change slow, requires leadership training, cultural shift</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Succession Planning Gaps</strong>
+                                <small>Concentrated power in founder/top leader >> vacuum when they depart. Tata model of planned succession is exception. Family businesses struggle</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Distributed Leadership Opportunity</strong>
+                                <small>Younger generation (IT, startups) more comfortable with distributed, collaborative leadership. Gap between sectors growing</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 8 of 9</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 9: PYQ ANALYSIS & EXAM CHECKLIST -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📋 PYQ ANALYSIS & FINAL EXAM CHECKLIST</div>
+        <div class="page-subtitle">Past Questions & Last-Minute Preparation</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">EXAM</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">PYQ COVERAGE (2014-2024)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>2024 (10M)</strong>
+                                <small>Transactional vs Transformational - 5-dimension comparison; 4 I's; Augmentation Effect</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2024 (10M)</strong>
+                                <small>Path-Goal Theory - 4 styles; contingency variables; Vroom linkage; strengths/weaknesses</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2023 (10M)</strong>
+                                <small>Transformational Leadership - short note - Burns, Bass, 4 I's, India examples</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2022 (20M)</strong>
+                                <small>Fiedler vs Hersey-Blanchard - LPC; R1-R4/S1-S4; 6-dimension comparison; India application</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2021 (10M)</strong>
+                                <small>Integrative Model + Likert's 4 Systems - 5 components; System 4 ideal; India context</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2020 (20M)</strong>
+                                <small>Path-Goal - 4 styles; contingency variables; critical evaluation; IAS officer examples</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2019 (10M)</strong>
+                                <small>Managerial Grid - 5 styles with coordinates; (9,9) ideal; India training applications</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2018 (20M) ×2</strong>
+                                <small>Q1: Contingency (Fiedler) vs Hersey-Blanchard; Q2: Charismatic leadership + dark side + 2nd ARC</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2017 (10M)</strong>
+                                <small>Trait theory - Stogdill; 4 weaknesses; Big Five revival</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2015 (10M)</strong>
+                                <small>Managerial Grid - India application in government training</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2014 (20M)</strong>
+                                <small>Behavioural theories + Likert - systems comparison and India context</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">MUST-KNOW FRAMEWORKS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>✓ Managerial Grid (9×9)</strong>
+                                <small>All 5 styles with coordinates; (9,9) Team Management as ideal</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Likert's 4 Systems</strong>
+                                <small>System 1-4; System 4 participative as ideal; characteristics of each</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Hersey-Blanchard</strong>
+                                <small>R1-R4 maturity; S1-S4 styles; match principle</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Path-Goal</strong>
+                                <small>4 styles (Directive, Supportive, Participative, Achievement); contingency variables</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Transformational 4 I's</strong>
+                                <small>Idealised (Charisma), Inspirational (Vision), Intellectual (Challenge), Individual (Mentoring)</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">ANSWER STRUCTURE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>20M Structure</strong>
+                                <small>Intro >> Describe frameworks/styles >> Compare/Contrast (if asked) >> Critical evaluation >> India/current affairs context >> Conclusion</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>10M Structure</strong>
+                                <small>Definition >> 3-4 key components >> brief example >> conclusion</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Always Include</strong>
+                                <small>India context (power distance, collectivism, government sector) + Current affairs (Modi, ISRO, lateral entry, 2nd ARC)</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">LAST-MINUTE CHECKLIST ✓</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>✓ All 5 Grid styles with coordinates memorised</strong>
+                                <small>(1,1), (9,1), (1,9), (5,5), (9,9)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Hersey-Blanchard R1-R4 and S1-S4 match</strong>
+                                <small>Tell, Coach, Participate, Delegate</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Transformational 4 I's with India examples</strong>
+                                <small>Modi, ISRO, Ambedkar, Gandhi</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Fiedler vs H-B key difference</strong>
+                                <small>Fixed vs Flexible style</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Path-Goal 4 styles</strong>
+                                <small>Directive, Supportive, Participative, Achievement</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Charisma dark side</strong>
+                                <small>Hubris, dependency, suppression of dissent, ethical hazard</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">EXAM DAY CONFIDENCE</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>This is rigorous science:</strong> Leadership theories are empirically tested. Write with authority and frameworks</strong></div>
+                        <div class="explanation-item"><strong>Always contextualize:</strong> India's power distance, collectivism, government sector dynamics - shows sophisticated understanding</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 9 of 9</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
