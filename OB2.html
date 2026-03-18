@@ -29,12 +29,15 @@
 
         @media print {
             body {
-                size: landscape;
+                margin: 0;
+                padding: 0;
             }
             .page {
                 page-break-after: always;
                 width: 297mm;
                 height: 210mm;
+                margin: 0;
+                padding: 0;
             }
         }
 
@@ -44,29 +47,31 @@
             color: var(--text-dark);
             line-height: 1.6;
             padding: 0;
-            min-width: 1400px;
+            margin: 0;
         }
 
         .page {
-            min-height: 100vh;
-            padding: 80px 60px 80px 60px;
+            width: 297mm;
+            height: 210mm;
+            padding: 35px 35px;
             display: flex;
             flex-direction: column;
             position: relative;
             border-bottom: 3px dashed var(--coral);
+            overflow: hidden;
+            margin: 0;
         }
 
         .page::before {
             content: '';
             position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 150px;
-            height: 150px;
+            top: 15px;
+            right: 15px;
+            width: 100px;
+            height: 100px;
             background: radial-gradient(circle, var(--coral) 0%, transparent 70%);
-            opacity: 0.15;
+            opacity: 0.1;
             border-radius: 50%;
-            animation: pulse 4s ease-in-out infinite;
         }
 
         @keyframes pulse {
@@ -108,8 +113,63 @@
         .mindmap-container {
             flex: 1;
             display: flex;
-            gap: 40px;
+            flex-direction: row;
+            gap: 12px;
             animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            overflow: hidden;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+            overflow: hidden;
+        }
+
+        .content-area {
+            flex: 0 0 66%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow-y: auto;
+        }
+
+        .notes-area {
+            flex: 0 0 34%;
+            background: white;
+            border-radius: 14px;
+            padding: 16px;
+            box-shadow: 0 6px 18px rgba(255, 107, 107, 0.12);
+            border: 3px dashed var(--coral);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .notes-area::before {
+            content: '📝 NOTES';
+            position: absolute;
+            top: -13px;
+            left: 16px;
+            background: var(--coral-deep);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.8px;
+            z-index: 10;
+        }
+
+        .notes-area::after {
+            content: '';
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            width: 40px;
+            height: 40px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23FFE5D9" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>') center/contain no-repeat;
+            opacity: 0.2;
         }
 
         .content-area {
