@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TA, Organisational Effectiveness & Change Management - Mindmap</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --warm-cream: #FFF8F0;
+            --peach-light: #FFE5D9;
+            --coral: #FF9B85;
+            --coral-deep: #FF6B6B;
+            --terracotta: #D68C6E;
+            --sand: #F4E4C1;
+            --sage: #A8C090;
+            --mint: #8BD3C4;
+            --lavender: #C49ECE;
+            --warm-yellow: #FFD166;
+            --text-dark: #3D3D3D;
+            --text-muted: #6B6B6B;
+        }
+
+        @media print {
+            body {
+                size: landscape;
+            }
+            .page {
+                page-break-after: always;
+                width: 297mm;
+                height: 210mm;
+            }
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--warm-cream) 0%, var(--peach-light) 100%);
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 0;
+            min-width: 1400px;
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 80px 60px 80px 60px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border-bottom: 3px dashed var(--coral);
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--coral) 0%, transparent 70%);
+            opacity: 0.15;
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.1); opacity: 0.25; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 900;
+            color: var(--coral-deep);
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(255, 107, 107, 0.1);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 60px;
+            font-style: italic;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .mindmap-container {
+            flex: 1;
+            display: flex;
+            gap: 40px;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .content-area {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .notes-area {
+            flex: 1;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(255, 107, 107, 0.1);
+            border: 3px dashed var(--coral);
+            position: relative;
+            min-height: 400px;
+        }
+
+        .notes-area::before {
+            content: '📝 NOTES';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: var(--coral-deep);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .notes-area::after {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23FFE5D9" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>') center/contain no-repeat;
+            opacity: 0.3;
+        }
+
+        .central-node {
+            background: linear-gradient(135deg, var(--coral-deep), var(--coral));
+            color: white;
+            padding: 30px 50px;
+            border-radius: 30px;
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            margin: 20px auto;
+            max-width: fit-content;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .central-node::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .central-node:hover {
+            transform: scale(1.05);
+        }
+
+        .branch-container {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .branch {
+            position: relative;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .branch:nth-child(1) { animation-delay: 0.1s; }
+        .branch:nth-child(2) { animation-delay: 0.2s; }
+        .branch:nth-child(3) { animation-delay: 0.3s; }
+        .branch:nth-child(4) { animation-delay: 0.4s; }
+
+        .branch-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--coral-deep);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .node {
+            background: white;
+            padding: 18px 25px;
+            border-radius: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--coral);
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .node:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.2);
+        }
+
+        .node.color-sage { border-left-color: var(--sage); }
+        .node.color-mint { border-left-color: var(--mint); }
+        .node.color-lavender { border-left-color: var(--lavender); }
+        .node.color-terracotta { border-left-color: var(--terracotta); }
+        .node.color-yellow { border-left-color: var(--warm-yellow); }
+
+        .node strong {
+            color: var(--coral-deep);
+            font-weight: 700;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-top: 6px solid var(--coral);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.15);
+        }
+
+        .card.sage { border-top-color: var(--sage); }
+        .card.mint { border-top-color: var(--mint); }
+        .card.lavender { border-top-color: var(--lavender); }
+        .card.terracotta { border-top-color: var(--terracotta); }
+        .card.yellow { border-top-color: var(--warm-yellow); }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--coral-deep);
+            margin-bottom: 15px;
+        }
+
+        .card-content {
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .section-header {
+            background: linear-gradient(90deg, var(--coral-deep), transparent);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-size: 22px;
+            font-weight: 700;
+            margin: 30px 0 20px 0;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+        }
+
+        .cluster {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 25px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            border: 2px solid var(--peach-light);
+        }
+
+        .cluster-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--coral-deep);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--coral);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 5px;
+            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.2);
+        }
+
+        .tag.sage { background: var(--sage); }
+        .tag.mint { background: var(--mint); }
+        .tag.lavender { background: var(--lavender); }
+        .tag.terracotta { background: var(--terracotta); }
+
+        .title-page {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--peach-light) 0%, var(--sand) 50%, var(--warm-cream) 100%);
+        }
+
+        .title-page .page-title {
+            font-size: 72px;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, var(--coral-deep), var(--coral), var(--terracotta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .decorative-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--coral);
+            top: 10%;
+            left: 5%;
+        }
+
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--sage);
+            bottom: 15%;
+            right: 8%;
+        }
+
+        .circle-3 {
+            width: 150px;
+            height: 150px;
+            background: var(--lavender);
+            top: 50%;
+            right: 20%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TITLE PAGE -->
+    <div class="page title-page">
+        <div class="decorative-circle circle-1"></div>
+        <div class="decorative-circle circle-2"></div>
+        <div class="decorative-circle circle-3"></div>
+        <h1 class="page-title">TA, ORGANISATIONAL EFFECTIVENESS & CHANGE MANAGEMENT</h1>
+        <p class="page-subtitle">Building Effective Communications, Positive Organizations, and Managing Transformation</p>
+    </div>
+
+    <!-- PAGE 1: Transactional Analysis -->
+    <div class="page">
+        <h2 class="page-title">Transactional Analysis (TA)</h2>
+        <div class="mindmap-container">
+            <div class="content-area">
+                <!-- Ego States -->
+                <div class="cluster">
+                    <div class="cluster-title">👤 EGO STATES</div>
+                    
+                    <div class="central-node">TRANSACTIONAL ANALYSIS</div>
+
+                    <div class="section-header">Three Core Ego States</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Parent (Critical & Nurturing)</div>
+                            <div class="card-content">
+                                <strong>Introjected:</strong> Internalized voices of parents/authority figures. Contains values, rules, shoulds and shouldn'ts<br>
+                                <strong>Critical Parent:</strong> Judgmental, fault-finding, controlling<br>
+                                <strong>Nurturing Parent:</strong> Caring, supportive, protective
+                            </div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Adult (Rational & Objective)</div>
+                            <div class="card-content">
+                                Logical, data-driven, problem-solving state. Processes information objectively without emotional bias. Makes rational decisions based on facts. The mature, responsible part of personality. Best for decision-making and conflict resolution
+                            </div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Child (Natural & Adapted)</div>
+                            <div class="card-content">
+                                <strong>Natural Child:</strong> Spontaneous, creative, playful, emotional, intuitive, rebellious<br>
+                                <strong>Adapted Child:</strong> Learned to comply, conform, suppress natural impulses. "Good behavior," follows rules
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">Healthy Balance</div>
+                    <div class="node color-terracotta" style="font-size: 15px; padding: 20px;">
+                        <strong>Effective people use all three ego states situationally.</strong> Parent for guidance, Adult for problem-solving, Child for creativity. Problems arise when stuck in one state
+                    </div>
+                </div>
+
+                <!-- Transaction Types -->
+                <div class="cluster">
+                    <div class="cluster-title">🔄 TRANSACTION TYPES</div>
+                    
+                    <div class="section-header">How Ego States Interact</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Complementary Transactions</div>
+                            <div class="card-content">Parallel flow between ego states. Person 1 addresses ego state, Person 2 responds from that same state. Communication flows smoothly. "I have a problem" (Adult) → "Let me help" (Adult). No conflict</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Crossed Transactions</div>
+                            <div class="card-content">Lines cross. Expected response doesn't match actual response. Breakdown in communication. "Why are you so careless?" (Critical Parent) → "I'm not careless!" (Natural Child). Results in conflict and misunderstanding</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Ulterior (Hidden) Transactions</div>
+                            <div class="card-content">Hidden psychological message beneath social message. "Why don't you come to my place for coffee?" (Adult on surface, seductive Child underneath). Games played where real message is different from stated message</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Life Positions -->
+                <div class="cluster">
+                    <div class="cluster-title">✅ LIFE POSITIONS (I'M OK, YOU'RE OK)</div>
+                    
+                    <div class="section-header">Four Basic Positions</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">I'm OK, You're OK (Ideal)</div>
+                            <div class="card-content">Healthy, balanced position. I accept myself and respect others. Mutual respect and collaboration. Open to feedback. Trusting. Builds strong relationships and effective organizations</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">I'm OK, You're Not OK (Arrogant)</div>
+                            <div class="card-content">Superiority position. "I'm right, you're wrong." Dismissive of others' views. Authoritarian, controlling, blames others for problems. Creates resentment and conflict</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">I'm Not OK, You're OK (Inferior)</div>
+                            <div class="card-content">Subordinate position. "You're better than me." Seeks approval from others. Low self-esteem, dependent. Avoids decisions, always blames self. Creates learned helplessness</div>
+                        </div>
+
+                        <div class="card lavender">
+                            <div class="card-title">I'm Not OK, You're Not OK (Nihilistic)</div>
+                            <div class="card-content">Hopeless, defeated position. "Nothing matters." Gives up on self and others. Pessimistic, cynical, withdrawn. Most destructive. Associated with depression and burnout</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Johari Window & Strokes -->
+                <div class="cluster">
+                    <div class="cluster-title">🪟 JOHARI WINDOW & STROKES</div>
+                    
+                    <div class="section-header">Self-Awareness for Better Communication</div>
+                    <div class="grid-layout">
+                        <div class="card terracotta">
+                            <div class="card-title">Johari Window Quadrants</div>
+                            <div class="card-content">
+                                <span class="tag terracotta">Open</span> Known to self and others<br>
+                                <span class="tag terracotta">Blind</span> Unknown to self, known to others<br>
+                                <span class="tag terracotta">Hidden</span> Known to self, hidden from others<br>
+                                <span class="tag terracotta">Unknown</span> Unknown to both
+                            </div>
+                        </div>
+
+                        <div class="card yellow">
+                            <div class="card-title">Strokes: Units of Recognition</div>
+                            <div class="card-content">
+                                Smallest units of human recognition/attention. Positive strokes (praise, attention) build esteem. Negative strokes better than no strokes. Unconditional strokes value person; conditional value actions. Critical for human motivation
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: Organisational Effectiveness -->
+    <div class="page">
+        <h2 class="page-title">Organisational Effectiveness (OE)</h2>
+        <div class="mindmap-container">
+            <div class="content-area">
+                <!-- OE Models -->
+                <div class="cluster">
+                    <div class="cluster-title">📊 ORGANISATIONAL EFFECTIVENESS MODELS</div>
+                    
+                    <div class="central-node">MEASURING EFFECTIVENESS</div>
+
+                    <div class="section-header">Five Major Models</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Goal Attainment Model</div>
+                            <div class="card-content">Effectiveness = extent organization achieves its stated goals and objectives. Simple, intuitive. Limitation: not all important outcomes are formal goals. Gaming/goal displacement risk</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Systems Resource Model</div>
+                            <div class="card-content">Effectiveness = ability to acquire and manage resources. Inputs (capital, talent), processes, outputs. Organization effective if it secures resources and uses them efficiently. Resource-centric view</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Internal Process Model</div>
+                            <div class="card-content">Effectiveness = smooth, efficient internal functioning. Communication, coordination, employee satisfaction, low conflict. Focus on organizational health and harmony. Culture and relationships matter</div>
+                        </div>
+
+                        <div class="card lavender">
+                            <div class="card-title">Strategic Constituencies Model</div>
+                            <div class="card-content">Effectiveness = satisfying all stakeholders (employees, customers, shareholders, community). Balanced approach. Must please diverse groups. Acknowledges multiple perspectives of effectiveness</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Quinn's Competing Values Framework</div>
+                            <div class="card-content">Four competing models: Rational goal (productivity), internal process (stability), human relations (morale), open systems (innovation). Effective orgs balance all four. No single best model</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Positive Psychology -->
+                <div class="cluster">
+                    <div class="cluster-title">✨ POSITIVE PSYCHOLOGY & OE</div>
+                    
+                    <div class="section-header">PERMA Model (Seligman)</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">P - Positive Emotions</div>
+                            <div class="card-content">Happiness, contentment, joy in work. Contribute to engagement and performance. Optimistic work environment builds morale</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">E - Engagement</div>
+                            <div class="card-content">Absorption in work, flow state, focus. Time flies when engaged. Peak performance happens in engagement. Work feels meaningful and challenging</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">R - Relationships</div>
+                            <div class="card-content">Quality connections, supportive colleagues, trust. Strong relationships are core human need. Communities thrive on relationships</div>
+                        </div>
+
+                        <div class="card lavender">
+                            <div class="card-title">M - Meaning</div>
+                            <div class="card-content">Purpose, contribution to something larger. Work connected to values. Meaning drives commitment and motivation. Why we do work matters</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">A - Accomplishment</div>
+                            <div class="card-content">Achievement, progress, mastery. Goals reached, competence felt. Sense of getting better and advancing</div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">Psychological Capital (HERO)</div>
+                    <div class="branch-container">
+                        <div class="node color-yellow">
+                            <strong>Hope:</strong> Goal-directed energy. I can find path to success
+                        </div>
+                        <div class="node color-coral">
+                            <strong>Efficacy:</strong> Confidence in ability to succeed. I can do this
+                        </div>
+                        <div class="node color-sage">
+                            <strong>Resilience:</strong> Bounce back from setbacks. I can overcome challenges
+                        </div>
+                        <div class="node color-mint">
+                            <strong>Optimism:</strong> Positive outlook about future. Good things will happen
+                        </div>
+                    </div>
+
+                    <div class="section-header">Flow & OCB</div>
+                    <div class="grid-layout">
+                        <div class="card lavender">
+                            <div class="card-title">Flow States (Csikszentmihalyi)</div>
+                            <div class="card-content">Condition: Challenge-skill balance. Neither bored nor anxious. Complete absorption. Peak performance and satisfaction. Organizations should design work for flow</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Organisational Citizenship Behaviour</div>
+                            <div class="card-content">Voluntary, discretionary helping behavior. Go beyond job requirements. Assist colleagues, organizational loyalty, positive attitude. Sign of genuine engagement and positive psychology</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SOB-C Model -->
+                <div class="cluster">
+                    <div class="cluster-title">🔄 SOB-C MODEL</div>
+                    
+                    <div class="section-header">Stimulus–Organism–Behaviour–Consequence</div>
+                    <div class="node color-coral" style="font-size: 15px; padding: 20px;">
+                        <strong>S → O → B → C Framework:</strong> Stimulus triggers individual (organism) responses based on perception, values, beliefs, leading to behavior, which has consequences. Understanding this chain enables better management and prediction
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: Change Management -->
+    <div class="page">
+        <h2 class="page-title">Management of Change</h2>
+        <div class="mindmap-container">
+            <div class="content-area">
+                <!-- Change Models -->
+                <div class="cluster">
+                    <div class="cluster-title">📈 CORE CHANGE MANAGEMENT MODELS</div>
+                    
+                    <div class="central-node">MANAGING CHANGE</div>
+
+                    <div class="section-header">Classic & Contemporary Models</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Lewin's 3-Step Model</div>
+                            <div class="card-content">
+                                <strong>1. Unfreeze:</strong> Create awareness need for change. Challenge status quo, increase dissatisfaction with current state<br>
+                                <strong>2. Move:</strong> Transition period. New behaviors, learning, experimentation<br>
+                                <strong>3. Refreeze:</strong> Stabilize new state. Reinforce, make permanent
+                            </div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Force Field Analysis</div>
+                            <div class="card-content">Identifies driving forces (push change forward) and restraining forces (resist change). Increase driving forces or decrease restraining forces. Understand opposition to manage it</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Kotter's 8-Step Model</div>
+                            <div class="card-content">
+                                <span class="tag mint">Create urgency</span>
+                                <span class="tag mint">Build coalition</span>
+                                <span class="tag mint">Form vision</span>
+                                <span class="tag mint">Communicate</span>
+                                <span class="tag mint">Empower action</span>
+                                <span class="tag mint">Create wins</span>
+                                <span class="tag mint">Consolidate</span>
+                                <span class="tag mint">Embed culture</span>
+                            </div>
+                        </div>
+
+                        <div class="card lavender">
+                            <div class="card-title">Adaptive Coping Cycle</div>
+                            <div class="card-content">From Sense (notice change needed) → Interpret (understand implications) → Decide (what to do) → Act (implement) → Evaluate (assess results) → Continuous learning cycle</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resistance to Change -->
+                <div class="cluster">
+                    <div class="cluster-title">⚠️ RESISTANCE TO CHANGE</div>
+                    
+                    <div class="section-header">Individual Factors</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Habit & Comfort</div>
+                            <div class="card-content">Comfort with current state. Change requires energy and learning. Easier to continue doing familiar things. Inertia is powerful force against change</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Insecurity & Fear</div>
+                            <div class="card-content">Fear of losing job, skills becoming obsolete, unable to learn new ways. Uncertainty about future. Anxiety about competence in new environment</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Misperception</div>
+                            <div class="card-content">Misunderstanding change rationale. Hearing rumors instead of facts. Assuming worst-case scenarios. Poor communication amplifies perception problems</div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">Organisational Factors</div>
+                    <div class="grid-layout">
+                        <div class="card lavender">
+                            <div class="card-title">Structural Inertia</div>
+                            <div class="card-content">Systems, procedures, rules designed for old way. Slow to change even when intent is there. Bureaucracy resists change. Policies reinforce status quo</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Power Threats</div>
+                            <div class="card-content">Those losing power resist change. Hierarchy threatened by empowerment. Middle managers may resist if change reduces their authority or scope</div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">Overcoming Resistance</div>
+                    <div class="branch-container">
+                        <div class="node color-yellow">
+                            <strong>Education & Communication:</strong> Share rationale, benefits, plans. Reduce rumors and misperceptions
+                        </div>
+                        <div class="node color-coral">
+                            <strong>Participation & Involvement:</strong> Include people in planning. Ownership increases support
+                        </div>
+                        <div class="node color-sage">
+                            <strong>Support & Training:</strong> Build capability for new ways. Reduce fear through preparation
+                        </div>
+                        <div class="node color-mint">
+                            <strong>Incentives & Rewards:</strong> Reinforce new behaviors. Show early wins
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indian Context -->
+                <div class="cluster">
+                    <div class="cluster-title">🇮🇳 CHANGE MANAGEMENT IN INDIAN CONTEXT</div>
+                    
+                    <div class="section-header">Major Change Initiatives</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Digital India & GeM</div>
+                            <div class="card-content">Digital transformation initiatives. Government e-Marketplace (GeM) digitizing procurement. Significant organizational and process changes. Requires technology adoption and new ways of working</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Mission Karmayogi</div>
+                            <div class="card-content">Civil service reform. Competency-based approach replacing seniority. New appraisal systems (APAR reform). Significant cultural shift needed from traditional hierarchical system</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">PSU Restructuring & Disinvestment</div>
+                            <div class="card-content">Government restructuring public sector units. Mergers, privatization, strategic selling. Massive changes in employment, organizational structure, corporate culture</div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">Challenges in Indian Context</div>
+                    <div class="node color-lavender" style="font-size: 14px; padding: 20px;">
+                        High power distance makes change messaging difficult. Hierarchical structure slow to adapt. Union opposition to changes affecting workers. Public sector change faces bureaucratic inertia. Need to balance change with political pressures and cultural sensitivity
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+    <!-- FINAL PAGE: Summary -->
+    <div class="page" style="border-bottom: none;">
+        <h2 class="page-title">Complete Overview</h2>
+        <div class="mindmap-container">
+            <div class="content-area">
+                <div class="cluster">
+                    <div style="text-align: center; margin: 40px 0;">
+                        <div class="central-node" style="font-size: 32px; padding: 40px 60px;">
+                            TA, ORGANISATIONAL<br>EFFECTIVENESS &<br>CHANGE MANAGEMENT
+                        </div>
+                    </div>
+
+                    <div class="grid-layout" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="card coral">
+                            <div class="card-title">👤 TA Basics</div>
+                            <div class="card-content">Ego states, transactions, positions</div>
+                        </div>
+                        <div class="card sage">
+                            <div class="card-title">🪟 Awareness</div>
+                            <div class="card-content">Johari Window and strokes</div>
+                        </div>
+                        <div class="card mint">
+                            <div class="card-title">📊 OE Models</div>
+                            <div class="card-content">Goal, systems, process, stakeholder</div>
+                        </div>
+                        <div class="card lavender">
+                            <div class="card-title">✨ Positive Psychology</div>
+                            <div class="card-content">PERMA, HERO, flow, OCB</div>
+                        </div>
+                        <div class="card terracotta">
+                            <div class="card-title">📈 Change Models</div>
+                            <div class="card-content">Lewin, Kotter, force field</div>
+                        </div>
+                        <div class="card yellow">
+                            <div class="card-title">🇮🇳 Indian Change</div>
+                            <div class="card-content">Digital, Karmayogi, PSU reform</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 60px; text-align: center; color: var(--text-muted); font-style: italic;">
+                        <p style="font-size: 18px;">From understanding human interactions to building effective organizations managing transformation</p>
+                        <p style="font-size: 16px; margin-top: 20px;">TA, OE, and Change Management as integrated framework for organizational excellence and continuous improvement</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+</body>
+</html>
