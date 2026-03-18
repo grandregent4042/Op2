@@ -3,289 +3,1526 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organisational Design & Contingency</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Organisational Design - Complete Mindmap</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --primary-coral: #FF6B6B;
-            --primary-coral-light: #FFE5E5;
-            --secondary-teal: #14B8A6;
-            --secondary-teal-light: #CCEFF5;
-            --accent-lavender: #C49ECE;
-            --accent-sage: #A8C090;
-            --accent-mint: #8BD3C4;
-            --text-dark: #2D2D2D;
-            --bg-cream: #FFF8F0;
-            --border-color: #FFD9D9;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        @page { size: A4 landscape; margin: 0; }
-        html { scroll-behavior: smooth; }
-        body { background: linear-gradient(135deg, var(--bg-cream) 0%, #FFF0E6 100%); font-family: 'Poppins', sans-serif; color: var(--text-dark); overflow-x: hidden; }
-        .pages-container { display: flex; flex-direction: column; }
-        .page-spread { display: flex; width: 100%; min-height: 100vh; page-break-after: always; }
-        .content-column { flex: 2; padding: 28px 24px 28px 28px; background: white; overflow-y: auto; border-right: 3px dashed var(--border-color); display: flex; flex-direction: column; }
-        .notes-column { flex: 1; padding: 28px 24px; background: linear-gradient(135deg, rgba(255,107,107,0.03) 0%, rgba(255,155,133,0.03) 100%); border: 3px dashed var(--primary-coral); display: flex; flex-direction: column; }
-        .page-header { margin-bottom: 16px; padding-bottom: 10px; border-bottom: 3px solid var(--primary-coral); }
-        .topic-number { font-size: 11px; font-weight: 700; color: var(--primary-coral); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
-        .page-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--text-dark); line-height: 1.2; }
-        .content-body { flex: 1; margin-bottom: 15px; overflow-y: auto; padding-right: 10px; }
-        .notes-label { font-size: 11px; font-weight: 700; color: var(--primary-coral); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid var(--primary-coral); }
-        .notes-space { flex: 1; background: white; border: 2px dashed var(--primary-coral); border-radius: 8px; padding: 15px; opacity: 0.6; }
-        .topic-tag { display: inline-block; background: var(--primary-coral); color: white; padding: 4px 10px; border-radius: 20px; font-size: 9px; font-weight: 600; margin-bottom: 10px; }
-        .section-title { font-size: 12px; font-weight: 700; color: var(--primary-coral); margin-top: 12px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
-        .content-box { background: linear-gradient(135deg, rgba(255,107,107,0.07) 0%, rgba(255,155,133,0.07) 100%); border-left: 4px solid var(--primary-coral); padding: 9px 10px; margin-bottom: 8px; border-radius: 6px; font-size: 11px; line-height: 1.4; }
-        .content-box strong { color: var(--primary-coral); }
-        .key-point { display: flex; gap: 8px; margin-bottom: 7px; font-size: 11px; line-height: 1.3; }
-        .key-point::before { content: "→"; color: var(--primary-coral); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 8px; }
-        .grid-card { background: white; border: 2px solid var(--border-color); border-radius: 7px; padding: 8px; font-size: 10px; line-height: 1.3; }
-        .grid-card-title { font-weight: 700; color: var(--primary-coral); margin-bottom: 4px; font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .model-box { background: linear-gradient(135deg, var(--secondary-teal-light) 0%, rgba(20,184,166,0.05) 100%); border: 2px solid var(--secondary-teal); border-radius: 7px; padding: 9px; margin-bottom: 8px; font-size: 11px; line-height: 1.3; }
-        .model-box-title { font-weight: 700; color: var(--secondary-teal); margin-bottom: 5px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .definition-box { background: linear-gradient(135deg, var(--accent-lavender), rgba(196,158,206,0.1)); border: 2px solid var(--accent-lavender); border-radius: 7px; padding: 9px; margin-bottom: 8px; font-size: 11px; line-height: 1.3; }
-        .definition-box strong { color: var(--accent-lavender); }
-        .scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--primary-coral); z-index: 1000; transition: width 0.1s ease; }
-        .scroll-hint { position: fixed; bottom: 20px; right: 20px; font-size: 12px; color: var(--primary-coral); opacity: 0.4; font-weight: 600; }
-        @media print { .scroll-progress, .scroll-hint { display: none; } }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-cream); }
-        ::-webkit-scrollbar-thumb { background: var(--primary-coral); border-radius: 4px; }
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: white;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.8fr 1fr;
+            page-break-after: always;
+            break-after: page;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Left side - Mindmap */
+        .mindmap-section {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            background: white;
+            border-right: 2px solid #ddd;
+            overflow: visible;
+        }
+
+        /* Right side - Notes */
+        .notes-section {
+            background: #f9f9f9;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .notes-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .notes-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .note-line {
+            border-bottom: 1px dotted #bbb;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            color: #667eea;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 6px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 4px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #999;
+            font-size: 0.65em;
+            margin-bottom: 8px;
+        }
+
+        /* Mindmap - Vertical Layout */
+        .mindmap-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow: visible;
+        }
+
+        .mindmap-row {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .central-node {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+            white-space: normal;
+            flex-shrink: 0;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+            width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75em;
+            line-height: 1.1;
+            min-height: 70px;
+        }
+
+        .branches-container {
+            display: flex;
+            gap: 6px;
+            flex: 1;
+            overflow: visible;
+        }
+
+        .branch {
+            background: white;
+            border: 1.5px solid #667eea;
+            border-radius: 5px;
+            padding: 6px;
+            min-width: 110px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .branch-title {
+            background: #667eea;
+            color: white;
+            padding: 5px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 0.65em;
+            margin-bottom: 5px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .topics {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            overflow: visible;
+        }
+
+        .topic {
+            padding: 4px;
+            background: #f0f4ff;
+            border-left: 2px solid #667eea;
+            border-radius: 2px;
+            font-size: 0.65em;
+            line-height: 1.2;
+            flex-shrink: 0;
+        }
+
+        .topic strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 1px;
+            font-size: 0.9em;
+        }
+
+        .topic small {
+            color: #666;
+            font-size: 0.85em;
+        }
+
+        .priority-high {
+            background: #ffe5e5;
+            border-left: 2px solid #ff6b6b;
+        }
+
+        .priority-high strong {
+            color: #ff6b6b;
+        }
+
+        .priority-mid {
+            background: #fff5e5;
+            border-left: 2px solid #ffc107;
+        }
+
+        .priority-mid strong {
+            color: #ff9800;
+        }
+
+        /* Explanation boxes */
+        .explanation-section {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.65em;
+            line-height: 1.25;
+            margin-top: 6px;
+            overflow: visible;
+        }
+
+        .explanation {
+            background: #f9f9f9;
+            border-left: 2px solid #667eea;
+            padding: 6px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .explanation-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 2px;
+            font-size: 0.8em;
+        }
+
+        .explanation-content {
+            color: #333;
+            margin-left: 6px;
+        }
+
+        .explanation-item {
+            margin: 2px 0;
+            font-size: 0.9em;
+        }
+
+        .explanation-item strong {
+            color: #667eea;
+        }
+
+        /* Page number */
+        .page-number {
+            text-align: right;
+            color: #999;
+            font-size: 0.65em;
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background: white;
+            }
+
+            .page {
+                margin: 0;
+                padding: 0;
+                min-height: 100vh;
+                page-break-after: always;
+                break-after: page;
+            }
+
+            .mindmap-section {
+                padding: 10mm;
+                border-right: 2px solid #ddd;
+            }
+
+            .notes-section {
+                padding: 10mm;
+            }
+        }
+
+        @media screen {
+            .page {
+                margin: 10px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div class="scroll-progress" id="scrollProgress"></div>
-    <div class="scroll-hint">↓ SCROLL DOWN ↓</div>
+<!-- PAGE 1: ORGANISATIONAL DESIGN MEANING & 4 BASIC CHALLENGES -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🏛️ ORGANISATIONAL DESIGN - MEANING & 4 BASIC CHALLENGES</div>
+        <div class="page-subtitle">Concept & Key Distinction</div>
 
-    <div class="pages-container">
-
-        <!-- PAGE 1: Design Challenges -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 01 / Page 1</div>
-                    <div class="page-title">Design Challenges</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">⚙️ Core Tensions</span>
-                    
-                    <div class="section-title">Differentiation Dimensions</div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Horizontal</div>
-                            Specialization by function or product. HR, Finance, Ops, Marketing.
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Vertical</div>
-                            Hierarchy levels. CEO → Managers → Supervisors → Workers.
-                        </div>
-                    </div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Spatial</div>
-                            Geographic distribution. Head office, regional, plant, field locations.
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">ORG DESIGN</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">DEFINITION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Gareth Jones (2013)</strong>
+                                <small>"Process by which managers select and manage aspects of structure and culture so that an organization can control activities necessary to achieve its goals"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>PYQ 2025 (20M)</strong>
+                                <small>"Org design is not merely about structure, but about strategically aligning people, processes, and objectives in an ever-changing environment"</small>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="section-title">Integration Mechanisms</div>
-                    <div class="key-point">Hierarchy of Authority: Escalate decisions upward</div>
-                    <div class="key-point">Liaison Roles: People connecting different functions</div>
-                    <div class="key-point">Task Forces: Temporary cross-functional teams</div>
-                    <div class="key-point">Integrating Departments: Staff units coordinating silos</div>
-
-                    <div class="section-title">Centralisation vs Decentralisation</div>
-                    <div class="content-box">
-                        <strong>Core Issue:</strong> Location of decision-making authority. Centralized = top controls; Decentralized = distributed authority. Trade-offs between consistency and responsiveness.
+                    <div class="branch">
+                        <div class="branch-title">KEY DISTINCTION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Structure</strong>
+                                <small>Snapshot of authority relationships at a point in time (static view)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Design</strong>
+                                <small>Ongoing adaptive process - as strategy, environment, and technology change, design must change too (dynamic view)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Implication</strong>
+                                <small>Design is continuous management, not one-time decision</small>
+                            </div>
+                        </div>
                     </div>
-                    <div class="key-point">Delegation Principles guide authority distribution</div>
-                    <div class="key-point">Digital Paradox: IT enables real-time control even with decentralization</div>
 
-                    <div class="section-title">Standardisation vs Mutual Adjustment</div>
-                    <div class="key-point">Formal Rules vs Informal Norms: Procedures vs flexibility</div>
-                    <div class="key-point">Standardisation of Outputs/Skills: Consistency vs specialization</div>
-                    <div class="key-point">Direct Communication: Person-to-person coordination without hierarchy</div>
+                    <div class="branch">
+                        <div class="branch-title">4 BASIC CHALLENGES (GARETH JONES - MUST USE)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Challenge 1</strong>
+                                <small>Differentiation - how to divide tasks, activities, and authority</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Challenge 2</strong>
+                                <small>Integration - how to coordinate and integrate differentiated parts</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Challenge 3</strong>
+                                <small>Centralization vs Decentralization - where to locate decision-making authority</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Challenge 4</strong>
+                                <small>Standardization vs Mutual Adjustment - how to control and coordinate work</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">RELATED CHALLENGES</div>
+                        <div class="topics">
+                            <div class="topic priority-mid">
+                                <strong>Challenge 5</strong>
+                                <small>Formal vs Informal Organization - coordinating both</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Challenge 6</strong>
+                                <small>Mechanistic vs Organic Structures - matching with environment</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">STRATEGIC ALIGNMENT CONCEPT (PYQ 2025)</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Not merely structure:</strong> Goes beyond formal authority relationships</strong></div>
+                        <div class="explanation-item"><strong>Three dimensions:</strong> People (culture, motivation, capabilities), Processes (workflows, systems), Objectives (goals, strategy)</strong></div>
+                        <div class="explanation-item"><strong>Ever-changing:</strong> Must continuously adapt to environmental shifts, technological changes, strategic evolution</strong></div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- PAGE 2: Structural Typologies -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 01 / Page 2</div>
-                    <div class="page-title">Structural Typologies</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">🏗️ Mechanistic vs Organic</span>
-
-                    <div class="section-title">Mechanistic Structure</div>
-                    <div class="model-box">
-                        <div class="model-box-title">Stable Environment Fit</div>
-                        Tall hierarchy, rigid rules, narrow span, centralized authority. Efficient for standardized work. Slow to adapt.
-                    </div>
-
-                    <div class="section-title">Organic Structure</div>
-                    <div class="model-box">
-                        <div class="model-box-title">Dynamic Environment Fit</div>
-                        Flat hierarchy, flexible roles, wide span, decentralized authority. Adaptive, innovative. Coordination challenges.
-                    </div>
-
-                    <div class="section-title">Mintzberg's 5 Configurations</div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Simple Structure</div>
-                            Centralized, minimal staff. Small companies, startups. Owner-run.
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Machine Bureaucracy</div>
-                            Standardized processes, many rules. Manufacturing, PSUs. Efficient but inflexible.
-                        </div>
-                    </div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Professional Bureaucracy</div>
-                            Expertise-driven, professional standards. Hospitals, universities, law firms.
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Divisionalised Form</div>
-                            Multiple divisions, profit centers. Large corporations, conglomerates. M-form.
-                        </div>
-                    </div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Adhocracy</div>
-                            Project-based, flexible. Consultancies, tech startups, R&D units. Innovative.
-                        </div>
-                    </div>
-
-                    <div class="section-title">Formal vs Informal Organisation</div>
-                    <div class="grid-2">
-                        <div class="grid-card">
-                            <div class="grid-card-title">Formal System</div>
-                            Positional authority, official channels, planned structure, documented rules
-                        </div>
-                        <div class="grid-card">
-                            <div class="grid-card-title">Informal System</div>
-                            Spontaneous emergence, grapevine communication, social cohesion, unwritten norms
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
-            </div>
-        </div>
-
-        <!-- PAGE 3: Contingency Factors -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 02 / Page 1</div>
-                    <div class="page-title">Contingency Factors</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">📊 Situational Variables</span>
-
-                    <div class="section-title">Environmental Uncertainty</div>
-                    <div class="content-box">
-                        <strong>Core Principle:</strong> Stable environments suit mechanistic structures. Dynamic environments need organic structures. Uncertainty requires flexibility.
-                    </div>
-
-                    <div class="section-title">Technology Factor</div>
-                    <div class="model-box">
-                        <div class="model-box-title">Routine vs Non-Routine</div>
-                        Routine technology (assembly lines) → mechanistic. Non-routine (R&D, creative) → organic. Technology determines coordination needs.
-                    </div>
-
-                    <div class="section-title">Organisational Size</div>
-                    <div class="key-point">Small orgs: Simple structure, direct coordination</div>
-                    <div class="key-point">Medium orgs: Functional or matrix structures</div>
-                    <div class="key-point">Large orgs: Divisional or complex matrix</div>
-                    <div class="key-point">Size affects specialization, standardization, hierarchy levels</div>
-
-                    <div class="section-title">Strategy Factor</div>
-                    <div class="definition-box">
-                        <strong>Structure Follows Strategy:</strong> Chandler's insight. Organization design should align with competitive strategy. Cost-leadership → functional. Diversification → divisional.
-                    </div>
-
-                    <div class="key-point">Differentiation strategy → organic, flexible structure</div>
-                    <div class="key-point">Cost-leadership strategy → mechanistic, standardized structure</div>
-                    <div class="key-point">Focus strategy → specialized, mission-driven structure</div>
-                </div>
-            </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
-            </div>
-        </div>
-
-        <!-- PAGE 4: Modern Perspectives -->
-        <div class="page-spread">
-            <div class="content-column">
-                <div class="page-header">
-                    <div class="topic-number">Topic 02 / Page 2</div>
-                    <div class="page-title">Modern Perspectives</div>
-                </div>
-                <div class="content-body">
-                    <span class="topic-tag">🌐 Contemporary Design</span>
-
-                    <div class="section-title">Ambidextrous Organisations</div>
-                    <div class="content-box">
-                        <strong>Concept:</strong> Balance exploration (innovation, new products) and exploitation (efficiency, current products). Separate units with different structures, coordinated at top.
-                    </div>
-                    <div class="key-point">Example: 3M has 70% efficiency teams and 30% innovation labs</div>
-
-                    <div class="section-title">IT-Enabled Design</div>
-                    <div class="model-box">
-                        <div class="model-box-title">Digital Command & Control</div>
-                        Real-time data dashboards enable managers to monitor and control operations from distance. Flatter structures possible with IT support.
-                    </div>
-
-                    <div class="section-title">Network & Platform Models</div>
-                    <div class="definition-box">
-                        <strong>Network Organisations:</strong> Decentralized, connected through IT and relationships. Minimal hierarchy. Examples: Uber, Airbnb, Upwork.
-                    </div>
-                    <div class="definition-box">
-                        <strong>Platform Organisations:</strong> Core platform with ecosystem of partners. Algorithmic coordination replaces management. Scalable, low cost.
-                    </div>
-
-                    <div class="section-title">Key Insight</div>
-                    <div class="content-box">
-                        <strong>Modern Paradox:</strong> Technology allows both more control (surveillance) and more autonomy (remote work). Organizations must choose design carefully based on strategy and culture.
-                    </div>
-                </div>
-            </div>
-            <div class="notes-column">
-                <span class="notes-label">📝 Notes & Reflections</span>
-                <div class="notes-space"></div>
-            </div>
-        </div>
-
+        <div class="page-number">Page 1 of 8</div>
     </div>
 
-    <script>
-        document.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrolled = (scrollTop / docHeight) * 100;
-            document.getElementById('scrollProgress').style.width = scrolled + '%';
-        });
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowDown') window.scrollBy(0, window.innerHeight * 0.8);
-            else if (e.key === 'ArrowUp') window.scrollBy(0, -window.innerHeight * 0.8);
-            else if (e.key === ' ') { e.preventDefault(); window.scrollBy(0, window.innerHeight * 0.8); }
-        });
-    </script>
+<!-- PAGE 2: DIFFERENTIATION & INTEGRATION -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🔀 DIFFERENTIATION & INTEGRATION (LAWRENCE & LORSCH 1967)</div>
+        <div class="page-subtitle">Contingency Research & Key Findings</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">DIFF & INTEG</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">TYPES OF DIFFERENTIATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Horizontal Diff</strong>
+                                <small>Division of labour by functions (Marketing, Finance, Operations)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Vertical Diff</strong>
+                                <small>Division of authority by hierarchy levels (Top mgmt, Middle, Supervisory)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Spatial Diff</strong>
+                                <small>Division by geography (regional offices, departments, branches)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Degree of Diff</strong>
+                                <small>Low to High - depends on environmental uncertainty (contingency)</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">LAWRENCE & LORSCH RESEARCH</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Study Design</strong>
+                                <small>3 industries: Plastics (dynamic, high uncertainty), Food (moderate), Containers (stable, low uncertainty)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>KEY FINDING</strong>
+                                <small>High-performing DYNAMIC env had MORE differentiation AND proportionally more integration</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Stable Env Firms</strong>
+                                <small>High-performing had LESS of both differentiation & integration</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Core Implication</strong>
+                                <small>Environmental uncertainty determines optimal differentiation level; integration must MATCH degree of differentiation - complementary imperatives</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">PROBLEMS OF EXCESSIVE DIFFERENTIATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Communication</strong>
+                                <small>Barriers between departments; Language differences; Isolated teams</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Silo Mentality</strong>
+                                <small>Each department focused only on own goals; Loss of unified purpose</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Coordination Cost</strong>
+                                <small>Explosion of integration mechanisms needed; Resource drain</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Role Conflict</strong>
+                                <small>Unclear responsibilities; Power struggles between departments</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Loss of Synergy</strong>
+                                <small>Knowledge trapped in silos; Missed opportunities for collaboration</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">MINTZBERG'S 6 COORDINATION MECHANISMS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>1. Mutual Adjustment</strong>
+                                <small>Informal communication between team members</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2. Direct Supervision</strong>
+                                <small>Manager coordinates work directly</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>3. Standardization of Work</strong>
+                                <small>Specify how work should be done (procedures, rules)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>4. Standardization of Outputs</strong>
+                                <small>Specify what results are expected (targets, standards)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>5. Standardization of Skills</strong>
+                                <small>Training ensures people coordinate without explicit coordination</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>6. Standardization of Norms</strong>
+                                <small>Culture, shared values ensure coordination through shared understanding</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">CONTINGENCY INSIGHT - CRITICAL FOR EXAMS</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Dynamic/Uncertain Environments:</strong> Need MORE specialization (differentiation) BUT must invest proportionally MORE in integration mechanisms (teams, committees, liaisons)</strong></div>
+                        <div class="explanation-item"><strong>Stable Environments:</strong> Can function with LESS specialization and LESS integration - simple hierarchy sufficient</strong></div>
+                        <div class="explanation-item"><strong>Balance Critical:</strong> Differentiation without integration = chaos; Integration without differentiation = inefficiency</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 2 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 3: CENTRALISATION & DECENTRALISATION -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">⚖️ CENTRALISATION & DECENTRALISATION</div>
+        <div class="page-subtitle">Delegation vs Decentralization & Principles</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">CENT & DECENT</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">DELEGATION VS DECENTRALISATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Delegation</strong>
+                                <small>Assignment of specific task/authority to subordinate for limited period; Remains temporary; Manager can reclaim</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Decentralization</strong>
+                                <small>Permanent distribution of authority across organizational levels; Structural feature; Part of design</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Difference</strong>
+                                <small>Delegation = tactical/temporary; Decentralization = strategic/structural (PYQ 2023)</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">PRINCIPLES OF DELEGATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Parity Principle</strong>
+                                <small>Authority delegated MUST be commensurate with responsibility assigned - cannot hold someone responsible without authority to fulfil it</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Absoluteness of Accountability</strong>
+                                <small>Accountability CANNOT be delegated - delegating manager remains accountable to superior even after delegating to subordinates</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Scalar Principle</strong>
+                                <small>Clear chain of authority from top to bottom must be maintained - every person must know to whom they report</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Unity of Command</strong>
+                                <small>Each subordinate should receive orders from only ONE superior (Fayol) - avoids role conflict</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Management by Exception</strong>
+                                <small>Only exceptional matters should be referred upward - routine decisions handled at delegated level</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">FACTORS DETERMINING DEGREE OF DECENTRALISATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Environmental Complexity</strong>
+                                <small>Complex/turbulent environment → Decentralize; Stable/simple → Centralize</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Organization Size</strong>
+                                <small>Larger orgs → Decentralize; Small orgs → Centralize</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Subordinate Competence</strong>
+                                <small>High competence → Decentralize; Low competence → Centralize</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Technology</strong>
+                                <small>Routine technology → Centralize; Complex/non-routine → Decentralize</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Organizational Culture</strong>
+                                <small>Trust-based culture → Decentralize; Control-oriented → Centralize</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Strategic Goals</strong>
+                                <small>Innovation/responsiveness → Decentralize; Efficiency/control → Centralize</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">ACCOUNTABILITY VS AUTHORITY - CRITICAL CONCEPT</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Parity Principle Issue:</strong> Holding someone responsible without giving authority = unfair & counterproductive</strong></div>
+                        <div class="explanation-item"><strong>Absoluteness Principle Issue:</strong> Manager cannot escape accountability by delegating - ensures manager supervises properly</strong></div>
+                        <div class="explanation-item"><strong>Practical Implication:</strong> Manager must ensure delegated authority matches delegated responsibility AND maintain oversight</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 3 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 4: STANDARDISATION VS MUTUAL ADJUSTMENT & RULES VS NORMS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📋 STANDARDISATION vs MUTUAL ADJUSTMENT & RULES vs NORMS</div>
+        <div class="page-subtitle">Control & Coordination Methods</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">STANDARD & RULES</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">FORMALISATION / STANDARDISATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Degree to which organizational roles, procedures, and processes are explicitly defined and documented</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Characteristics</strong>
+                                <small>Written rules, Standard procedures, Formal job descriptions, Documented workflows</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Advantages</strong>
+                                <small>Consistency, Predictability, Control, Reduces ambiguity, Training easier</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Disadvantages</strong>
+                                <small>Inflexibility, Over-bureaucratization, Stifles creativity, Red-tapism, Slow adaptation</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">MUTUAL ADJUSTMENT</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Coordination through informal communication and ad-hoc adjustment between team members</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Characteristics</strong>
+                                <small>No formal rules, Flexible, Relies on communication, Adaptive, Role ambiguity</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Advantages</strong>
+                                <small>Flexibility, Innovation, Quick adaptation, Employee autonomy, Responsiveness</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Disadvantages</strong>
+                                <small>Inconsistency, Ambiguity, Requires high coordination effort, Role conflicts, Difficult to control</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">RULES vs NORMS (PYQ 2019 - 20M)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Rules</strong>
+                                <small>Formal, explicit, written requirements - "Thou shalt NOT"; Enforced by authority; Breach has consequences</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Norms</strong>
+                                <small>Informal, implicit, unwritten expectations - "We do things this way"; Enforced by peer pressure; Internalized by members</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Difference</strong>
+                                <small>Rules = formal control; Norms = informal control; Norms are MORE powerful in practice</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Importance from Design Perspective</strong>
+                                <small>Designing org requires considering both - organizations run on shared norms as much as formal rules</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">WHEN TO USE WHICH</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>High Standardization</strong>
+                                <small>Routine work, safety-critical, compliance-heavy, stable environment, large organization</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>High Mutual Adjustment</strong>
+                                <small>Complex work, innovation-focused, dynamic environment, small teams, knowledge workers</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Mixed Approach</strong>
+                                <small>Most organizations need BOTH - core processes standardized, peripheral flexible</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">RULES vs NORMS - ORGANIZATIONAL REALITY</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Power of Norms:</strong> Organizational culture & informal norms often determine actual behavior MORE than formal rules</strong></div>
+                        <div class="explanation-item"><strong>Design Challenge:</strong> Managers must design both formal rules AND foster positive informal norms aligned with organizational goals</strong></div>
+                        <div class="explanation-item"><strong>PYQ Focus:</strong> Question may ask to explain importance of rules vs norms from organizational design perspective</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 4 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 5: FORMAL & INFORMAL ORGANISATION -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🔀 FORMAL & INFORMAL ORGANISATION - COORDINATING BOTH</div>
+        <div class="page-subtitle">Integration & Strategic Management</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">FORMAL & INFORMAL</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">FORMAL ORGANISATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Deliberately created structure with defined roles, authority, and procedures</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Characteristics</strong>
+                                <small>Written rules, Hierarchy, Job descriptions, Authority relationships, Formal communication</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Purpose</strong>
+                                <small>Control, coordination, and achievement of organizational objectives</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">INFORMAL ORGANISATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Natural social structure that emerges from personal relationships and interactions</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Characteristics</strong>
+                                <small>Unwritten norms, Informal leaders, Social networks, Peer relationships, Grapevine</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Purpose</strong>
+                                <small>Meet social needs, fill gaps in formal structure, provide identity and belonging</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">WHY COORDINATE BOTH (PYQ 2024)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Fills Gaps</strong>
+                                <small>Informal org fills gaps where formal rules/procedures absent - informal norms govern behavior (Hawthorne Bank Wiring Room finding)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Informal Leaders</strong>
+                                <small>Can support OR undermine formal authority - ignoring them is strategically dangerous</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Grapevine</strong>
+                                <small>Spreads info faster than formal channels - managers who ignore it lose ground reality contact</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Change Management</strong>
+                                <small>Managing informal leaders = managing change effectively</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">COORDINATION STRATEGY</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Legitimise Informal Leaders</strong>
+                                <small>Recognize and give formal status to influential informal leaders</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Involve in Decisions</strong>
+                                <small>Include informal leaders in formal decision-making processes</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Use Social Capital</strong>
+                                <small>Leverage their influence for change management and organizational goals</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Align Rewards</strong>
+                                <small>Ensure formal reward systems align with informal group norms and values</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Proactive Grapevine Use</strong>
+                                <small>Can be used proactively to communicate during change and organizational transitions</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">HAWTHORNE BANK WIRING ROOM - KEY FINDING</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Discovery:</strong> Informal group norms set production quotas that DIFFERED from formal organizational targets</strong></div>
+                        <div class="explanation-item"><strong>Implication:</strong> Informal organization was more powerful than formal rules in controlling actual behavior</strong></div>
+                        <div class="explanation-item"><strong>Design Lesson:</strong> Organizational design MUST account for and work WITH informal organization, not ignore it</strong></div>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">STRATEGIC IMPORTANCE (PYQ 2024)</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Cannot be Ignored:</strong> Informal organization is inevitable & powerful force in every organization</strong></div>
+                        <div class="explanation-item"><strong>Change Management:</strong> Success of organizational change depends on gaining informal leaders' support</strong></div>
+                        <div class="explanation-item"><strong>Design Implication:</strong> Formal design must complement informal organization, not fight it</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 5 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 6: MECHANISTIC VS ORGANIC STRUCTURES -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">⚙️ MECHANISTIC vs ORGANIC STRUCTURES - BURNS & STALKER 1961</div>
+        <div class="page-subtitle">Environmental Fit & Structural Design</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">MECH & ORGANIC</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">MECHANISTIC STRUCTURE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Characteristics</strong>
+                                <small>Formal, hierarchical, centralized, standardized procedures, narrow specialization</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Decision-Making</strong>
+                                <small>Centralized at top; Limited subordinate discretion; Top-down authority</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Communication</strong>
+                                <small>Vertical (up-down), Formal channels, Limited lateral communication</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Coordination</strong>
+                                <small>Through hierarchy, rules, and direct supervision</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Suitable For</strong>
+                                <small>Stable environments, routine tasks, efficiency focus, cost leadership strategy</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">ORGANIC STRUCTURE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Characteristics</strong>
+                                <small>Flexible, decentralized, loosely defined roles, broad specialization</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Decision-Making</strong>
+                                <small>Decentralized; Distributed authority; Subordinate discretion; Participative</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Communication</strong>
+                                <small>Lateral (across), Informal channels, Lateral networks important</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Coordination</strong>
+                                <small>Through mutual adjustment, team collaboration, shared goals</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Suitable For</strong>
+                                <small>Turbulent environments, complex tasks, innovation focus, differentiation strategy</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">KEY ENVIRONMENTAL FITS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>STABLE ENVIRONMENT</strong>
+                                <small>→ Mechanistic structure optimal; Predictable, standardized approach works; Efficiency valued</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>TURBULENT ENVIRONMENT</strong>
+                                <small>→ Organic structure optimal; Flexibility needed, rapid adaptation required; Innovation valued</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Mismatch Problems</strong>
+                                <small>Mechanistic in turbulent = rigid, slow, unresponsive; Organic in stable = inefficient, chaotic</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">COMPARATIVE FEATURES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Knowledge Flow</strong>
+                                <small>Mechanistic: Vertical; Organic: Lateral & across boundaries</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Job Descriptions</strong>
+                                <small>Mechanistic: Precise, narrow; Organic: Broad, flexible</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Authority Source</strong>
+                                <small>Mechanistic: Position/formal; Organic: Expertise/knowledge</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Problem-Solving</strong>
+                                <small>Mechanistic: Refer up; Organic: Solve locally, collaborate</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">CONTINGENCY PRINCIPLE - CRITICAL EXAM CONCEPT</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>No "One Best Way":</strong> Neither structure is universally "best" - depends on environment</strong></div>
+                        <div class="explanation-item"><strong>Environmental Determinism:</strong> Structure must FIT environmental characteristics for organizational effectiveness</strong></div>
+                        <div class="explanation-item"><strong>Design Choice:</strong> Managers must diagnose environment THEN choose appropriate structure - not design in vacuum</strong></div>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">TRANSITION CHALLENGE</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Problem:</strong> Many organizations trapped in mechanistic structures even as environments become turbulent (legacy structure)</strong></div>
+                        <div class="explanation-item"><strong>Modern Need:</strong> Need for hybrid structures - mechanistic core (efficiency) with organic adaptability (innovation)</strong></div>
+                        <div class="explanation-item"><strong>Design Evolution:</strong> Contemporary organizations moving toward more organic structures due to increasing environmental turbulence</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 6 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 7: DESIGN CHALLENGES SUMMARY -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📊 ORG DESIGN CHALLENGES - INTEGRATED SUMMARY</div>
+        <div class="page-subtitle">All 6 Challenges & Interrelationships</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">6 DESIGN CHALLENGES</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CHALLENGE 1: DIFFERENTIATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Nature</strong>
+                                <small>How to divide tasks, activities, and authority</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Types</strong>
+                                <small>Horizontal (by function), Vertical (by hierarchy), Spatial (by geography)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Contingency</strong>
+                                <small>More differentiation in complex/turbulent environments</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CHALLENGE 2: INTEGRATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Nature</strong>
+                                <small>How to coordinate & integrate differentiated parts</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Mechanisms</strong>
+                                <small>6 mechanisms from Mintzberg (mutual adjustment to norms)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Critical Link</strong>
+                                <small>Integration level MUST match differentiation level (Lawrence & Lorsch)</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CHALLENGE 3: CENTRALIZATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Nature</strong>
+                                <small>Where to locate decision-making authority</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Principles</strong>
+                                <small>Parity, Accountability, Scalar Chain, Unity of Command, Exception</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Factors</strong>
+                                <small>Environment, size, competence, technology, culture, strategy</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CHALLENGE 4: STANDARDISATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Nature</strong>
+                                <small>How to control & coordinate work</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Spectrum</strong>
+                                <small>Standardization (rules, procedures) ↔ Mutual Adjustment (informal coordination)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Balance</strong>
+                                <small>Most orgs need mix - core standardized, periphery flexible</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CHALLENGE 5: FORMAL & INFORMAL</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Nature</strong>
+                                <small>Coordinating both formal structure and informal organization</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Insight</strong>
+                                <small>Informal org fills gaps, provides social needs, has power over behavior</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Strategy</strong>
+                                <small>Legitimize informal leaders, use in change management, align rewards</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CHALLENGE 6: MECHANISTIC/ORGANIC</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Nature</strong>
+                                <small>Matching structure with environmental requirements</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Fit Logic</strong>
+                                <small>Stable → Mechanistic; Turbulent → Organic</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Modern Challenge</strong>
+                                <small>Need hybrid structures - mechanistic efficiency + organic adaptability</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">INTERRELATIONSHIP OF CHALLENGES</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Differentiation → Integration Need:</strong> More differentiation requires proportionally more integration</strong></div>
+                        <div class="explanation-item"><strong>Environment → Centralization:</strong> Turbulent environments require decentralization for responsiveness</strong></div>
+                        <div class="explanation-item"><strong>Standardization ↔ Mutual Adjustment:</strong> Must balance formal control with informal flexibility</strong></div>
+                        <div class="explanation-item"><strong>All → Mechanistic/Organic:</strong> Ultimate result is either mechanistic or organic structure depending on how challenges are resolved</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 7 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 8: KEY EXAM CONCEPTS & PYQS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🎓 KEY EXAM CONCEPTS & RECENT PYQS</div>
+        <div class="page-subtitle">Critical Points for Exam Success</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">EXAM FOCUS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">PYQ 2025 (20M)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Question Type</strong>
+                                <small>"Org design is not merely about structure, but about strategically aligning people, processes, and objectives in ever-changing environment."</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Expected Answer</strong>
+                                <small>Explain why structure alone insufficient; discuss people (culture, capability), processes (systems, workflows), objectives (alignment with strategy)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Points</strong>
+                                <small>Design is dynamic, continuous, multidimensional - not static structure</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">PYQ 2024</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Topic</strong>
+                                <small>"Why formal and informal must be coordinated"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Points to Cover</strong>
+                                <small>Informal fills gaps; Leaders support/undermine; Grapevine power; Change management; Hawthorne findings</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">PYQ 2023</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Topic</strong>
+                                <small>"Distinguish delegation vs decentralization"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Difference</strong>
+                                <small>Delegation = tactical/temporary; Decentralization = strategic/structural; Both have principles</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">PYQ 2019 (20M)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Topic</strong>
+                                <small>"Rules are different from norms - explain importance from org design perspective"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Points</strong>
+                                <small>Rules = formal, written, enforced by authority; Norms = informal, implicit, enforced by peers; Norms more powerful in practice; Design must consider both</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CRITICAL CONCEPTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Gareth Jones Definition</strong>
+                                <small>MUST quote: "Process by which managers select and manage aspects of structure and culture..."</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>4 Basic Challenges</strong>
+                                <small>Differentiation, Integration, Centralization, Standardization - know all</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Lawrence & Lorsch Finding</strong>
+                                <small>More diff in dynamic env; Integration must match diff level</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Burns & Stalker</strong>
+                                <small>Mechanistic vs Organic - no "one best way" contingent on environment</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">ANSWER STRUCTURE TIPS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Define First</strong>
+                                <small>Always start with clear definition (Gareth Jones where relevant)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Use Examples</strong>
+                                <small>Provide real org examples; Hawthorne studies; India context where possible</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Link to Environment</strong>
+                                <small>Always explain how environment influences design choices (contingency principle)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Discuss Tradeoffs</strong>
+                                <small>No single "best" way - explain tradeoffs between different design choices</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">HIGH-FREQUENCY EXAM PATTERNS</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>10-mark Questions:</strong> Usually ask to define concept, distinguish between similar terms, explain one principle</strong></div>
+                        <div class="explanation-item"><strong>20-mark Questions:</strong> Ask to explain concept + implications, compare approaches, discuss challenges, provide examples</strong></div>
+                        <div class="explanation-item"><strong>Common Formulations:</strong> "Examine," "Discuss," "Analyse," "Distinguish," "Explain with examples"</strong></div>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">LAST-MINUTE CHECKLIST</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item">✓ Know 4 Basic Challenges by heart</div>
+                        <div class="explanation-item">✓ Understand Differentiation-Integration relationship (Lawrence & Lorsch)</div>
+                        <div class="explanation-item">✓ Know 5 Delegation Principles (Parity, Accountability, Scalar, Unity, Exception)</div>
+                        <div class="explanation-item">✓ Understand Mechanistic vs Organic + environmental fit</div>
+                        <div class="explanation-item">✓ Know Formal vs Informal coordination strategy</div>
+                        <div class="explanation-item">✓ Can distinguish Delegation vs Decentralization</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 8 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
