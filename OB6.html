@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conflict Management in Organisational Behaviour - Mindmap</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --warm-cream: #FFF8F0;
+            --peach-light: #FFE5D9;
+            --coral: #FF9B85;
+            --coral-deep: #FF6B6B;
+            --terracotta: #D68C6E;
+            --sand: #F4E4C1;
+            --sage: #A8C090;
+            --mint: #8BD3C4;
+            --lavender: #C49ECE;
+            --warm-yellow: #FFD166;
+            --text-dark: #3D3D3D;
+            --text-muted: #6B6B6B;
+        }
+
+        @media print {
+            body {
+                size: landscape;
+            }
+            .page {
+                page-break-after: always;
+                width: 297mm;
+                height: 210mm;
+            }
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--warm-cream) 0%, var(--peach-light) 100%);
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 0;
+            min-width: 1400px;
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 80px 60px 80px 60px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border-bottom: 3px dashed var(--coral);
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--coral) 0%, transparent 70%);
+            opacity: 0.15;
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.1); opacity: 0.25; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 900;
+            color: var(--coral-deep);
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(255, 107, 107, 0.1);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 60px;
+            font-style: italic;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .mindmap-container {
+            flex: 1;
+            display: flex;
+            gap: 40px;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .content-area {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .notes-area {
+            flex: 1;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(255, 107, 107, 0.1);
+            border: 3px dashed var(--coral);
+            position: relative;
+            min-height: 400px;
+        }
+
+        .notes-area::before {
+            content: '📝 NOTES';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: var(--coral-deep);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .notes-area::after {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23FFE5D9" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>') center/contain no-repeat;
+            opacity: 0.3;
+        }
+
+        .central-node {
+            background: linear-gradient(135deg, var(--coral-deep), var(--coral));
+            color: white;
+            padding: 30px 50px;
+            border-radius: 30px;
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            margin: 20px auto;
+            max-width: fit-content;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .central-node::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .central-node:hover {
+            transform: scale(1.05);
+        }
+
+        .branch-container {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .branch {
+            position: relative;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .branch:nth-child(1) { animation-delay: 0.1s; }
+        .branch:nth-child(2) { animation-delay: 0.2s; }
+        .branch:nth-child(3) { animation-delay: 0.3s; }
+        .branch:nth-child(4) { animation-delay: 0.4s; }
+
+        .branch-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--coral-deep);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .node {
+            background: white;
+            padding: 18px 25px;
+            border-radius: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--coral);
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .node:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.2);
+        }
+
+        .node.color-sage { border-left-color: var(--sage); }
+        .node.color-mint { border-left-color: var(--mint); }
+        .node.color-lavender { border-left-color: var(--lavender); }
+        .node.color-terracotta { border-left-color: var(--terracotta); }
+        .node.color-yellow { border-left-color: var(--warm-yellow); }
+
+        .node strong {
+            color: var(--coral-deep);
+            font-weight: 700;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-top: 6px solid var(--coral);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.15);
+        }
+
+        .card.sage { border-top-color: var(--sage); }
+        .card.mint { border-top-color: var(--mint); }
+        .card.lavender { border-top-color: var(--lavender); }
+        .card.terracotta { border-top-color: var(--terracotta); }
+        .card.yellow { border-top-color: var(--warm-yellow); }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--coral-deep);
+            margin-bottom: 15px;
+        }
+
+        .card-content {
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .section-header {
+            background: linear-gradient(90deg, var(--coral-deep), transparent);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-size: 22px;
+            font-weight: 700;
+            margin: 30px 0 20px 0;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+        }
+
+        .cluster {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 25px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            border: 2px solid var(--peach-light);
+        }
+
+        .cluster-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--coral-deep);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--coral);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 5px;
+            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.2);
+        }
+
+        .tag.sage { background: var(--sage); }
+        .tag.mint { background: var(--mint); }
+        .tag.lavender { background: var(--lavender); }
+        .tag.terracotta { background: var(--terracotta); }
+
+        .title-page {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--peach-light) 0%, var(--sand) 50%, var(--warm-cream) 100%);
+        }
+
+        .title-page .page-title {
+            font-size: 72px;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, var(--coral-deep), var(--coral), var(--terracotta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .decorative-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--coral);
+            top: 10%;
+            left: 5%;
+        }
+
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--sage);
+            bottom: 15%;
+            right: 8%;
+        }
+
+        .circle-3 {
+            width: 150px;
+            height: 150px;
+            background: var(--lavender);
+            top: 50%;
+            right: 20%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TITLE PAGE -->
+    <div class="page title-page">
+        <div class="decorative-circle circle-1"></div>
+        <div class="decorative-circle circle-2"></div>
+        <div class="decorative-circle circle-3"></div>
+        <h1 class="page-title">CONFLICT MANAGEMENT IN ORGANISATIONAL BEHAVIOUR</h1>
+        <p class="page-subtitle">From Inevitable Tension to Constructive Problem-Solving & Harmony</p>
+    </div>
+
+    <!-- PAGE 1: Evolution of Views & Types -->
+    <div class="page">
+        <h2 class="page-title">Evolution of Conflict Views & Types</h2>
+        <div class="mindmap-container">
+            <div class="content-area">
+                <!-- Evolution of Views -->
+                <div class="cluster">
+                    <div class="cluster-title">📈 EVOLUTION OF CONFLICT VIEWS</div>
+                    
+                    <div class="central-node">CONFLICT PERSPECTIVES</div>
+
+                    <div class="section-header">Three Evolutionary Perspectives</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Traditional View (1930s-1940s)</div>
+                            <div class="card-content">
+                                <strong>Conflict is harmful and detrimental</strong><br>
+                                Conflict reflects management failure. Must be eliminated or prevented. Reflects negative organizational climate. Focus on avoiding/suppressing conflict
+                            </div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Human Relations View (1940s-1970s)</div>
+                            <div class="card-content">
+                                <strong>Conflict is natural and inevitable</strong><br>
+                                Accepted as normal part of organizational life. Focus shifts to acceptance rather than elimination. Emphasis on understanding and managing rather than preventing
+                            </div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Interactionist View (1970s-Present)</div>
+                            <div class="card-content">
+                                <strong>Optimal level of conflict is necessary</strong><br>
+                                Some conflict prevents stagnation, stimulates innovation, fosters creativity. Zero conflict = mediocrity. Seeks to maintain functional conflict levels while minimizing destructive conflict
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">Modern Understanding</div>
+                    <div class="node color-terracotta" style="font-size: 15px; padding: 20px;">
+                        <strong>Conflict is neither inherently good nor bad.</strong> Depends on type, intensity, and management. Functional conflict drives improvement; dysfunctional conflict damages relationships and performance
+                    </div>
+                </div>
+
+                <!-- Types of Conflict -->
+                <div class="cluster">
+                    <div class="cluster-title">⚔️ TYPES OF CONFLICT</div>
+                    
+                    <div class="section-header">Intrapersonal Forms (Internal Conflict)</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Approach-Approach Conflict</div>
+                            <div class="card-content">Two equally attractive goals. Cannot choose both. Example: accept promotion requiring relocation vs stay in current familiar position. Least stressful form</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Avoidance-Avoidance Conflict</div>
+                            <div class="card-content">Two equally unattractive options. Must choose lesser evil. Example: accept unsatisfactory project or face disciplinary action. Highly stressful, often leads to frustration</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Approach-Avoidance Conflict</div>
+                            <div class="card-content">Single goal has both positive and negative aspects. Example: high-paying job but requires extensive travel away from family. Most stressful, creates ambivalence</div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">Conflict by Locus (Levels)</div>
+                    <div class="branch-container">
+                        <div class="node color-lavender">
+                            <strong>Interpersonal:</strong> Between two individuals. Most common in organizations. Personal clashes, role conflicts
+                        </div>
+                        <div class="node color-terracotta">
+                            <strong>Intragroup:</strong> Within a team or department. Subgroups, factions, competing interests within group
+                        </div>
+                        <div class="node color-yellow">
+                            <strong>Intergroup:</strong> Between departments or teams. Resource competition, status competition, goal incompatibility
+                        </div>
+                        <div class="node color-coral">
+                            <strong>Interorganisational:</strong> Between organizations. Supplier-buyer tensions, competitors, stakeholder conflicts
+                        </div>
+                    </div>
+
+                    <div class="section-header">Conflict by Nature</div>
+                    <div class="grid-layout">
+                        <div class="card lavender">
+                            <div class="card-title">Task Conflict (Functional)</div>
+                            <div class="card-content">Disagreement about task content and goals. Debate about best approaches, methods, priorities. <strong>Can be productive:</strong> Different perspectives lead to better solutions, innovation</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Relationship Conflict (Dysfunctional)</div>
+                            <div class="card-content">Personal animosity, interpersonal tensions, disagreements about non-task issues. <strong>Almost always destructive:</strong> Damages relationships, reduces cooperation, creates hostile environment</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: Process Models & Handling Styles -->
+    <div class="page">
+        <h2 class="page-title">Conflict Process & Handling Styles</h2>
+        <div class="mindmap-container">
+            <div class="content-area">
+                <!-- Pondy's Model -->
+                <div class="cluster">
+                    <div class="cluster-title">📊 PONDY'S FIVE-STAGE CONFLICT PROCESS</div>
+                    
+                    <div class="central-node">CONFLICT EVOLUTION</div>
+
+                    <div class="section-header">The Five Stages</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Stage 1: Latent Conflict</div>
+                            <div class="card-content">Underlying conditions exist that could produce conflict (competition for resources, role ambiguity, value differences). Not yet conscious or expressed. Hidden beneath surface</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Stage 2: Perceived Conflict</div>
+                            <div class="card-content">Parties become aware of conflict conditions. Recognition that goals are incompatible or interests diverge. Mental awareness but not yet emotional involvement</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Stage 3: Felt Conflict</div>
+                            <div class="card-content">Emotional involvement, anxiety, tension, stress. Personal feelings activated. Conflict becomes personal, not just intellectual. Hormonal and physiological responses begin</div>
+                        </div>
+
+                        <div class="card lavender">
+                            <div class="card-title">Stage 4: Manifest Conflict</div>
+                            <div class="card-content">Overt conflict behavior expressed. Arguments, fights, passive resistance, sabotage. Open disagreement and confrontation. Visible to others. Most obvious stage</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Stage 5: Conflict Aftermath</div>
+                            <div class="card-content">Aftermath of confrontation. Either resolution or suppression. Can lead to improved relationships (functional outcome) or lingering resentment (dysfunctional). Sets stage for future conflicts</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Johari Window -->
+                <div class="cluster">
+                    <div class="cluster-title">🪟 JOHARI WINDOW & COMMUNICATION CLARITY</div>
+                    
+                    <div class="section-header">Understanding Self-Other Awareness</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Open Area (Arena)</div>
+                            <div class="card-content">Known to self and others. Open communication, transparency. What you know about yourself and others know about you. Enlarging this area reduces conflict</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Blind Spot</div>
+                            <div class="card-content">Known to others but not to self. Behaviors you don't recognize but others see clearly. Feedback from others reveals blind spots. Conflicts often stem from blind spots</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Hidden Facade (Concealed)</div>
+                            <div class="card-content">Known to self but hidden from others. Things you keep private, conceal deliberately. Self-disclosure reduces hidden area. Building trust increases openness</div>
+                        </div>
+
+                        <div class="card lavender">
+                            <div class="card-title">Unknown Area</div>
+                            <div class="card-content">Unknown to both self and others. Potential, unrealized capabilities, unconscious motivations. Personal growth and therapy expand this area</div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">Conflict Prevention Through Johari Window</div>
+                    <div class="node color-yellow" style="font-size: 15px; padding: 20px;">
+                        <strong>Enlarge Open Area through feedback and self-disclosure.</strong> Better understanding reduces misinterpretations and conflicts. Feedback reveals blind spots; self-disclosure reduces hidden facades
+                    </div>
+                </div>
+
+                <!-- Thomas-Kilmann Styles -->
+                <div class="cluster">
+                    <div class="cluster-title">🛡️ THOMAS-KILMANN HANDLING STYLES</div>
+                    
+                    <div class="section-header">Five Conflict Response Modes</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Competing (Assertive, Uncooperative)</div>
+                            <div class="card-content">Pursue own interests at expense of others. Win-lose mentality. Appropriate when decisions are urgent or unpopular but necessary. Creates resentment if overused</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Collaborating (Assertive, Cooperative)</div>
+                            <div class="card-content">Seek win-win solutions. Both parties' interests are important. Take time, open communication, creative problem-solving. <strong>Best for important conflicts.</strong> Strongest relationships result</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Compromising (Moderate)</div>
+                            <div class="card-content">Both parties give up something. Middle ground solution. Faster than collaboration but less satisfying. Good when time is limited and stakes are moderate</div>
+                        </div>
+
+                        <div class="card lavender">
+                            <div class="card-title">Accommodating (Unassertive, Cooperative)</div>
+                            <div class="card-content">Put other's interests before own. Yield to maintain relationships. Good for minor issues or when relationship is more important than issue. Can build goodwill</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Avoiding (Unassertive, Uncooperative)</div>
+                            <div class="card-content">Ignore or postpone conflict. Sidestep the issue. Appropriate for trivial matters or cooling-off periods. Overuse lets problems fester and grow</div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">Situational Appropriateness</div>
+                    <div class="node color-terracotta" style="font-size: 14px; padding: 20px;">
+                        No single best style. Context determines effectiveness. Effective managers use all five styles situationally. Collaboration for important issues; competing for urgent decisions; avoiding for trivial matters
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: Role Conflict & Management Strategies -->
+    <div class="page">
+        <h2 class="page-title">Role Conflict & Management Strategies</h2>
+        <div class="mindmap-container">
+            <div class="content-area">
+                <!-- Role Conflict Types -->
+                <div class="cluster">
+                    <div class="cluster-title">👤 ROLE CONFLICT & STRESS</div>
+                    
+                    <div class="central-node">ROLE DYNAMICS</div>
+
+                    <div class="section-header">Types of Role Conflict</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Inter-Role Conflict</div>
+                            <div class="card-content">Competing demands from multiple roles. Work vs family roles. Manager vs team member. Professional vs personal identity. Example: lead team meeting vs attend child's event simultaneously</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Intra-Role Conflict</div>
+                            <div class="card-content">Conflicting expectations within same role. Boss wants quick turnaround, quality standards require thorough work. Wants you to be friendly and authoritative simultaneously</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Person-Role Conflict</div>
+                            <div class="card-content">Role expectations clash with personal values/beliefs. Ethical job requirements vs moral principles. "Selling" product you don't believe in. Requires compromising integrity</div>
+                        </div>
+
+                        <div class="card lavender">
+                            <div class="card-title">Role Overload</div>
+                            <div class="card-content">Too many responsibilities, not enough time/resources. Impossible to meet all expectations. Leads to stress, burnout, quality decline. Common in restructured organizations</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Role Ambiguity</div>
+                            <div class="card-content">Unclear expectations about what role entails. Uncertain about responsibilities, authority, performance criteria. Anxiety and stress from not knowing what's expected</div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">Solutions for Role Conflict</div>
+                    <div class="grid-layout">
+                        <div class="card yellow">
+                            <div class="card-title">Role Clarification</div>
+                            <div class="card-content">Clear job descriptions, explicit expectations, regular discussions with manager. Remove ambiguity. Align role with capabilities. Everyone understands requirements</div>
+                        </div>
+
+                        <div class="card coral">
+                            <div class="card-title">Priority Rules</div>
+                            <div class="card-content">Establish clear hierarchy of competing demands. What takes precedence? Which expectations are non-negotiable? Provides decision framework when conflicts arise</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Structural Redesign</div>
+                            <div class="card-content">Reorganize roles and responsibilities to reduce conflicts. Eliminate overlapping duties, clarify boundaries between positions. Reduce workload or add resources</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Management Strategies -->
+                <div class="cluster">
+                    <div class="cluster-title">🔧 CONFLICT MANAGEMENT STRATEGIES</div>
+                    
+                    <div class="section-header">Structural Approaches</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">Superordinate Goals</div>
+                            <div class="card-content">Create shared objectives that transcend conflict. "We win together or lose together." Common enemy effect. Focus on larger purpose binding parties together</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Resource Augmentation</div>
+                            <div class="card-content">Provide more resources so both parties can achieve goals. Removes zero-sum competition. If competing for budget, increase budget. Eliminates scarcity-based conflict</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Appeals to Hierarchy</div>
+                            <div class="card-content">Higher authority makes binding decision. Quick resolution but may create resentment. Losers may not accept decision. Use when other methods fail</div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">Behavioral & Interpersonal Approaches</div>
+                    <div class="grid-layout">
+                        <div class="card lavender">
+                            <div class="card-title">Transactional Analysis</div>
+                            <div class="card-content">Analyze communication patterns (Parent, Adult, Child ego states). Switch to Adult-to-Adult communication. Understand hidden scripts and games. Improve dialogue quality</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Mediation & Arbitration</div>
+                            <div class="card-content"><strong>Mediation:</strong> Neutral third party facilitates resolution, parties decide<br><strong>Arbitration:</strong> Arbitrator makes binding decision. Mediation preferred for relationships</div>
+                        </div>
+
+                        <div class="card yellow">
+                            <div class="card-title">Integrative Bargaining</div>
+                            <div class="card-content">Expand the pie rather than fight over existing pie. Find creative solutions where both gain. Understand underlying interests, not just stated positions. Win-win orientation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: Indian Context & Challenges -->
+    <div class="page">
+        <h2 class="page-title">Indian Context & Contemporary Challenges</h2>
+        <div class="mindmap-container">
+            <div class="content-area">
+                <div class="cluster">
+                    <div class="cluster-title">🇮🇳 CONFLICT IN INDIAN ORGANISATIONS</div>
+                    
+                    <div class="central-node">INDIAN CONTEXT</div>
+
+                    <div class="section-header">Cultural & Structural Factors</div>
+                    <div class="grid-layout">
+                        <div class="card coral">
+                            <div class="card-title">High Power Distance Culture</div>
+                            <div class="card-content">Hierarchical acceptance of unequal distribution of power. Employees hesitant to challenge authority or voice disagreement with superiors. Conflict suppression rather than resolution. Resentment builds internally</div>
+                        </div>
+
+                        <div class="card sage">
+                            <div class="card-title">Industrial Relations Code 2020</div>
+                            <div class="card-content">India's new legal framework for employment relations. Emphasis on structured grievance redressal, mandatory conciliation, worker participation, dispute resolution mechanisms. Aims to formalize conflict management</div>
+                        </div>
+
+                        <div class="card mint">
+                            <div class="card-title">Caste & Community Tensions</div>
+                            <div class="card-content">Caste-based discrimination in Indian workplaces despite legal prohibition. Community/regional identity conflicts. Religious tensions. Conflicts rooted in social structure, not just task/role issues. Extremely sensitive</div>
+                        </div>
+
+                        <div class="card lavender">
+                            <div class="card-title">Multi-Generational Gaps</div>
+                            <div class="card-content">Growing workforce diversity: Baby Boomers, Gen X, Millennials, Gen Z. Different work values, communication styles, authority respect levels. Generational conflicts increasing. Older generation values loyalty/hierarchy; younger values flexibility/autonomy</div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">Key Implications for Indian Managers</div>
+                    <div class="branch-container">
+                        <div class="node color-terracotta" style="flex: 1; min-width: 200px;">
+                            <strong>Power Distance:</strong> Can't use egalitarian/collaborative approaches directly. Need to respect hierarchy while creating safe spaces for feedback. One-on-one meetings better than group forums
+                        </div>
+                        <div class="node color-yellow" style="flex: 1; min-width: 200px;">
+                            <strong>Legal Compliance:</strong> Must follow Industrial Relations Code procedures. Formal documentation, arbitration, worker representation essential. Informal conflict resolution no longer sufficient
+                        </div>
+                        <div class="node color-coral" style="flex: 1; min-width: 200px;">
+                            <strong>Identity Sensitivity:</strong> Caste, religion, region are sensitive issues. Need explicit anti-discrimination policies. Diversity training mandatory. Create inclusive culture, not just compliance
+                        </div>
+                        <div class="node color-sage" style="flex: 1; min-width: 200px;">
+                            <strong>Generational Management:</strong> Mix of traditional and modern approaches. Mentor younger by older employees. Create mentorship programs. Acknowledge different working styles and values</div>
+                    </div>
+                </div>
+
+                <!-- Modern Challenges -->
+                <div class="cluster">
+                    <div class="cluster-title">⚡ CONTEMPORARY CHALLENGES</div>
+                    
+                    <div class="section-header">Emerging Conflict Sources</div>
+                    <div class="grid-layout">
+                        <div class="card mint">
+                            <div class="card-title">Remote & Hybrid Work Conflicts</div>
+                            <div class="card-content">Lack of face-to-face interaction increases misunderstandings. Asynchronous communication breeds conflict. Time zone conflicts. Isolation creates tension. Less informal resolution opportunities</div>
+                        </div>
+
+                        <div class="card lavender">
+                            <div class="card-title">Algorithmic Management</div>
+                            <div class="card-content">AI-based performance tracking, automated discipline systems create perceptions of unfairness. Employees feel lack of human judgment. "Fighting the system" becomes new conflict type</div>
+                        </div>
+
+                        <div class="card terracotta">
+                            <div class="card-title">Work Intensification & Burnout</div>
+                            <div class="card-content">High stress, impossible deadlines breed interpersonal conflicts. Exhausted employees have lower patience, more irritability. Relationships suffer under pressure. Resource competition increases</div>
+                        </div>
+
+                        <div class="card yellow">
+                            <div class="card-title">Psychological Safety & Voice</div>
+                            <div class="card-content">Despite talk of psychological safety, many fear consequences of speaking up. Silent conflicts build. Unresolved tensions manifest as disengagement or sabotage. Need to build genuine safe environments</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="cluster">
+                    <div class="cluster-title">✅ BEST PRACTICES FOR EFFECTIVE CONFLICT MANAGEMENT</div>
+                    
+                    <div class="section-header">Integrated Approach</div>
+                    <div class="node color-coral" style="font-size: 15px; padding: 20px;">
+                        <strong>Combine structural, behavioral, and legal approaches.</strong> Clarify roles and goals (structure), develop emotional intelligence and communication skills (behavior), follow proper procedures (legal). Address conflicts early before they escalate
+                    </div>
+
+                    <div class="section-header">Key Success Factors</div>
+                    <div class="branch-container">
+                        <div class="node color-sage" style="flex: 1; min-width: 180px;">
+                            <strong>Early Intervention:</strong> Address conflicts in latent or perceived stages. Prevention better than cure
+                        </div>
+                        <div class="node color-mint" style="flex: 1; min-width: 180px;">
+                            <strong>Psychological Safety:</strong> Create environment where people safely express concerns without fear
+                        </div>
+                        <div class="node color-lavender" style="flex: 1; min-width: 180px;">
+                            <strong>Collaborative Problem-Solving:</strong> Focus on shared interests, not positions. Seek win-win solutions
+                        </div>
+                        <div class="node color-terracotta" style="flex: 1; min-width: 180px;">
+                            <strong>Follow-Up:</strong> After resolution, monitor and ensure agreements are honored. Rebuild relationships
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+    <!-- FINAL PAGE: Summary -->
+    <div class="page" style="border-bottom: none;">
+        <h2 class="page-title">Complete Overview</h2>
+        <div class="mindmap-container">
+            <div class="content-area">
+                <div class="cluster">
+                    <div style="text-align: center; margin: 40px 0;">
+                        <div class="central-node" style="font-size: 32px; padding: 40px 60px;">
+                            CONFLICT MANAGEMENT<br>IN ORGANISATIONAL<br>BEHAVIOUR
+                        </div>
+                    </div>
+
+                    <div class="grid-layout" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="card coral">
+                            <div class="card-title">📈 Evolution</div>
+                            <div class="card-content">Traditional to interactionist views</div>
+                        </div>
+                        <div class="card sage">
+                            <div class="card-title">⚔️ Types</div>
+                            <div class="card-content">Intrapersonal, interpersonal, levels, nature</div>
+                        </div>
+                        <div class="card mint">
+                            <div class="card-title">📊 Process</div>
+                            <div class="card-content">Pondy's stages and Johari Window</div>
+                        </div>
+                        <div class="card lavender">
+                            <div class="card-title">🛡️ Styles</div>
+                            <div class="card-content">Thomas-Kilmann five modes</div>
+                        </div>
+                        <div class="card terracotta">
+                            <div class="card-title">👤 Role Conflict</div>
+                            <div class="card-content">Types and solutions</div>
+                        </div>
+                        <div class="card yellow">
+                            <div class="card-title">🇮🇳 Indian Context</div>
+                            <div class="card-content">Cultural factors and challenges</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 60px; text-align: center; color: var(--text-muted); font-style: italic;">
+                        <p style="font-size: 18px;">From inevitable tension to constructive resolution</p>
+                        <p style="font-size: 16px; margin-top: 20px;">Conflict management as critical skill for building healthy, innovative organizations</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-area"></div>
+        </div>
+    </div>
+
+</body>
+</html>
