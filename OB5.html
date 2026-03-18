@@ -3,803 +3,879 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quality of Work Life & Quality Circles - Mindmap</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>OB: QWL & Quality Circles - Complete Mindmap</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --warm-cream: #FFF8F0;
-            --peach-light: #FFE5D9;
-            --coral: #FF9B85;
-            --coral-deep: #FF6B6B;
-            --terracotta: #D68C6E;
-            --sand: #F4E4C1;
-            --sage: #A8C090;
-            --mint: #8BD3C4;
-            --lavender: #C49ECE;
-            --warm-yellow: #FFD166;
-            --text-dark: #3D3D3D;
-            --text-muted: #6B6B6B;
-        }
-
-        @media print {
-            body {
-                size: landscape;
-            }
-            .page {
-                page-break-after: always;
-                width: 297mm;
-                height: 210mm;
-            }
-        }
-
-        body {
-            background: linear-gradient(135deg, var(--warm-cream) 0%, var(--peach-light) 100%);
-            font-family: 'Quicksand', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            padding: 0;
-            min-width: 1400px;
-        }
-
-        .page {
-            min-height: 100vh;
-            padding: 80px 60px 80px 60px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            border-bottom: 3px dashed var(--coral);
-        }
-
-        .page::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, var(--coral) 0%, transparent 70%);
-            opacity: 0.15;
-            border-radius: 50%;
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.15; }
-            50% { transform: scale(1.1); opacity: 0.25; }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .page-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 56px;
-            font-weight: 900;
-            color: var(--coral-deep);
-            margin-bottom: 20px;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(255, 107, 107, 0.1);
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .page-subtitle {
-            font-size: 18px;
-            color: var(--text-muted);
-            text-align: center;
-            margin-bottom: 60px;
-            font-style: italic;
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
-        }
-
-        .mindmap-container {
-            flex: 1;
-            display: flex;
-            gap: 40px;
-            animation: fadeInUp 0.8s ease-out 0.4s backwards;
-        }
-
-        .content-area {
-            flex: 2;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .notes-area {
-            flex: 1;
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 40px rgba(255, 107, 107, 0.1);
-            border: 3px dashed var(--coral);
-            position: relative;
-            min-height: 400px;
-        }
-
-        .notes-area::before {
-            content: '📝 NOTES';
-            position: absolute;
-            top: -15px;
-            left: 30px;
-            background: var(--coral-deep);
-            color: white;
-            padding: 5px 20px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 1px;
-        }
-
-        .notes-area::after {
-            content: '';
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23FFE5D9" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>') center/contain no-repeat;
-            opacity: 0.3;
-        }
-
-        .central-node {
-            background: linear-gradient(135deg, var(--coral-deep), var(--coral));
-            color: white;
-            padding: 30px 50px;
-            border-radius: 30px;
-            font-size: 28px;
-            font-weight: 700;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
-            margin: 20px auto;
-            max-width: fit-content;
-            transform: scale(1);
-            transition: transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .central-node::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .central-node:hover {
-            transform: scale(1.05);
-        }
-
-        .branch-container {
-            display: flex;
-            gap: 40px;
-            align-items: flex-start;
-            flex-wrap: wrap;
-        }
-
-        .branch {
-            position: relative;
-            animation: fadeInUp 0.6s ease-out backwards;
-        }
-
-        .branch:nth-child(1) { animation-delay: 0.1s; }
-        .branch:nth-child(2) { animation-delay: 0.2s; }
-        .branch:nth-child(3) { animation-delay: 0.3s; }
-        .branch:nth-child(4) { animation-delay: 0.4s; }
-
-        .branch-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--coral-deep);
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .node {
-            background: white;
-            padding: 18px 25px;
-            border-radius: 15px;
-            margin-bottom: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid var(--coral);
-            font-size: 15px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .node:hover {
-            transform: translateX(5px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.2);
-        }
-
-        .node.color-sage { border-left-color: var(--sage); }
-        .node.color-mint { border-left-color: var(--mint); }
-        .node.color-lavender { border-left-color: var(--lavender); }
-        .node.color-terracotta { border-left-color: var(--terracotta); }
-        .node.color-yellow { border-left-color: var(--warm-yellow); }
-
-        .node strong {
-            color: var(--coral-deep);
-            font-weight: 700;
-        }
-
-        .grid-layout {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 20px 0;
-        }
-
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            border-top: 6px solid var(--coral);
-            transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.15);
-        }
-
-        .card.sage { border-top-color: var(--sage); }
-        .card.mint { border-top-color: var(--mint); }
-        .card.lavender { border-top-color: var(--lavender); }
-        .card.terracotta { border-top-color: var(--terracotta); }
-        .card.yellow { border-top-color: var(--warm-yellow); }
-
-        .card-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--coral-deep);
-            margin-bottom: 15px;
-        }
-
-        .card-content {
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .section-header {
-            background: linear-gradient(90deg, var(--coral-deep), transparent);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 15px;
-            font-size: 22px;
-            font-weight: 700;
-            margin: 30px 0 20px 0;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
-        }
-
-        .cluster {
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 25px;
-            padding: 30px;
-            margin: 20px 0;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
-            border: 2px solid var(--peach-light);
-        }
-
-        .cluster-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--coral-deep);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .tag {
-            display: inline-block;
-            background: var(--coral);
-            color: white;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            margin: 5px;
-            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.2);
-        }
-
-        .tag.sage { background: var(--sage); }
-        .tag.mint { background: var(--mint); }
-        .tag.lavender { background: var(--lavender); }
-        .tag.terracotta { background: var(--terracotta); }
-
-        .title-page {
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(135deg, var(--peach-light) 0%, var(--sand) 50%, var(--warm-cream) 100%);
-        }
-
-        .title-page .page-title {
-            font-size: 72px;
-            margin-bottom: 30px;
-            background: linear-gradient(45deg, var(--coral-deep), var(--coral), var(--terracotta));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .decorative-circle {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.15;
-        }
-
-        .circle-1 {
-            width: 300px;
-            height: 300px;
-            background: var(--coral);
-            top: 10%;
-            left: 5%;
-        }
-
-        .circle-2 {
-            width: 200px;
-            height: 200px;
-            background: var(--sage);
-            bottom: 15%;
-            right: 8%;
-        }
-
-        .circle-3 {
-            width: 150px;
-            height: 150px;
-            background: var(--lavender);
-            top: 50%;
-            right: 20%;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; margin: 0; padding: 0; background: white; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .page { width: 100%; min-height: 100vh; display: grid; grid-template-columns: 1.8fr 1fr; page-break-after: always; break-after: page; margin: 0; padding: 0; }
+        .mindmap-section { display: flex; flex-direction: column; padding: 10px; background: white; border-right: 2px solid #ddd; overflow: visible; }
+        .notes-section { background: #f9f9f9; padding: 10px; display: flex; flex-direction: column; }
+        .notes-title { font-weight: bold; color: #667eea; margin-bottom: 10px; font-size: 0.9em; }
+        .notes-lines { display: flex; flex-direction: column; gap: 0; }
+        .note-line { border-bottom: 1px dotted #bbb; height: 18px; flex-shrink: 0; }
+        .page-title { text-align: center; color: #667eea; font-size: 1.15em; font-weight: bold; margin-bottom: 6px; border-bottom: 2px solid #667eea; padding-bottom: 4px; }
+        .page-subtitle { text-align: center; color: #999; font-size: 0.68em; margin-bottom: 8px; }
+        .mindmap-content { display: flex; flex-direction: column; gap: 8px; overflow: visible; }
+        .mindmap-row { display: flex; gap: 8px; align-items: flex-start; }
+        .central-node { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 11px; border-radius: 6px; font-weight: bold; text-align: center; white-space: normal; flex-shrink: 0; box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3); width: 82px; display: flex; align-items: center; justify-content: center; font-size: 0.77em; line-height: 1.15; min-height: 72px; }
+        .branches-container { display: flex; gap: 7px; flex: 1; overflow: visible; }
+        .branch { background: white; border: 1.5px solid #667eea; border-radius: 5px; padding: 7px; min-width: 115px; flex: 1; display: flex; flex-direction: column; }
+        .branch-title { background: #667eea; color: white; padding: 5px; border-radius: 3px; font-weight: bold; font-size: 0.68em; margin-bottom: 5px; text-align: center; flex-shrink: 0; }
+        .topics { display: flex; flex-direction: column; gap: 3px; overflow: visible; }
+        .topic { padding: 4px; background: #f0f4ff; border-left: 2px solid #667eea; border-radius: 2px; font-size: 0.68em; line-height: 1.2; flex-shrink: 0; }
+        .topic strong { color: #667eea; display: block; margin-bottom: 1px; font-size: 0.9em; }
+        .topic small { color: #666; font-size: 0.85em; }
+        .priority-high { background: #ffe5e5; border-left: 2px solid #ff6b6b; }
+        .priority-high strong { color: #ff6b6b; }
+        .priority-mid { background: #fff5e5; border-left: 2px solid #ffc107; }
+        .priority-mid strong { color: #ff9800; }
+        .explanation-section { display: flex; flex-direction: column; gap: 6px; font-size: 0.66em; line-height: 1.25; margin-top: 6px; overflow: visible; }
+        .explanation { background: #f9f9f9; border-left: 2px solid #667eea; padding: 6px; border-radius: 3px; flex-shrink: 0; }
+        .explanation-title { font-weight: bold; color: #667eea; margin-bottom: 2px; font-size: 0.82em; }
+        .explanation-content { color: #333; margin-left: 5px; }
+        .explanation-item { margin: 1.5px 0; font-size: 0.9em; }
+        .explanation-item strong { color: #667eea; }
+        .page-number { text-align: right; color: #999; font-size: 0.65em; margin-top: 6px; flex-shrink: 0; }
+        @media print { body { margin: 0; padding: 0; } .page { margin: 0; padding: 0; min-height: 100vh; } .mindmap-section { padding: 10mm; border-right: 2px solid #ddd; } .notes-section { padding: 10mm; } }
+        @media screen { .page { margin: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); } }
     </style>
 </head>
 <body>
 
-    <!-- TITLE PAGE -->
-    <div class="page title-page">
-        <div class="decorative-circle circle-1"></div>
-        <div class="decorative-circle circle-2"></div>
-        <div class="decorative-circle circle-3"></div>
-        <h1 class="page-title">QUALITY OF WORK LIFE & QUALITY CIRCLES</h1>
-        <p class="page-subtitle">Building Humane Workplaces Through Employee Wellbeing & Continuous Improvement</p>
-    </div>
-
-    <!-- PAGE 1: Quality of Work Life -->
-    <div class="page">
-        <h2 class="page-title">Quality of Work Life (QWL)</h2>
-        <div class="mindmap-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div class="cluster-title">💼 FOUNDATIONAL DEFINITIONS</div>
-                    
-                    <div class="central-node">QUALITY OF WORK LIFE</div>
-
-                    <div class="section-header">Defining QWL Through Key Theorists</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Eric Davis (1972)</div>
-                            <div class="card-content">
-                                <strong>"Impact on people and effectiveness"</strong><br>
-                                QWL is the degree to which employees can satisfy their personal needs while working toward organizational goals. Dual focus: human satisfaction and organizational performance
+<!-- PAGE 1: QWL MEANING & DEFINITIONS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🎯 QUALITY OF WORK LIFE (QWL): MEANING & DEFINITIONS</div>
+        <div class="page-subtitle">Core Concepts & Walton's 8-Dimension Framework (PYQ 2023, 2019, 2025)</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">QWL</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CORE DEFINITIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Louis Davis (1972)</strong>
+                                <small>"Concerned with impact of work on people AND organisational effectiveness; nature of work can be designed to improve individual's quality of life"</small>
                             </div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Richard Walton (1974)</div>
-                            <div class="card-content">
-                                <strong>"8-dimension comprehensive framework"</strong><br>
-                                Most influential definition. QWL encompasses multiple aspects of work life: compensation, safety, development, security, relationships, rights, work-life balance, and social relevance
+                            <div class="topic priority-high">
+                                <strong>UPSC 2019 Formulation (KEY)</strong>
+                                <small>"Overriding purpose of QWL is to change climate at work so human-technological-organisational interface leads to better quality of work life" - QUOTE THIS EXACTLY</small>
                             </div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">UPSC Definition (2019)</div>
-                            <div class="card-content">
-                                <strong>"Human-technological-organisational interface"</strong><br>
-                                QWL as the harmonious integration of human, technological, and organizational factors. Holistic view of work environment and employee wellbeing
+                            <div class="topic priority-high">
+                                <strong>Walton (1974)</strong>
+                                <small>"Encompasses 8 dimensions of work experience contributing to employee well-being AND organisational performance" - FOUNDATIONAL FRAMEWORK</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Functional Definition</strong>
+                                <small>Degree to which work experiences are positive, promote employee growth/satisfaction/commitment while enabling org performance goals</small>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Walton's 8 Dimensions -->
-                <div class="cluster">
-                    <div class="cluster-title">📊 WALTON'S 8 DIMENSIONS OF QWL</div>
-                    
-                    <div class="section-header">Comprehensive Framework</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">1. Adequate & Fair Compensation</div>
-                            <div class="card-content">Pay should meet basic needs and match the importance of work. Fairness relative to similar jobs. Transparent, equitable compensation systems</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">2. Safe & Healthy Environment</div>
-                            <div class="card-content">Physical safety (accident prevention, ergonomics), mental health support, absence of harassment. Safe working conditions are non-negotiable baseline</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">3. Development of Capacities</div>
-                            <div class="card-content">Opportunities to learn, grow skills, use abilities. Meaningful work that employs individual talents. Training and career development programs</div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">4. Growth & Security</div>
-                            <div class="card-content">Career advancement opportunities, job security, protection from arbitrary actions. Clear progression paths and job stability</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">5. Social Integration</div>
-                            <div class="card-content">Sense of belonging, teamwork, camaraderie. Freedom from discrimination, inclusion, respect from colleagues. Strong relationships at work</div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">6. Constitutionalism</div>
-                            <div class="card-content">Employee rights, fair treatment, due process, grievance mechanisms. Protection against arbitrary managerial action. Dignity and respect</div>
-                        </div>
-
-                        <div class="card coral">
-                            <div class="card-title">7. Work & Total Life Space</div>
-                            <div class="card-content">Balance between work and personal life. Reasonable working hours, flexibility, consideration for family needs. Not all of life consumed by work</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">8. Social Relevance</div>
-                            <div class="card-content">Work contributes to society, has meaning beyond profit. Purpose and impact. Connection to larger social good and organizational mission</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Enhancement Mechanisms -->
-                <div class="cluster">
-                    <div class="cluster-title">🔧 QWL ENHANCEMENT MECHANISMS</div>
-                    
-                    <div class="section-header">Practical Implementation</div>
-                    <div class="grid-layout">
-                        <div class="card lavender">
-                            <div class="card-title">Hackman-Oldham Job Redesign (JDS)</div>
-                            <div class="card-content">Increasing skill variety, task identity, task significance, autonomy, and feedback. Design work to be more meaningful and engaging. Makes jobs inherently motivating</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Flexible & Hybrid Work</div>
-                            <div class="card-content">Remote options, flexible hours, compressed weeks. Reduces commute stress, increases autonomy. Particularly post-COVID norm. Improves work-life balance</div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">Employee Assistance Programmes (EAP)</div>
-                            <div class="card-content">Counseling services, mental health support, financial advice, family services. Addresses holistic employee wellbeing beyond work tasks</div>
-                        </div>
-
-                        <div class="card coral">
-                            <div class="card-title">Participative Management</div>
-                            <div class="card-content">Employee involvement in decisions affecting them. Quality circles, suggestion systems, worker representation. Increases sense of control and ownership</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Impact on Performance -->
-                <div class="cluster">
-                    <div class="cluster-title">📈 IMPACT ON ORGANIZATIONAL PERFORMANCE</div>
-                    
-                    <div class="section-header">Measurable Business Outcomes</div>
-                    <div class="grid-layout">
-                        <div class="card mint">
-                            <div class="card-title">Productivity Increase</div>
-                            <div class="card-content">
-                                <strong>21% productivity increase (Gallup Research)</strong><br>
-                                High QWL organizations show significantly higher output, efficiency, and quality of work
+                    <div class="branch">
+                        <div class="branch-title">HUMAN-TECH-ORG INTERFACE (PYQ 2019)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Gap 1: Technology Without Human Support</strong>
+                                <small>Tech introduced without skill development >> anxiety >> quality deficit; automation without retraining</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Gap 2: Org Demands Exceed Capacity</strong>
+                                <small>Overwork destroys psychological QWL; burnout, health issues, turnover; unsustainable pace</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Gap 3: Human Needs vs Tech Efficiency</strong>
+                                <small>Depersonalisation and alienation; work becomes purely transactional; loss of meaning</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Management Imperative</strong>
+                                <small>3-way interface MUST be actively managed; not left to chance or 'survival of the fittest'</small>
                             </div>
                         </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Lower Turnover</div>
-                            <div class="card-content">
-                                <strong>59% reduction in turnover (cited studies)</strong><br>
-                                Better retention, reduced recruitment costs, continuity of expertise and relationships
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">QWL & PERFORMANCE LINKAGE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>GALLUP Evidence</strong>
+                                <small>17-21% higher productivity for engaged employees; 15 billion workdays lost annually globally to poor well-being</small>
                             </div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">Service Profit Chain Linkage</div>
-                            <div class="card-content">QWL → Employee satisfaction → Service quality → Customer satisfaction → Profitability. Cascading impact from internal quality to external results</div>
+                            <div class="topic priority-high">
+                                <strong>Service Profit Chain (Heskett et al.)</strong>
+                                <small>QWL >> Service Quality >> Customer Satisfaction >> Profitability; QWL is STRATEGIC not cost centre</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>ROI Perspective</strong>
+                                <small>QWL improvement has measurable financial returns; justifies investment in training, flexitime, wellness</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="notes-area"></div>
+        </div>
+        <div class="page-number">Page 1 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
         </div>
     </div>
+</div>
 
-    <!-- PAGE 2: Quality Circles -->
-    <div class="page">
-        <h2 class="page-title">Quality Circles (QC)</h2>
-        <div class="mindmap-container">
-            <div class="content-area">
-                <!-- Core Concept -->
-                <div class="cluster">
-                    <div class="cluster-title">⭐ CORE CONCEPT</div>
-                    
-                    <div class="central-node">QUALITY CIRCLES</div>
-
-                    <div class="section-header">Definition & Origin</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Kaoru Ishikawa (Japan, 1962)</div>
-                            <div class="card-content">Japanese quality guru pioneered quality circles as systematic approach to continuous improvement. Originally in Toyota and Japanese manufacturers. Later adopted globally</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Voluntary Small Groups (6-12 members)</div>
-                            <div class="card-content">Workers from same department voluntarily form groups to identify and solve work-related problems. Not mandatory; based on interest and commitment</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Systematic Problem-Solving</div>
-                            <div class="card-content">QCs use structured, data-driven approaches to identify root causes and develop solutions. Emphasis on continuous improvement (Kaizen). Scientific method applied to operational problems</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Seven Basic Tools -->
-                <div class="cluster">
-                    <div class="cluster-title">🛠️ SEVEN BASIC QUALITY TOOLS</div>
-                    
-                    <div class="section-header">Quality Circle Toolkit</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Fishbone Diagram (Ishikawa)</div>
-                            <div class="card-content">Cause-effect analysis. Identifies potential root causes of problems organized by categories (people, process, equipment, environment). Visual representation of problem sources</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Pareto Chart</div>
-                            <div class="card-content">80-20 Rule visualization. Shows which problems account for majority of losses. Prioritizes efforts on high-impact issues. "Vital few vs trivial many"</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Control Charts</div>
-                            <div class="card-content">Statistical process control. Monitors process variations over time. Distinguishes normal variation from special causes. Maintains process stability</div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">Histograms</div>
-                            <div class="card-content">Displays distribution of data. Shows frequency patterns. Identifies central tendency and spread of measurements</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Scatter Diagrams</div>
-                            <div class="card-content">Shows correlation between two variables. Identifies relationships. Helps understand variable associations</div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">Check Sheets & Flowcharts</div>
-                            <div class="card-content">Check sheets: Simple data collection tools. Flowcharts: Process mapping, visualizes work flow and decision points</div>
+<!-- PAGE 2: WALTON'S 8 DIMENSIONS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📊 WALTON'S 8 DIMENSIONS OF QWL - MASTER FRAMEWORK</div>
+        <div class="page-subtitle">Eight Key Dimensions for Employee Well-Being (MUST KNOW)</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">8 DIMS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">DIMENSION 1-3</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>1. Adequate & Fair Compensation</strong>
+                                <small>Pay sufficient for reasonable living; equitable (internal equity); equal pay for equal work; competitive with market</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2. Safe & Healthy Environment</strong>
+                                <small>Freedom from physical hazards, excessive stress, occupational health risks; accident rate; ergonomic design; working hours; noise/toxin levels; OSHA 2020</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>3. Use & Development of Capacities</strong>
+                                <small>Work providing scope to use and develop skills, knowledge, judgment - NOT repetitive routine; job autonomy; task variety; skill utilisation; challenging assignments</small>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Phases of Establishment -->
-                <div class="cluster">
-                    <div class="cluster-title">📋 PHASES OF QC ESTABLISHMENT</div>
-                    
-                    <div class="section-header">Implementation Roadmap</div>
-                    <div class="branch-container">
-                        <div class="node color-terracotta" style="flex: 1; min-width: 200px;">
-                            <strong>Phase 1 - Awareness & Commitment:</strong> Top management commitment, organization-wide awareness programs, explain QC concept, address skepticism
-                        </div>
-                        <div class="node color-yellow" style="flex: 1; min-width: 200px;">
-                            <strong>Phase 2 - Planning & Training:</strong> Identify pilot departments, train facilitators and members, establish QC structure, define ground rules
-                        </div>
-                    </div>
-
-                    <div class="branch-container">
-                        <div class="node color-coral" style="flex: 1; min-width: 200px;">
-                            <strong>Phase 3 - Launch & Solving:</strong> Circles form and begin meeting, identify problems, collect data, analyze root causes, develop solutions
-                        </div>
-                        <div class="node color-sage" style="flex: 1; min-width: 200px;">
-                            <strong>Phase 4 - Present & Implement:</strong> Formal presentations to management, implementation of approved solutions, track results, celebrate successes
+                    <div class="branch">
+                        <div class="branch-title">DIMENSION 4-6</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>4. Continued Growth & Security</strong>
+                                <small>Career development opportunities, employment security for long-term growth; promotion rates; training; job security; retirement/pension</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>5. Social Integration in Organisation</strong>
+                                <small>Freedom from prejudice; egalitarian culture; sense of community; absence of discrimination; team cohesion; no caste/gender discrimination; inclusion metrics</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>6. Constitutionalism at Work</strong>
+                                <small>Employee rights: due process, privacy, freedom of expression, protection from arbitrary treatment; grievance procedures; transparency of rules; right to challenge</small>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Failure Analysis -->
-                <div class="cluster">
-                    <div class="cluster-title">⚠️ QUALITY CIRCLE FAILURES</div>
-                    
-                    <div class="section-header">Why QCs Fail: Key Reasons</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Management Inaction</div>
-                            <div class="card-content">"Graveyard of ideas." Management accepts proposals but doesn't implement. Kills enthusiasm. Employees feel ignored. QC becomes exercise in futility</div>
+                    <div class="branch">
+                        <div class="branch-title">DIMENSION 7-8</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>7. Work & Total Life Space</strong>
+                                <small>Balance between work demands and family/social/personal life; working hours; overtime; leave policies; family-friendly; commute burden</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>8. Social Relevance of Work</strong>
+                                <small>Work/organisation contribute to social good; employees feel proud of work's impact; CSR; product/service social value; ethical practices</small>
+                            </div>
                         </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Pseudo Participation</div>
-                            <div class="card-content">QCs appear participative but decisions already made. Workers feel manipulated. Lack of genuine decision-making power. Management controls outcomes</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">High Power Distance Culture</div>
-                            <div class="card-content">Particularly challenging in India and similar cultures. Hierarchical structures resist equal participation. Employees hesitant to challenge authority or voice opinions</div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">Supervisor Resistance</div>
-                            <div class="card-content">Supervisors fear loss of control or authority. May see QCs as threat. Lack of support from middle management undermines effectiveness</div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">PERFORMANCE OUTCOMES BY DIMENSION</div>
+                        <div class="topics">
+                            <div class="topic priority-mid">
+                                <strong>Safety & Health</strong>
+                                <small>↓ Absenteeism/sick days; sustained productivity; ↓ compensation costs</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Fair Compensation</strong>
+                                <small>↓ Turnover; better talent attraction; ↓ replacement costs; commitment</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Growth Opportunities</strong>
+                                <small>Higher skill levels; innovation capacity; internal talent pipeline; ↓ external hiring</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Work-Life Balance</strong>
+                                <small>↓ Burnout; sustained performance; ↑ discretionary effort over time</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="notes-area"></div>
+        </div>
+        <div class="page-number">Page 2 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
         </div>
     </div>
+</div>
 
-    <!-- PAGE 3: Contemporary Challenges & Indian Context -->
-    <div class="page">
-        <h2 class="page-title">Contemporary Challenges & Indian Context</h2>
-        <div class="mindmap-container">
-            <div class="content-area">
-                <!-- Digital & AI Impact -->
-                <div class="cluster">
-                    <div class="cluster-title">🤖 DIGITAL & AI IMPACT ON QWL</div>
-                    
-                    <div class="section-header">Contemporary Challenges</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Algorithmic Management & Surveillance</div>
-                            <div class="card-content">AI monitoring employee behavior, productivity tracking, surveillance systems. Reduces autonomy, creates psychological stress. Privacy concerns. Dehumanizes work experience</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Work Intensification</div>
-                            <div class="card-content">Technology increases workload expectations. "Always on" culture. Boundaries between work and personal time blur. Burnout epidemic. QWL deteriorates despite efficiency gains</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">AI-Augmented Work Design</div>
-                            <div class="card-content">Positive potential: Using AI to enhance job design, reduce monotonous tasks, enable focus on meaningful work. Requires intentional design for human flourishing</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Indian Context -->
-                <div class="cluster">
-                    <div class="cluster-title">🇮🇳 QWL & QC IN INDIAN CONTEXT</div>
-                    
-                    <div class="section-header">Unique Challenges & Opportunities</div>
-                    <div class="grid-layout">
-                        <div class="card lavender">
-                            <div class="card-title">Formal vs Informal Sector Divide</div>
-                            <div class="card-content">Majority of Indian workforce in informal sector (street vendors, daily laborers, construction workers) with zero QWL. Formal sector disparities highlight inequality. QWL frameworks mostly applicable to formal organized sector</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Gig Economy QWL Vacuum</div>
-                            <div class="card-content">Explosive growth of gig workers (Ola, Uber, Zomato, delivery workers). No job security, benefits, safety nets. Vulnerable to exploitation. Earnings highly volatile. QWL is near zero</div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">IT Sector Burnout Epidemic</div>
-                            <div class="card-content">High-paying IT jobs in India paradoxically show high burnout rates. Work intensification, long hours, high pressure, mental health issues. Success by old metrics, failure by QWL metrics</div>
-                        </div>
-
-                        <div class="card coral">
-                            <div class="card-title">New Labour Codes (2019-20)</div>
-                            <div class="card-content">India's new labour codes aim to improve QWL: Wages Act, Industrial Relations Code, Code on Occupational Safety & Health, Code on Social Security. Legal framework for QWL improvement in place</div>
+<!-- PAGE 3: HACKMAN-OLDHAM MODEL -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">⚙️ HACKMAN-OLDHAM JOB CHARACTERISTICS MODEL (1976)</div>
+        <div class="page-subtitle">MPS Formula & 5 Core Dimensions | 3 Critical Psychological States | 4 Work Outcomes</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">JOB DESIGN</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">MPS FORMULA (KEY)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Formula</strong>
+                                <small>MPS = [(Skill Variety + Task Identity + Task Significance)/3] × Autonomy × Feedback</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Logic</strong>
+                                <small>5 core dimensions create 3 psychological states which produce 4 work outcomes; multiplicative relationship</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>High MPS Outcomes</strong>
+                                <small>High internal motivation, high quality performance, high satisfaction, low absenteeism/turnover</small>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- OCB & QC Link -->
-                <div class="cluster">
-                    <div class="cluster-title">🔗 ORGANISATIONAL CITIZENSHIP BEHAVIOUR (OCB) & QUALITY CIRCLES</div>
-                    
-                    <div class="section-header">The Virtuous Cycle</div>
-                    <div class="grid-layout">
-                        <div class="card mint">
-                            <div class="card-title">Organisational Citizenship Behaviour</div>
-                            <div class="card-content">Voluntary, extra-role behaviors employees engage in beyond job requirements. Helping others, organizational loyalty, compliance, advocacy. Discretionary effort and goodwill</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Voluntary Extra-Role Effort</div>
-                            <div class="card-content">Willingness to go beyond expectations. Participation in QCs requires OCB. Quality improvements often require extra time and effort from employees</div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">Foundation for QC Effectiveness</div>
-                            <div class="card-content">QCs succeed when employees exhibit high OCB: voluntary participation, willingness to work on solutions, commitment to improvement. OCB transforms QC from formal program to genuine initiative</div>
+                    <div class="branch">
+                        <div class="branch-title">5 CORE JOB DIMENSIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Skill Variety</strong>
+                                <small>Job requires different activities involving different skills and talents - NOT routine, involves multiple competencies</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Task Identity</strong>
+                                <small>Complete whole, identifiable piece of work from beginning to end - see full impact, not just fragment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Task Significance</strong>
+                                <small>Substantial impact on lives or work of other people - meaningful contribution, not busywork</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Autonomy</strong>
+                                <small>Substantial freedom, independence, discretion in scheduling and methods - freedom to choose HOW to do work</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Feedback</strong>
+                                <small>Direct, clear information about effectiveness from job activities - know how you're doing immediately</small>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="section-header">Creating the Virtuous Cycle</div>
-                    <div class="node color-terracotta" style="font-size: 15px; padding: 20px; text-align: center;">
-                        <strong>Good QWL (Walton's 8 dimensions) → Increases OCB → Employees participate in QCs → Solutions implemented → Further improves QWL → Stronger OCB → Continuous improvement cycle</strong>
+                    <div class="branch">
+                        <div class="branch-title">3 PSYCHOLOGICAL STATES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Experienced Meaningfulness</strong>
+                                <small>From Skill Variety + Task Identity + Task Significance - does work feel important and worthwhile?</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Experienced Responsibility</strong>
+                                <small>From Autonomy - do I feel responsible for outcomes (not just following instructions)?</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Knowledge of Results</strong>
+                                <small>From Feedback - do I know how I'm doing and can I learn from results?</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">4 WORK OUTCOMES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Internal Work Motivation</strong>
+                                <small>Intrinsic motivation to do the job well - comes from within, not external rewards</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Work Performance</strong>
+                                <small>Quality and quantity of work output; higher quality from enriched jobs</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Job Satisfaction</strong>
+                                <small>Overall satisfaction with job; higher for jobs high in all dimensions</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Low Absenteeism/Turnover</strong>
+                                <small>Reduced absence; lower voluntary turnover - people stay and show up</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="notes-area"></div>
+        </div>
+        <div class="page-number">Page 3 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
         </div>
     </div>
+</div>
 
-    <!-- FINAL PAGE: Summary -->
-    <div class="page" style="border-bottom: none;">
-        <h2 class="page-title">Complete Overview</h2>
-        <div class="mindmap-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div style="text-align: center; margin: 40px 0;">
-                        <div class="central-node" style="font-size: 32px; padding: 40px 60px;">
-                            QUALITY OF WORK LIFE<br>& QUALITY CIRCLES
+<!-- PAGE 4: FLEXITIME & QUALITY CIRCLES INTRO -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🕐 FLEXITIME & QUALITY CIRCLES FUNDAMENTALS</div>
+        <div class="page-subtitle">Flexitime Benefits/Challenges (PYQ 2022) | QC Origins & Phases</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">FLEX & QC</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">FLEXITIME BENEFITS (PYQ 2022)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Reduces Role Conflict</strong>
+                                <small>Flexibility between work and family/personal demands - less scheduling pressure</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Higher Autonomy</strong>
+                                <small>Intrinsic motivation increased (Hackman-Oldham autonomy dimension) - freedom to choose WHEN</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Reduces Commute Stress</strong>
+                                <small>Avoid rush hours; flexible to start/end times; reduces commute burden</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Improves Retention</strong>
+                                <small>Especially valuable for caregivers, parents, long-distance commuters - addresses Walton Dimension 7 (Work-Life Balance)</small>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="grid-layout" style="grid-template-columns: repeat(3, 1fr);">
-                        <div class="card coral">
-                            <div class="card-title">💼 QWL Definition</div>
-                            <div class="card-content">Davis, Walton, UPSC perspectives</div>
-                        </div>
-                        <div class="card sage">
-                            <div class="card-title">📊 8 Dimensions</div>
-                            <div class="card-content">Walton's comprehensive framework</div>
-                        </div>
-                        <div class="card mint">
-                            <div class="card-title">🔧 Enhancement</div>
-                            <div class="card-content">Job redesign, flexibility, EAP, participation</div>
-                        </div>
-                        <div class="card lavender">
-                            <div class="card-title">⭐ Quality Circles</div>
-                            <div class="card-content">Ishikawa's approach and principles</div>
-                        </div>
-                        <div class="card terracotta">
-                            <div class="card-title">🛠️ Seven Tools</div>
-                            <div class="card-content">Fishbone, Pareto, control charts, etc.</div>
-                        </div>
-                        <div class="card yellow">
-                            <div class="card-title">🇮🇳 Indian Context</div>
-                            <div class="card-content">Challenges and opportunities</div>
+                    <div class="branch">
+                        <div class="branch-title">FLEXITIME LIMITATIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Requires Trust</strong>
+                                <small>Not suitable for roles requiring fixed physical presence (retail, manufacturing, client-facing desk hours)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Coordination Challenges</strong>
+                                <small>Team members working different hours complicates meetings, collaboration, handoffs</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>'Always Available' Paradox</strong>
+                                <small>May create expectation to be reachable anytime >> actually increases work hours (burnout risk)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Supervisory Difficulty</strong>
+                                <small>Managing output rather than time requires new management skills; harder to monitor (impacts on performance)</small>
+                            </div>
                         </div>
                     </div>
-
-                    <div style="margin-top: 60px; text-align: center; color: var(--text-muted); font-style: italic;">
-                        <p style="font-size: 18px;">From creating humane workplaces to continuous improvement cycles</p>
-                        <p style="font-size: 16px; margin-top: 20px;">Quality of Work Life and Quality Circles as interconnected levers for organizational and human excellence</p>
+                    <div class="branch">
+                        <div class="branch-title">QUALITY CIRCLES - ORIGINS & CONCEPT</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Origins</strong>
+                                <small>Japan (1960s); Kaoru Ishikawa founder; adapted by Deming post-WWII quality movement; India: Tata Steel pioneering (1970s)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Small voluntary group (6-12 members) of employees from same work area meeting regularly to identify, analyse, solve work-related problems</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Core Objectives</strong>
+                                <small>(1) Improve product/service quality; (2) Reduce costs; (3) Increase productivity; (4) Enhance employee engagement and empowerment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Participation Principle</strong>
+                                <small>ALL levels welcome; frontline workers' knowledge critical; cross-functional possible; voluntary (not mandatory)</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">PHASES OF QC OPERATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Phase 1: Problem Selection</strong>
+                                <small>Circle identifies problem from work experience (quality defects, safety, efficiency, cost)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Phase 2: Analysis (7 QC TOOLS)</strong>
+                                <small>Data collection, root cause analysis using Pareto, fishbone, flow diagrams, check sheets, scatter plots, control charts, histograms</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Phase 3: Solution Development</strong>
+                                <small>Creative problem-solving; brainstorming; propose realistic solutions with cost-benefit analysis</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Phase 4: Implementation & Review</strong>
+                                <small>Management approval; pilot test; measure results; monitor effectiveness; adjust if needed</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="notes-area"></div>
+        </div>
+        <div class="page-number">Page 4 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
         </div>
     </div>
+</div>
+
+<!-- PAGE 5: 7 QC TOOLS & WHY QCs FAIL -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🔧 THE 7 QC TOOLS & WHY QUALITY CIRCLES FAIL</div>
+        <div class="page-subtitle">Statistical & Problem-Solving Tools | Common Failure Reasons</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">QC TOOLS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">7 QC TOOLS (MUST KNOW)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>1. Pareto Chart</strong>
+                                <small>80/20 principle - identify critical few problems causing most defects; prioritise focus areas</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2. Fishbone (Cause-Effect) Diagram</strong>
+                                <small>Root cause analysis - 6M framework (Man, Material, Method, Machine, Measurement, Management)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>3. Flow/Process Diagram</strong>
+                                <small>Map current process step-by-step; identify bottlenecks, inefficiencies, quality check points</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>4. Check Sheet</strong>
+                                <small>Simple data collection form; tallies frequency of problems/defects; makes patterns visible</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>5. Scatter Plot</strong>
+                                <small>Correlation analysis - relationship between two variables; identifies if one causes other</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>6. Control Chart</strong>
+                                <small>Tracks process over time; identifies whether within acceptable limits or out of control</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>7. Histogram</strong>
+                                <small>Distribution of quality measurements; shows whether centered, spread, skewed; compares to standards</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">WHY QUALITY CIRCLES FAIL</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Lack of Management Commitment</strong>
+                                <small>Management sees as fad; doesn't implement recommendations; circles feel ignored; participation declines</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Poor Training</strong>
+                                <small>Members lack problem-solving skills; unfamiliar with 7 QC tools; quality of analysis poor; credibility lost</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Inadequate Facilitation</strong>
+                                <small>Leader lacks facilitation skills; discussions rambling; no structure; dominant members stifle others</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Focus on Cost Cutting Only</strong>
+                                <small>Viewed as labour cost reduction >> employee suspicion >> participation decline; should emphasise quality + involvement</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Unrealistic Expectations</strong>
+                                <small>Expect immediate dramatic results; small incremental improvements demoralise; need patience and celebration of wins</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Voluntary Nature Eroded</strong>
+                                <small>Made mandatory >> loses engagement advantage; seen as extra unpaid work; participation nominal</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">SUCCESS FACTORS FOR QCs</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>✓ Management Commitment</strong>
+                                <small>Visible support; implement recommendations; allocate time/resources; celebrate successes publicly</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Proper Training</strong>
+                                <small>7 QC tools; problem-solving methodology; communication skills; data analysis basics</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Strong Facilitation</strong>
+                                <small>Skilled circle leader/facilitator; structured meetings; documentation; follow-up</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Clear Recognition</strong>
+                                <small>Acknowledge contributions; financial/non-financial rewards; celebrate savings/improvements</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Sustained Focus</strong>
+                                <small>Long-term commitment (minimum 2-3 years); treat as permanent part of org culture; integrated with other initiatives</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 5 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 6: QWL IN INDIAN CONTEXT -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🇮🇳 QWL IN INDIA & CURRENT APPLICATIONS</div>
+        <div class="page-subtitle">Indian Challenges, Opportunities & Current Affairs</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">INDIA</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">UNIQUE CHALLENGES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Large Informal Sector</strong>
+                                <small>70% workers without formal employment; inadequate safety, health, compensation; QWL initiatives limited to formal sector</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>High Power Distance Culture</strong>
+                                <small>Top-down management; participation not natural; QCs require cultural shift toward openness (2nd ARC recommendation)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Caste & Gender Inequality</strong>
+                                <small>Discriminatory practices persist despite laws; social integration (Walton Dimension 5) not achieved; inclusion metrics low</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Economic Dualism</strong>
+                                <small>Maslow Levels 1-2 unmet for many; QWL improvements secondary to survival wages; wage inequality stark</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">SUCCESS STORIES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Tata Steel (Pioneer)</strong>
+                                <small>QC programmes since 1970s; integrated into culture; significant cost savings, safety improvements; worker engagement model</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Infosys & IT Sector</strong>
+                                <small>Flexitime adoption; work-from-home policies; wellness programmes; addresses Walton Dimension 7 for knowledge workers</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Government Sector (Gradual)</strong>
+                                <small>2nd ARC recommends OCTAPAC culture (Openness, Confrontation, Trust); Mission Karmayogi addresses role clarity & growth</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">CURRENT AFFAIRS 2024-25</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Social Security Code 2020</strong>
+                                <small>Extends benefits to gig workers (7.7 million); addresses Walton Dimensions 2, 4, 6 for platform economy</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Occupational Safety & Health Code</strong>
+                                <small>Unified workplace safety framework; addresses Dimension 2; implementation still incomplete</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Remote Work Normalisation</strong>
+                                <small>IT & startup sectors widely adopt post-COVID; improves Dimension 7 (work-life balance) dramatically</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Wellness Programme Growth</strong>
+                                <small>Corporate focus on mental health, fitness, nutrition; recognition of holistic QWL definition</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">IMPLEMENTATION PRIORITY FOR INDIA</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>1. Address Walton Dimension 1-2</strong>
+                                <small>Ensure minimum wages, safety standards before aspirational initiatives (hierarchy of needs)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2. Cultural Shift Toward Openness</strong>
+                                <small>QCs require psychological safety; OCTAPAC culture framework (2nd ARC) critical for government sector</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>3. Formalise Informal Sector</strong>
+                                <small>Social Security Code is first step; need enforcement; monitoring compliance; skill building</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 6 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 7-8: PYQ ANALYSIS & EXAM CHECKLIST -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📋 PYQ ANALYSIS & EXAM CHECKLIST</div>
+        <div class="page-subtitle">Past Questions & Last-Minute Preparation</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">EXAM</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">PYQ COVERAGE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>2025 (Predicted)</strong>
+                                <small>Walton's 8 dimensions + India application; QC phases and tools</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2023 (10M)</strong>
+                                <small>QWL definitions; Walton's framework; HR policies enhancing QWL</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2022 (10M)</strong>
+                                <small>Flexitime benefits and challenges; HR policy analysis</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2019 (20M)</strong>
+                                <small>QWL concept; human-tech-org interface; Hackman-Oldham model applicability</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">MUST-KNOW CONCEPTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>✓ Walton's 8 Dimensions</strong>
+                                <small>All 8 must be memorised; know how each links to performance outcomes</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Human-Tech-Org Interface</strong>
+                                <small>3 gaps (tech without support, overwork, depersonalisation); UPSC 2019 exact formulation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ Hackman-Oldham MPS Formula</strong>
+                                <small>Formula and 5 dimensions; psychological states >> work outcomes</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ QC Phases & 7 Tools</strong>
+                                <small>4 phases; all 7 tools must be named and briefly explained</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">ANSWER STRUCTURE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>20M QWL Answer</strong>
+                                <small>Intro (definition + UPSC formulation) >> Walton's 8 >> Performance linkage >> Human-Tech-Org interface >> India context >> Conclusion</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>20M QC Answer</strong>
+                                <small>Origins >> Definition >> 4 phases >> 7 tools >> Why fail >> Success factors >> India context (Tata, 2nd ARC)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>10M Flexitime Answer</strong>
+                                <small>Benefits (role conflict, autonomy, retention) >> Limitations (trust, coordination, paradox) >> India relevance</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">LAST-MINUTE CHECKLIST ✓</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>✓ All 8 Walton dimensions memorised exactly</strong>
+                                <small>Must be able to list and explain each</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ UPSC 2019 "human-technological-organisational interface" exact language</strong>
+                                <small>Use in every QWL answer to show knowledge of key formulation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ MPS formula and 5 dimensions for Hackman-Oldham</strong>
+                                <small>Show mathematical relationship in formula</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ All 7 QC tools can be named and briefly described</strong>
+                                <small>Pareto, Fishbone, Flow, Check, Scatter, Control, Histogram</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ 3-4 reasons why QCs fail + success factors</strong>
+                                <small>Shows realistic understanding; not just utopian picture</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">FINAL EXAM STRATEGY</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>QWL is holistic concept:</strong> Always link individual dimensions to organisational performance and employee well-being simultaneously</strong></div>
+                        <div class="explanation-item"><strong>India context is critical:</strong> Show awareness of challenges (informal sector, power distance, caste) and solutions (2nd ARC, Social Security Code)</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 7 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 8: BLANK -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">💡 SYNTHESIS & KEY INSIGHTS</div>
+        <div class="page-subtitle">Connecting QWL, Job Design & Quality Initiatives</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">SYNTHESIS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">QWL ECOSYSTEM</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Walton's 8 = Foundational</strong>
+                                <small>Defines what good work life looks like; targets for HR policy; measurable dimensions</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Hackman-Oldham = Operational</strong>
+                                <small>How to design individual jobs within that QWL framework; connects job characteristics to psychological states to outcomes</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Flexitime = Tactical Implementation</strong>
+                                <small>Specific HR policy addressing Walton Dimension 7 (work-life balance); operationalises autonomy concept from H-O model</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Quality Circles = Engagement Mechanism</strong>
+                                <small>Operationalises employee voice; develops skills (Dimension 3); increases engagement; connects individual to org mission</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">PERFORMANCE LINKAGE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Better QWL >> Higher Engagement</strong>
+                                <small>Walton dimensions met >> Maslow, Herzberg, Vroom positive >> intrinsic motivation >> performance</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Better Job Design >> Higher Performance</strong>
+                                <small>Hackman-Oldham high MPS >> internal motivation >> better quality, higher productivity, lower turnover</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Effective QCs >> Innovation & Continuous Improvement</strong>
+                                <small>Problem-solving at source; cost reductions; safety improvements; demonstrated ROI</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>ROI Perspective</strong>
+                                <small>QWL investment >> reduced absenteeism/turnover costs >> improved productivity/quality >> profitability; Service Profit Chain proven</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">MANAGER'S TOOLKIT</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Assessment</strong>
+                                <small>Evaluate current QWL against Walton's 8 dimensions; identify gaps; prioritise based on org context and resources</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Design</strong>
+                                <small>Use Hackman-Oldham model to redesign jobs; increase skill variety, task identity, significance, autonomy, feedback</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Implement</strong>
+                                <small>Start with pilots (flexitime, QCs); measure outcomes; scale successes; communicate benefits clearly</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Sustain</strong>
+                                <small>QWL is continuous; regular assessment; celebrate wins; address problems quickly; integrate into culture</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 8 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+            <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
