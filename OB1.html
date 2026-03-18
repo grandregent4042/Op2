@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personality in Organisational Behaviour</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>OB: Introduction & Personality - Complete Mindmap</title>
     <style>
         * {
             margin: 0;
@@ -12,884 +11,1705 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --warm-cream: #FFF8F0;
-            --peach-light: #FFE5D9;
-            --coral: #FF9B85;
-            --coral-deep: #FF6B6B;
-            --terracotta: #D68C6E;
-            --sand: #F4E4C1;
-            --sage: #A8C090;
-            --mint: #8BD3C4;
-            --lavender: #C49ECE;
-            --warm-yellow: #FFD166;
-            --text-dark: #3D3D3D;
-            --text-muted: #6B6B6B;
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: white;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.8fr 1fr;
+            page-break-after: always;
+            break-after: page;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Left side - Mindmap */
+        .mindmap-section {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            background: white;
+            border-right: 2px solid #ddd;
+            overflow: visible;
+        }
+
+        /* Right side - Notes */
+        .notes-section {
+            background: #f9f9f9;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .notes-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .notes-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .note-line {
+            border-bottom: 1px dotted #bbb;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            color: #667eea;
+            font-size: 1.15em;
+            font-weight: bold;
+            margin-bottom: 6px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 4px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #999;
+            font-size: 0.68em;
+            margin-bottom: 8px;
+        }
+
+        /* Mindmap - Vertical Layout */
+        .mindmap-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow: visible;
+        }
+
+        .mindmap-row {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .central-node {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 11px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+            white-space: normal;
+            flex-shrink: 0;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+            width: 82px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.77em;
+            line-height: 1.15;
+            min-height: 72px;
+        }
+
+        .branches-container {
+            display: flex;
+            gap: 7px;
+            flex: 1;
+            overflow: visible;
+        }
+
+        .branch {
+            background: white;
+            border: 1.5px solid #667eea;
+            border-radius: 5px;
+            padding: 7px;
+            min-width: 115px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .branch-title {
+            background: #667eea;
+            color: white;
+            padding: 5px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 0.68em;
+            margin-bottom: 5px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .topics {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            overflow: visible;
+        }
+
+        .topic {
+            padding: 4px;
+            background: #f0f4ff;
+            border-left: 2px solid #667eea;
+            border-radius: 2px;
+            font-size: 0.68em;
+            line-height: 1.2;
+            flex-shrink: 0;
+        }
+
+        .topic strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 1px;
+            font-size: 0.9em;
+        }
+
+        .topic small {
+            color: #666;
+            font-size: 0.85em;
+        }
+
+        .priority-high {
+            background: #ffe5e5;
+            border-left: 2px solid #ff6b6b;
+        }
+
+        .priority-high strong {
+            color: #ff6b6b;
+        }
+
+        .priority-mid {
+            background: #fff5e5;
+            border-left: 2px solid #ffc107;
+        }
+
+        .priority-mid strong {
+            color: #ff9800;
+        }
+
+        /* Explanation boxes */
+        .explanation-section {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.66em;
+            line-height: 1.25;
+            margin-top: 6px;
+            overflow: visible;
+        }
+
+        .explanation {
+            background: #f9f9f9;
+            border-left: 2px solid #667eea;
+            padding: 6px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .explanation-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 2px;
+            font-size: 0.82em;
+        }
+
+        .explanation-content {
+            color: #333;
+            margin-left: 5px;
+        }
+
+        .explanation-item {
+            margin: 1.5px 0;
+            font-size: 0.9em;
+        }
+
+        .explanation-item strong {
+            color: #667eea;
+        }
+
+        /* Page number */
+        .page-number {
+            text-align: right;
+            color: #999;
+            font-size: 0.65em;
+            margin-top: 6px;
+            flex-shrink: 0;
         }
 
         @media print {
             body {
                 margin: 0;
                 padding: 0;
+                background: white;
             }
+
             .page {
-                page-break-after: always;
-                width: 297mm;
-                height: 210mm;
                 margin: 0;
                 padding: 0;
+                min-height: 100vh;
+                page-break-after: always;
+                break-after: page;
+            }
+
+            .mindmap-section {
+                padding: 10mm;
+                border-right: 2px solid #ddd;
+            }
+
+            .notes-section {
+                padding: 10mm;
             }
         }
 
-        body {
-            background: linear-gradient(135deg, var(--warm-cream) 0%, var(--peach-light) 100%);
-            font-family: 'Quicksand', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            padding: 0;
-            margin: 0;
-        }
-
-        .page {
-            width: 297mm;
-            height: 210mm;
-            padding: 35px 35px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            border-bottom: 3px dashed var(--coral);
-            overflow: hidden;
-            margin: 0;
-        }
-
-        .page::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, var(--coral) 0%, transparent 70%);
-            opacity: 0.1;
-            border-radius: 50%;
-        }
-
-        .page-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 900;
-            color: var(--coral-deep);
-            margin-bottom: 8px;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(255, 107, 107, 0.1);
-        }
-
-        .page-subtitle {
-            font-size: 14px;
-            color: var(--text-muted);
-            text-align: center;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-
-        .main-container {
-            flex: 1;
-            display: flex;
-            flex-direction: row;
-            gap: 12px;
-            overflow: hidden;
-        }
-
-        .content-area {
-            flex: 0 0 66%;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            overflow-y: auto;
-        }
-
-        .notes-area {
-            flex: 0 0 34%;
-            background: white;
-            border-radius: 14px;
-            padding: 16px;
-            box-shadow: 0 6px 18px rgba(255, 107, 107, 0.12);
-            border: 3px dashed var(--coral);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .notes-area::before {
-            content: '📝 NOTES';
-            position: absolute;
-            top: -13px;
-            left: 16px;
-            background: var(--coral-deep);
-            color: white;
-            padding: 4px 16px;
-            border-radius: 16px;
-            font-weight: 700;
-            font-size: 11px;
-            letter-spacing: 0.8px;
-            z-index: 10;
-        }
-
-        .notes-area::after {
-            content: '';
-            position: absolute;
-            bottom: 12px;
-            right: 12px;
-            width: 40px;
-            height: 40px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23FFE5D9" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>') center/contain no-repeat;
-            opacity: 0.2;
-        }
-
-        .central-node {
-            background: linear-gradient(135deg, var(--coral-deep), var(--coral));
-            color: white;
-            padding: 14px 30px;
-            border-radius: 22px;
-            font-size: 16px;
-            font-weight: 700;
-            text-align: center;
-            box-shadow: 0 6px 18px rgba(255, 107, 107, 0.2);
-            margin: 6px auto;
-            max-width: fit-content;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .central-node::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .branch-container {
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-            flex-wrap: wrap;
-        }
-
-        .node {
-            background: white;
-            padding: 10px 14px;
-            border-radius: 11px;
-            margin-bottom: 6px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-            border-left: 4px solid var(--coral);
-            font-size: 11px;
-            font-weight: 500;
-        }
-
-        .node.color-sage { border-left-color: var(--sage); }
-        .node.color-mint { border-left-color: var(--mint); }
-        .node.color-lavender { border-left-color: var(--lavender); }
-        .node.color-terracotta { border-left-color: var(--terracotta); }
-        .node.color-yellow { border-left-color: var(--warm-yellow); }
-
-        .node strong {
-            color: var(--coral-deep);
-            font-weight: 700;
-        }
-
-        .grid-layout {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 10px;
-            margin: 6px 0;
-        }
-
-        .card {
-            background: white;
-            padding: 12px 14px;
-            border-radius: 14px;
-            box-shadow: 0 5px 16px rgba(0, 0, 0, 0.08);
-            border-top: 5px solid var(--coral);
-        }
-
-        .card.sage { border-top-color: var(--sage); }
-        .card.mint { border-top-color: var(--mint); }
-        .card.lavender { border-top-color: var(--lavender); }
-        .card.terracotta { border-top-color: var(--terracotta); }
-        .card.yellow { border-top-color: var(--warm-yellow); }
-
-        .card-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--coral-deep);
-            margin-bottom: 6px;
-        }
-
-        .card-content {
-            font-size: 11px;
-            line-height: 1.5;
-            color: var(--text-dark);
-            font-weight: 500;
-        }
-
-        .section-header {
-            background: linear-gradient(90deg, var(--coral-deep), transparent);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 700;
-            margin: 8px 0 6px 0;
-            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.15);
-        }
-
-        .cluster {
-            background: rgba(255, 255, 255, 0.75);
-            border-radius: 16px;
-            padding: 12px 16px;
-            margin: 6px 0;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
-            border: 2px solid var(--peach-light);
-        }
-
-        .cluster-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--coral-deep);
-            margin-bottom: 8px;
-            text-align: center;
-        }
-
-        .tag {
-            display: inline-block;
-            background: var(--coral);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 16px;
-            font-size: 10px;
-            font-weight: 600;
-            margin: 2px;
-            box-shadow: 0 2px 6px rgba(255, 107, 107, 0.2);
-        }
-
-        .tag.sage { background: var(--sage); }
-        .tag.mint { background: var(--mint); }
-        .tag.lavender { background: var(--lavender); }
-        .tag.terracotta { background: var(--terracotta); }
-
-        .title-page {
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(135deg, var(--peach-light) 0%, var(--sand) 50%, var(--warm-cream) 100%);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .title-page .page-title {
-            font-size: 48px;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--coral-deep), var(--coral), var(--terracotta));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .decorative-circle {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.15;
-        }
-
-        .circle-1 {
-            width: 250px;
-            height: 250px;
-            background: var(--coral);
-            top: 8%;
-            left: 5%;
-        }
-
-        .circle-2 {
-            width: 180px;
-            height: 180px;
-            background: var(--sage);
-            bottom: 10%;
-            right: 8%;
-        }
-
-        .circle-3 {
-            width: 120px;
-            height: 120px;
-            background: var(--lavender);
-            top: 45%;
-            right: 12%;
+        @media screen {
+            .page {
+                margin: 10px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- TITLE PAGE -->
-    <div class="page title-page">
-        <div class="decorative-circle circle-1"></div>
-        <div class="decorative-circle circle-2"></div>
-        <div class="decorative-circle circle-3"></div>
-        <h1 class="page-title">PERSONALITY IN ORGANISATIONAL BEHAVIOUR</h1>
-        <p class="page-subtitle">Understanding Meaning, Determinants, Theories & Organisational Applications</p>
-    </div>
+<!-- PAGE 1: OB MEANING, DEFINITIONS & S-O-B-C MODEL -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📚 OB: MEANING, DEFINITIONS & S-O-B-C MODEL</div>
+        <div class="page-subtitle">Core Definitions & Conceptual Framework</div>
 
-    <!-- MEANING: PAGE 1/2 - Definitions -->
-    <div class="page">
-        <h2 class="page-title">Meaning & Definitions - Part 1</h2>
-        <div class="main-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div class="cluster-title">📖 DEFINITIONS & PERSPECTIVES</div>
-                    
-                    <div class="central-node">PERSONALITY DEFINED</div>
-
-                    <div class="section-header">Classical Definitions</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Gordon Allport</div>
-                            <div class="card-content">"Dynamic psychophysical organisation" - Emphasizes the active, integrated nature of personality and its physiological basis</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Stephen Robbins</div>
-                            <div class="card-content">"Sum of reactions and interactions" - Focuses on observable behaviors and patterns in various situations</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Raymond Cattell</div>
-                            <div class="card-content">"Predictor of situational action" - Views personality as a tool to forecast behavior across contexts</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">OB BASICS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CORE DEFINITIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Luthans (2011)</strong>
+                                <small>"OB is directly concerned with understanding, predicting, and controlling human behaviour in organisations"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Robbins</strong>
+                                <small>"OB investigates impact of individuals, groups, structure on behaviour within organisations for improving effectiveness"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Davis</strong>
+                                <small>"Study and application of knowledge about how people act within organisations - human tool for human benefit"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Point</strong>
+                                <small>QUOTE DIRECTLY - Definitions are frequently asked in exams; memorise at least 2-3</small>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="section-header">What is Personality?</div>
-                    <div class="branch-container">
-                        <div class="node color-coral"><strong>Concept:</strong> Stable set of psychological characteristics and behavioral patterns</div>
-                        <div class="node color-sage"><strong>Expression:</strong> Manifested in how we think, feel, and behave consistently</div>
-                        <div class="node color-mint"><strong>Uniqueness:</strong> Each person has a distinctive personality profile</div>
-                    </div>
-                </div>
-            </div>
-            <div class="notes-area"></div>
-        </div>
-    </div>
-
-    <!-- MEANING: PAGE 2/2 - Characteristics -->
-    <div class="page">
-        <h2 class="page-title">Meaning & Characteristics - Part 2</h2>
-        <div class="main-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div class="cluster-title">✓ CORE CHARACTERISTICS OF PERSONALITY</div>
-
-                    <div class="section-header">Key Features</div>
-                    <div class="grid-layout">
-                        <div class="card lavender">
-                            <div class="card-title">Stable & Enduring</div>
-                            <div class="card-content">Consistent patterns over time, though can evolve gradually with experience and development</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Unique & Distinctive</div>
-                            <div class="card-content">Each individual has a unique combination of traits that distinguish them from others</div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">Measurable</div>
-                            <div class="card-content">Can be assessed through various scientifically validated instruments and methods</div>
-                        </div>
-
-                        <div class="card coral">
-                            <div class="card-title">Nature & Nurture</div>
-                            <div class="card-content">Result of both genetic inheritance and environmental influences throughout life</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Dynamic & Adaptive</div>
-                            <div class="card-content">While relatively stable, personality can adapt to new situations and life experiences</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Integrated System</div>
-                            <div class="card-content">All aspects work together as a unified whole affecting thoughts, feelings, and behaviors</div>
+                    <div class="branch">
+                        <div class="branch-title">S-O-B-C MODEL (PYQ 2015)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>S - Stimulus</strong>
+                                <small>External environmental event triggering response (perf appraisal, new policy, supervisor instruction)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>O - Organism</strong>
+                                <small>Individual with personality, attitudes, perceptions mediating stimulus and behaviour (Big Five traits, mood)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>B - Behaviour</strong>
+                                <small>Observable actions resulting from stimulus filtered through organism (effort, innovation, resignation)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>C - Consequence</strong>
+                                <small>Outcomes following behaviour; become stimuli for future behaviour through reinforcement (promotion, praise)</small>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="notes-area"></div>
-        </div>
-    </div>
 
-    <!-- DETERMINANTS: PAGE 1/2 - Biological & Environmental -->
-    <div class="page">
-        <h2 class="page-title">Determinants of Personality - Part 1</h2>
-        <div class="main-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div class="cluster-title">🧬 BIOLOGICAL FACTORS (NATURE)</div>
-                    
-                    <div class="central-node">GENETIC INFLUENCES</div>
-
-                    <div class="section-header">Genetic Components</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Genetic Structure</div>
-                            <div class="card-content">Chromosomes carry genetic information that influences personality traits, temperament, and behavioral predispositions</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Brain Structure & Hormones</div>
-                            <div class="card-content">Neurological architecture and hormonal levels (neurotransmitters) affect emotional reactivity and social behavior</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Twin Studies Evidence</div>
-                            <div class="card-content">Research shows identical twins share more personality similarities than fraternal twins, supporting genetic influence</div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">Inborn Temperament</div>
-                            <div class="card-content">Natural behavioral predispositions present from infancy (activity level, irritability, sociability)</div>
+                    <div class="branch">
+                        <div class="branch-title">ENRICHING S-O-B-C (PYQ 2015)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Cognitive Mediators</strong>
+                                <small>Add values, emotions, biases to O component - not just traits</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Social Context</strong>
+                                <small>Include informal group norms (Hawthorne studies) affecting behaviour</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Org Context</strong>
+                                <small>Structure, culture, reward systems shape behaviour beyond individual factors</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Feedback Loops</strong>
+                                <small>Consequences become new stimuli - cyclical process, not linear</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Individual Differences</strong>
+                                <small>PERSONALITY THEORY is key enrichment - critical for OB understanding</small>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="cluster">
-                    <div class="cluster-title">🌍 ENVIRONMENTAL FACTORS (NURTURE)</div>
-                    
-                    <div class="section-header">Environmental Influences</div>
-                    <div class="grid-layout">
-                        <div class="card terracotta">
-                            <div class="card-title">Cultural Context</div>
-                            <div class="card-content">Hofstede's cultural dimensions shape personality expression and values across societies and organizations</div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">Family & Parenting</div>
-                            <div class="card-content">Parenting styles, family dynamics, and childhood relationships fundamentally shape personality development</div>
+                    <div class="branch">
+                        <div class="branch-title">WHY INDIVIDUAL DIFFERENCES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Personality</strong>
+                                <small>Determines habitual processing, response to challenge, interpersonal style - shapes job performance</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Perception</strong>
+                                <small>Explains why same event creates different responses in different people</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Motivation</strong>
+                                <small>Force activating, directing, sustaining behaviour - explains performance variation among equals</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Attitudes</strong>
+                                <small>Job satisfaction, commitment predict absenteeism, turnover, citizenship behaviour</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Values</strong>
+                                <small>Fundamental beliefs shaping ethical behaviour, career choices, response to demands</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="notes-area"></div>
-        </div>
-    </div>
 
-    <!-- DETERMINANTS: PAGE 2/2 - Social & Situational -->
-    <div class="page">
-        <h2 class="page-title">Determinants of Personality - Part 2</h2>
-        <div class="main-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div class="cluster-title">👥 SOCIAL LEARNING & SITUATIONAL FACTORS</div>
-                    
-                    <div class="section-header">Social Learning Processes</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Social Learning</div>
-                            <div class="card-content">Bandura's theory emphasizes learning through observation, modeling, and reinforcement from others in social contexts</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Early Childhood Experiences</div>
-                            <div class="card-content">Critical periods in development where experiences significantly influence personality formation and behavior patterns</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Peer Influence</div>
-                            <div class="card-content">Interactions with peers, friends, and social groups shape personality development throughout life stages</div>
-                        </div>
-                    </div>
-
-                    <div class="section-header">Situational Interaction</div>
-                    <div class="branch-container">
-                        <div class="node color-mint"><strong>Strong Situations:</strong> Constrain personality expression (formal meetings, military training, court)</div>
-                        <div class="node color-lavender"><strong>Weak Situations:</strong> Allow free personality expression (casual gatherings, creative tasks)</div>
-                        <div class="node color-terracotta"><strong>Interactionism:</strong> Behavior results from interaction between personality and environmental context (Mischel)</div>
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">EXAM TIP: S-O-B-C + ENRICHMENT</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Remember:</strong> Basic S-O-B-C is stimulus-organism-behaviour-consequence linear model</strong></div>
+                        <div class="explanation-item"><strong>PYQ 2015:</strong> Be ready to ENRICH it with 5 dimensions beyond basic framework</strong></div>
                     </div>
                 </div>
             </div>
-            <div class="notes-area"></div>
         </div>
+
+        <div class="page-number">Page 1 of 9</div>
     </div>
 
-    <!-- THEORIES: PAGE 1/3 - Trait Theories -->
-    <div class="page">
-        <h2 class="page-title">Theories - Trait Models - Part 1</h2>
-        <div class="main-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div class="cluster-title">📊 TRAIT THEORIES</div>
-                    
-                    <div class="central-node">TRAIT APPROACH</div>
-
-                    <div class="section-header">Big Five Model (OCEAN)</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Openness to Experience</div>
-                            <div class="card-content">Curiosity, creativity, appreciation for art, imagination. High scorers seek variety and novelty</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Conscientiousness</div>
-                            <div class="card-content">Organization, responsibility, dependability. Strongest predictor of job performance</div>
-                        </div>
-
-                        <div class="card mint">
-                            <div class="card-title">Extraversion</div>
-                            <div class="card-content">Sociability, assertiveness, outgoingness. Predicts leadership emergence and networking ability</div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">Agreeableness</div>
-                            <div class="card-content">Cooperation, compassion, empathy. Predicts teamwork quality and collaboration effectiveness</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Neuroticism</div>
-                            <div class="card-content">Emotional stability, anxiety, stress sensitivity. Affects workplace emotional interactions</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="notes-area"></div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
         </div>
     </div>
+</div>
 
-    <!-- THEORIES: PAGE 2/3 - Other Trait & Psychodynamic -->
-    <div class="page">
-        <h2 class="page-title">Theories - Other Models - Part 2</h2>
-        <div class="main-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div class="cluster-title">📊 OTHER TRAIT MODELS</div>
+<!-- PAGE 2: PERSONALITY DEFINITIONS & CHARACTERISTICS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">👤 PERSONALITY: DEFINITIONS & CHARACTERISTICS</div>
+        <div class="page-subtitle">What is Personality & Its Key Features</div>
 
-                    <div class="section-header">Cattell's 16 Personality Factors (16PF)</div>
-                    <div class="branch-container">
-                        <div class="node color-coral"><strong>Comprehensive:</strong> 16 distinct personality factors derived through factor analysis</div>
-                        <div class="node color-sage"><strong>Detailed:</strong> More granular than Big Five for specific organizational assessments</div>
-                    </div>
-
-                    <div class="section-header">Eysenck's PEN Model</div>
-                    <div class="grid-layout">
-                        <div class="card mint">
-                            <div class="card-title">Three Dimensions</div>
-                            <div class="card-content"><strong>Psychoticism:</strong> Aggression, impulsivity</div>
-                        </div>
-                        <div class="card lavender">
-                            <div class="card-title">Extraversion</div>
-                            <div class="card-content">Sociability, dominance, assertiveness</div>
-                        </div>
-                        <div class="card yellow">
-                            <div class="card-title">Neuroticism</div>
-                            <div class="card-content">Emotional stability, anxiety levels</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cluster">
-                    <div class="cluster-title">🧠 PSYCHODYNAMIC THEORY (FREUD)</div>
-                    
-                    <div class="section-header">Structure of Personality</div>
-                    <div class="grid-layout">
-                        <div class="card terracotta">
-                            <div class="card-title">Id</div>
-                            <div class="card-content">Unconscious, instinctual desires and primitive urges. Seeks immediate gratification without restraint</div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">Ego</div>
-                            <div class="card-content">Reality-based mediator between id and superego. Makes rational decisions balancing demands</div>
-                        </div>
-
-                        <div class="card coral">
-                            <div class="card-title">Superego</div>
-                            <div class="card-content">Moral conscience incorporating values, ethics, and societal rules learned from parents and society</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">PERSONALITY</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CORE DEFINITIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Allport (1937)</strong>
+                                <small>"Dynamic organisation within individual of psychophysical systems determining unique adjustments to environment" - Classic; emphasises uniqueness & dynamic nature</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Robbins</strong>
+                                <small>"Sum total of ways individual reacts to and interacts with others" - Concise; use for 10M answers</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Cattell</strong>
+                                <small>"That which permits prediction of what person will do in given situation" - Predictive dimension linking personality to performance</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Functional</strong>
+                                <small>Personality = Nature (heredity) + Nurture (environment) - Introduces nature-nurture debate</small>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="notes-area"></div>
-        </div>
-    </div>
 
-    <!-- THEORIES: PAGE 3/3 - Social Learning & Humanistic -->
-    <div class="page">
-        <h2 class="page-title">Theories - Social Learning & Humanistic - Part 3</h2>
-        <div class="main-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div class="cluster-title">👥 SOCIAL LEARNING THEORY (BANDURA)</div>
-
-                    <div class="section-header">Key Concepts</div>
-                    <div class="grid-layout">
-                        <div class="card mint">
-                            <div class="card-title">Self-Efficacy</div>
-                            <div class="card-content">Belief in one's ability to succeed in specific situations. Determines effort and persistence in tasks</div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">Reciprocal Determinism</div>
-                            <div class="card-content">Three-way interaction: Person (traits) ↔ Behavior ↔ Environment influence each other continuously</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">Observational Learning</div>
-                            <div class="card-content">People learn personality traits and behaviors by watching others (modeling) and observing consequences</div>
+                    <div class="branch">
+                        <div class="branch-title">6 KEY CHARACTERISTICS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Stable & Enduring</strong>
+                                <small>Relatively stable allowing prediction; basis for using personality in selection</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Unique</strong>
+                                <small>No two personalities identical - individual differences the focus</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Consistent</strong>
+                                <small>Consistent across situations though situational factors moderate expression</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Nature & Nurture</strong>
+                                <small>Influenced by both - ~50% heritability estimate for Big Five traits</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Measurable</strong>
+                                <small>Validated instruments available (MBTI, Big Five, NEO-PI-R, 16PF)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Not Fixed</strong>
+                                <small>Can change slowly with significant life experiences - not immutable</small>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="cluster">
-                    <div class="cluster-title">🌟 HUMANISTIC THEORIES</div>
-                    
-                    <div class="section-header">Growth-Oriented Approach</div>
-                    <div class="branch-container">
-                        <div class="node color-yellow"><strong>Maslow:</strong> Self-actualisation as highest motivation - personality grows toward full potential</div>
-                        <div class="node color-coral"><strong>Rogers:</strong> Self-concept and congruence - personality healthy when real self matches ideal self</div>
+                    <div class="branch">
+                        <div class="branch-title">MEASUREMENT & VALIDITY</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Validated Instruments</strong>
+                                <small>MBTI, Big Five, NEO-PI-R, 16PF questionnaires available for assessment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Predictive Validity</strong>
+                                <small>Personality predicts job performance, leadership, team fit, turnover</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>OB Application</strong>
+                                <small>Selection: hire for trait-role fit; Development: leverage strengths; Placement: role-personality alignment</small>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="section-header">Humanistic Perspective</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Growth Potential</div>
-                            <div class="card-content">Individuals have innate capacity for growth, self-improvement, and self-determination</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Authenticity & Congruence</div>
-                            <div class="card-content">Healthy personality emerges when actual self aligns with ideal self, reducing internal conflict</div>
+                    <div class="branch">
+                        <div class="branch-title">NATURE VS NURTURE</div>
+                        <div class="topics">
+                            <div class="topic priority-mid">
+                                <strong>Heritability Evidence</strong>
+                                <small>Twin studies (Minnesota Registry): MZ twins apart show ~50% concordance</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Big Five Heritability</strong>
+                                <small>40-60% heritability - roughly half personality is genetic</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>OB Implication</strong>
+                                <small>Selection may be more effective than training for some personality dimensions</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="notes-area"></div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">DEFINITION STRATEGY FOR EXAM</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Use Allport for 20M:</strong> Emphasises dynamic, unique, psychophysical - comprehensive</strong></div>
+                        <div class="explanation-item"><strong>Use Robbins for 10M:</strong> Concise sum-total definition fits word limit</strong></div>
+                        <div class="explanation-item"><strong>Use Cattell for predictive context:</strong> When discussing performance management</strong></div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="page-number">Page 2 of 9</div>
     </div>
 
-    <!-- ATTRIBUTES: PAGE 1/2 - Specific Traits -->
-    <div class="page">
-        <h2 class="page-title">OB Attributes - Specific Traits - Part 1</h2>
-        <div class="main-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div class="cluster-title">🎯 SPECIFIC PERSONALITY ATTRIBUTES</div>
-                    
-                    <div class="central-node">OB-RELEVANT TRAITS</div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
 
-                    <div class="section-header">Control & Behavior Attributes</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Locus of Control</div>
-                            <div class="card-content"><strong>Internal:</strong> Believes in personal control → higher performance, motivation<br><strong>External:</strong> Believes in fate/others → different motivation patterns</div>
+<!-- PAGE 3: DETERMINANTS OF PERSONALITY - HEREDITY & ENVIRONMENT -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🧬 DETERMINANTS OF PERSONALITY: HEREDITY & ENVIRONMENT</div>
+        <div class="page-subtitle">Nature vs Nurture Debate (PYQ 2025, 2021)</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">DETERMINANTS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">HEREDITY / BIOLOGICAL</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Genetic Foundation</strong>
+                                <small>Molecular structure of genes in chromosomes - personality partly 'hard-wired' from birth</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Twin Studies Evidence</strong>
+                                <small>Minnesota Twin Registry: MZ twins raised apart show ~50% personality concordance - demonstrates genetic contribution independent of environment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Big Five Heritability</strong>
+                                <small>40-60% heritability for Big Five traits - roughly half of personality variation is genetic</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Eysenck's Theory</strong>
+                                <small>Linked extraversion to arousal threshold of reticular activating system - biological basis of personality</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>OB Implication</strong>
+                                <small>Selection (hiring for fit) may be more effective than training in some personality dimensions</small>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="card sage">
-                            <div class="card-title">Machiavellianism</div>
-                            <div class="card-content">Manipulative, pragmatic approach to politics and power. High = cunning, deceptive; Low = straightforward, ethical</div>
+                    <div class="branch">
+                        <div class="branch-title">ENVIRONMENT / CULTURAL</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Cultural Context</strong>
+                                <small>Collectivist cultures (India, Japan) produce group-oriented personalities; individualist (US, UK) produce autonomous personalities (Hofstede)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Family Influences</strong>
+                                <small>Parenting styles (authoritative, authoritarian, permissive) predict personality outcomes - primary socialisation embeds core values</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Social Learning (Bandura)</strong>
+                                <small>Personality shaped by observing and modelling significant others - we learn who to be by watching important people</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Peer Group Influence</strong>
+                                <small>Especially in adolescence, peers shape emerging personality through norms and identity structures</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Situational Strength (Mischel)</strong>
+                                <small>Strong situations suppress personality; weak situations allow personality to manifest freely</small>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="card mint">
-                            <div class="card-title">Self-Monitoring</div>
-                            <div class="card-content">Ability to adjust behavior to fit social situations. High = adaptable; Low = consistent across contexts</div>
-                        </div>
-
-                        <div class="card lavender">
-                            <div class="card-title">Type A vs Type B</div>
-                            <div class="card-content"><strong>Type A:</strong> Competitive, impatient, aggressive<br><strong>Type B:</strong> Relaxed, patient, easygoing</div>
-                        </div>
-
-                        <div class="card terracotta">
-                            <div class="card-title">MBTI Dichotomies</div>
-                            <div class="card-content">16 types from E/I, S/N, T/F, J/P combinations for organizational team dynamics and role matching</div>
+                    <div class="branch">
+                        <div class="branch-title">NATURE-NURTURE INTERACTION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Both Operate Together</strong>
+                                <small>Personality is product of BOTH heredity AND environment - not either/or but interaction</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Rough 50-50 Split</strong>
+                                <small>Approximately 50% genetic, 50% environmental for most Big Five traits</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Gene-Environment Interaction</strong>
+                                <small>Genotype predisposes but environment actualises - genes set potential, environment determines actualisation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Timing Effects</strong>
+                                <small>Early environmental experiences (first 5 years) have disproportionate impact on personality formation</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="notes-area"></div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">PYQ CONTEXT - DETERMINANTS COVERAGE</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>PYQ 2025 (10M):</strong> Heredity, environment, situation; twin studies; Mischel's situational strength</strong></div>
+                        <div class="explanation-item"><strong>PYQ 2021 (20M):</strong> Determinants of personality + major attributes - full coverage</strong></div>
+                        <div class="explanation-item"><strong>Answer Strategy:</strong> Balance nature AND nurture; cite twin study evidence; discuss situational moderation</strong></div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="page-number">Page 3 of 9</div>
     </div>
 
-    <!-- OUTCOMES: PAGE 1/2 - Impact on Work -->
-    <div class="page">
-        <h2 class="page-title">OB Outcomes - Work Impact - Part 1</h2>
-        <div class="main-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div class="cluster-title">💼 PERSONALITY IMPACT ON WORK BEHAVIOR</div>
-                    
-                    <div class="central-node">ORGANISATIONAL OUTCOMES</div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
 
-                    <div class="section-header">Performance & Leadership</div>
-                    <div class="grid-layout">
-                        <div class="card yellow">
-                            <div class="card-title">Job Performance</div>
-                            <div class="card-content">Conscientiousness strongest predictor of task performance; Agreeableness impacts teamwork quality</div>
+<!-- PAGE 4: PERSONALITY THEORIES - FREUD & ERIKSON -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🎭 PERSONALITY THEORIES: FREUD & ERIKSON DEVELOPMENTAL</div>
+        <div class="page-subtitle">Psychoanalytic & Psychosocial Approaches (PYQ 2019, 2017)</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">THEORIES</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">FREUD'S ID-EGO-SUPEREGO</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>ID (Pleasure Principle)</strong>
+                                <small>Primitive, unconscious, pleasure-seeking - seeks immediate gratification of biological drives without reality consideration</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>EGO (Reality Principle)</strong>
+                                <small>Rational, conscious mediator - delays gratification, finds socially acceptable ways to satisfy ID impulses</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>SUPEREGO (Moral Conscience)</strong>
+                                <small>Moral component - conscience punishes violations with guilt; ego-ideal rewards compliance with pride. Internalised social standards</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Dynamic Tension</strong>
+                                <small>Personality = ongoing ID-SUPEREGO conflict mediated by EGO. Anxiety triggers defence mechanisms (repression, projection, rationalisation)</small>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="card coral">
-                            <div class="card-title">Leadership Emergence</div>
-                            <div class="card-content">Extraversion and dominance traits predict who emerges as leader in groups and teams</div>
+                    <div class="branch">
+                        <div class="branch-title">FREUD'S PSYCHOSEXUAL STAGES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Oral (0-18m)</strong>
+                                <small>Weaning; trust vs mistrust fixation leads to dependency OR aggression; oral regression (smoking, overeating)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Anal (18m-3y)</strong>
+                                <small>Toilet training; anal retentive = orderliness, rigidity, miserliness (bureaucratic); anal expulsive = messiness, rebelliousness</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Phallic (3-6y)</strong>
+                                <small>Genitals; Oedipus/Electra complex; fixation leads to authority difficulties, narcissism, recklessness</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Latency (6-12y)</strong>
+                                <small>Sexual impulses repressed; energy to intellectual/social skills - no fixation if earlier resolved</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Genital (Puberty+)</strong>
+                                <small>Mature sexuality toward peers - capacity for love, work, social cooperation; mature personality outcome</small>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="card sage">
-                            <div class="card-title">Teamwork & Cooperation</div>
-                            <div class="card-content">Agreeableness predicts collaboration; Openness supports diverse perspectives and innovation</div>
+                    <div class="branch">
+                        <div class="branch-title">ERIKSON'S 8 PSYCHOSOCIAL STAGES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Trust vs Mistrust (0-18m)</strong>
+                                <small>Can I trust world? >> HOPE virtue. Negative: fear, anxiety</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Autonomy vs Shame (18m-3y)</strong>
+                                <small>Can I do things myself? >> WILL virtue. Negative: shame, doubt</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Initiative vs Guilt (3-6y)</strong>
+                                <small>Am I allowed to be myself? >> PURPOSE virtue. Negative: guilt, inhibition</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Industry vs Inferiority (6-12y)</strong>
+                                <small>Can I make it? >> COMPETENCE virtue. Negative: inferiority, inadequacy</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Identity vs Confusion (Teen)</strong>
+                                <small>Who am I? >> FIDELITY virtue. Negative: identity diffusion, role confusion</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Intimacy vs Isolation, Generativity vs Stagnation, Integrity vs Despair</strong>
+                                <small>Adult stages - young adult, middle, old age. OB focus on adolescent onwards for personality formation</small>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="card mint">
-                            <div class="card-title">Creativity & Innovation</div>
-                            <div class="card-content">Openness to experience strongest correlate with creative output and innovative problem-solving</div>
+                    <div class="branch">
+                        <div class="branch-title">CRITICAL EVALUATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Freud STRENGTHS</strong>
+                                <small>Introduced unconscious, defence mechanisms, developmental perspective - foundational to psychology</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Freud WEAKNESSES</strong>
+                                <small>Unfalsifiable claims, androcentric bias, overemphasis on sexuality, small non-representative samples</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Modern Relevance</strong>
+                                <small>Attachment theory, defence mechanisms, implicit bias research trace to Freud. OB: unconscious motivations in workplace</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Erikson Advantage</strong>
+                                <small>Lifespan perspective, less sex-focused, culturally broader, validated more robustly than Freud</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="notes-area"></div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">PYQ PREPARATION - DEVELOPMENTAL THEORIES</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>PYQ 2019 (10M):</strong> Critically examine Freud's psychosexual stages - 5 stages + evaluation required</strong></div>
+                        <div class="explanation-item"><strong>PYQ 2017 (10M):</strong> Freud + biological factors - agree with qualifications</strong></div>
+                        <div class="explanation-item"><strong>Strategy:</strong> Know all stages; emphasise fixation outcomes; critical evaluation is essential</strong></div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="page-number">Page 4 of 9</div>
     </div>
 
-    <!-- MEASUREMENT: PAGE 1/2 - Methods -->
-    <div class="page">
-        <h2 class="page-title">Measurement & Ethics - Methods - Part 1</h2>
-        <div class="main-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div class="cluster-title">🔍 MEASUREMENT METHODS</div>
-                    
-                    <div class="central-node">ASSESSMENT APPROACHES</div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
 
-                    <div class="section-header">Assessment Tools</div>
-                    <div class="grid-layout">
-                        <div class="card coral">
-                            <div class="card-title">Self-Report Inventories</div>
-                            <div class="card-content">Questionnaires where individuals rate themselves (Big Five, MBTI, NEO-PI). Most common in organizations</div>
+<!-- PAGE 5: THE BIG FIVE PERSONALITY TRAITS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">⭐ THE BIG FIVE (OCEAN) PERSONALITY TRAITS</div>
+        <div class="page-subtitle">Highest Priority - PYQ 2024 (10M) Direct Question</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">BIG FIVE</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CRITICAL: PYQ 2024</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Direct Question (10M)</strong>
+                                <small>"What are Big Five traits? Which has biggest impact on performance? How would knowledge help manager?"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>ANSWER: CONSCIENTIOUSNESS</strong>
+                                <small>Biggest impact on performance - Barrick & Mount (1991) meta-analysis of 162 studies across ALL occupations</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Predictive Validity</strong>
+                                <small>r=0.23 - strongest personality predictor of job performance universally</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Manager Application</strong>
+                                <small>Use in hiring - conscientiousness predicts performance better than other traits. Training less effective than selection for this trait</small>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="card sage">
-                            <div class="card-title">Projective Tests</div>
-                            <div class="card-content">TAT (Thematic Apperception Test), Rorschach - Indirect assessment interpreting responses to ambiguous stimuli</div>
+                    <div class="branch">
+                        <div class="branch-title">O: OPENNESS TO EXPERIENCE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>What It Measures</strong>
+                                <small>Curiosity, creativity, imagination, receptiveness to new ideas and experiences</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>High Scorer Profile</strong>
+                                <small>Creative, unconventional, intellectually curious, open to change, flexible thinker</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>OB Research Finding</strong>
+                                <small>Predicts performance in creative/R&D roles; adapts well to organisational change; AI upskilling adaptability</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Role Fit</strong>
+                                <small>Best for innovation, strategy, research, change management roles</small>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="card mint">
-                            <div class="card-title">Behavioral Observation</div>
-                            <div class="card-content">Systematic observation of actual behavior in natural settings or assessment center simulations</div>
+                    <div class="branch">
+                        <div class="branch-title">C: CONSCIENTIOUSNESS ⭐⭐⭐</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>What It Measures</strong>
+                                <small>Organisation, dependability, goal-directedness, self-discipline, thoroughness</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>High Scorer Profile</strong>
+                                <small>Organised, reliable, diligent, punctual, persistent, detail-oriented, disciplined</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>STRONGEST PERFORMANCE PREDICTOR</strong>
+                                <small>Barrick & Mount (1991) - most powerful personality predictor across ALL job types and organisations</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Additional Outcomes</strong>
+                                <small>Predicts academic performance, longevity, health behaviour, career success, financial stability</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Selection Priority</strong>
+                                <small>Should be TOP priority in hiring across all roles - universal predictor</small>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="card lavender">
-                            <div class="card-title">AI & Neurobiological Methods</div>
-                            <div class="card-content">Emerging technologies: facial coding, voice analysis, neural imaging for more objective assessment</div>
+                    <div class="branch">
+                        <div class="branch-title">E: EXTRAVERSION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>What It Measures</strong>
+                                <small>Sociability, assertiveness, positive emotionality, dominance, talkativeness</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>High Scorer Profile</strong>
+                                <small>Outgoing, assertive, talkative, enthusiastic, sociable, leader-like, energetic</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>KEY FINDING: Leadership EMERGENCE</strong>
+                                <small>Predicts who emerges as leader (not necessarily effectiveness) - associates lead more often</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Role Fit</strong>
+                                <small>Suits sales, leadership, training, client-facing roles. Better networkers, better at relationship building</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">A: AGREEABLENESS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>What It Measures</strong>
+                                <small>Cooperation, trust, empathy, helpfulness, altruism, modesty, tender-mindedness</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>High Scorer Profile</strong>
+                                <small>Warm, cooperative, conflict-averse, empathetic, trusting, helpful, considerate</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>OB Research Finding</strong>
+                                <small>Predicts teamwork and organisational citizenship behaviour (OCB) - helping colleagues beyond role requirements</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Dark Side</strong>
+                                <small>Too high = difficulty with hard decisions, poor salary negotiation, conflict avoidance problems. Low agreeableness better for negotiations</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">N: NEUROTICISM (⬇️ desired)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>What It Measures</strong>
+                                <small>Emotional instability, anxiety, moodiness, tenseness, worry, irritability</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>High Scorer Profile</strong>
+                                <small>Anxious, moody, easily upset, volatile, insecure, hypersensitive to criticism</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>NEGATIVE PERFORMANCE PREDICTOR</strong>
+                                <small>High N = negative predictor of performance, satisfaction, leadership. Low N (Emotional Stability) = resilience under pressure</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Role Fit</strong>
+                                <small>Low neuroticism essential for high-stress roles (crisis, ER, armed forces, leadership)</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="notes-area"></div>
-        </div>
-    </div>
 
-    <!-- MEASUREMENT & ETHICS: PAGE 2/2 - Challenges -->
-    <div class="page">
-        <h2 class="page-title">Measurement & Ethics - Challenges - Part 2</h2>
-        <div class="main-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div class="cluster-title">⚖️ CHALLENGES & ETHICAL CONSIDERATIONS</div>
-                    
-                    <div class="section-header">Key Challenges</div>
-                    <div class="grid-layout">
-                        <div class="card terracotta">
-                            <div class="card-title">Social Desirability Bias</div>
-                            <div class="card-content">Respondents answer to portray themselves positively rather than honestly. Reduces assessment validity</div>
-                        </div>
-
-                        <div class="card yellow">
-                            <div class="card-title">Cultural Validity Gap</div>
-                            <div class="card-content">Assessment instruments developed in Western contexts may not be valid across different cultures and values</div>
-                        </div>
-
-                        <div class="card coral">
-                            <div class="card-title">AI Privacy Concerns</div>
-                            <div class="card-content">Neurobiological and algorithmic personality assessment raises privacy and discrimination concerns</div>
-                        </div>
-
-                        <div class="card sage">
-                            <div class="card-title">Ethical Safeguards Required</div>
-                            <div class="card-content">Informed consent, confidentiality, fairness, transparency in purpose, and proper interpretation essential</div>
-                        </div>
-                    </div>
-
-                    <div class="section-header">Organisational Best Practices</div>
-                    <div class="branch-container">
-                        <div class="node color-mint"><strong>Validation:</strong> Use only empirically validated instruments for specific purposes</div>
-                        <div class="node color-lavender"><strong>Transparency:</strong> Clear communication about assessment use and data handling to participants</div>
-                        <div class="node color-terracotta"><strong>Fairness:</strong> Ensure assessments don't discriminate against protected groups; avoid stereotyping</div>
-                        <div class="node color-yellow"><strong>Professional Administration:</strong> Trained professionals interpret results; avoid self-diagnosis or online misuse</div>
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">BIG FIVE MANAGER APPLICATION GUIDE</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>All hiring:</strong> Conscientiousness > all other traits</strong></div>
+                        <div class="explanation-item"><strong>Sales/Leadership:</strong> Extraversion (emergence) + Conscientiousness</strong></div>
+                        <div class="explanation-item"><strong>High-stress roles:</strong> Low Neuroticism (Emotional Stability) crucial</strong></div>
+                        <div class="explanation-item"><strong>Teamwork:</strong> Agreeableness for cooperation; Conscientiousness for follow-through</strong></div>
+                        <div class="explanation-item"><strong>Innovation/Change:</strong> Openness + Conscientiousness combination ideal</strong></div>
                     </div>
                 </div>
             </div>
-            <div class="notes-area"></div>
         </div>
+
+        <div class="page-number">Page 5 of 9</div>
     </div>
 
-    <!-- SUMMARY PAGE -->
-    <div class="page">
-        <h2 class="page-title">Complete Overview & Summary</h2>
-        <div class="main-container">
-            <div class="content-area">
-                <div class="cluster">
-                    <div style="text-align: center; margin: 8px 0;">
-                        <div class="central-node" style="font-size: 20px; padding: 18px 30px;">
-                            PERSONALITY IN<br>ORGANISATIONAL<br>BEHAVIOUR
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 6: PERSONALITY THEORIES - TYPES, TRAITS & HUMANISTIC -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🎯 PERSONALITY THEORIES: TYPES, TRAITS, HUMANISTIC & SOCIAL LEARNING</div>
+        <div class="page-subtitle">Historical Frameworks to Modern Approaches</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">THEORIES</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">TYPE THEORIES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Hippocrates Humours (400 BCE)</strong>
+                                <small>Sanguine (optimistic, sociable) | Choleric (aggressive, quick-tempered) | Melancholic (analytical, depressive) | Phlegmatic (calm, unemotional) - First systematic classification</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Type A vs Type B (Friedman & Rosenman)</strong>
+                                <small>Type A: competitive, impatient, time-urgent, workaholic, hostile - high CHD risk. Type B: relaxed, less competitive. OB: Type A in pressure roles but burnout risk</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Introversion vs Extraversion (Jung)</strong>
+                                <small>Introvert energised by solitude; Extravert energised by social interaction - Foundation of MBTI and Big Five Extraversion</small>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="grid-layout" style="grid-template-columns: repeat(3, 1fr);">
-                        <div class="card coral">
-                            <div class="card-title">📖 Meaning</div>
-                            <div class="card-content">Definitions, characteristics, stability and uniqueness of personality</div>
-                        </div>
-                        <div class="card sage">
-                            <div class="card-title">🧬 Determinants</div>
-                            <div class="card-content">Biological, environmental, social, and situational factors</div>
-                        </div>
-                        <div class="card mint">
-                            <div class="card-title">📊 Theories</div>
-                            <div class="card-content">Trait, psychodynamic, social learning, humanistic approaches</div>
-                        </div>
-                        <div class="card lavender">
-                            <div class="card-title">🎯 Attributes</div>
-                            <div class="card-content">Locus of control, Type A/B, MBTI, Machiavellianism</div>
-                        </div>
-                        <div class="card terracotta">
-                            <div class="card-title">💼 OB Outcomes</div>
-                            <div class="card-content">Performance, leadership, teamwork, creativity impact</div>
-                        </div>
-                        <div class="card yellow">
-                            <div class="card-title">🔍 Measurement</div>
-                            <div class="card-content">Methods, challenges, ethical considerations</div>
+                    <div class="branch">
+                        <div class="branch-title">TRAIT THEORIES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Allport's Trait Theory</strong>
+                                <small>3 levels: Cardinal traits (single dominant, like Machiavellian) | Central traits (5-10 characteristics) | Secondary traits (situational, inconsistent) - First systematic trait theory</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Cattell's 16PF</strong>
+                                <small>Factor analysis of 4,500 trait names reduced to 16 source traits. 16PF questionnaire still used in corporate assessment - more granular than Big Five</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Eysenck's PEN Model</strong>
+                                <small>Psychoticism + Extraversion + Neuroticism. Each dimension linked to nervous system functioning - biological basis of personality</small>
+                            </div>
                         </div>
                     </div>
 
-                    <div style="margin-top: 20px; text-align: center; color: var(--text-muted); font-style: italic;">
-                        <p style="font-size: 12px;"><strong>From individual traits to organisational performance</strong></p>
-                        <p style="font-size: 11px; margin-top: 8px;">Understanding personality as the foundation of behavior and effectiveness in organisations</p>
+                    <div class="branch">
+                        <div class="branch-title">HUMANISTIC THEORIES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Maslow - Self-Actualisation</strong>
+                                <small>Highest-level drive - become what one is capable of. Self-actualising employees seek challenging work, autonomy, growth - cannot motivate purely by salary</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Carl Rogers - Person-Centred</strong>
+                                <small>Self-concept core of personality. Healthy personality when actual self and ideal self are CONGRUENT. Incongruence produces anxiety. Managers' unconditional positive regard supports personality health</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Third Force in Psychology</strong>
+                                <small>Alternative to behavioural and psychoanalytic - emphasises growth, actualisation, authenticity, self-concept</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">SOCIAL LEARNING - BANDURA</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Observational Learning</strong>
+                                <small>Personality shaped by observing and modelling significant others - vicarious learning mechanism</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>SELF-EFFICACY (CRITICAL)</strong>
+                                <small>"Belief in one's capabilities to organise and execute required courses of action" - MOST consistent individual performance predictor</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>4 Sources of Self-Efficacy</strong>
+                                <small>(1) Mastery experiences (most powerful); (2) Vicarious experiences; (3) Verbal persuasion; (4) Physiological states</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Reciprocal Determinism</strong>
+                                <small>Behaviour, person, environment mutually influence each other - no unidirectional causation. Dynamic interaction</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="notes-area"></div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">THEORY COMPARISON FOR EXAM</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Type Theories:</strong> Historical, categorical, less validated - mention for completeness</strong></div>
+                        <div class="explanation-item"><strong>Trait Theories:</strong> Scientific, measurable, validated - focus on Big Five</strong></div>
+                        <div class="explanation-item"><strong>Humanistic:</strong> Growth-oriented, applicable to motivation and job design</strong></div>
+                        <div class="explanation-item"><strong>Social Learning:</strong> SELF-EFFICACY is most important - predicts performance better than personality traits</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 6 of 9</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
         </div>
     </div>
+</div>
+
+<!-- PAGE 7: KEY PERSONALITY ATTRIBUTES - MBTI, LOCUS OF CONTROL, MACHIAVELLIANISM -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🔑 KEY PERSONALITY ATTRIBUTES: MBTI, LOCUS OF CONTROL & MORE</div>
+        <div class="page-subtitle">Specific Personality Measures for Organisational Application</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">ATTRIBUTES</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">MBTI - LIMITATIONS & REALITY</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>4 Dichotomies (E-I, S-N, T-F, J-P)</strong>
+                                <small>Creates 16 type combinations - widely used in organisations for team building, coaching</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>⚠️ CRITICAL LIMITATION #1</strong>
+                                <small>50% of people get DIFFERENT type on retest after 5 weeks - poor test-retest reliability (unacceptable psychometrically)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>⚠️ CRITICAL LIMITATION #2</strong>
+                                <small>Limited predictive validity for job performance - does not reliably predict who succeeds in roles</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>⚠️ CRITICAL LIMITATION #3</strong>
+                                <small>False dichotomies - traits are CONTINUOUS spectra, not binary categories (E-I is continuum, not either/or)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>BETTER ALTERNATIVE: Big Five</strong>
+                                <small>Far superior psychometric properties, predicts job performance reliably. MBTI is cultural phenomenon, not validated performance predictor</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">LOCUS OF CONTROL (ROTTER)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Internal Locus</strong>
+                                <small>Believe own actions determine outcomes - higher performance in complex roles, lower absenteeism, better suited for leadership and entrepreneurship</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>External Locus</strong>
+                                <small>Believe luck/fate controls outcomes - more comfortable in structured, routine, clear-instruction roles with limited responsibility</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>OB Application</strong>
+                                <small>Select internals for autonomous roles; externals for structured roles. Consider in hiring and role placement</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">MACHIAVELLIANISM (MACH IV)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>High Mach Profile</strong>
+                                <small>Pragmatic, emotionally detached, manipulative, believe ends justify means, use people instrumentally</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Where They Thrive</strong>
+                                <small>Situations with direct interaction, loose rules, where emotions irrelevant (negotiations, competitive sales, politics)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>OB Concern</strong>
+                                <small>High Mach risk for unethical behaviour, manipulation, political behaviour - requires ethical guardrails</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">OTHER KEY ATTRIBUTES</div>
+                        <div class="topics">
+                            <div class="topic priority-mid">
+                                <strong>Self-Monitoring</strong>
+                                <small>High: adapt behaviour to situational cues - flexible, politically astute, good at reading social situations. Low: consistent, authentic "what you see is what you get"</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Risk Propensity</strong>
+                                <small>High: faster decisions with less info - entrepreneurial, dynamic roles. Low: deliberate, thorough - financial control, safety-critical roles</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Self-Esteem</strong>
+                                <small>High SE: job satisfied, less affected by external evaluation, willing to take risks. Low SE: seek approval, less decisive, susceptible to external influence</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">MBTI vs BIG FIVE FOR EXAM</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Exam Strategy:</strong> If MBTI question comes, immediately flag limitations and suggest Big Five as better alternative</strong></div>
+                        <div class="explanation-item"><strong>Remember 3 key limitations:</strong> Poor retest reliability (50% different type), no predictive validity for performance, false dichotomies</strong></div>
+                        <div class="explanation-item"><strong>Use MBTI examples to discuss:</strong> Why popular in HR despite poor validation - cultural appeal vs scientific rigour</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 7 of 9</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 8: CURRENT AFFAIRS & PYQ COVERAGE -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📰 CURRENT AFFAIRS & PYQ ANALYSIS</div>
+        <div class="page-subtitle">2024-25 Context & Previous Year Questions</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">CONTEXT</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CURRENT AFFAIRS 2024-25</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>AI-Based Personality Assessment</strong>
+                                <small>Indian IT companies (Infosys, TCS) using AI for personality testing - validity and bias concerns critical</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>UPSC Interview</strong>
+                                <small>"Personality Test" assesses intellectual qualities and social traits - critical for civil service selection</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Mission Karmayogi - iGOT</strong>
+                                <small>Building competency-personality profiles for Indian civil servants - government focus on personality assessment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Mental Health & Workplace</strong>
+                                <small>India's National Mental Health Survey: 10.6% prevalence - personality disorders now recognised as workplace HR issue</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Gig Workers (7.7 million)</strong>
+                                <small>High Openness and nAch profiles but existential insecurities (Maslow Level 1-2) - emerging OB issue</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">PYQ 2025 (10M) - DETERMINANTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Question Focus</strong>
+                                <small>Determinants of personality - heredity, environment, situation; twin studies; Mischel's situational strength</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Coverage</strong>
+                                <small>Balance genetic and environmental factors; cite Minnesota Twin Registry evidence; discuss situational moderation; nature-nurture interaction</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Answer Structure</strong>
+                                <small>Define personality; discuss heredity (genes, twin studies, 50% heritability); environment (culture, family, learning); interaction and situational strength</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">PYQ 2024 (10M) - BIG FIVE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Direct Question</strong>
+                                <small>Big Five traits | which has biggest impact | how knowledge helps manager</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>ANSWER: CONSCIENTIOUSNESS + EVIDENCE</strong>
+                                <small>Barrick & Mount (1991) meta-analysis of 162 studies - strongest universal performance predictor</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Manager Application</strong>
+                                <small>Use in hiring across all roles; training less effective than selection; place high conscientiousness in critical roles</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">PAST PYQ COMPILATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>2021 (20M)</strong>
+                                <small>Determinants of personality + major attributes - full coverage of heredity, environment, Big Five, other attributes</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2019 (10M)</strong>
+                                <small>Critically examine Freud's psychosexual stages - 5 stages + strengths/weaknesses evaluation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2017 (10M)</strong>
+                                <small>Freud + biological factors - agree with qualifications on personality determination</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2015 (10M)</strong>
+                                <small>S-O-B-C Model - describe + enrich with 5 strategies (cognitive, social, org, feedback, individual differences)</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">PYQ PATTERN & PREPARATION</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Pattern:</strong> Determinants (2025, 2021), Big Five (2024), Theories (2019, 2017), S-O-B-C (2015)</strong></div>
+                        <div class="explanation-item"><strong>Next likely:</strong> MBTI limitations, Humanistic theories (Maslow), Self-efficacy application, or Current affairs angle</strong></div>
+                        <div class="explanation-item"><strong>Preparation:</strong> Know definitions, theories thoroughly; cite evidence (Barrick & Mount, Minnesota Twin Registry); connect to current affairs</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 8 of 9</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 9: FINAL CHECKLIST & EXAM STRATEGY -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">✅ FINAL CHECKLIST & EXAM STRATEGY</div>
+        <div class="page-subtitle">What to Know, How to Answer, Last-Minute Prep</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">EXAM PREP</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">DEFINITIONS TO MEMORISE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>OB Definitions</strong>
+                                <small>✓ Luthans (understanding, predicting, controlling)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Personality Definitions</strong>
+                                <small>✓ Allport (dynamic organisation) ✓ Robbins (sum total) ✓ Cattell (prediction)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Models</strong>
+                                <small>✓ S-O-B-C (Stimulus-Organism-Behaviour-Consequence) ✓ Freud ID-EGO-SUPEREGO ✓ Erikson 8 stages (at least first 5)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Self-Efficacy</strong>
+                                <small>✓ Bandura's definition: "Belief in capabilities to organise and execute required courses of action"</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">FRAMEWORKS TO MASTER</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Big Five (OCEAN)</strong>
+                                <small>✓ All 5 traits ✓ Conscientiousness = strongest predictor ✓ Barrick & Mount (1991) meta-analysis</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Freud Stages</strong>
+                                <small>✓ 5 psychosexual stages ✓ Fixation outcomes ✓ Critical evaluation (strengths/weaknesses)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Personality Determinants</strong>
+                                <small>✓ Heredity (genes, twin studies, ~50% heritability) ✓ Environment (culture, family, learning) ✓ Situational strength (Mischel)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>S-O-B-C Enrichment</strong>
+                                <small>✓ Cognitive mediators ✓ Social context ✓ Org context ✓ Feedback loops ✓ Individual differences</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CRITICAL EVIDENCE TO CITE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Research Citations</strong>
+                                <small>✓ Barrick & Mount (1991) - Conscientiousness predictor ✓ Minnesota Twin Registry - 50% concordance ✓ Eysenck - nervous system basis</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Examples to Use</strong>
+                                <small>✓ Collect-ive vs individualist cultures (Hofstede) ✓ Parenting styles ✓ Situational suppression of personality</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">COMMON MISTAKES TO AVOID</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>❌ MBTI = Reliable</strong>
+                                <small>WRONG - 50% different type on retest. Cite this limitation explicitly</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>❌ Personality = Fixed</strong>
+                                <small>WRONG - Can change with significant life experiences; not immutable</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>❌ Nature OR Nurture</strong>
+                                <small>WRONG - BOTH; interaction; ~50-50 split; situational moderation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>❌ Freud is Outdated</strong>
+                                <small>WRONG - Acknowledge strengths; note modern relevance (attachment, defence mechanisms, unconscious); critical evaluation needed</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>❌ All Traits Equally Important</strong>
+                                <small>WRONG - Conscientiousness is STRONGEST predictor; emphasise this hierarchy</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">ANSWER STRUCTURE TEMPLATE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>20M Answer Structure</strong>
+                                <small>Intro (define key term) → Historical context → 2-3 main points with evidence → Critical evaluation → Org application → Conclusion</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>10M Answer Structure</strong>
+                                <small>Definition → 3-4 key points (brief) with evidence → One critical point → Org application → Conclusion (concise)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Quote Key Definitions</strong>
+                                <small>Always quote core concepts directly - OB definitions, personality definitions, framework names</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Cite Evidence</strong>
+                                <small>Meta-analyses (Barrick & Mount), research findings (twin studies), theorist names - shows depth</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">LAST-MINUTE CHECKLIST ⭐</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>✓ MUST KNOW</strong>
+                                <small>OB definition, personality definition, S-O-B-C, Big Five (OCEAN), Conscientiousness impact, Freud stages, Determinants (nature-nurture)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ SHOULD KNOW</strong>
+                                <small>MBTI limitations, Erikson 8 stages, Self-efficacy, Locus of control, Humanistic theories, Social learning</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ NICE TO KNOW</strong>
+                                <small>Historical theories (Hippocrates), Type A-B, Current affairs, Gig worker trends, UPSC personality test</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ EVIDENCE TO CITE</strong>
+                                <small>Barrick & Mount, Minnesota Twin Registry, Hofstede's cultures, Eysenck's PEN, Bandura's reciprocal determinism</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ WATCH OUT FOR</strong>
+                                <small>MBTI trap, personality as fixed, Freud as outdated, ignoring situational strength, forgetting Big Five best alternative</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">FINAL EXAM TIPS</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item">🎯 <strong>Predict likely questions:</strong> Personality attributes (self-efficacy, emotional intelligence), current affairs angle (AI assessment), case studies (real org examples)</strong></div>
+                        <div class="explanation-item">🎯 <strong>Practice Barrick & Mount:</strong> You will need to cite this - memorise: 162 studies meta-analysis, 0.23 validity, conscientiousness universal predictor</strong></div>
+                        <div class="explanation-item">🎯 <strong>Connect to org examples:</strong> TATA Group (values), Infosys (AI hiring), Google (culture + selection) - real-world application shows depth</strong></div>
+                        <div class="explanation-item">🎯 <strong>Balanced evaluation:</strong> Don't just list facts - evaluate theories critically (strengths/weaknesses) - shows analytical thinking</strong></div>
+                        <div class="explanation-item">🎯 <strong>Answer with confidence:</strong> OB/Personality is well-established science - cite evidence, use frameworks, don't hedge unnecessarily</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 9 of 9</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
