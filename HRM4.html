@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRM - Selection Process - Complete Mindmap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: white;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.8fr 1fr;
+            page-break-after: always;
+            break-after: page;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Left side - Mindmap */
+        .mindmap-section {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            background: white;
+            border-right: 2px solid #ddd;
+            overflow: visible;
+        }
+
+        /* Right side - Notes */
+        .notes-section {
+            background: #f9f9f9;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .notes-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .notes-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .note-line {
+            border-bottom: 1px dotted #bbb;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            color: #667eea;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 3px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #999;
+            font-size: 0.64em;
+            margin-bottom: 8px;
+        }
+
+        /* Mindmap - Vertical Layout */
+        .mindmap-content {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            overflow: visible;
+        }
+
+        .mindmap-row {
+            display: flex;
+            gap: 7px;
+            align-items: flex-start;
+        }
+
+        .central-node {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+            white-space: normal;
+            flex-shrink: 0;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+            width: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.74em;
+            line-height: 1.1;
+            min-height: 68px;
+        }
+
+        .branches-container {
+            display: flex;
+            gap: 6px;
+            flex: 1;
+            overflow: visible;
+        }
+
+        .branch {
+            background: white;
+            border: 1.5px solid #667eea;
+            border-radius: 5px;
+            padding: 6px;
+            min-width: 110px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .branch-title {
+            background: #667eea;
+            color: white;
+            padding: 4px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 0.63em;
+            margin-bottom: 4px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .topics {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            overflow: visible;
+        }
+
+        .topic {
+            padding: 3px;
+            background: #f0f4ff;
+            border-left: 2px solid #667eea;
+            border-radius: 2px;
+            font-size: 0.63em;
+            line-height: 1.15;
+            flex-shrink: 0;
+        }
+
+        .topic strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 0.5px;
+            font-size: 0.88em;
+        }
+
+        .topic small {
+            color: #666;
+            font-size: 0.82em;
+        }
+
+        .priority-high {
+            background: #ffe5e5;
+            border-left: 2px solid #ff6b6b;
+        }
+
+        .priority-high strong {
+            color: #ff6b6b;
+        }
+
+        .priority-mid {
+            background: #fff5e5;
+            border-left: 2px solid #ffc107;
+        }
+
+        .priority-mid strong {
+            color: #ff9800;
+        }
+
+        /* Explanation boxes */
+        .explanation-section {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 0.63em;
+            line-height: 1.2;
+            margin-top: 5px;
+            overflow: visible;
+        }
+
+        .explanation {
+            background: #f9f9f9;
+            border-left: 2px solid #667eea;
+            padding: 5px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .explanation-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 1px;
+            font-size: 0.78em;
+        }
+
+        .explanation-content {
+            color: #333;
+            margin-left: 4px;
+        }
+
+        .explanation-item {
+            margin: 1px 0;
+            font-size: 0.88em;
+        }
+
+        .explanation-item strong {
+            color: #667eea;
+        }
+
+        /* Page number */
+        .page-number {
+            text-align: right;
+            color: #999;
+            font-size: 0.65em;
+            margin-top: 5px;
+            flex-shrink: 0;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background: white;
+            }
+
+            .page {
+                margin: 0;
+                padding: 0;
+                min-height: 100vh;
+                page-break-after: always;
+                break-after: page;
+            }
+
+            .mindmap-section {
+                padding: 10mm;
+                border-right: 2px solid #ddd;
+            }
+
+            .notes-section {
+                padding: 10mm;
+            }
+        }
+
+        @media screen {
+            .page {
+                margin: 10px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- PAGE 1: SELECTION DEFINITIONS & NATURE -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🔍 SELECTION: DEFINITIONS & NATURE</div>
+        <div class="page-subtitle">Overview & Core Concepts</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">SELECTION</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">DEFINITIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Dale Yoder</strong>
+                                <small>"Selection is process by which candidates are divided into two classes — those offered employment and those who will not."</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Thomas Stone</strong>
+                                <small>"Selection is process of differentiating between applicants to identify and hire those with greater likelihood of success in job."</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Edwin Flippo</strong>
+                                <small>"Selection is process of choosing the most suitable persons out of all the applicants."</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>KEY CONCEPT</strong>
+                                <small>"Selection is virtually a kind of elimination process" — Progressively eliminates unsuitable candidates at each stage</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">OBJECTIVES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Best Fit Identification</strong>
+                                <small>Find candidates whose skills, knowledge, aptitude, personality best match job requirements</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Reduce Hiring Cost</strong>
+                                <small>Prevent cost of poor hiring — replacement costs 50-200% of annual salary (SHRM estimate)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Legal Compliance</strong>
+                                <small>Non-discriminatory selection per Equal Remuneration Act 1976, Article 16 compliance</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Improve Performance</strong>
+                                <small>Right people in right jobs drive organizational productivity and effectiveness</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Reduce Turnover</strong>
+                                <small>Proper person-job fit reduces early exits and absenteeism significantly</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Build Advantage</strong>
+                                <small>Superior human capital acquisition creates sustainable competitive advantage</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">RECRUITMENT vs SELECTION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Recruitment</strong>
+                                <small>Casting net WIDE; Finding candidates; Increasing applicant pool; Generating interest</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Selection</strong>
+                                <small>Drawing net IN; Choosing from pool; Eliminating unsuitable; Final decision</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Analogy</strong>
+                                <small>"If recruitment is casting net wide, selection is drawing in the right fish"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Sequence</strong>
+                                <small>Recruitment FIRST → generates pool → Selection SECOND → chooses from pool</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">ELIMINATION CONCEPT</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Progressive Elimination</strong>
+                                <small>Each selection stage eliminates unsuitable candidates; Progressively narrows pool</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Funnel Effect</strong>
+                                <small>Wide at top (many applicants) → progressively narrows → select best at bottom</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Quality Increase</strong>
+                                <small>As pool gets smaller, remaining candidates increasingly qualified and suitable</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Efficiency</strong>
+                                <small>Each stage filters unsuitable; Saves time and cost in later expensive stages</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">SELECTION AS DIFFERENTIATION</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Core Insight:</strong> Selection differentiates between applicants based on job-relevant criteria; Not random choice but systematic elimination of unsuitable</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 1 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 2: SELECTION PROCESS STEP-BY-STEP -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📋 SELECTION PROCESS: STEP-BY-STEP</div>
+        <div class="page-subtitle">6-Stage Selection Process (PYQ 2019, 2015)</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">6 STEPS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">STEP 1: INITIAL SCREENING</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>CV Screening</strong>
+                                <small>Examine curriculum vitae for basic qualifications, experience, education</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Application Form Review</strong>
+                                <small>Check application completeness, required information, basic requirements met</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Elimination Criteria</strong>
+                                <small>Remove obviously unqualified candidates; No relevant experience, missing qualifications</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Purpose</strong>
+                                <small>Quick elimination of unsuitable; Reduce pool for next expensive stages</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">STEP 2: WRITTEN TESTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Aptitude Tests</strong>
+                                <small>Measure potential ability and learning capacity; Verbal, numerical, reasoning</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Achievement Tests</strong>
+                                <small>Measure existing skills and knowledge; Job-specific competencies</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Personality Tests</strong>
+                                <small>Big Five (OCEAN), Myers-Briggs, 16-PF; Assess behavioral traits</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Ability Tests</strong>
+                                <small>Spatial, mechanical, clerical abilities specific to job</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">STEP 3: INTERVIEW</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>First Round (Screening)</strong>
+                                <small>Initial screening interview; Assess basic fit and communication</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Second Round (Detailed)</strong>
+                                <small>In-depth interview; Explore experience, competencies, motivation, fit</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Final Round (Confirmation)</strong>
+                                <small>Senior management interview; Confirm suitability, negotiate terms</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">STEP 4: MEDICAL EXAM</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Medical Fitness</strong>
+                                <small>Medical examination to ensure health fitness for job</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Disease Check</strong>
+                                <small>Screen for communicable diseases, occupational hazards fitness</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Fitness Certificate</strong>
+                                <small>Medical clearance required before final selection</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">STEP 5: REFERENCE CHECK</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Verify Credentials</strong>
+                                <small>Confirm educational qualifications, certifications, achievements</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Employment History</strong>
+                                <small>Verify past employment, positions held, performance</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>References</strong>
+                                <small>Contact referees — former employers, colleagues, supervisors</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">STEP 6: FINAL DECISION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Committee Decision</strong>
+                                <small>Selection committee reviews all information and makes final decision</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Offer Letter</strong>
+                                <small>Formal job offer with terms, salary, position, joining date</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Negotiation</strong>
+                                <small>Candidate may negotiate salary, benefits, joining date</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Acceptance</strong>
+                                <small>Candidate accepts offer; Formal commitment from both sides</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">PROCESS AS ELIMINATION FUNNEL</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Flow:</strong> Screening → Tests → Interview (3 rounds) → Medical → Reference → Final</strong></div>
+                        <div class="explanation-item"><strong>Each stage:</strong> Eliminates unsuitable; Reduces pool; Increases quality of remaining</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 2 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 3: EMPLOYMENT TESTS TYPES -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📝 EMPLOYMENT TESTS: TYPES & CLASSIFICATION</div>
+        <div class="page-subtitle">Test Categories (PYQ 2019, 2017, 2015)</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">TESTS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">APTITUDE vs ACHIEVEMENT</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Aptitude Tests</strong>
+                                <small>Measure POTENTIAL ability; Tests capacity to learn; Future performance</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Examples Aptitude</strong>
+                                <small>Verbal reasoning, numerical ability, abstract reasoning, spatial ability</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Achievement Tests</strong>
+                                <small>Measure EXISTING skills; Tests what person ALREADY knows; Current competencies</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Examples Achievement</strong>
+                                <small>Technical knowledge test, programming test, language proficiency, subject expertise</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">PERSONALITY TESTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Big Five (OCEAN)</strong>
+                                <small>Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Myers-Briggs (MBTI)</strong>
+                                <small>16 personality types based on 4 dimensions; Popularity but lower validity</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>16-PF Test</strong>
+                                <small>16 Personality Factors; Cattell's comprehensive personality assessment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Purpose</strong>
+                                <small>Assess behavioral traits, work style, team fit, stress response</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">ABILITY & WORK SAMPLING</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Mechanical Ability</strong>
+                                <small>Spatial reasoning, mechanical understanding; For engineering, manufacturing jobs</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Clerical Ability</strong>
+                                <small>Speed, accuracy, detail orientation; For office, administrative roles</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Work Sampling</strong>
+                                <small>HIGHEST VALIDITY (~0.54); Directly replicates job tasks; Actual work simulation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Example</strong>
+                                <small>Programming test for coder, writing sample for journalist, design portfolio for designer</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">ASSESSMENT CENTRES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Multi-Method Approach</strong>
+                                <small>Combines multiple assessment methods; Not single test but comprehensive evaluation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Components</strong>
+                                <small>In-basket exercise, LGD, Structured interview, Psychometric tests, Role play, Business game</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Validity</strong>
+                                <small>HIGHEST predictive validity (~0.50); Multi-observer, multi-exercise reduces bias</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Cost & Use</strong>
+                                <small>Rs. 30,000–2,00,000 per candidate; Used by PSUs (SAIL, NTPC), MNCs, UPSC civil services</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">VALIDITY DATA</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Work Sampling 0.54</strong>
+                                <small>HIGHEST validity; Direct job task simulation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Structured Interview 0.51</strong>
+                                <small>Pre-set questions + standardized scoring; Very good validity</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Assessment Centre 0.50</strong>
+                                <small>Multi-method approach; Comprehensive; Nearly as valid as work sampling</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Aptitude/Ability 0.40-0.45</strong>
+                                <small>Moderate validity; Capacity to learn predicts performance moderately</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Unstructured Interview 0.38</strong>
+                                <small>LOW validity; Prone to bias; Subjective assessment; Avoid if possible</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">CRITICAL INSIGHT: "TESTS PREDICT FAILURE MORE THAN SUCCESS" (PYQ 2017)</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Meaning:</strong> Tests are better at identifying who will FAIL than who will SUCCEED</strong></div>
+                        <div class="explanation-item"><strong>Implication:</strong> Use tests to eliminate unsuitable rather than identify best performers</strong></div>
+                        <div class="explanation-item"><strong>Practical:</strong> Tests filter out low performers effectively; But high scorers not guaranteed high performers</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 3 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 4: BIG FIVE PERSONALITY MODEL -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">⭐ BIG FIVE (OCEAN) - PERSONALITY MODEL</div>
+        <div class="page-subtitle">Most Researched & Validated Model (PYQ Favourite)</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">BIG FIVE</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">OPENNESS TO EXPERIENCE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Curiosity, creativity, intellectual interest, openness to new experiences and ideas</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>High Openness</strong>
+                                <small>Creative, innovative, intellectual, adaptable, enjoys learning, risk-taker</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Low Openness</strong>
+                                <small>Practical, concrete thinker, prefers routine, resistant to change, conventional</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Job Fit</strong>
+                                <small>High openness: R&D, innovation roles; Low: operational, structured roles</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CONSCIENTIOUSNESS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Discipline, organization, responsibility, goal-directed, planning-oriented</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>High Conscientiousness</strong>
+                                <small>Organized, reliable, hardworking, deadline-focused, quality-conscious</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Low Conscientiousness</strong>
+                                <small>Disorganized, impulsive, careless, procrastinating, flexible, spontaneous</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>STRONGEST PREDICTOR</strong>
+                                <small>MOST IMPORTANT - conscientiousness strongest predictor of job performance across ALL roles</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">EXTRAVERSION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Sociability, activity, assertiveness, seeking stimulation, outgoing</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>High Extraversion</strong>
+                                <small>Outgoing, talkative, energetic, assertive, sociable, comfortable in groups</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Introversion (Low)</strong>
+                                <small>Reserved, quiet, independent, thoughtful, prefer working alone, listening-oriented</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Job Fit</strong>
+                                <small>High: leadership, sales, public-facing; Low: research, technical, writing roles</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">AGREEABLENESS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Cooperation, trust, altruism, empathy, compassion, concern for others</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>High Agreeableness</strong>
+                                <small>Cooperative, helpful, trusting, empathetic, concerned, conflict-averse</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Low Agreeableness</strong>
+                                <small>Competitive, skeptical, critical, direct, self-interested, willing to challenge</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Work Application</strong>
+                                <small>High = better teamwork, lower conflict; Low = better for negotiation, critical analysis</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">NEUROTICISM / STABILITY</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Tendency toward negative emotions: anxiety, depression, anger, emotional instability</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>High Neuroticism</strong>
+                                <small>Anxious, moody, easily stressed, defensive, emotional, worry-prone</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Low Neuroticism (Stability)</strong>
+                                <small>Calm, confident, even-tempered, resilient, handles stress well</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Job Fit</strong>
+                                <small>Low neuroticism important for leadership, high-stress roles; High = vulnerable in crisis</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">BIG FIVE SIGNIFICANCE FOR SELECTION</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Most Researched:</strong> Big Five most researched, validated personality model in organizational psychology</strong></div>
+                        <div class="explanation-item"><strong>Conscientiousness Critical:</strong> Single strongest predictor of job performance across almost all job types</strong></div>
+                        <div class="explanation-item"><strong>Universal Application:</strong> Use for selection, team composition, leadership assessment, job-fit analysis</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 4 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 5: INTERVIEWER BIASES -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">⚠️ INTERVIEWER BIASES - COMMON PITFALLS</div>
+        <div class="page-subtitle">7 Biases & Prevention Strategies</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">BIASES</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">BIAS 1-4</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Halo Effect</strong>
+                                <small>One positive trait influences overall impression positively; "Well-dressed = competent assumption"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Horn Effect</strong>
+                                <small>One negative trait colours entire evaluation negatively; Single mistake = bad candidate judgment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Contrast Effect</strong>
+                                <small>Judge candidate against PREVIOUS candidate, not job requirements; Relative not absolute</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Leniency/Strictness</strong>
+                                <small>Systematic tendency to rate all candidates too high or too low; Interviewer personality effect</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">BIAS 5-7</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Affinity Bias</strong>
+                                <small>Prefer candidates similar to interviewer — background, institution, demographics</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>First Impression Error</strong>
+                                <small>First few minutes unduly dominate final assessment; Snap judgment; Initial bias persists</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Stereotyping</strong>
+                                <small>Bias based on race, gender, caste, region, institution attended; Discriminatory judgments</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">INTERVIEW TYPES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Unstructured</strong>
+                                <small>No preset questions; Conversational; PRONE TO BIAS; Low validity (0.38)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Structured</strong>
+                                <small>Pre-set questions, standardized scoring rubric; Eliminates interviewer discretion; Better validity (0.51)</strong></div>
+                            <div class="topic priority-high">
+                                <strong>Behavioral</strong>
+                                <small>Ask about PAST behavior; "Tell me about a time when..."; Predictive of future</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Situational</strong>
+                                <small>Hypothetical scenarios; "What would you do if..."; Tests judgment and decisions</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Panel Interview</strong>
+                                <small>Multiple interviewers; Different perspectives; REDUCES individual bias dramatically</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">REDUCING BIAS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Structured Format</strong>
+                                <small>Pre-set questions + standardized scoring rubric; Eliminates interviewer discretion</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Multiple Assessors</strong>
+                                <small>Panel interviews; Average ratings across trained observers; Reduces individual bias</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Blind Screening</strong>
+                                <small>Remove name, photo, age, gender from CVs before initial screening</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Training</strong>
+                                <small>Interviewer training on bias recognition and mitigation strategies</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Documentation</strong>
+                                <small>Record selection decisions and justifications; Enable fairness review and audit</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">JOB ANALYSIS FOUNDATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Selection Pyramid</strong>
+                                <small>Job Analysis → JD → JS → Selection Criteria → Interview Questions</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Critical Principle</strong>
+                                <small>Every criterion must derive from rigorous job analysis; Link to job requirements</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Validity Link</strong>
+                                <small>Valid selection only possible if criteria aligned with actual job requirements</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">VALIDITY COMPARISON: STRUCTURED vs UNSTRUCTURED</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Structured Interview:</strong> Validity 0.51</strong></div>
+                        <div class="explanation-item"><strong>Unstructured Interview:</strong> Validity 0.38</strong></div>
+                        <div class="explanation-item"><strong>Difference:</strong> 34% better prediction with structure! Structure dramatically reduces bias and improves validity</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 5 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 6: ASSESSMENT CENTRES & VALIDITY -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🏆 ASSESSMENT CENTRES & VALIDITY DATA</div>
+        <div class="page-subtitle">Gold Standard Selection Method (Highest Validity)</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">ASSESS CENTRE</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">DEFINITION & APPROACH</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Multi-Method</strong>
+                                <small>Combines multiple assessment methods, not single test</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Multi-Observer</strong>
+                                <small>Multiple trained assessors evaluate same candidate; Reduces individual bias</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Multi-Exercise</strong>
+                                <small>Candidates complete multiple exercises and simulations</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Comprehensive</strong>
+                                <small>Most comprehensive selection method; Highest confidence in decision</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">AC COMPONENTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>In-Basket Exercise</strong>
+                                <small>Simulates managerial inbox; Candidate prioritizes and handles multiple tasks</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>LGD</strong>
+                                <small>Leaderless Group Discussion; Candidate leads without assigned authority</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Structured Interview</strong>
+                                <small>Pre-set questions with trained interviewers</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Psychometric Tests</strong>
+                                <small>Big Five, personality, ability, aptitude tests</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Role Play</strong>
+                                <small>Simulate job scenarios; Assess interpersonal and decision-making skills</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Business Game</strong>
+                                <small>Business simulation; Assess strategic thinking and decision-making</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">VALIDITY HIERARCHY</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Work Sampling 0.54</strong>
+                                <small>HIGHEST validity; Directly replicates job tasks; Most realistic</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Assessment Centre 0.50</strong>
+                                <small>Nearly as valid as work sampling; Multi-method reduces individual error</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Structured Interview 0.51</strong>
+                                <small>Good validity; Pre-set questions eliminate discretion</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Aptitude/Ability 0.40-0.45</strong>
+                                <small>Moderate validity; Capacity predicts performance moderately</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Personality Tests 0.35-0.40</strong>
+                                <small>Lower validity; Personality alone not strong predictor</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Unstructured Interview 0.38</strong>
+                                <small>LOW validity; Prone to bias; Avoid</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">AC COST & USAGE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Cost in India</strong>
+                                <small>Rs. 30,000–2,00,000 per candidate; Expensive investment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Justification</strong>
+                                <small>Justified only for senior positions where cost of mistake is high</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Users</strong>
+                                <small>PSUs (SAIL, NTPC, BHEL for leadership pipeline), MNCs, Civil services (UPSC has AC elements)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Advantage</strong>
+                                <small>Multi-observer, multi-method = highest confidence in selection decision</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">INDIA CONTEXT</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>PSU Usage</strong>
+                                <small>SAIL, NTPC, BHEL use ACs for management trainee and officer selections</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Civil Services</strong>
+                                <small>UPSC personality test has AC elements; Group discussions, role plays</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Corporate India</strong>
+                                <small>MNCs use ACs for leadership development and selection programs</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">WHY ASSESSMENT CENTRE IS GOLD STANDARD</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Multiple Observations:</strong> Multiple observers reduce individual bias; Aggregated judgment more reliable</strong></div>
+                        <div class="explanation-item"><strong>Multiple Methods:</strong> Different exercises capture different competencies; Comprehensive assessment</strong></div>
+                        <div class="explanation-item"><strong>Behavioral Evidence:</strong> Actual behavior observed in simulations; Not just self-report or single interview</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 6 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 7: IMPROVING SELECTION OBJECTIVITY -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">✅ IMPROVING SELECTION OBJECTIVITY</div>
+        <div class="page-subtitle">Methods to Enhance Fairness & Validity</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">IMPROVE</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">STRUCTURED APPROACHES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Structured Interviews</strong>
+                                <small>Pre-set questions + standardized scoring rubric; Eliminates interviewer discretion; Increases validity</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Validated Tests</strong>
+                                <small>Use scientifically validated instruments; Conduct local validation studies; Know reliability and validity</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Job Analysis Foundation</strong>
+                                <small>Every criterion derives from rigorous JA; JA → JD → JS → criteria → questions linkage</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Panel Interviews</strong>
+                                <small>Multiple interviewers; Different perspectives; Average ratings across observers; Reduces bias</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">PROCESS IMPROVEMENTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Blind CV Screening</strong>
+                                <small>Remove name, photo, age, gender from CVs before initial screening; Reduces demographic bias</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Assessment Centres</strong>
+                                <small>Multi-method, multi-assessor approach; Highest objectivity for senior selections</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Work Sampling</strong>
+                                <small>Directly simulate job tasks; Highest validity and face validity; Objective assessment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Documentation</strong>
+                                <small>Record all selection decisions, criteria used, assessor notes; Enable fairness audit and review</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">TECHNOLOGY & AI</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>ATS Systems</strong>
+                                <small>Applicant Tracking Systems apply consistent criteria; But monitor for algorithmic bias</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>AI-Assisted Screening</strong>
+                                <small>AI analyzes CVs and applications against criteria; Consistent but NOT replacing human judgment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Talent Platforms</strong>
+                                <small>Eightfold AI, Gloat analyze skills against roles; Minimize human bias in matching</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Bias Monitoring</strong>
+                                <small>Audit AI systems for demographic bias; Ensure fairness across groups</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">LEGAL FRAMEWORK (INDIA)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Equal Remuneration Act 1976</strong>
+                                <small>Equal pay for equal work; Non-discrimination in compensation and selection</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Constitution Article 15</strong>
+                                <small>Prohibition of discrimination on grounds of religion, race, caste, sex, place of birth</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Article 16</strong>
+                                <small>Equal opportunity in public employment; No discrimination in recruitment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>SC/ST/OBC Reservations</strong>
+                                <small>Government jobs reserved for scheduled castes/tribes/OBC as per constitutional mandate</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">BEST PRACTICES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Training</strong>
+                                <small>Train selectors on bias recognition, unconscious bias, fair selection practices</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Diversity Focus</strong>
+                                <small>Actively work to increase diversity in candidate pool and selection committee</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Transparency</strong>
+                                <small>Make selection criteria and process transparent to all candidates</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Appeal Process</strong>
+                                <small>Provide appeal mechanism if candidates believe selection was unfair</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">OBJECTIVITY = VALIDITY + FAIRNESS</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Validity:</strong> Selection predicts job performance accurately; Right person for job</strong></div>
+                        <div class="explanation-item"><strong>Fairness:</strong> No discrimination; Equal opportunity; Transparent process</strong></div>
+                        <div class="explanation-item"><strong>Together:</strong> Objective selection is both valid (accurate) AND fair (non-discriminatory)</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 7 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 8: EXAM SUMMARY & KEY CONCEPTS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📊 EXAM SUMMARY & CRITICAL CONCEPTS</div>
+        <div class="page-subtitle">PYQ Mapping & Last-Minute Checklist</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">SUMMARY</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">PYQ FREQUENCY ANALYSIS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>PYQ 2019 (20M)</strong>
+                                <small>Selection process step-by-step; Elimination process; Tests and interviews</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>PYQ 2017 (10M)</strong>
+                                <small>"Tests predict failure more than success" - critical insight; Validity analysis</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>PYQ 2015 (20M)</strong>
+                                <small>Selection tests, personality tests, Big Five; Interview biases and improvement</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>PYQ 2013-2025</strong>
+                                <small>HIGHEST FREQUENCY TOPIC: Selection tests, validity data, Big Five, interviews</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CRITICAL DEFINITIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Dale Yoder</strong>
+                                <small>"Selection is process by which candidates divided into two classes..."</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Flippo</strong>
+                                <small>"Selection is process of choosing most suitable..."</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Concept</strong>
+                                <small>"Selection is virtually kind of elimination process" - KNOW THIS</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">VALIDITY HIERARCHY</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Work Sampling 0.54</strong>
+                                <small>HIGHEST; Direct job simulation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Assessment Centre 0.50</strong>
+                                <small>Gold standard; Multi-method</strong></div>
+                            <div class="topic priority-high">
+                                <strong>Structured Interview 0.51</strong>
+                                <small>Good validity; 34% better than unstructured</strong></div>
+                            <div class="topic priority-high">
+                                <strong>Aptitude/Ability 0.40-0.45</strong>
+                                <small>Moderate; Capacity predicts moderately</strong></div>
+                            <div class="topic priority-high">
+                                <strong>Unstructured 0.38</strong>
+                                <small>LOW validity; Prone to bias</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">BIG FIVE INSIGHTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Conscientiousness</strong>
+                                <small>MOST IMPORTANT; Strongest job performance predictor across all roles</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>OCEAN Framework</strong>
+                                <small>Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Most Validated</strong>
+                                <small>Big Five most researched personality model in organizational psychology</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Application</strong>
+                                <small>Use for selection, team composition, job-fit analysis, assessment</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">LAST-MINUTE CHECKLIST</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definitions & Concepts</strong>
+                                <small>Know Yoder, Stone, Flippo; Elimination process; Recruitment vs Selection</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>6 Selection Steps</strong>
+                                <small>Screening → Tests → Interview (3 rounds) → Medical → Reference → Final</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Tests & Validity</strong>
+                                <small>Know types, validity figures (0.54, 0.51, 0.50, 0.38); Work sampling, AC best</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Big Five OCEAN</strong>
+                                <small>All 5 dimensions; Conscientiousness most predictive; Applications to jobs</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>7 Interviewer Biases</strong>
+                                <small>Halo, Horn, Contrast, Leniency, Affinity, First impression, Stereotyping</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Reducing Bias</strong>
+                                <small>Structured, Blind screening, Multiple assessors, Job analysis foundation</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">UPSC ANSWER FRAMEWORK FOR SELECTION</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item">✓ <strong>Q on Selection Definition:</strong> Use Dale Yoder/Flippo definitions; Explain elimination process; Differentiate from recruitment</strong></div>
+                        <div class="explanation-item">✓ <strong>Q on Selection Process:</strong> 6 steps explained with examples; Role of each stage in elimination</strong></div>
+                        <div class="explanation-item">✓ <strong>Q on Tests:</strong> Types, validity hierarchy; Big Five explained; "Tests predict failure more than success"</strong></div>
+                        <div class="explanation-item">✓ <strong>Q on Interviews:</strong> 7 biases; Structured vs Unstructured; Methods to improve objectivity</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 8 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
