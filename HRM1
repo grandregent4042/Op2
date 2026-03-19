@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRM 1: Introduction to HRM & Human Resource Planning - Complete Mindmap</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; margin: 0; padding: 0; background: white; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .page { width: 100%; min-height: 100vh; display: grid; grid-template-columns: 1.8fr 1fr; page-break-after: always; margin: 0; padding: 0; }
+        .mindmap-section { display: flex; flex-direction: column; padding: 10px; background: white; border-right: 2px solid #ddd; overflow: visible; }
+        .notes-section { background: #f9f9f9; padding: 10px; display: flex; flex-direction: column; }
+        .notes-title { font-weight: bold; color: #667eea; margin-bottom: 10px; font-size: 0.9em; }
+        .note-line { border-bottom: 1px dotted #bbb; height: 18px; flex-shrink: 0; }
+        .page-title { text-align: center; color: #667eea; font-size: 1.15em; font-weight: bold; margin-bottom: 6px; border-bottom: 2px solid #667eea; padding-bottom: 4px; }
+        .page-subtitle { text-align: center; color: #999; font-size: 0.68em; margin-bottom: 8px; }
+        .mindmap-content { display: flex; flex-direction: column; gap: 8px; overflow: visible; }
+        .mindmap-row { display: flex; gap: 8px; align-items: flex-start; }
+        .central-node { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 11px; border-radius: 6px; font-weight: bold; text-align: center; white-space: normal; flex-shrink: 0; box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3); width: 82px; display: flex; align-items: center; justify-content: center; font-size: 0.77em; line-height: 1.15; min-height: 72px; }
+        .branches-container { display: flex; gap: 7px; flex: 1; overflow: visible; }
+        .branch { background: white; border: 1.5px solid #667eea; border-radius: 5px; padding: 7px; min-width: 115px; flex: 1; display: flex; flex-direction: column; }
+        .branch-title { background: #667eea; color: white; padding: 5px; border-radius: 3px; font-weight: bold; font-size: 0.68em; margin-bottom: 5px; text-align: center; flex-shrink: 0; }
+        .topics { display: flex; flex-direction: column; gap: 3px; overflow: visible; }
+        .topic { padding: 4px; background: #f0f4ff; border-left: 2px solid #667eea; border-radius: 2px; font-size: 0.68em; line-height: 1.2; flex-shrink: 0; }
+        .topic strong { color: #667eea; display: block; margin-bottom: 1px; font-size: 0.9em; }
+        .topic small { color: #666; font-size: 0.85em; }
+        .priority-high { background: #ffe5e5; border-left: 2px solid #ff6b6b; }
+        .priority-high strong { color: #ff6b6b; }
+        .priority-mid { background: #fff5e5; border-left: 2px solid #ffc107; }
+        .priority-mid strong { color: #ff9800; }
+        .page-number { text-align: right; color: #999; font-size: 0.65em; margin-top: 6px; }
+        @media print { .page { margin: 0; } }
+        @media screen { .page { margin: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); } }
+    </style>
+</head>
+<body>
+
+<!-- PAGE 1: HRM DEFINITIONS & NATURE -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📖 HRM: DEFINITIONS, NATURE & SCOPE OVERVIEW</div>
+        <div class="page-subtitle">Four Core Definitions | Seven Key Characteristics of HRM Nature</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">HRM</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">FOUR CORE DEFINITIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Edwin Flippo</strong>
+                                <small>"HRM is the planning, organising, directing and controlling of the procurement, development, compensation, integration, maintenance and separation of human resources"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Gary Dessler</strong>
+                                <small>"HRM refers to the practices and policies needed to carry out the personnel aspects of a management job"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Dale Yoder</strong>
+                                <small>"HRM deals with the effective control and use of manpower as distinguished from other sources of power"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Scott, Clothier & Spriegel</strong>
+                                <small>"HRM is responsible for concentrating on those aspects of operations primarily concerned with the relationship of management to employees"</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">SEVEN CHARACTERISTICS OF HRM NATURE</div>
+                        <div class="topics">
+                            <div class="topic priority-mid">
+                                <strong>Pervasive Function</strong>
+                                <small>Present in ALL organisations at ALL management levels - CEO to supervisor. Not limited to HR department</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Action-Oriented</strong>
+                                <small>Focuses on SOLUTIONS to HR problems, not theoretical elaborations. Practical and implementable</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Future-Oriented</strong>
+                                <small>Helps org achieve FUTURE GOALS by providing competent, motivated employees. Anticipatory, not reactive</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Development-Oriented</strong>
+                                <small>Develops FULL POTENTIAL of employees through training, work assignments, career planning</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Integrating Mechanism</strong>
+                                <small>Integrates individual GOALS with ORGANISATIONAL OBJECTIVES; builds cordial relations between employees and management</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Interdisciplinary</strong>
+                                <small>Draws from psychology, sociology, economics, law, management theory, industrial relations</small>
+                            </div>
+                            <div class="topic priority-mid">
+                                <strong>Comprehensive</strong>
+                                <small>Covers ALL decisions, strategies, factors relating to MANAGEMENT OF PEOPLE at all levels</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">KEY EXAM INSIGHT</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Flippo's Definition Most Used</strong>
+                                <small>Covers 8 activities: planning, organising, directing, controlling, procurement, development, compensation, integration, maintenance, separation. Use this in 20M answers for comprehensive coverage</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 1 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+    </div>
+</div>
+
+<!-- PAGE 2: HRM SCOPE & FUNCTIONS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🔄 SCOPE OF HRM: IIPM CLASSIFICATION & SIX CORE FUNCTIONS</div>
+        <div class="page-subtitle">Personnel | Welfare | Industrial Relations Aspects | Six HR Functions Framework</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">HRM SCOPE</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">THREE ASPECTS (IIPM)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Personnel Aspect</strong>
+                                <small>HRP, job analysis, recruitment, selection, placement, induction, transfer, promotion, separation, retrenchment, resignation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Welfare Aspect</strong>
+                                <small>Working conditions, canteens, creches, housing, education, health, recreation, medical assistance, employee benefits</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Industrial Relations Aspect</strong>
+                                <small>Union-management relations, collective bargaining, grievance handling, disciplinary procedures, strike management, labour laws compliance</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">SIX HR FUNCTIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>PROCUREMENT</strong>
+                                <small>HRP, Job Analysis, Job Description, Job Specification, Recruitment, Selection, Placement, Induction. Goal: Acquire RIGHT people for RIGHT jobs</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>DEVELOPMENT</strong>
+                                <small>Training, Management Development, Career Planning, Organisational Development, Skill enhancement. Goal: BUILD capability and competence</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>COMPENSATION</strong>
+                                <small>Wage & Salary Administration, Job Evaluation, Pay scales, Incentives, Fringe Benefits, Performance bonuses. Goal: REWARD fairly and competitively</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>INTEGRATION</strong>
+                                <small>Motivation, Morale building, Grievance Handling, Trade Union Relations, Collective Bargaining, Industrial Relations. Goal: ALIGN individual & organisational interests</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>MAINTENANCE</strong>
+                                <small>Health & Safety, Employee Welfare, Personnel Records, HR Audit, Legal compliance. Goal: SUSTAIN healthy work environment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>SEPARATION</strong>
+                                <small>Retirement, Resignation handling, Retrenchment, VRS (Voluntary Retirement Scheme), Death benefits, Exit Interviews. Goal: MANAGE employee departures professionally</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 2 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+    </div>
+</div>
+
+<!-- PAGE 3: EVOLUTION OF HRM -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📚 EVOLUTION OF HRM: SIX STAGES (PYQ 2018 - 20M)</div>
+        <div class="page-subtitle">Scientific Management >> Digital HRM | F.W. Taylor to AI-Driven HR</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">6 STAGES</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">STAGE 1-2: PRE-MODERN ERA</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Stage 1: Scientific Management (Pre-1930)</strong>
+                                <small>F.W. Taylor: Workers as ECONOMIC BEINGS; time-motion study; personnel = labour management; focus on efficiency and output; labour seen as a cost</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Stage 2: Human Relations (1930s-50s)</strong>
+                                <small>Elton Mayo (Hawthorne experiments): Social factors MATTER; informal groups influence performance; recognition of psychological needs; pioneered group dynamics research</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">STAGE 3-4: MODERN ERA</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Stage 3: Behavioural Science (1950s-70s)</strong>
+                                <small>Maslow, McGregor, Herzberg: Individual NEEDS and motivations central; job design matters; participative management; treating employees as SELF-ACTUALISING beings</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Stage 4: HRM Era (1970s-90s)</strong>
+                                <small>HR as an ASSET, not a cost; integrated with organisational STRATEGY; policies formalised; shift from reactive to proactive; HR department gains legitimacy and power</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">STAGE 5-6: CONTEMPORARY ERA</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Stage 5: Strategic HRM (1990s-2010s)</strong>
+                                <small>Ulrich's HR Roles: STRATEGIC PARTNER (align HR to business goals) + ADMIN EXPERT (efficient delivery) + EMPLOYEE CHAMPION (advocate for employees) + CHANGE AGENT (drive transformation)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Stage 6: Digital/Agile HRM (2010s-Now)</strong>
+                                <small>E-HRM systems, HR Analytics, AI in recruitment/screening, gig workforce management, remote work policies, data-driven HR decisions, real-time people analytics, digital employer branding</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 3 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+    </div>
+</div>
+
+<!-- PAGE 4: PERSONNEL MANAGEMENT VS HRM -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🔀 PERSONNEL MANAGEMENT vs HRM: KEY DIFFERENCES</div>
+        <div class="page-subtitle">Paradigm Shift from Labour Management to Human Resource Development</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">PM vs HRM</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">FUNDAMENTAL PHILOSOPHY</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Personnel Management View</strong>
+                                <small>Labour as a COST TO MINIMISE. Workers are production inputs. Focus on cost control and efficiency. View: adversarial relationship with workers. Industrial relations = conflict management</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>HRM View</strong>
+                                <small>Humans as ASSETS/RESOURCES TO DEVELOP. Employees are value creators. Focus on capability building and engagement. View: partnership relationship. Industrial relations = mutual benefit</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">OPERATIONAL APPROACH</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Personnel Management: REACTIVE</strong>
+                                <small>Fire-fighting approach. Responds to crises. Short-term, problem-focused. Collective bargaining as CENTRAL activity. Industrial relations = strike management</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>HRM: PROACTIVE</strong>
+                                <small>Anticipatory approach. Prevents problems. Long-term, developmental focus. Individual contracts emphasis. Direct employer-employee RELATIONSHIP. Industrial relations = collaboration</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">EMPLOYEE RELATIONS STYLE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Personnel Management: CONFORMANCE</strong>
+                                <small>Emphasis on rules & compliance. "Obey or face consequences". Employee as rule-follower. Top-down control. Little discretion or autonomy</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>HRM: COMMITMENT</strong>
+                                <small>Emphasis on values & culture. "Do what's right for org". Employee as value-creator. Empowerment and discretion. Discretionary effort encouraged through engagement</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 4 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+    </div>
+</div>
+
+<!-- PAGE 5: HRM CULTURE-BOUND & ULRICH MODEL -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🌍 HRM IS CULTURE-BOUND: HOFSTEDE'S DIMENSIONS (PYQ 2020 - 20M)</div>
+        <div class="page-subtitle">How National Culture Shapes HRM Practices | Four Hofstede Dimensions</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">HOFSTEDE</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">POWER DISTANCE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>HIGH Power Distance (India, China)</strong>
+                                <small>Top-down appraisal; seniority-based promotions; hierarchical structures; respect for authority; formal communication; power concentrated at top</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>LOW Power Distance (Sweden, Denmark)</strong>
+                                <small>360° feedback; participative appraisals; merit-based promotions; flat hierarchies; informal communication; power distributed; questioning authority acceptable</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">INDIVIDUALISM vs COLLECTIVISM</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>HIGH Individualism (USA, Australia)</strong>
+                                <small>Individual pay based on merit; personal career planning; individual recognition; competition encouraged; loyalty to self first; task-oriented</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>HIGH Collectivism (Japan, India)</strong>
+                                <small>Group incentives; seniority-based pay; collective planning; group recognition; cooperation valued; loyalty to group/organisation; relationship-oriented</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">UNCERTAINTY AVOIDANCE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>HIGH Uncertainty Avoidance (Germany, Greece)</strong>
+                                <small>Detailed Job Descriptions; formal procedures; rules-based HR; risk aversion; structured career paths; clear reporting lines; extensive training before taking responsibilities</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>LOW Uncertainty Avoidance (UK, USA)</strong>
+                                <small>Flexible roles; tolerance for ambiguity; outcome-focused evaluation; entrepreneurship encouraged; risk-taking rewarded; informal procedures; adaptability valued</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">MASCULINITY vs FEMININITY</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>HIGH Masculinity (Japan, USA)</strong>
+                                <small>Competitive pay; performance-driven culture; long working hours; career advancement emphasis; achievement-oriented; aggressive competition; work-centredness</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>HIGH Femininity (Scandinavia, Netherlands)</strong>
+                                <small>Work-life balance emphasis; maternity/paternity leave; welfare provisions; cooperation valued; quality of life important; modest income differentials; social responsibility</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 5 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+    </div>
+</div>
+
+<!-- PAGE 6: ULRICH MODEL & HRP DEFINITIONS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">👥 DAVE ULRICH HR ROLES MODEL (1997) & HRP DEFINITIONS</div>
+        <div class="page-subtitle">Four HR Roles | Three Core HRP Definitions | Coleman, Stainer, Wickstrom</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">ULRICH + HRP</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">FOUR ULRICH HR ROLES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Strategic Partner</strong>
+                                <small>Aligns HR strategy with business strategy. Participates in strategic planning. Long-term workforce planning. Helps achieve competitive advantage through people</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Administrative Expert</strong>
+                                <small>Efficient delivery of HR processes (payroll, compliance, records). Systems and procedures focus. Cost efficiency. HRIS implementation. Operational excellence</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Employee Champion</strong>
+                                <small>Advocates for employee needs to management. Grievance handling. Engagement surveys. Welfare and support. Represents employee voice. Builds loyalty and commitment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Change Agent</strong>
+                                <small>Drives and manages organisational change. Cultural transformation. Restructuring support. Change communication. Innovation champion. Manages resistance to change</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">HRP DEFINITIONS (Part B Foundation)</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Coleman Definition</strong>
+                                <small>"HRP is the process of determining manpower requirements and the means of meeting those requirements in order to carry out the integrated plan of the organisation"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Stainer Definition</strong>
+                                <small>"Manpower planning is the strategy for the acquisition, utilisation, improvement and preservation of an enterprise's human resources"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Wickstrom Definition</strong>
+                                <small>HRP = Forecasting future requirements + Inventory of present resources + Identifying deviation + Planning recruitment/training/development to meet future needs</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>KEY PYQ LINE</strong>
+                                <small>"HRP is a PREREQUISITE for EFFECTIVE MANAGEMENT of human resources" - Use this in answers to establish importance</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 6 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+    </div>
+</div>
+
+<!-- PAGE 7: HRP PROCESS - 7 STEP MODEL -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📋 HRP PROCESS: 7-STEP MODEL (PYQ 2015 - 20M)</div>
+        <div class="page-subtitle">Complete Framework from Analysis to Monitoring | Critical for Exam</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">7 STEPS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">STEPS 1-3: ANALYSIS & FORECASTING</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Step 1: Analyse Present Manpower Inventory</strong>
+                                <small>SKILLS INVENTORY: Record current employees' skills, qualifications, experience, competencies. STRENGTHS & GAPS identification. DATA: Age, tenure, education, department, role, performance. Understand "what we have now"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Step 2: Forecast Manpower Demand (Future Requirement)</strong>
+                                <small>MACRO FACTORS: Business strategy, market growth, expansion plans, new initiatives. MICRO FACTORS: Retirements, resignations, natural attrition rates. METHODS: Trend analysis, regression, ratio analysis, Delphi technique. QUESTION: "How many people do we need in 2-3 years?"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Step 3: Forecast Manpower Supply (Future Availability)</strong>
+                                <small>INTERNAL SUPPLY: Promotions, transfers, training outcomes from current workforce. EXTERNAL SUPPLY: Labour market conditions, unemployment rates, education output, competitor hiring. QUESTION: "Where will we get people from?"</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">STEPS 4-7: MATCHING & ACTION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Step 4: Identify Manpower Gap (Deviation Analysis)</strong>
+                                <small>GAP = Demand - Supply. If Demand > Supply = SHORTAGE (need recruitment, outsourcing). If Supply > Demand = SURPLUS (need redeployment, retrenchment, VRS, natural attrition). CRITICAL FOR PLANNING</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Step 5: Plan HR Actions (Recruitment, Development, Separation)</strong>
+                                <small>SHORTAGE response: Recruitment plan (internal/external), outsourcing, training acceleration. SURPLUS response: Redeployment to other departments, retraining for different roles, VRS, managed attrition. Coordinate with Finance for budget</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Step 6: Implement HR Policies & Programs</strong>
+                                <small>Execute recruitment drives, training programs, restructuring. Communicate changes. Support affected employees. Manage transitions smoothly</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Step 7: Monitor & Review (Ongoing)</strong>
+                                <small>Track actual vs planned hiring, attrition, development outcomes. Measure HRP effectiveness (fill rates, time-to-hire, retention). Adjust for changing business needs. ANNUAL REVIEW minimum</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 7 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+    </div>
+</div>
+
+<!-- PAGE 8: HRP IMPORTANCE & EXAM CHECKLIST -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">✅ HRP IMPORTANCE, BENEFITS & FINAL EXAM CHECKLIST</div>
+        <div class="page-subtitle">Why HRP Matters | 7 Key Benefits | Must-Know Frameworks for Exam</div>
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">HRP VALUE</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">EIGHT IMPORTANCE POINTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Determines Talent Needs</strong>
+                                <small>Clear picture of HOW MANY people needed in future for business to function effectively</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Avoids Talent Shortage/Surplus</strong>
+                                <small>Prevents crisis-mode hiring (expensive) or costly redundancies (demoralising)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Guides Recruitment Strategy</strong>
+                                <small>Determines recruitment volume, timing, sources (internal/external), skill mix needed</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Enables Training Planning</strong>
+                                <small>Identifies skill gaps requiring training/development investment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Improves Promotional Pipeline</strong>
+                                <small>Identifies high-potential employees to develop for future leadership roles</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Integrates HR with Business Strategy</strong>
+                                <small>Aligns people planning with org strategic goals - essential for competitive advantage</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Reduces Costs</strong>
+                                <small>Prevents expensive emergency hiring or costly redundancy payouts</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Enhances Organisational Effectiveness</strong>
+                                <small>Right people in right numbers at right time for right jobs = optimal performance</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">FINAL EXAM CHECKLIST ✓</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>✓ FOUR HRM DEFINITIONS</strong>
+                                <small>Flippo (most comprehensive - 8 activities), Dessler, Dale Yoder, Scott-Clothier-Spriegel</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ SEVEN HRM CHARACTERISTICS</strong>
+                                <small>Pervasive, Action-oriented, Future-oriented, Development-oriented, Integrating, Interdisciplinary, Comprehensive</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ IIPM SCOPE: THREE ASPECTS</strong>
+                                <small>Personnel, Welfare, Industrial Relations</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ SIX HR FUNCTIONS</strong>
+                                <small>Procurement, Development, Compensation, Integration, Maintenance, Separation (remember as P-D-C-I-M-S)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ SIX EVOLUTION STAGES</strong>
+                                <small>Scientific Mgmt >> Human Relations >> Behavioural Science >> HRM Era >> Strategic HRM >> Digital/Agile HRM</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ PERSONNEL MANAGEMENT vs HRM DIFFERENCES</strong>
+                                <small>5 key contrasts (Philosophy, Approach, Focus, Employee relations, Strategy)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ HOFSTEDE'S FOUR DIMENSIONS & INDIA CONTEXT</strong>
+                                <small>Power Distance, Individualism, Uncertainty Avoidance, Masculinity (India = High PD, Collectivist)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ ULRICH'S FOUR HR ROLES</strong>
+                                <small>Strategic Partner, Admin Expert, Employee Champion, Change Agent (each with specific activities)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>✓ HRP DEFINITIONS & 7-STEP PROCESS</strong>
+                                <small>Coleman, Stainer, Wickstrom definitions + 7 steps complete (Inventory >> Forecast Demand >> Forecast Supply >> Gap >> Actions >> Implement >> Monitor)</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-title">ANSWER STRATEGY</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>20M Q: "Define HRM & Discuss Its Scope"</strong>
+                                <small>Use Flippo definition >> 7 characteristics >> IIPM scope (3 aspects) >> 6 functions >> India context (Hofstede dimensions) >> Conclusion with importance</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>20M Q: "HRP Process & Importance"</strong>
+                                <small>Definition (Coleman/Stainer) >> 7-step process (with details) >> Importance (8 points) >> Challenges in India (turnover, informal sectors) >> Conclusion</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>10M Q: Short-Notes Style</strong>
+                                <small>Definition >> 2-3 key points >> brief India context >> Conclusion (typically 200-250 words)</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 8 of 8</div>
+    </div>
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div>
+    </div>
+</div>
+
+</body>
+</html>
