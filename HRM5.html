@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRM - Placement & Orientation - Complete Mindmap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: white;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.8fr 1fr;
+            page-break-after: always;
+            break-after: page;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Left side - Mindmap */
+        .mindmap-section {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            background: white;
+            border-right: 2px solid #ddd;
+            overflow: visible;
+        }
+
+        /* Right side - Notes */
+        .notes-section {
+            background: #f9f9f9;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .notes-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .notes-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .note-line {
+            border-bottom: 1px dotted #bbb;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            color: #667eea;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 3px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #999;
+            font-size: 0.64em;
+            margin-bottom: 8px;
+        }
+
+        /* Mindmap - Vertical Layout */
+        .mindmap-content {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            overflow: visible;
+        }
+
+        .mindmap-row {
+            display: flex;
+            gap: 7px;
+            align-items: flex-start;
+        }
+
+        .central-node {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+            white-space: normal;
+            flex-shrink: 0;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+            width: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.74em;
+            line-height: 1.1;
+            min-height: 68px;
+        }
+
+        .branches-container {
+            display: flex;
+            gap: 6px;
+            flex: 1;
+            overflow: visible;
+        }
+
+        .branch {
+            background: white;
+            border: 1.5px solid #667eea;
+            border-radius: 5px;
+            padding: 6px;
+            min-width: 110px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .branch-title {
+            background: #667eea;
+            color: white;
+            padding: 4px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 0.63em;
+            margin-bottom: 4px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .topics {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            overflow: visible;
+        }
+
+        .topic {
+            padding: 3px;
+            background: #f0f4ff;
+            border-left: 2px solid #667eea;
+            border-radius: 2px;
+            font-size: 0.63em;
+            line-height: 1.15;
+            flex-shrink: 0;
+        }
+
+        .topic strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 0.5px;
+            font-size: 0.88em;
+        }
+
+        .topic small {
+            color: #666;
+            font-size: 0.82em;
+        }
+
+        .priority-high {
+            background: #ffe5e5;
+            border-left: 2px solid #ff6b6b;
+        }
+
+        .priority-high strong {
+            color: #ff6b6b;
+        }
+
+        .priority-mid {
+            background: #fff5e5;
+            border-left: 2px solid #ffc107;
+        }
+
+        .priority-mid strong {
+            color: #ff9800;
+        }
+
+        /* Explanation boxes */
+        .explanation-section {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 0.63em;
+            line-height: 1.2;
+            margin-top: 5px;
+            overflow: visible;
+        }
+
+        .explanation {
+            background: #f9f9f9;
+            border-left: 2px solid #667eea;
+            padding: 5px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .explanation-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 1px;
+            font-size: 0.78em;
+        }
+
+        .explanation-content {
+            color: #333;
+            margin-left: 4px;
+        }
+
+        .explanation-item {
+            margin: 1px 0;
+            font-size: 0.88em;
+        }
+
+        .explanation-item strong {
+            color: #667eea;
+        }
+
+        /* Page number */
+        .page-number {
+            text-align: right;
+            color: #999;
+            font-size: 0.65em;
+            margin-top: 5px;
+            flex-shrink: 0;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background: white;
+            }
+
+            .page {
+                margin: 0;
+                padding: 0;
+                min-height: 100vh;
+                page-break-after: always;
+                break-after: page;
+            }
+
+            .mindmap-section {
+                padding: 10mm;
+                border-right: 2px solid #ddd;
+            }
+
+            .notes-section {
+                padding: 10mm;
+            }
+        }
+
+        @media screen {
+            .page {
+                margin: 10px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- PAGE 1: PLACEMENT DEFINITIONS & CHARACTERISTICS -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📍 PLACEMENT: DEFINITIONS & CHARACTERISTICS</div>
+        <div class="page-subtitle">Meaning, Nature & Types (PYQ 2019)</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">PLACEMENT</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">CORE MEANING</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Definition</strong>
+                                <small>Process of assigning selected employee to specific job position based on job requirements and candidate capabilities</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Matching Process</strong>
+                                <small>Matches person's capabilities (Job Specification) with job demands (Job Description) — person-job fit is goal</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Selection → Placement</strong>
+                                <small>Placement is next step after selection; Builds on selection decision; First assignment into job</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Foundation</strong>
+                                <small>Well-placed employee experiences person-job fit → intrinsic motivation → higher performance</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">KEY CHARACTERISTICS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Bilateral Impact</strong>
+                                <small>Affects both employee (satisfaction, growth, well-being) AND organization (productivity, turnover, team performance)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Provisional Character</strong>
+                                <small>Initial placement is provisional — subject to review after probation; Confirmation follows satisfactory performance</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Consequential Decision</strong>
+                                <small>Poor placement cascades into absenteeism, turnover, poor performance, industrial disputes</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Dynamic, Not Static</strong>
+                                <small>Placements change as employee develops or org needs evolve — through transfers, promotions, reassignments</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">TYPES OF PLACEMENT</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Initial Placement</strong>
+                                <small>First assignment after selection; Entry-level position; Determines starting point</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Transfer Placement</strong>
+                                <small>Lateral movement between positions; Same level; Different dept/location; Develops breadth</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Promotion Placement</strong>
+                                <small>Vertical movement to higher position; Career progression; Recognizes capability</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Demotion Placement</strong>
+                                <small>Movement to lower position; Performance issues or retrenchment; Handles underperformance</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Remedial Placement</strong>
+                                <small>Reassignment due to poor fit; Misaligned capability; Corrects initial placement error</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">PRINCIPLES</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Job Matching</strong>
+                                <small>Assignment based on thorough JD & JS analysis; Fit is essential for success</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Aptitude Utilisation</strong>
+                                <small>Place where natural strengths maximized; Potential fully realized and utilized</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Full Disclosure</strong>
+                                <small>Clear communication about duties, conditions, challenges, expectations; No surprises</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Adequate Orientation</strong>
+                                <small>Placement without orientation is incomplete — must be accompanied by integration programme</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Non-Discrimination</strong>
+                                <small>Free from caste, gender, religion, disability bias; Article 15 & 16 compliance</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">PYQ 2019: PLACEMENT AS DECISIVE STEP</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Bilateral Impact:</strong> Positive: employee satisfaction, motivation, growth; Negative: frustration, poor performance, early exit</strong></div>
+                        <div class="explanation-item"><strong>Organization Impact:</strong> Good placement = productivity, retention, team cohesion; Bad = turnover, poor IR climate</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 1 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 2: ORIENTATION DEFINITIONS & PURPOSES -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🎓 ORIENTATION: DEFINITIONS & PURPOSES</div>
+        <div class="page-subtitle">Flippo & Yoder (PYQ 2015 - 10M)</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">ORIENTATION</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">DEFINITIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Edwin Flippo</strong>
+                                <small>"Orientation is the process of familiarising new employees with the organisation, their job and their work unit."</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Dale Yoder</strong>
+                                <small>"Orientation or induction is the task of introducing the new employee to the enterprise and its policies, procedures and rules."</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Core Concept</strong>
+                                <small>Process of integrating new employee into organization; Bridges gap between selection and productive contribution</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">PURPOSE 1-4</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Reduce Anxiety</strong>
+                                <small>Transition to new workplace inherently stressful; Orientation provides psychological safety, reduces panic</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Reduce Reality Shock</strong>
+                                <small>Gap between recruitment expectations and actual job realities; Orientation bridges gap; Prevents disillusionment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Accelerate Productivity</strong>
+                                <small>Oriented employees reach FULL PRODUCTIVE CONTRIBUTION 34% FASTER than without (BambooHR research)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Reduce Turnover</strong>
+                                <small>Good orientation INCREASES 3-YEAR RETENTION BY 69% (SHRM data); Early investment prevents costly replacements</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">PURPOSE 5-7</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Build Commitment</strong>
+                                <small>Early positive experiences shape long-term loyalty and psychological contract; Foundation for relationship</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Clarify Roles</strong>
+                                <small>Prevents misunderstandings about job duties, authority, performance standards, and KPIs</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Facilitate Integration</strong>
+                                <small>Helps new employee build relationships with colleagues, supervisors, teams — social belonging; Community</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CRITICAL DATA</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>34% Faster Productivity</strong>
+                                <small>BambooHR research: Oriented employees 34% faster to full productivity</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>69% Better Retention</strong>
+                                <small>SHRM data: Good orientation increases 3-year retention by 69%</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>ROI Justification</strong>
+                                <small>Strong business case for investment in orientation programs</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Cost Comparison</strong>
+                                <small>Replacement cost = 50-200% annual salary; Orientation investment saves significantly</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CULTURAL TRANSMISSION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Organizational Values</strong>
+                                <small>Transmits core organizational values and norms during orientation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>History & Identity</strong>
+                                <small>Shares organization's history, identity, achievements, founding stories</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Informal Practices</strong>
+                                <small>Teaches "the way we do things here" — informal culture alongside formal policies</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">PYQ 2015 (10M) CRITICAL INSIGHT</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Orientation NOT Administrative:</strong> Strategic investment in employee retention and productivity</strong></div>
+                        <div class="explanation-item"><strong>Data-Driven ROI:</strong> 34% faster productivity + 69% better retention = strong business case</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 2 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 3: ORIENTATION COMPONENTS - 3-LEVEL MODEL -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📋 ORIENTATION COMPONENTS: 3-LEVEL MODEL</div>
+        <div class="page-subtitle">Organizational, Departmental, Job-Specific (PYQ 2014 - 20M)</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">3-LEVELS</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">LEVEL 1: ORGANIZATIONAL</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Company Overview</strong>
+                                <small>History, mission, vision, values, business operations, organizational structure</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Policies & Procedures</strong>
+                                <small>HR policies, code of conduct, safety, security, attendance, leave, discipline</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Facilities & Services</strong>
+                                <small>Workplace tour, facilities (cafeteria, restrooms, parking), IT setup, workstation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Legal Compliance</strong>
+                                <small>Contract signing, documentation, statutory requirements, orientation completion</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">LEVEL 2: DEPARTMENTAL</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Team Introduction</strong>
+                                <small>Immediate team, supervisor, key cross-functional contacts, peer relationships</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Department Role</strong>
+                                <small>Department's contribution to organization; How dept objectives align with company goals</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Department Culture</strong>
+                                <small>Departmental norms, informal practices, communication channels, working relationships</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Workflow & Tools</strong>
+                                <small>Team workflow, project management tools, meeting cadence, reporting formats, processes</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">LEVEL 3: JOB-SPECIFIC</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Job Duties</strong>
+                                <small>Detailed walkthrough of responsibilities and accountabilities; Core tasks and functions</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Performance Standards</strong>
+                                <small>KPIs, OKRs, 30-60-90 day goals, measurement criteria, success definition</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Tools & Systems</strong>
+                                <small>Equipment, software, databases, technology systems employee will work with daily</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Quality & Compliance</strong>
+                                <small>Quality standards, compliance requirements specific to role, regulatory requirements</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Key Stakeholders</strong>
+                                <small>Introduction to stakeholders employee will regularly interact with; External contacts</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">3-LEVEL PROCESS FLOW</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Hierarchy</strong>
+                                <small>Start BROAD (organization) → narrow to department → focus on specific job</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Timeframe</strong>
+                                <small>~2-4 weeks total; Not single day event; Progressive integration over time</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Progression</strong>
+                                <small>Context first (organization) → context narrower (department) → specific (job)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Owner Responsibility</strong>
+                                <small>HR for Level 1; Manager + HR for Level 2; Supervisor + manager for Level 3</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">ORIENTATION vs ONBOARDING</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Orientation</strong>
+                                <small>Formal process; First week; Administrative + introductions; Structured program</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Onboarding</strong>
+                                <small>Broader process; 3-6 months; Includes orientation + training + development + integration</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Relationship</strong>
+                                <small>Orientation is PART OF onboarding; Onboarding is more comprehensive and longer</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">PYQ 2014 (20M) ORIENTATION COMPONENTS</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Structure:</strong> 3-level model ensures complete integration; Each level essential</strong></div>
+                        <div class="explanation-item"><strong>Coverage:</strong> From organization-wide to job-specific; Holistic approach</strong></div>
+                        <div class="explanation-item"><strong>Timeline:</strong> Not rushed into one day; Systematic, progressive integration over 2-4 weeks</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 3 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 4: OCTAPAC CULTURE MODEL -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🎨 OCTAPAC CULTURE MODEL - UDAI PAREEK</div>
+        <div class="page-subtitle">7-Element Organizational Culture (PYQ 2016 - 10M)</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">OCTAPAC</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">O & C</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Openness (O)</strong>
+                                <small>Open communication, feedback sharing, transparency, ideas welcome; Create psychological safety</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Confrontation (C)</strong>
+                                <small>Address issues directly, resolve conflicts openly, face problems head-on; Honest dialogue</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">T & A</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Trust (T)</strong>
+                                <small>Mutual trust between employees, management, organization; Believe in each other; Rely on colleagues</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Authenticity (A)</strong>
+                                <small>Be true self, genuine relationships, authentic interactions; No masks or pretense; Real connections</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">P & A</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Proactivity (P)</strong>
+                                <small>Take initiative, think ahead, be forward-looking; Anticipate problems; Own solutions</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Autonomy (A)</strong>
+                                <small>Employee freedom to make decisions within authority; Empowerment; Ownership mentality</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">C</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Collaboration (C)</strong>
+                                <small>Work together, teamwork, collective problem-solving; Synergy; "we" not "I"; Interdependence</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">APPLICATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Orientation Role</strong>
+                                <small>OCTAPAC framework transmitted during orientation; New employee learns culture through program</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Culture Assessment</strong>
+                                <small>Organizations assess where they stand on OCTAPAC dimensions; Identify culture gaps</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Culture Development</strong>
+                                <small>Develop programs to strengthen weak dimensions; Build healthier organizational culture</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Udai Pareek</strong>
+                                <small>Indian OD expert; Framework specifically designed for Indian organizations; Culturally relevant</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">PYQ 2016 (10M) OCTAPAC CULTURE</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Framework:</strong> 7 interconnected elements that define healthy organizational culture</strong></div>
+                        <div class="explanation-item"><strong>Orientation Integration:</strong> All 7 elements transmitted to new employee during orientation process</strong></div>
+                        <div class="explanation-item"><strong>Indian Context:</strong> Udai Pareek developed for Indian organizations; Addresses Indian cultural values</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 4 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 5: TALYA BAUER 4C ONBOARDING MODEL -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🚀 TALYA BAUER 4C MODEL - MODERN ONBOARDING</div>
+        <div class="page-subtitle">Contemporary Onboarding Framework (2010)</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">4C MODEL</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">4C FRAMEWORK</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>1. COMPLIANCE</strong>
+                                <small>Administrative tasks, paperwork, documentation, policies; Foundation level; Legal requirements</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2. CLARIFICATION</strong>
+                                <small>Role clarity, job expectations, performance standards, KPIs; Understanding level; What's expected</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>3. CONNECTION</strong>
+                                <small>Building relationships, team integration, colleague networks, mentor match; Belonging; Social bonds</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>4. CULTURE</strong>
+                                <small>Values, norms, organizational culture, "the way we do things"; Cultural fit; Assimilation</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">DETAILED BREAKDOWN</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Compliance Details</strong>
+                                <small>Signing contracts, form filling, system access, IT setup, badge/key, insurance, tax forms</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Clarification Details</strong>
+                                <small>Job description review, 30-60-90 goals, reporting relationships, decision authority, success metrics</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Connection Details</strong>
+                                <small>Team introductions, buddy assignment, social events, lunch with colleagues, mentor relationship</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Culture Details</strong>
+                                <small>Company history, values reinforcement, cultural norms, working style, unwritten rules, stories</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">TECHNOLOGY-ENABLED</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Digital Platforms</strong>
+                                <small>SAP SuccessFactors, Workday, BambooHR; Automate compliance, enable personalization</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Pre-boarding Portal</strong>
+                                <small>Portal access BEFORE Day 1; Welcome kit, introductory content, forms; Reduces anxiety</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>30-60-90 Dashboards</strong>
+                                <small>New employee + manager track milestones digitally; Creates accountability and feedback</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Buddy Matching Apps</strong>
+                                <small>Algorithm-based pairing with suitable buddy; Accelerates C3 (Connection) level</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>VR Orientation</strong>
+                                <small>Immersive workplace tour and safety training; Effective for manufacturing/hazardous environments</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">TIME & MEASUREMENT</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>C1 Timeline</strong>
+                                <small>Compliance: First week; Must complete all administrative tasks</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>C2 Timeline</strong>
+                                <small>Clarification: Week 1-2; Role clarity and expectations settled</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>C3 Timeline</strong>
+                                <small>Connection: Ongoing weeks 1-6; Relationships develop; Integration continues</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>C4 Timeline</strong>
+                                <small>Culture: 3-6 months; Cultural assimilation gradual; Becomes natural over time</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">PSU & INDIA CONTEXT</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>UPSC/DOPT</strong>
+                                <small>IAS/IPS/IFS officers; Among India's most comprehensive public sector orientation programmes</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>RBI, SEBI, NABARD</strong>
+                                <small>3-12 month structured induction programmes; Classroom + on-the-job components</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>PSU Manufacturing</strong>
+                                <small>BHEL, NTPC, SAIL; GET & MT programmes; 1-year structured rotation + orientation</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Challenge in PSUs</strong>
+                                <small>Placement often seniority/political-driven, not job-matched; 2nd NCL (2002) highlighted issue</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">4C AS MODERN FRAMEWORK</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Progression:</strong> Not sequential but all 4 happen together with different emphasis</strong></div>
+                        <div class="explanation-item"><strong>Integration:</strong> Modern onboarding = tech-enabled 4C approach; Digital + human touch</strong></div>
+                        <div class="explanation-item"><strong>Effectiveness:</strong> Companies using 4C have better retention and faster productivity</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 5 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 6: TECHNOLOGY IN PLACEMENT & ORIENTATION -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">💻 TECHNOLOGY IN PLACEMENT & ORIENTATION</div>
+        <div class="page-subtitle">AI, Digital Platforms, Modern Approaches</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">TECHNOLOGY</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">AI-DRIVEN PLACEMENT</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Talent Intelligence Platforms</strong>
+                                <small>Eightfold AI, Gloat analyze employee skills profiles against role requirements</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Benefit</strong>
+                                <small>Minimizes human bias in placement decisions; Objective skill-to-role matching</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Application</strong>
+                                <small>Internal placement, transfer recommendations, succession planning, career pathing</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">DIGITAL PLATFORMS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Platform Examples</strong>
+                                <small>SAP SuccessFactors, Workday, BambooHR, Cornerstone OnDemand</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Functions</strong>
+                                <small>Automate administrative induction; Track orientation progress; Enable personalization</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Benefits</strong>
+                                <small>Consistency, scalability, data tracking, onboarding analytics, integration with HRIS</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">VR ORIENTATION</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Application</strong>
+                                <small>Immersive workplace tour and safety training; Effective for manufacturing/hazardous</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Examples</strong>
+                                <small>Tata Steel pilot programmes, Walmart implementations; Safety training in risky environments</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Advantage</strong>
+                                <small>Experiential learning, consistent delivery, engaging, memorability, cost-effective at scale</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">BUDDY MATCHING & PORTALS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Buddy Apps</strong>
+                                <small>Algorithm-based pairing of new hire with suitable buddy; Accelerates C3 onboarding</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Pre-boarding Portal</strong>
+                                <small>Portal access BEFORE Day 1; Welcome kit, forms, introductory content; Reduces Day 1 anxiety</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Dashboard Tools</strong>
+                                <small>30-60-90 dashboards; New employee + manager track milestones; Creates accountability</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">IMPLEMENTATION TIPS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Integration</strong>
+                                <small>Technology augments, not replaces, human connection; Combine digital + personal touch</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Customization</strong>
+                                <small>Tailor technology to organization size and culture; Not one-size-fits-all</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Change Management</strong>
+                                <small>Train stakeholders on new systems; Manage adoption; Measure effectiveness</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">TECHNOLOGY-ENABLED PLACEMENT & ORIENTATION</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Current Trend:</strong> Moving from manual to automated processes; Data-driven decisions</strong></div>
+                        <div class="explanation-item"><strong>AI Advantage:</strong> Reduces bias, improves matching accuracy, scales globally</strong></div>
+                        <div class="explanation-item"><strong>Human Factor:</strong> Technology enables better administration but relationships still critical</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 6 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 7: PSU CONTEXT & CHALLENGES -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">🏛️ PLACEMENT & ORIENTATION IN INDIAN PSUs</div>
+        <div class="page-subtitle">Context, Examples & Challenges</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">PSU CONTEXT</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">GOVERNMENT SECTOR</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>UPSC/DOPT Foundation</strong>
+                                <small>IAS/IPS/IFS officers; Among India's most comprehensive public sector orientation programmes</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Coverage</strong>
+                                <small>Governance systems, ethics, ground realities, constitutional values, India's challenges</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Duration</strong>
+                                <small>Multiple weeks; Combines classroom learning, field exposure, interactions with experts</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">FINANCIAL SECTOR PSUs</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>RBI, SEBI, NABARD</strong>
+                                <small>Induction training programmes covering 3-12 months combining classroom + on-the-job</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Structure</strong>
+                                <small>Classroom phase for concepts; On-the-job phase for application and skill development</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Focus</strong>
+                                <small>Regulatory knowledge, operational procedures, organizational systems, role-specific skills</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">PSU MANUFACTURING</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Companies</strong>
+                                <small>BHEL (Bharat Heavy Electricals), NTPC (National Thermal Power), SAIL (Steel Authority of India)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>GET Programs</strong>
+                                <small>Graduate Engineer Trainee programmes; 1-year structured rotation through departments</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>MT Programs</strong>
+                                <small>Management Trainee programmes; 1-year structured exposure + orientation; Leadership pipeline</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CHALLENGES IN PSUs</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Seniority-Driven</strong>
+                                <small>Placement often driven by seniority or political considerations rather than job-matching</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Poor Fit</strong>
+                                <small>Result: Suboptimal person-job fit; Employees not matched to skills and interests</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>2nd NCL (2002)</strong>
+                                <small>Second National Commission on Labour highlighted placement issues in PSUs; Recommended reforms</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Rigidity</strong>
+                                <small>Rigid hierarchies, government procedures slow down placement adjustments and transfers</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">REFORM DIRECTIONS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Merit-Based Placement</strong>
+                                <small>Move from seniority to merit-based job assignment; Job-person matching priority</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Flexibility</strong>
+                                <small>Allow more lateral moves, transfers based on capability; Reduce rigid hierarchy</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Modern Approaches</strong>
+                                <small>Adopt technology-enabled placement; AI matching; Digital onboarding platforms</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Competitive Practice</strong>
+                                <small>Learn from private sector best practices in placement and orientation</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">PSU PARADOX</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item"><strong>Strength:</strong> PSUs have excellent orientation programs (UPSC, RBI programs); Comprehensive coverage</strong></div>
+                        <div class="explanation-item"><strong>Weakness:</strong> PSU placement often not merit-based; Seniority/politics override capability matching</strong></div>
+                        <div class="explanation-item"><strong>Impact:</strong> Good orientation + poor placement = talented people in wrong jobs; Underutilization</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 7 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 8: SUMMARY & EXAM CHECKLIST -->
+<div class="page">
+    <div class="mindmap-section">
+        <div class="page-title">📊 EXAM SUMMARY & LAST-MINUTE CHECKLIST</div>
+        <div class="page-subtitle">PYQ Mapping & Critical Concepts</div>
+
+        <div class="mindmap-content">
+            <div class="mindmap-row">
+                <div class="central-node">SUMMARY</div>
+                <div class="branches-container">
+                    <div class="branch">
+                        <div class="branch-title">PYQ MAPPING</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>PYQ 2019 (20M)</strong>
+                                <small>"Placement is decisive step" - bilateral impact on employee & organization</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>PYQ 2015 (10M)</strong>
+                                <small>Purpose of orientation (with data); 34% productivity, 69% retention</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>PYQ 2014 (20M)</strong>
+                                <small>Orientation components - 3-level model (Org, Dept, Job-specific)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>PYQ 2016 (10M)</strong>
+                                <small>OCTAPAC culture (7 elements); Udai Pareek framework</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">CRITICAL CONCEPTS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Person-Job Fit</strong>
+                                <small>CORE CONCEPT - goal of placement; Determines success and satisfaction</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Bilateral Impact</strong>
+                                <small>Placement affects BOTH employee (satisfaction, growth) AND organization (productivity, IR)</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Orientation ROI</strong>
+                                <small>34% faster productivity + 69% better retention = STRONG business case for investment</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>3-Level Model</strong>
+                                <small>Organization → Department → Job; Progressive integration; ~2-4 weeks</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>OCTAPAC Framework</strong>
+                                <small>7 elements: Openness, Confrontation, Trust, Authenticity, Proactivity, Autonomy, Collaboration</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">DEFINITIONS TO MEMORIZE</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Flippo on Orientation</strong>
+                                <small>"Orientation is process of familiarising new employees with org, job, work unit"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Yoder on Orientation</strong>
+                                <small>"Orientation or induction is task of introducing new employee to enterprise and its policies"</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Placement Meaning</strong>
+                                <small>Process of assigning selected employee to specific job position based on fit</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">KEY STATISTICS</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>34% Faster Productivity</strong>
+                                <small>BambooHR research; Oriented employees reach full productivity 34% faster</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>69% Better Retention</strong>
+                                <small>SHRM data; Good orientation increases 3-year retention by 69%</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Replacement Cost</strong>
+                                <small>50-200% of annual salary; Makes orientation investment justified</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="branch">
+                        <div class="branch-title">LAST-MINUTE CHECKLIST</div>
+                        <div class="topics">
+                            <div class="topic priority-high">
+                                <strong>Placement Definitions</strong>
+                                <small>Know core meaning, characteristics, 5 types, principles, bilateral impact</small>
+                            </div>
+                            <div class="topic priority-high">
+                                <strong>Orientation 3-Levels</strong>
+                                <small>Org → Dept → Job; Know components at each level; ~2-4 weeks timeline</strong></div>
+                            <div class="topic priority-high">
+                                <strong>OCTAPAC 7 Elements</strong>
+                                <small>O-C-T-A-P-A-C; Can recall all 7 and meanings; Udai Pareek framework</strong></div>
+                            <div class="topic priority-high">
+                                <strong>4C Model</strong>
+                                <small>Compliance, Clarification, Connection, Culture; Talya Bauer 2010</strong></div>
+                            <div class="topic priority-high">
+                                <strong>Data & Statistics</strong>
+                                <small>34%, 69%, 50-200%; Key figures for ROI arguments</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <div class="explanation">
+                    <div class="explanation-title">UPSC ANSWER FRAMEWORK</div>
+                    <div class="explanation-content">
+                        <div class="explanation-item">✓ <strong>Q on Placement:</strong> Definition → characteristics → types → principles → bilateral impact → India context (PSUs)</strong></div>
+                        <div class="explanation-item">✓ <strong>Q on Orientation:</strong> Definitions → 7 purposes (with data) → 3-level components → OCTAPAC → modern approaches</strong></div>
+                        <div class="explanation-item">✓ <strong>Q on Onboarding:</strong> 3-level orientation → 4C model → technology → PSU examples</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-number">Page 8 of 8</div>
+    </div>
+
+    <div class="notes-section">
+        <div class="notes-title">📝 NOTES</div>
+        <div class="notes-lines">
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+            <div class="note-line"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
